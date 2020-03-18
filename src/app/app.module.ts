@@ -8,6 +8,8 @@ import { HeaderUserdetailsComponent } from './header/header-userdetails/header-u
 import { HeaderTaskbarComponent } from './header/header-taskbar/header-taskbar.component';
 import { SidemenuComponent } from './sidemenu/sidemenu.component';
 import { MenuitemComponent } from './sidemenu/menuitem/menuitem.component';
+import { MainwindowComponent } from './mainwindow/mainwindow.component';
+import { StatPanelComponent } from './mainwindow/stat-panel/stat-panel.component';
 
 
 @NgModule({
@@ -18,6 +20,8 @@ import { MenuitemComponent } from './sidemenu/menuitem/menuitem.component';
     HeaderTaskbarComponent,
     SidemenuComponent,
     MenuitemComponent,
+    MainwindowComponent,
+    StatPanelComponent,
 
   ],
   imports: [
