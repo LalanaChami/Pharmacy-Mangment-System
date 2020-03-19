@@ -10,6 +10,8 @@ import { SidemenuComponent } from './sidemenu/sidemenu.component';
 import { MenuitemComponent } from './sidemenu/menuitem/menuitem.component';
 import { MainwindowComponent } from './mainwindow/mainwindow.component';
 import { StatPanelComponent } from './mainwindow/stat-panel/stat-panel.component';
+import { ExpiredateWindowComponent } from './mainwindow/expiredate-window/expiredate-window.component';
+import { ExpiredateWindowItemComponent } from './mainwindow/expiredate-window/expiredate-window-item/expiredate-window-item.component';
 
 
 @NgModule({
@@ -22,6 +24,8 @@ import { StatPanelComponent } from './mainwindow/stat-panel/stat-panel.component
     MenuitemComponent,
     MainwindowComponent,
     StatPanelComponent,
+    ExpiredateWindowComponent,
+    ExpiredateWindowItemComponent,
 
   ],
   imports: [
