@@ -1,0 +1,26 @@
+<section class="panel">
+  <p class="panel-heading" style="background-color:hsl(0, 0%, 88%) ;color:hsl(0, 0%, 21%)">
+    Sales Information Chart
+  </p>
+  <div class="panel-block ">
+    <div  style="height: 200px; width: 100%;">
+      <div class="column">
+      <div class="box">
+        <canvas baseChart
+        [datasets]="barChartData"
+        [labels]="barChartLabels"
+        [options]="barChartOptions"
+        [legend]="barChartLegend"
+        [chartType]="barChartType"></canvas>
+       </div>
+      </div>
+    </div>
+  </div>
+  <div class="panel-block">
+    <button class="button is-primary   is-fullwidth">
+      View Sales Information
+    </button>
+  </div>
+</section>
+
+

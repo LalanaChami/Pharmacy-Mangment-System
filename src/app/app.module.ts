@@ -1,6 +1,6 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-
+import { ChartsModule } from 'ng2-charts';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -12,6 +12,8 @@ import { MainwindowComponent } from './mainwindow/mainwindow.component';
 import { StatPanelComponent } from './mainwindow/stat-panel/stat-panel.component';
 import { ExpiredateWindowComponent } from './mainwindow/expiredate-window/expiredate-window.component';
 import { ExpiredateWindowItemComponent } from './mainwindow/expiredate-window/expiredate-window-item/expiredate-window-item.component';
+import { SaleschartWindowComponent } from './mainwindow/saleschart-window/saleschart-window.component';
+import { from } from 'rxjs';
 
 
 @NgModule({
@@ -26,11 +28,13 @@ import { ExpiredateWindowItemComponent } from './mainwindow/expiredate-window/ex
     StatPanelComponent,
     ExpiredateWindowComponent,
     ExpiredateWindowItemComponent,
+    SaleschartWindowComponent,
 
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ChartsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
