@@ -15,9 +15,10 @@ export class SaleschartWindowComponent implements OnInit {
   public barChartType = 'bar';
   public barChartLegend = true;
   public barChartData = [
-    {data: [12,62,34,65,86,45,24,54,83], label:'Previous Year'},
-    {data: [43,12,34,76,23,67,23,78,45], label:'This Year'}
+    {data: [12,62,34,65,86,45,24,54,83], label:'Previous Year' , backgroundColor:'hsl(0, 0%, 40%)', hoverBackgroundColor:'hsl(0, 0%, 10%) '},
+    {data: [43,12,34,76,23,67,23,78,45], label:'This Year',backgroundColor:'HSL(171, 100%, 50%)',hoverBackgroundColor:'HSL(171, 100%, 30%) '}
   ];
+
 
   constructor() { }
 

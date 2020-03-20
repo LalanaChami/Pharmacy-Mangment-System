@@ -14,6 +14,8 @@ import { ExpiredateWindowComponent } from './mainwindow/expiredate-window/expire
 import { ExpiredateWindowItemComponent } from './mainwindow/expiredate-window/expiredate-window-item/expiredate-window-item.component';
 import { SaleschartWindowComponent } from './mainwindow/saleschart-window/saleschart-window.component';
 import { from } from 'rxjs';
+import { OutofstockWindowComponent } from './mainwindow/outofstock-window/outofstock-window.component';
+import { OutofstockWindowItemComponent } from './mainwindow/outofstock-window/outofstock-window-item/outofstock-window-item.component';
 
 
 @NgModule({
@@ -29,6 +31,8 @@ import { from } from 'rxjs';
     ExpiredateWindowComponent,
     ExpiredateWindowItemComponent,
     SaleschartWindowComponent,
+    OutofstockWindowComponent,
+    OutofstockWindowItemComponent,
 
   ],
   imports: [
