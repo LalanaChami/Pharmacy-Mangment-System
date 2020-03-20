@@ -19,6 +19,12 @@ import { OutofstockWindowItemComponent } from './mainwindow/outofstock-window/ou
 import { PredictionchartWindowComponent } from './mainwindow/predictionchart-window/predictionchart-window.component';
 import { SalesdetailsWindowComponent } from './mainwindow/salesdetails-window/salesdetails-window.component';
 import { SalesdetailsItemsComponent } from './mainwindow/salesdetails-window/salesdetails-items/salesdetails-items.component';
+import { ADoctorOrderWindowComponent } from './mainwindow/a-doctor-order-window/a-doctor-order-window.component';
+import { NewDoctorOrderWindowComponent } from './mainwindow/a-doctor-order-window/new-doctor-order-window/new-doctor-order-window.component';
+import { VerifiedDoctorOrderWindowComponent } from './mainwindow/a-doctor-order-window/verified-doctor-order-window/verified-doctor-order-window.component';
+import { PickupOrderWindowComponent } from './mainwindow/a-doctor-order-window/pickup-order-window/pickup-order-window.component';
+import { NewDoctorOrderItemComponent } from './mainwindow/a-doctor-order-window/new-doctor-order-window/new-doctor-order-item/new-doctor-order-item.component';
+
 
 
 @NgModule({
@@ -39,6 +45,12 @@ import { SalesdetailsItemsComponent } from './mainwindow/salesdetails-window/sal
     PredictionchartWindowComponent,
     SalesdetailsWindowComponent,
     SalesdetailsItemsComponent,
+    ADoctorOrderWindowComponent,
+    NewDoctorOrderWindowComponent,
+    VerifiedDoctorOrderWindowComponent,
+    PickupOrderWindowComponent,
+    NewDoctorOrderItemComponent,
+
 
   ],
   imports: [
