@@ -16,6 +16,9 @@ import { SaleschartWindowComponent } from './mainwindow/saleschart-window/salesc
 import { from } from 'rxjs';
 import { OutofstockWindowComponent } from './mainwindow/outofstock-window/outofstock-window.component';
 import { OutofstockWindowItemComponent } from './mainwindow/outofstock-window/outofstock-window-item/outofstock-window-item.component';
+import { PredictionchartWindowComponent } from './mainwindow/predictionchart-window/predictionchart-window.component';
+import { SalesdetailsWindowComponent } from './mainwindow/salesdetails-window/salesdetails-window.component';
+import { SalesdetailsItemsComponent } from './mainwindow/salesdetails-window/salesdetails-items/salesdetails-items.component';
 
 
 @NgModule({
@@ -33,6 +36,9 @@ import { OutofstockWindowItemComponent } from './mainwindow/outofstock-window/ou
     SaleschartWindowComponent,
     OutofstockWindowComponent,
     OutofstockWindowItemComponent,
+    PredictionchartWindowComponent,
+    SalesdetailsWindowComponent,
+    SalesdetailsItemsComponent,
 
   ],
   imports: [
