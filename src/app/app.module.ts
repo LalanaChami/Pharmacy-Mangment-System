@@ -24,6 +24,8 @@ import { NewDoctorOrderWindowComponent } from './mainwindow/a-doctor-order-windo
 import { VerifiedDoctorOrderWindowComponent } from './mainwindow/a-doctor-order-window/verified-doctor-order-window/verified-doctor-order-window.component';
 import { PickupOrderWindowComponent } from './mainwindow/a-doctor-order-window/pickup-order-window/pickup-order-window.component';
 import { NewDoctorOrderItemComponent } from './mainwindow/a-doctor-order-window/new-doctor-order-window/new-doctor-order-item/new-doctor-order-item.component';
+import { VerifiedDoctorOrderItemComponent } from './mainwindow/a-doctor-order-window/verified-doctor-order-window/verified-doctor-order-item/verified-doctor-order-item.component';
+import { PickupOrderItemComponent } from './mainwindow/a-doctor-order-window/pickup-order-window/pickup-order-item/pickup-order-item.component';
 
 
 
@@ -50,6 +52,8 @@ import { NewDoctorOrderItemComponent } from './mainwindow/a-doctor-order-window/
     VerifiedDoctorOrderWindowComponent,
     PickupOrderWindowComponent,
     NewDoctorOrderItemComponent,
+    VerifiedDoctorOrderItemComponent,
+    PickupOrderItemComponent,
 
 
   ],
