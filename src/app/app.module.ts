@@ -30,6 +30,8 @@ import { APointofsaleWindowComponent } from './mainwindow/a-pointofsale-window/a
 import { AddToBillComponent } from './mainwindow/a-pointofsale-window/add-to-bill/add-to-bill.component';
 import { BillWindowComponent } from './mainwindow/a-pointofsale-window/bill-window/bill-window.component';
 import { BillItemComponent } from './mainwindow/a-pointofsale-window/bill-window/bill-item/bill-item.component';
+import { CheckOutWindowComponent } from './mainwindow/a-pointofsale-window/check-out-window/check-out-window.component';
+import { CheckOutElementsComponent } from './mainwindow/a-pointofsale-window/check-out-window/check-out-elements/check-out-elements.component';
 
 
 
@@ -62,6 +64,8 @@ import { BillItemComponent } from './mainwindow/a-pointofsale-window/bill-window
     AddToBillComponent,
     BillWindowComponent,
     BillItemComponent,
+    CheckOutWindowComponent,
+    CheckOutElementsComponent,
 
 
   ],
