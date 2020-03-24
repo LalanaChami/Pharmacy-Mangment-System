@@ -38,6 +38,12 @@ import { SupplierInventoryWindowComponent } from './mainwindow/a-suppliers-windo
 import { SearchSupplierWindowComponent } from './mainwindow/a-suppliers-window/search-supplier-window/search-supplier-window.component';
 import { AddSupplierElementsComponent } from './mainwindow/a-suppliers-window/add-supplier-window/add-supplier-elements/add-supplier-elements.component';
 import { SupplierInventoryItemsComponent } from './mainwindow/a-suppliers-window/supplier-inventory-window/supplier-inventory-items/supplier-inventory-items.component';
+import { AInventoryWindowComponent } from './mainwindow/a-inventory-window/a-inventory-window.component';
+import { SearchInventoryComponent } from './mainwindow/a-inventory-window/search-inventory/search-inventory.component';
+import { AddInventoryWindowComponent } from './mainwindow/a-inventory-window/add-inventory-window/add-inventory-window.component';
+import { AddInventoryElementsComponent } from './mainwindow/a-inventory-window/add-inventory-window/add-inventory-elements/add-inventory-elements.component';
+import { DrugInventoryWindowComponent } from './mainwindow/a-inventory-window/drug-inventory-window/drug-inventory-window.component';
+import { DrugInventoryItemsComponent } from './mainwindow/a-inventory-window/drug-inventory-window/drug-inventory-items/drug-inventory-items.component';
 
 
 
@@ -78,6 +84,12 @@ import { SupplierInventoryItemsComponent } from './mainwindow/a-suppliers-window
     SearchSupplierWindowComponent,
     AddSupplierElementsComponent,
     SupplierInventoryItemsComponent,
+    AInventoryWindowComponent,
+    SearchInventoryComponent,
+    AddInventoryWindowComponent,
+    AddInventoryElementsComponent,
+    DrugInventoryWindowComponent,
+    DrugInventoryItemsComponent,
 
 
   ],
