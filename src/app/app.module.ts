@@ -32,6 +32,12 @@ import { BillWindowComponent } from './mainwindow/a-pointofsale-window/bill-wind
 import { BillItemComponent } from './mainwindow/a-pointofsale-window/bill-window/bill-item/bill-item.component';
 import { CheckOutWindowComponent } from './mainwindow/a-pointofsale-window/check-out-window/check-out-window.component';
 import { CheckOutElementsComponent } from './mainwindow/a-pointofsale-window/check-out-window/check-out-elements/check-out-elements.component';
+import { ASuppliersWindowComponent } from './mainwindow/a-suppliers-window/a-suppliers-window.component';
+import { AddSupplierWindowComponent } from './mainwindow/a-suppliers-window/add-supplier-window/add-supplier-window.component';
+import { SupplierInventoryWindowComponent } from './mainwindow/a-suppliers-window/supplier-inventory-window/supplier-inventory-window.component';
+import { SearchSupplierWindowComponent } from './mainwindow/a-suppliers-window/search-supplier-window/search-supplier-window.component';
+import { AddSupplierElementsComponent } from './mainwindow/a-suppliers-window/add-supplier-window/add-supplier-elements/add-supplier-elements.component';
+import { SupplierInventoryItemsComponent } from './mainwindow/a-suppliers-window/supplier-inventory-window/supplier-inventory-items/supplier-inventory-items.component';
 
 
 
@@ -66,6 +72,12 @@ import { CheckOutElementsComponent } from './mainwindow/a-pointofsale-window/che
     BillItemComponent,
     CheckOutWindowComponent,
     CheckOutElementsComponent,
+    ASuppliersWindowComponent,
+    AddSupplierWindowComponent,
+    SupplierInventoryWindowComponent,
+    SearchSupplierWindowComponent,
+    AddSupplierElementsComponent,
+    SupplierInventoryItemsComponent,
 
 
   ],
