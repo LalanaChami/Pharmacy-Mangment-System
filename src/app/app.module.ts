@@ -53,6 +53,15 @@ import { ASalesWindowComponent } from './mainwindow/a-sales-window/a-sales-windo
 import { SalesChartComponent } from './mainwindow/a-sales-window/sales-chart/sales-chart.component';
 import { SalesReportComponent } from './mainwindow/a-sales-window/sales-report/sales-report.component';
 import { SalesReportItemsComponent } from './mainwindow/a-sales-window/sales-report/sales-report-items/sales-report-items.component';
+import { AExpOutofstockWindowComponent } from './mainwindow/a-exp-outofstock-window/a-exp-outofstock-window.component';
+import { ExpiredWindowComponent } from './mainwindow/a-exp-outofstock-window/expired-window/expired-window.component';
+import { ExpiredItemsComponent } from './mainwindow/a-exp-outofstock-window/expired-window/expired-items/expired-items.component';
+import { OutOfStockWindowComponent } from './mainwindow/a-exp-outofstock-window/out-of-stock-window/out-of-stock-window.component';
+import { OutofstockItemsComponent } from './mainwindow/a-exp-outofstock-window/out-of-stock-window/outofstock-items/outofstock-items.component';
+import { AboutToExpireWindowComponent } from './mainwindow/a-exp-outofstock-window/about-to-expire-window/about-to-expire-window.component';
+import { AboutToExpireItemsComponent } from './mainwindow/a-exp-outofstock-window/about-to-expire-window/about-to-expire-items/about-to-expire-items.component';
+import { AboutToFinishWindowComponent } from './mainwindow/a-exp-outofstock-window/about-to-finish-window/about-to-finish-window.component';
+import { AboutToFinishItemsComponent } from './mainwindow/a-exp-outofstock-window/about-to-finish-window/about-to-finish-items/about-to-finish-items.component';
 
 
 
@@ -108,6 +117,15 @@ import { SalesReportItemsComponent } from './mainwindow/a-sales-window/sales-rep
     SalesChartComponent,
     SalesReportComponent,
     SalesReportItemsComponent,
+    AExpOutofstockWindowComponent,
+    ExpiredWindowComponent,
+    ExpiredItemsComponent,
+    OutOfStockWindowComponent,
+    OutofstockItemsComponent,
+    AboutToExpireWindowComponent,
+    AboutToExpireItemsComponent,
+    AboutToFinishWindowComponent,
+    AboutToFinishItemsComponent,
 
 
   ],
