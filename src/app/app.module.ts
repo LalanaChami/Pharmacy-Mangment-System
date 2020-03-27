@@ -44,6 +44,11 @@ import { AddInventoryWindowComponent } from './mainwindow/a-inventory-window/add
 import { AddInventoryElementsComponent } from './mainwindow/a-inventory-window/add-inventory-window/add-inventory-elements/add-inventory-elements.component';
 import { DrugInventoryWindowComponent } from './mainwindow/a-inventory-window/drug-inventory-window/drug-inventory-window.component';
 import { DrugInventoryItemsComponent } from './mainwindow/a-inventory-window/drug-inventory-window/drug-inventory-items/drug-inventory-items.component';
+import { APredictionReportWindowComponent } from './mainwindow/a-prediction-report-window/a-prediction-report-window.component';
+import { PredictionChartWindowComponent } from './mainwindow/a-prediction-report-window/prediction-chart-window/prediction-chart-window.component';
+import { ChartWindowComponent } from './mainwindow/a-prediction-report-window/chart-window/chart-window.component';
+import { PredictionChartItemsComponent } from './mainwindow/a-prediction-report-window/chart-window/prediction-chart-items/prediction-chart-items.component';
+import { PredictionReportItemsComponent } from './mainwindow/a-prediction-report-window/prediction-chart-window/prediction-report-items/prediction-report-items.component';
 
 
 
@@ -90,6 +95,11 @@ import { DrugInventoryItemsComponent } from './mainwindow/a-inventory-window/dru
     AddInventoryElementsComponent,
     DrugInventoryWindowComponent,
     DrugInventoryItemsComponent,
+    APredictionReportWindowComponent,
+    PredictionChartWindowComponent,
+    ChartWindowComponent,
+    PredictionChartItemsComponent,
+    PredictionReportItemsComponent,
 
 
   ],
