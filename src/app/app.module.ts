@@ -49,6 +49,10 @@ import { PredictionChartWindowComponent } from './mainwindow/a-prediction-report
 import { ChartWindowComponent } from './mainwindow/a-prediction-report-window/chart-window/chart-window.component';
 import { PredictionChartItemsComponent } from './mainwindow/a-prediction-report-window/chart-window/prediction-chart-items/prediction-chart-items.component';
 import { PredictionReportItemsComponent } from './mainwindow/a-prediction-report-window/prediction-chart-window/prediction-report-items/prediction-report-items.component';
+import { ASalesWindowComponent } from './mainwindow/a-sales-window/a-sales-window.component';
+import { SalesChartComponent } from './mainwindow/a-sales-window/sales-chart/sales-chart.component';
+import { SalesReportComponent } from './mainwindow/a-sales-window/sales-report/sales-report.component';
+import { SalesReportItemsComponent } from './mainwindow/a-sales-window/sales-report/sales-report-items/sales-report-items.component';
 
 
 
@@ -100,6 +104,10 @@ import { PredictionReportItemsComponent } from './mainwindow/a-prediction-report
     ChartWindowComponent,
     PredictionChartItemsComponent,
     PredictionReportItemsComponent,
+    ASalesWindowComponent,
+    SalesChartComponent,
+    SalesReportComponent,
+    SalesReportItemsComponent,
 
 
   ],
