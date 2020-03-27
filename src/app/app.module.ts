@@ -1,3 +1,4 @@
+import { Routes, RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { ChartsModule } from 'ng2-charts';
@@ -63,7 +64,17 @@ import { AboutToExpireItemsComponent } from './mainwindow/a-exp-outofstock-windo
 import { AboutToFinishWindowComponent } from './mainwindow/a-exp-outofstock-window/about-to-finish-window/about-to-finish-window.component';
 import { AboutToFinishItemsComponent } from './mainwindow/a-exp-outofstock-window/about-to-finish-window/about-to-finish-items/about-to-finish-items.component';
 
+const appRoutes: Routes =[
+  { path: '',component:  MainwindowComponent },
+  { path: 'doctororders',component:  ADoctorOrderWindowComponent },
+  { path: 'pos',component:  APointofsaleWindowComponent },
+  { path: 'suppliers',component:  ASuppliersWindowComponent },
+  { path: 'predictionreport',component:  APredictionReportWindowComponent },
+  { path: 'salesreport',component:  ASalesWindowComponent },
+  { path: 'inventory',component:  AInventoryWindowComponent },
+  { path: 'expoutofstock',component:  AExpOutofstockWindowComponent }
 
+];
 
 @NgModule({
   declarations: [
@@ -132,7 +143,8 @@ import { AboutToFinishItemsComponent } from './mainwindow/a-exp-outofstock-windo
   imports: [
     BrowserModule,
     AppRoutingModule,
-    ChartsModule
+    ChartsModule,
+    RouterModule.forRoot(appRoutes)
   ],
   providers: [],
   bootstrap: [AppComponent]
