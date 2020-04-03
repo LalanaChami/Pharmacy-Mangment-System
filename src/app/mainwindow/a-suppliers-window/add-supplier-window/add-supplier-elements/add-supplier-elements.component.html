@@ -1,6 +1,6 @@
-<div style="overflow-y:auto ;overflow-x: hidden;height: 90px;">
+<div style="overflow-y:auto ;overflow-x: hidden;height: 200px;">
 
-
+<form (submit)="onAddSupplier(supplierForm)" #supplierForm="ngForm">
   <table class="table is-full" style="width:100%">
     <thead>
       <tr>
@@ -14,20 +14,25 @@
     <tbody>
       <tr>
 
-        <td><input type="text" class="is-center input" id="text"  style="width: 100%;" placeholder="19283838" /></td>
-        <td><input type="text" class="is-center input" id="text"  style="width: 100%;" placeholder="Mr S M Bandara" /></td>
-        <td><input type="text" class="is-center input" id="text"  style="width: 100%;" placeholder="xxx@gmail.com" /></td>
-        <td><input type="text" class="is-center input" id="text"  style="width: 100%;" placeholder="071xxxxxxx" /></td>
-        <td><input type="text" class="is-center input" id="text"  style="width: 100%;" placeholder="Penadol, Dalcolax" /></td>
+        <td><input type="text" class="is-center input"  ngModel #supplierID="ngModel" name= "supplierID"  style="width: 100%;" placeholder="19283838" /></td>
+        <td><input type="text" class="is-center input"  ngModel #name="ngModel" name="name"  style="width: 100%;" placeholder="Mr S M Bandara" /></td>
+        <td><input type="text" class="is-center input"  ngModel #email="ngModel" name="email"  style="width: 100%;" placeholder="xxx@gmail.com" /></td>
+        <td><input type="text" class="is-center input"  ngModel #contact="ngModel" name="contact"  style="width: 100%;" placeholder="071xxxxxxx" /></td>
+        <td><input type="text" class="is-center input"  ngModel #drugsAvailable="ngModel" name="drugsAvailable"  style="width: 100%;" placeholder="Penadol, Dalcolax" /></td>
 
       </tr>
 
     </tbody>
   </table>
-
-
-
+  <div class="panel-block" style="width: 100%;margin-top: -30px;">
+    <button class="button is-primary   is-fullwidth" type="submit">
+      Add
+    </button>
   </div>
+</form>
+  </div>
+
+
   <style>
 
     .menu-list{
