@@ -16,7 +16,7 @@ export class SupplierInventoryItemsComponent implements OnInit,OnDestroy {
   constructor(private supplierInteractionService: SupplierInteractionService){}
 
   ngOnInit() {
-    this.suppliers = this.supplierInteractionService.getSupplier();
+    this.supplierInteractionService.getSupplier();
     this.supplierSubs = this.supplierInteractionService.getSupplierUpdateListener()
       .subscribe((posts: Supplier[]) => {
         this.suppliers = posts;

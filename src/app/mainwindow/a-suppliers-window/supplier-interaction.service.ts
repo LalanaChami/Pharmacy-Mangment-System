@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs';
 import {Supplier} from './supplier.model';
+import { HttpClient, HttpClientModule } from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
@@ -9,8 +10,15 @@ export class SupplierInteractionService {
   private supplier: Supplier[] = [];
   private supplierUpdated = new Subject<Supplier[]>();
 
+  constructor(private http: HttpClient){}
+
   getSupplier() {
-    return [...this.supplier];
+    this.http.get<{message: string, suppliers: Supplier[]}>('http://localhost:3000/api/supplier')
+    .subscribe((supplierData)=>{
+      this.supplier= supplierData.suppliers;
+      this.supplierUpdated.next([...this.supplier])
+    });
+
   }
 
   getSupplierUpdateListener() {
@@ -24,7 +32,12 @@ export class SupplierInteractionService {
                                 contact: contact,
                                 drugsAvailable:drugsAvailable ,
                                 number:number};
-    this.supplier.push(supplier);
-    this.supplierUpdated.next([...this.supplier]);
+    this.http.post<{message: string}>('http://localhost:3000/api/supplier',supplier)
+    .subscribe((responseData)=>{
+      console.log(responseData.message);
+      this.supplier.push(supplier);
+      this.supplierUpdated.next([...this.supplier]);
+    });
+
   }
 }
