@@ -4,5 +4,5 @@ export interface Supplier {
   email: string;
   contact: string;
   drugsAvailable: string;
-  number: string;
+
 }

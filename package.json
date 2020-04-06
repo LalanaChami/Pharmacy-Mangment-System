@@ -26,6 +26,7 @@
     "chartist": "^0.11.4",
     "express": "^4.17.1",
     "font-awesome": "^4.7.0",
+    "mongoose": "^5.9.7",
     "ng2-charts": "^2.3.0",
     "rxjs": "~6.4.0",
     "tslib": "^1.10.0",

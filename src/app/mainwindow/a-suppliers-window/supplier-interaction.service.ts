@@ -31,7 +31,7 @@ export class SupplierInteractionService {
                                 email:email,
                                 contact: contact,
                                 drugsAvailable:drugsAvailable ,
-                                number:number};
+                               };
     this.http.post<{message: string}>('http://localhost:3000/api/supplier',supplier)
     .subscribe((responseData)=>{
       console.log(responseData.message);
