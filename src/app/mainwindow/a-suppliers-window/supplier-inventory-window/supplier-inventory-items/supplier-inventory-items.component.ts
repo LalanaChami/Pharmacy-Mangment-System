@@ -29,6 +29,9 @@ export class SupplierInventoryItemsComponent implements OnInit,OnDestroy {
   //   {SupplierID:'ksjdhfk',Name:'jasdhfkj',Email:'hjasdgf',Contact:'jhsdfghj',DrugsAvailable:'jhdsgfgjs' },
   //   {SupplierID:'ksjdhfk',Name:'jasdhfkj',Email:'hjasdgf',Contact:'jhsdfghj',DrugsAvailable:'jhdsgfgjs' }
   // ];
+  onDelete(supplierId: string) {
+    this.supplierInteractionService.deleteSupplier(supplierId);
+  }
 
   ngOnDestroy() {
     this.supplierSubs.unsubscribe();

@@ -39,7 +39,7 @@ export class AddSupplierElementsComponent implements OnInit {
                                                 form.value.email,
                                                 form.value.contact,
                                                 form.value.drugsAvailable ,
-                                                form.value.number);
+                                                );
     form.resetForm();
   }
 

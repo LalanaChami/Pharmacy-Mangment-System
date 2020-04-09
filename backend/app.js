@@ -27,7 +27,7 @@ app.use((req,res,next)=>{
   );
   res.setHeader(
     "Access-Control-Allow-Methods",
-    "GET,POST, PATCH, DELETE,OPTIONS"
+    "GET,POST,PATCH,DELETE,OPTIONS,PUT"
   );
   next();
 });
@@ -41,11 +41,14 @@ const supplier = new Supplier({
   contact: req.body.contact,
   drugsAvailable: req.body.drugsAvailable
 });
-supplier.save();
-console.log(supplier);
+supplier.save().then(createdSupplier=>{
 res.status(201).json({
-  message:'Supplier Added Successfully'
+  message:'Supplier Added Successfully',
+  supplierId : createdSupplier._id
 });
+
+});
+
 });
 
 
@@ -57,6 +60,13 @@ app.get("/api/supplier",(req,res,next)=>{
     });
   });
 
+});
+
+app.delete("/api/supplier/:id", (req, res, next) => {
+  Supplier.deleteOne({ _id: req.params.id }).then(result => {
+    console.log(result);
+    res.status(200).json({ message: 'Supplier deleted!' });
+  });
 });
 
 module.exports = app;
