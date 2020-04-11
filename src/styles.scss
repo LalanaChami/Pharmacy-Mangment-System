@@ -1,0 +1,10 @@
+@import "~ng-uikit-pro-standard/assets/scss/core/colors";
+@import "~ng-uikit-pro-standard/assets/scss/core/variables";
+@import "~ng-uikit-pro-standard/assets/scss/core/variables-pro";
+
+@import "~ng-uikit-pro-standard/assets/scss/addons-pro/_ecommerce-pro.scss"; // Import only when you want to use the Products examples
+@import "~ng-uikit-pro-standard/assets/scss/sections-pro/_pricing-pro.scss"; // Import only when you want to use the Pricing examples
+
+@import "../node_modules/angular-bootstrap-md/assets/scss/bootstrap/bootstrap.scss";
+@import "../node_modules/angular-bootstrap-md/assets/scss/mdb.scss";
+

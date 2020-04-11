@@ -5,6 +5,7 @@ import { FormsModule } from '@angular/forms';
 import { ChartsModule } from 'ng2-charts';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
+import { MDBBootstrapModule } from 'angular-bootstrap-md';
 
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -66,6 +67,9 @@ import { AboutToExpireWindowComponent } from './mainwindow/a-exp-outofstock-wind
 import { AboutToExpireItemsComponent } from './mainwindow/a-exp-outofstock-window/about-to-expire-window/about-to-expire-items/about-to-expire-items.component';
 import { AboutToFinishWindowComponent } from './mainwindow/a-exp-outofstock-window/about-to-finish-window/about-to-finish-window.component';
 import { AboutToFinishItemsComponent } from './mainwindow/a-exp-outofstock-window/about-to-finish-window/about-to-finish-items/about-to-finish-items.component';
+//import { AShoppingCartWindowComponent } from './mainwindow/a-inventory-window/a-shopping-cart-window/a-shopping-cart-window.component';
+import { AShoppingCartWindowComponent } from './mainwindow/a-inventory-window/a-shopping-cart-window/a-shopping-cart-window.component';
+import { AShoppingCartItemsComponent } from './mainwindow/a-inventory-window/a-shopping-cart-window/a-shopping-cart-items/a-shopping-cart-items.component';
 
 const appRoutes: Routes =[
   { path: '',component:  MainwindowComponent },
@@ -75,7 +79,8 @@ const appRoutes: Routes =[
   { path: 'predictionreport',component:  APredictionReportWindowComponent },
   { path: 'salesreport',component:  ASalesWindowComponent },
   { path: 'inventory',component:  AInventoryWindowComponent },
-  { path: 'expoutofstock',component:  AExpOutofstockWindowComponent }
+  { path: 'expoutofstock',component:  AExpOutofstockWindowComponent },
+  { path: 'shoppingcart',component:  AShoppingCartWindowComponent }
 
 ];
 
@@ -140,6 +145,8 @@ const appRoutes: Routes =[
     AboutToExpireItemsComponent,
     AboutToFinishWindowComponent,
     AboutToFinishItemsComponent,
+    AShoppingCartWindowComponent,
+    AShoppingCartItemsComponent,
 
 
   ],
@@ -149,7 +156,8 @@ const appRoutes: Routes =[
     ChartsModule,
     RouterModule.forRoot(appRoutes),
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    MDBBootstrapModule.forRoot()
   ],
   providers: [],
   bootstrap: [AppComponent]
