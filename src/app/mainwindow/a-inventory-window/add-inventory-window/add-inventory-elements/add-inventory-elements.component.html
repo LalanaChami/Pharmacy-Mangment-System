@@ -4,11 +4,12 @@
   <table class="table is-full" style="width:100%">
     <thead>
       <tr>
-        <th>DRUG ID</th>
+        <th class="is-center">DRUG ID</th>
         <th>NAME</th>
         <th>QUANTITY</th>
         <th>BATCH ID</th>
         <th>EXPIRE DATE</th>
+        <th>DRUG IMAGE</th>
       </tr>
     </thead>
     <tbody>
@@ -19,7 +20,24 @@
         <td><input type="text" class="is-center input" id="text"  style="width: 100%;" placeholder="15 units" /></td>
         <td><input type="text" class="is-center input" id="text"  style="width: 100%;" placeholder="B872178" /></td>
         <td><input type="text" class="is-center input" id="text"  style="width: 100%;" placeholder="12/03/2020" /></td>
-
+        <td>
+          <div class="file has-name is-right">
+          <label class="file-label">
+            <input class="file-input" type="file" name="resume">
+            <span class="file-cta">
+              <span class="file-icon">
+                <i class="fa fa-upload"></i>
+              </span>
+              <span class="file-label">
+                Choose Image
+              </span>
+            </span>
+            <span class="file-name">
+              Screen Shot
+            </span>
+          </label>
+        </div>
+      </td>
       </tr>
 
     </tbody>

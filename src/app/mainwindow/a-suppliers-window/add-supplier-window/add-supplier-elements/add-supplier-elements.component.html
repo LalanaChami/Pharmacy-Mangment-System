@@ -1,7 +1,37 @@
-<div style="overflow-y:auto ;overflow-x: hidden;height: 200px;">
+<div style="overflow-y:auto ;overflow-x: hidden;height: 900px;">
 
 <form (submit)="onAddSupplier(supplierForm)" #supplierForm="ngForm">
-  <table class="table is-full" style="width:100%">
+
+
+  <div class="field">
+    <label class="label" >SUPPLIER ID</label>
+    <input type="text" class="is-center input"  ngModel #supplierID="ngModel" name= "supplierID"  style="width: 100%;" placeholder="19283838" />
+  </div>
+
+  <div class="field">
+    <label class="label" >NAME</label>
+    <input type="text" class="is-center input"  ngModel #name="ngModel" name="name"  style="width: 100%;" placeholder="Mr S M Bandara" />
+  </div>
+
+  <div class="field">
+    <label class="label" >EMAIL</label>
+    <input type="text" class="is-center input"  ngModel #email="ngModel" name="email"  style="width: 100%;" placeholder="xxx@gmail.com" />
+  </div>
+
+  <div class="field">
+    <label class="label">CONTACT</label>
+    <input type="text" class="is-center input"  ngModel #contact="ngModel" name="contact"  style="width: 100%;" placeholder="071xxxxxxx" />
+  </div>
+
+  <div class="field">
+    <label class="label">DRUGS AVAILABLE</label>
+    <input type="text" class="is-center input"  ngModel #drugsAvailable="ngModel" name="drugsAvailable"  style="width: 100%;" placeholder="Penadol, Dalcolax" />
+  </div>
+
+
+
+
+  <!-- <table class="table is-full" style="width:100%">
     <thead>
       <tr>
         <th>SUPPLIER ID</th>
@@ -23,8 +53,8 @@
       </tr>
 
     </tbody>
-  </table>
-  <div class="panel-block" style="width: 100%;margin-top: -30px;">
+  </table> -->
+  <div class="panel-block" style="width: 100%;margin-top: 30px;">
     <button class="button is-primary   is-fullwidth" type="submit">
       Add
     </button>
@@ -56,4 +86,6 @@
   <script>
 
   </script>
+
+
 

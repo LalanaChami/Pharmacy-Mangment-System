@@ -1,18 +1,31 @@
 <div style="margin-top: 5%;">
   <section class="section columns">
     <div class="column is-full-desktop is-full-mobile">
-      <app-search-supplier-window></app-search-supplier-window>
+      <!-- <app-search-supplier-window></app-search-supplier-window> -->
+      <div class="tabs is-toggle is-fullwidth">
+        <ul>
+          <li class="is-active">
+            <a>
+              <span class="icon is-small"><i class="fas fa-image" aria-hidden="true"></i></span>
+              <span>Supplier Form</span>
+            </a>
+          </li>
+          <li>
+            <a>
+              <span class="icon is-small"><i class="fas fa-music" aria-hidden="true"></i></span>
+              <span>Supplier List</span>
+            </a>
+          </li>
+
+        </ul>
+      </div>
     </div>
   </section>
   <section class="section columns is-centered">
     <div class="column is-full-desktop is-full-mobile">
-      <app-add-supplier-window></app-add-supplier-window>
+      <router-outlet></router-outlet>
     </div>
   </section>
-  <section class="section columns">
-    <div class="column is-full-desktop is-full-mobile">
-      <app-supplier-inventory-window></app-supplier-inventory-window>
-    </div>
-  </section>
+
 </div>
 
