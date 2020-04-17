@@ -39,6 +39,11 @@ export class SupplierInteractionService {
     return this.supplierUpdated.asObservable();
   }
 
+  getSuppiers(id: string){
+    return this.http.get<{_id: string , supplierID: string , name: string, email: string, contact: string, drugsAvailable: string}>
+    ('http://localhost:3000/api/supplier/' + id);
+  }
+
   addSupplier( supplierID: string, name: string, email: string, contact: string, drugsAvailable: string) {
     const supplier: Supplier = {id: null,
                                 supplierID: supplierID,
@@ -55,6 +60,18 @@ export class SupplierInteractionService {
       this.supplierUpdated.next([...this.supplier]);
     });
 
+  }
+
+  updateSupplier(id: string , supplierID: string , name: string, email: string, contact: string, drugsAvailable: string){
+    const supplier : Supplier ={id:id ,supplierID:supplierID , name:name , email:email , contact:contact , drugsAvailable:drugsAvailable};
+    this.http
+             .put('http://localhost:3000/api/supplier/' + id , supplier)
+             .subscribe(response => {
+               const updatedSuppliers = [...this.supplier];
+               const oldSupplierIndex = updatedSuppliers.findIndex(s => s.id ===supplier.id);
+               updatedSuppliers[oldSupplierIndex] = supplier;
+               this.supplierUpdated.next([...this.supplier]);
+             });
   }
 
   deleteSupplier(supplierId: string) {

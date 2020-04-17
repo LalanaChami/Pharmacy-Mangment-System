@@ -24,7 +24,7 @@
                     <td >{{ supplier.contact }} </td>
                     <td >{{ supplier.drugsAvailable }} </td>
                     <td class="level-right">
-                      <button class="button is-small is-primary" style="font-weight: bold;margin-right: 1%;" href="#">Edit </button>
+                      <a class="button is-small is-primary" style="font-weight: bold;margin-right: 1%;" [routerLink]="['/edit',supplier.id]">Edit </a>
                       <button class="button is-small is-danger" style="font-weight: bold;" (click)="onDelete(supplier.id)" >Delete</button>
                     </td>
 

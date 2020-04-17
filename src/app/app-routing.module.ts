@@ -7,7 +7,8 @@ import { Routes, RouterModule } from '@angular/router';
 
 const routes: Routes = [
   {path: 'suppliers', component: AddSupplierWindowComponent },
-  {path: 'suppliers/create', component: SupplierInventoryWindowComponent }
+  {path: 'suppliers/create', component: SupplierInventoryWindowComponent },
+  {path: 'edit/:supplierId', component: AddSupplierWindowComponent }
 ];
 
 @NgModule({

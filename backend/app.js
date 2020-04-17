@@ -51,6 +51,20 @@ res.status(201).json({
 
 });
 
+app.put("/api/supplier/:id", (req,res,next)=>{
+  const supplier = new Supplier({
+    _id: req.body.id,
+    supplierID: req.body.supplierID,
+    name: req.body.name,
+    email: req.body.email,
+    contact: req.body.contact,
+    drugsAvailable: req.body.drugsAvailable
+  });
+  Supplier.updateOne({_id: req.params.id}, supplier).then(result => {
+    console.log(result);
+    res.status(200).json({message : "Update Successful !"});
+  });
+});
 
 app.get("/api/supplier",(req,res,next)=>{
   Supplier.find().then(documents=>{
@@ -59,7 +73,17 @@ app.get("/api/supplier",(req,res,next)=>{
       suppliers :documents
     });
   });
+});
 
+
+app.get("/api/supplier/:id",(req,res,next)=>{
+  Supplier.findById(req.params.id).then(supplier =>{
+    if(supplier){
+      res.status(200).json(supplier);
+    }else{
+      res.status(200).json({message:'suplier not found'});
+    }
+  });
 });
 
 app.delete("/api/supplier/:id", (req, res, next) => {
@@ -68,5 +92,7 @@ app.delete("/api/supplier/:id", (req, res, next) => {
     res.status(200).json({ message: 'Supplier deleted!' });
   });
 });
+
+
 
 module.exports = app;

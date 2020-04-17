@@ -5,27 +5,27 @@
 
   <div class="field">
     <label class="label" >SUPPLIER ID</label>
-    <input type="text" class="is-center input"  ngModel #supplierID="ngModel" name= "supplierID"  style="width: 100%;" placeholder="19283838" />
+    <input type="text" class="is-center input" name= "supplierID" [ngModel]="supplier?.supplierID" style="width: 100%;" placeholder="19283838" #supplierID="ngModel" >
   </div>
 
   <div class="field">
     <label class="label" >NAME</label>
-    <input type="text" class="is-center input"  ngModel #name="ngModel" name="name"  style="width: 100%;" placeholder="Mr S M Bandara" />
+    <input type="text" class="is-center input" name="name"   [ngModel]="supplier?.name" #name="ngModel"  style="width: 100%;" placeholder="Mr S M Bandara" />
   </div>
 
   <div class="field">
     <label class="label" >EMAIL</label>
-    <input type="text" class="is-center input"  ngModel #email="ngModel" name="email"  style="width: 100%;" placeholder="xxx@gmail.com" />
+    <input type="text" class="is-center input"  [ngModel]="supplier?.email" #email="ngModel" name="email"  style="width: 100%;" placeholder="xxx@gmail.com" />
   </div>
 
   <div class="field">
     <label class="label">CONTACT</label>
-    <input type="text" class="is-center input"  ngModel #contact="ngModel" name="contact"  style="width: 100%;" placeholder="071xxxxxxx" />
+    <input type="text" class="is-center input"  [ngModel]="supplier?.contact" #contact="ngModel" name="contact"  style="width: 100%;" placeholder="071xxxxxxx" />
   </div>
 
   <div class="field">
     <label class="label">DRUGS AVAILABLE</label>
-    <input type="text" class="is-center input"  ngModel #drugsAvailable="ngModel" name="drugsAvailable"  style="width: 100%;" placeholder="Penadol, Dalcolax" />
+    <input type="text" class="is-center input"  [ngModel]="supplier?.drugsAvailable" #drugsAvailable="ngModel" name="drugsAvailable"  style="width: 100%;" placeholder="Penadol, Dalcolax" />
   </div>
 
 
