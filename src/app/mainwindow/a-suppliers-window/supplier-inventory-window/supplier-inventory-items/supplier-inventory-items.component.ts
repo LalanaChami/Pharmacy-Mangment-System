@@ -11,14 +11,17 @@ import { Supplier } from '../../supplier.model';
 export class SupplierInventoryItemsComponent implements OnInit,OnDestroy {
 
   suppliers: Supplier[] = [];
+  isLoading= false;
   private supplierSubs: Subscription;
 
   constructor(private supplierInteractionService: SupplierInteractionService){}
 
   ngOnInit() {
+    this.isLoading = true;
     this.supplierInteractionService.getSupplier();
     this.supplierSubs = this.supplierInteractionService.getSupplierUpdateListener()
       .subscribe((posts: Supplier[]) => {
+        this.isLoading = false;
         this.suppliers = posts;
       });
 

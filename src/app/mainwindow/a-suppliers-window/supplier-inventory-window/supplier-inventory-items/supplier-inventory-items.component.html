@@ -2,9 +2,16 @@
   <table class="table is-full menu-list"  >
     <tbody>
 
-
-
-        <tr  *ngFor="let supplier of suppliers">
+      <div class="spinner-box loadCenter is-center" *ngIf="isLoading">
+        <div class="configure-border-1">
+          <div class="configure-core"></div>
+        </div>
+        <div class="configure-border-2">
+          <div class="configure-core"></div>
+        </div>
+      </div>
+        <div *ngIf="!isLoading">
+        <tr  *ngFor="let supplier of suppliers" >
           <div class="div columns  is-full btn r" style="width: 128%;" >
               <div class="div column" >
                 <table class="table is-full" style="width: 100%;">
@@ -33,6 +40,7 @@
               </div>
           </div><br>
         </tr>
+      </div>
 
 
 

@@ -19,6 +19,7 @@ export class AddSupplierElementsComponent implements OnInit {
   enteredDrugsAvailable = "";
   enteredNumber = "";
   supplier : Supplier;
+  isLoading = false;
   private mode = "create";
   private supplierId : string;
 
@@ -31,8 +32,10 @@ export class AddSupplierElementsComponent implements OnInit {
       if (paramMap.has('supplierId')){
         this.mode = "edit";
         this.supplierId = paramMap.get('supplierId');
+        this.isLoading = true;
         this.supplierInteractionService.getSuppiers(this.supplierId).subscribe(supplierData =>{
-          this.supplier = {id:supplierData._id,
+        this.isLoading = false;
+        this.supplier = {id:supplierData._id,
                            supplierID: supplierData.supplierID,
                            name: supplierData.name,
                            email : supplierData.email,
@@ -51,6 +54,7 @@ export class AddSupplierElementsComponent implements OnInit {
     if (form.invalid) {
       return;
     }
+
     if(this.mode === "create"){
       this.supplierInteractionService.addSupplier(form.value.supplierID,
         form.value.name,

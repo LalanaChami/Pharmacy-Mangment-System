@@ -3,6 +3,7 @@ import { Subject } from 'rxjs';
 import {Supplier} from './supplier.model';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { map } from 'rxjs/operators';
+import { Router } from '@angular/router';
 
 @Injectable({
   providedIn: 'root'
@@ -11,7 +12,7 @@ export class SupplierInteractionService {
   private supplier: Supplier[] = [];
   private supplierUpdated = new Subject<Supplier[]>();
 
-  constructor(private http: HttpClient){}
+  constructor(private http: HttpClient, private router : Router){}
 
   getSupplier() {
     this.http.get<{message: string, suppliers: any}>('http://localhost:3000/api/supplier')
@@ -58,6 +59,7 @@ export class SupplierInteractionService {
       supplier.id =id;
       this.supplier.push(supplier);
       this.supplierUpdated.next([...this.supplier]);
+      this.router.navigate(["/suppliers/create"]);
     });
 
   }
@@ -71,6 +73,7 @@ export class SupplierInteractionService {
                const oldSupplierIndex = updatedSuppliers.findIndex(s => s.id ===supplier.id);
                updatedSuppliers[oldSupplierIndex] = supplier;
                this.supplierUpdated.next([...this.supplier]);
+               this.router.navigate(["/"]);
              });
   }
 

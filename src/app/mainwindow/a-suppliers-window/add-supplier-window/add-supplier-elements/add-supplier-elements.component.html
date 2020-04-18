@@ -1,6 +1,17 @@
 <div style="overflow-y:auto ;overflow-x: hidden;height: 900px;">
 
-<form (submit)="onAddSupplier(supplierForm)" #supplierForm="ngForm">
+
+  <div class="spinner-box loadCenter" *ngIf="isLoading">
+    <div class="configure-border-1">
+      <div class="configure-core"></div>
+    </div>
+    <div class="configure-border-2">
+      <div class="configure-core"></div>
+    </div>
+  </div>
+
+
+<form (submit)="onAddSupplier(supplierForm)" #supplierForm="ngForm" *ngIf="!isLoading">
 
 
   <div class="field">
