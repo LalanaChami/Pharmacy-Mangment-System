@@ -1,7 +1,45 @@
-<div style="overflow-y:auto ;overflow-x: hidden;height: 90px;">
+<div style="overflow-y:auto ;overflow-x: hidden;height: 500px;">
 
 
-  <table class="table is-full" style="width:100%">
+
+  <form  #supplierForm="ngForm">
+
+
+    <div class="field">
+      <label class="label" >NAME</label>
+      <input type="text" class="is-center input"  style="width: 100%;" placeholder="19283838"  >
+    </div>
+
+    <div class="field">
+      <label class="label" >QUANTITY</label>
+      <input type="text" class="is-center input" name="name"    style="width: 100%;" placeholder="Mr S M Bandara" />
+    </div>
+
+    <div class="field">
+      <label class="label" >BATCH ID</label>
+      <input type="text" class="is-center input"   name="email"  style="width: 100%;" placeholder="xxx@gmail.com" />
+    </div>
+
+    <div class="field">
+      <label class="label">EXPIRE DATE</label>
+      <input type="text" class="is-center input"   name="contact"  style="width: 100%;" placeholder="071xxxxxxx" />
+    </div>
+
+    <div class="field">
+      <label class="label">DRUG IMAGE</label>
+      <input type="text" class="is-center input"   name="drugsAvailable"  style="width: 100%;" placeholder="Penadol, Dalcolax" />
+    </div>
+
+
+
+    <div class="panel-block" style="width: 100%;margin-top: 30px;">
+      <button class="button is-primary   is-fullwidth" type="submit">
+        Add
+      </button>
+    </div>
+  </form>
+
+  <!-- <table class="table is-full" style="width:100%">
     <thead>
       <tr>
         <th class="is-center">DRUG ID</th>
@@ -41,7 +79,7 @@
       </tr>
 
     </tbody>
-  </table>
+  </table> -->
 
 
 

@@ -1,16 +1,40 @@
-<section class="panel">
+<div style="margin-top: 5%; height:900px">
+  <section class="section columns">
+    <div class="column is-full-desktop is-full-mobile">
+      <!-- <app-search-supplier-window></app-search-supplier-window> -->
+      <div class="tabs is-toggle is-fullwidth">
+        <ul>
+          <li class="is-active ">
+            <a routerLink="/inventory/">
+              <!-- <span class="icon is-small"><i class="fas fa-image" aria-hidden="true"></i></span> -->
+              <span>Inventory Form</span>
+            </a>
+          </li>
+          <li>
+            <a routerLink="/inventory/create">
+              <!-- <span class="icon is-small"><i class="fas fa-music" aria-hidden="true"></i></span> -->
+              <span>Inventory List</span>
+            </a>
+          </li>
+
+        </ul>
+      </div>
+    </div>
+  </section>
+<section class="panel" style="margin: 3%;margin-top: -3%;">
   <p class="panel-heading" style="background-color:hsl(0, 0%, 88%) ;color:hsl(0, 0%, 21%)">
     Add Drugs
   </p>
   <div class="panel-block ">
-    <div  style="height: 90px; width: 100%;">
+    <div  style="height: 500px; width: 100%;">
 
       <app-add-inventory-elements></app-add-inventory-elements>
     </div>
   </div>
   <div class="panel-block">
-    <button class="button is-primary   is-fullwidth">
+    <!-- <button class="button is-primary   is-fullwidth">
       Add
-    </button>
+    </button> -->
   </div>
 </section>
+</div>
