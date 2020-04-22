@@ -1,8 +1,16 @@
 <div style="overflow-y:auto ;overflow-x: hidden;height: 500px;">
 
+  <div class="spinner-box loadCenter" *ngIf="isLoading">
+    <div class="configure-border-1">
+      <div class="configure-core"></div>
+    </div>
+    <div class="configure-border-2">
+      <div class="configure-core"></div>
+    </div>
+  </div>
 
 
-  <form  (submit)="onAddInventory(inventoryForm)" #inventoryForm="ngForm" >
+  <form  (submit)="onAddInventory(inventoryForm)" #inventoryForm="ngForm" *ngIf="!isLoading">
 
 
     <div class="field">

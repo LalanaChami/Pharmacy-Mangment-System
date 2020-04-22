@@ -1,6 +1,17 @@
 <div style="overflow-y:auto ;overflow-x: hidden;height: 500px;">
   <table class="table is-full menu-list"  >
     <tbody>
+
+      <div class="spinner-box loadCenter is-center" *ngIf="isLoading">
+        <div class="configure-border-1">
+          <div class="configure-core"></div>
+        </div>
+        <div class="configure-border-2">
+          <div class="configure-core"></div>
+        </div>
+      </div>
+
+      <div *ngIf="!isLoading">
         <tr *ngFor="let inventory of inventorys">
           <div class="div columns  is-full btn r" style="width: 187%;" >
               <div class="div column" >
@@ -31,6 +42,7 @@
           </div>
           <br>
         </tr>
+      </div>
   <br>
 
 
