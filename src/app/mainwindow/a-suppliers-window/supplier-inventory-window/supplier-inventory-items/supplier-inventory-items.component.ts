@@ -27,11 +27,6 @@ export class SupplierInventoryItemsComponent implements OnInit,OnDestroy {
 
   }
 
-  // supplierRecords = [
-  //   {SupplierID:'ksjdhfk',Name:'jasdhfkj',Email:'hjasdgf',Contact:'jhsdfghj',DrugsAvailable:'jhdsgfgjs' },
-  //   {SupplierID:'ksjdhfk',Name:'jasdhfkj',Email:'hjasdgf',Contact:'jhsdfghj',DrugsAvailable:'jhdsgfgjs' },
-  //   {SupplierID:'ksjdhfk',Name:'jasdhfkj',Email:'hjasdgf',Contact:'jhsdfghj',DrugsAvailable:'jhdsgfgjs' }
-  // ];
   onDelete(supplierId: string) {
     this.supplierInteractionService.deleteSupplier(supplierId);
   }

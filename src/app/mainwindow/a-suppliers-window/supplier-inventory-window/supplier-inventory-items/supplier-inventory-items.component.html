@@ -12,7 +12,7 @@
       </div>
         <div *ngIf="!isLoading">
         <tr  *ngFor="let supplier of suppliers" >
-          <div class="div columns  is-full btn r" style="width: 128%;" >
+          <div class="div columns  is-full btn r" style="width: 135%;" >
               <div class="div column" >
                 <table class="table is-full" style="width: 100%;">
                   <thead style="font-weight: bold;">
@@ -25,11 +25,11 @@
 
                   </thead>
                   <tbody>
-                    <td>{{ supplier.supplierID }}</td>
-                    <td>{{ supplier.name }} </td>
-                    <td >{{ supplier.email }} </td>
-                    <td >{{ supplier.contact }} </td>
-                    <td >{{ supplier.drugsAvailable }} </td>
+                    <td style="width: 20%;">{{ supplier.supplierID }}</td>
+                    <td style="width: 20%;">{{ supplier.name }} </td>
+                    <td style="width: 20%;">{{ supplier.email }} </td>
+                    <td style="width: 20%;">{{ supplier.contact }} </td>
+                    <td style="width: 20%;">{{ supplier.drugsAvailable }} </td>
                     <td class="level-right">
                       <a class="button is-small is-primary" style="font-weight: bold;margin-right: 1%;" [routerLink]="['/edit',supplier.id]">Edit </a>
                       <button class="button is-small is-danger" style="font-weight: bold;" (click)="onDelete(supplier.id)" >Delete</button>

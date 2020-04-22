@@ -2,33 +2,33 @@
 
 
 
-  <form  #supplierForm="ngForm">
+  <form  (submit)="onAddInventory(inventoryForm)" #inventoryForm="ngForm" >
 
 
     <div class="field">
       <label class="label" >NAME</label>
-      <input type="text" class="is-center input"  style="width: 100%;" placeholder="19283838"  >
+      <input type="text" class="is-center input" [ngModel]="inventory?.name" #name="ngModel" name="name"  style="width: 100%;" placeholder="19283838"  >
     </div>
 
     <div class="field">
       <label class="label" >QUANTITY</label>
-      <input type="text" class="is-center input" name="name"    style="width: 100%;" placeholder="Mr S M Bandara" />
+      <input type="text" class="is-center input" [ngModel]="inventory?.quantity" #quantity="ngModel" name="quantity"   style="width: 100%;" placeholder="Mr S M Bandara" />
     </div>
 
     <div class="field">
       <label class="label" >BATCH ID</label>
-      <input type="text" class="is-center input"   name="email"  style="width: 100%;" placeholder="xxx@gmail.com" />
+      <input type="text" class="is-center input"   [ngModel]="inventory?.batchId" #batchId="ngModel" name="batchId"   style="width: 100%;" placeholder="xxx@gmail.com" />
     </div>
 
     <div class="field">
       <label class="label">EXPIRE DATE</label>
-      <input type="text" class="is-center input"   name="contact"  style="width: 100%;" placeholder="071xxxxxxx" />
+      <input type="text" class="is-center input"  [ngModel]="inventory?.expireDate" #expireDate="ngModel" name="expireDate"  style="width: 100%;" placeholder="071xxxxxxx" />
     </div>
 
-    <div class="field">
+    <!-- <div class="field">
       <label class="label">DRUG IMAGE</label>
       <input type="text" class="is-center input"   name="drugsAvailable"  style="width: 100%;" placeholder="Penadol, Dalcolax" />
-    </div>
+    </div> -->
 
 
 

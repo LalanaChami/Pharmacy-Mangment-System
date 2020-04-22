@@ -13,7 +13,8 @@ const routes: Routes = [
   {path: 'edit/:supplierId', component: AddSupplierWindowComponent },
 
   {path: 'inventory', component: AddInventoryWindowComponent },
-  {path: 'inventory/create', component: DrugInventoryWindowComponent }
+  {path: 'inventory/create', component: DrugInventoryWindowComponent },
+  {path: 'editi/:inventoryId', component: AddInventoryWindowComponent }
 ];
 
 @NgModule({
