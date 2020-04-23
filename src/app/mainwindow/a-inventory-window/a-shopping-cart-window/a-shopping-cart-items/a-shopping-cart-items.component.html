@@ -2,7 +2,47 @@
 
 <div class="columns is-multiline is-mobile has-text-centered">
   <!-- section1 -->
-        <div class="column is-3-tablet is-6-mobile">
+  <div class="spinner-box loadCenter is-center" *ngIf="isLoading">
+    <div class="configure-border-1">
+      <div class="configure-core"></div>
+    </div>
+    <div class="configure-border-2">
+      <div class="configure-core"></div>
+    </div>
+  </div>
+
+
+        <div class="column is-3-tablet is-6-mobile" *ngFor="let inventory of inventorys">
+          <div *ngIf="!isLoading">
+          <div class="card">
+            <div class="card-image">
+              <figure class="image is-4by3">
+                <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
+              </figure>
+            </div>
+            <div class="card-content">
+              <header class="card-header">
+                <p class="card-header-title">
+                  {{ inventory.name }}
+                </p>
+
+              </header>
+
+              <div class="card-content ">
+                <p class="is-left">{{ inventory.quantity }}</p>
+              </div>
+              <footer class="card-footer">
+
+                <button class="button btn is-primary is-rounded is-small-mobile  is-focused " style="margin-left: 50%;" >Add to Cart</button>
+
+              </footer>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+        <!-- <div class="column is-3-tablet is-6-mobile">
           <div class="card">
             <div class="card-image">
               <figure class="image is-4by3">
@@ -83,33 +123,6 @@
           </div>
         </div>
 
-        <div class="column is-3-tablet is-6-mobile">
-          <div class="card">
-            <div class="card-image">
-              <figure class="image is-4by3">
-                <img src="https://bulma.io/images/placeholders/1280x960.png" alt="Placeholder image">
-              </figure>
-            </div>
-            <div class="card-content">
-              <header class="card-header">
-                <p class="card-header-title">
-                  Panadol 50 mg
-                </p>
-
-              </header>
-
-              <div class="card-content ">
-                <p class="is-left">Rs. 23</p>
-              </div>
-              <footer class="card-footer">
-
-                <button class="button btn is-primary is-rounded is-small-mobile  is-focused " style="margin-left: 50%;" >Add to Cart</button>
-
-              </footer>
-            </div>
-          </div>
-        </div>
-  <!-- section2 -->
   <div class="column is-3-tablet is-6-mobile">
     <div class="card">
       <div class="card-image">
@@ -216,7 +229,8 @@
         </footer>
       </div>
     </div>
-  </div>
+  </div> -->
+</div>
 
 <style>
   .container{
