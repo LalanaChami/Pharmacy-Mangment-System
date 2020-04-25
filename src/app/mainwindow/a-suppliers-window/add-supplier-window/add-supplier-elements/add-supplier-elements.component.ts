@@ -1,6 +1,6 @@
 import { SupplierInteractionService } from './../../../a-suppliers-window/supplier-interaction.service';
 import { Component, OnInit} from '@angular/core';
-import { NgForm } from '@angular/forms';
+import {  FormGroup, FormControl, Validators } from '@angular/forms';
 import { ActivatedRoute, ParamMap } from '@angular/router';
 import { Supplier } from '../../supplier.model';
 
@@ -20,6 +20,8 @@ export class AddSupplierElementsComponent implements OnInit {
   enteredNumber = "";
   supplier : Supplier;
   isLoading = false;
+
+  form: FormGroup;
   private mode = "create";
   private supplierId : string;
 
@@ -28,6 +30,13 @@ export class AddSupplierElementsComponent implements OnInit {
 
 
   ngOnInit() {
+    this.form = new FormGroup({
+      'supplierID': new FormControl(null,{validators: [Validators.required, Validators.minLength(1)]}),
+      'name': new FormControl(null,{validators: [Validators.required, Validators.minLength(1)]}),
+      'email': new FormControl(null,{validators: [Validators.required, Validators.minLength(1)]}),
+      'contact': new FormControl(null,{validators: [Validators.required, Validators.minLength(1)]}),
+      'drugsAvailable': new FormControl(null,{validators: [Validators.required, Validators.minLength(1)]})
+    });
     this.route.paramMap.subscribe((paramMap: ParamMap)=>{
       if (paramMap.has('supplierId')){
         this.mode = "edit";
@@ -42,6 +51,12 @@ export class AddSupplierElementsComponent implements OnInit {
                            contact: supplierData.contact,
                            drugsAvailable: supplierData.drugsAvailable
                           };
+        this.form.setValue({'supplierID':this.supplier.supplierID ,
+                          'name':this.supplier.name ,
+                          'email':this.supplier.email ,
+                          'contact':this.supplier.contact,
+                          'drugsAvailable':this.supplier.drugsAvailable});
+
         });
       }else{
         this.mode = "create";
@@ -50,27 +65,27 @@ export class AddSupplierElementsComponent implements OnInit {
     })
   }
 
-  onAddSupplier(form: NgForm) {
-    if (form.invalid) {
+  onAddSupplier() {
+    if (this.form.invalid) {
       return;
     }
 
     if(this.mode === "create"){
-      this.supplierInteractionService.addSupplier(form.value.supplierID,
-        form.value.name,
-        form.value.email,
-        form.value.contact,
-        form.value.drugsAvailable
+      this.supplierInteractionService.addSupplier(this.form.value.supplierID,
+        this.form.value.name,
+        this.form.value.email,
+        this.form.value.contact,
+        this.form.value.drugsAvailable
         );
     }else{
-      this.supplierInteractionService.updateSupplier(this.supplierId,form.value.supplierID,
-        form.value.name,
-        form.value.email,
-        form.value.contact,
-        form.value.drugsAvailable );
+      this.supplierInteractionService.updateSupplier(this.supplierId,this.form.value.supplierID,
+        this.form.value.name,
+        this.form.value.email,
+        this.form.value.contact,
+        this.form.value.drugsAvailable );
     }
 
-    form.resetForm();
+    this.form.reset();
   }
 
 

@@ -1,7 +1,7 @@
 import { Routes, RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { ReactiveFormsModule } from '@angular/forms';
 import { ChartsModule } from 'ng2-charts';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
@@ -155,7 +155,7 @@ const appRoutes: Routes =[
     AppRoutingModule,
     ChartsModule,
     RouterModule.forRoot(appRoutes),
-    FormsModule,
+    ReactiveFormsModule,
     HttpClientModule,
 
   ],
