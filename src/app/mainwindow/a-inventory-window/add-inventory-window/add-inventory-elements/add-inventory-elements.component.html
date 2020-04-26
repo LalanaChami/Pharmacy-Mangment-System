@@ -38,7 +38,7 @@
       <div class="file has-name is-full">
         <label class="file-label">
           <button class="file-input" type="button" name="resume" (click)=filePicker.click()></button>
-          <input class="file-input" type="file" #filePicker>
+          <input class="file-input" type="file" #filePicker (change)="onImagePicked($event)">
           <span class="file-cta">
             <span class="file-icon">
               <i class="fa fa-upload"></i>
@@ -51,6 +51,9 @@
             Screen Shot
           </span>
         </label>
+      </div>
+      <div class="image-preview" *ngIf=" imagePreview !== '' && imagePreview">
+        <img [src]="imagePreview" [alt]="form.value.name">
       </div>
     </div>
 
