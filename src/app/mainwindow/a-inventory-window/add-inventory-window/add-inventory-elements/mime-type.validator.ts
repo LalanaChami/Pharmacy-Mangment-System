@@ -18,6 +18,7 @@ export const mimeType =(
 
     switch(header){
       case "89504e47": isValid=true; break;
+      case "ffd8ffe0":
       case "ffd8ffe1":
       case "ffd8ffe2":
       case "ffd8ffe3":

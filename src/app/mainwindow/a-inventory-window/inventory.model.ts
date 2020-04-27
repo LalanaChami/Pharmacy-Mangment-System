@@ -4,4 +4,5 @@ export interface Inventory {
   quantity: string;
   batchId: string;
   expireDate: string;
+  imagePath: string;
 }

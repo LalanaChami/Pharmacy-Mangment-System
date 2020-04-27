@@ -46,7 +46,8 @@ export class AddInventoryElementsComponent implements OnInit {
                            name: inventoryData.name,
                            quantity : inventoryData.quantity,
                            batchId: inventoryData.batchId,
-                           expireDate: inventoryData.expireDate
+                           expireDate: inventoryData.expireDate,
+                           imagePath: null
                           };
         this.form.setValue({'name':this.inventory.name ,
                             'quantity':this.inventory.quantity ,
@@ -82,7 +83,9 @@ export class AddInventoryElementsComponent implements OnInit {
       this.inventoryInteractionService.addInventory(this.form.value.name,
         this.form.value.quantity,
         this.form.value.batchId,
-        this.form.value.expireDate
+        this.form.value.expireDate,
+        this.form.value.image
+
         );
     }else{
       this.inventoryInteractionService.updateInventory(this.inventoryId,this.form.value.name,

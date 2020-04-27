@@ -27,7 +27,8 @@ export class InventoryInteractionService {
         quantity:inventory.quantity,
         batchId:inventory.batchId,
         expireDate: inventory.expireDate,
-        id: inventory._id
+        id: inventory._id,
+        imagePath:  inventory.imagePath
        }
      })
     }))
@@ -47,17 +48,23 @@ export class InventoryInteractionService {
     ('http://localhost:3000/api/inventory/' + id);
   }
 
-  addInventory( name: string, quantity: string, batchId: string, expireDate: string) {
-    const inventory: Inventory = {id :null,
-                                name: name,
-                                quantity:quantity,
-                                batchId:batchId,
-                                expireDate: expireDate,
-                               };
-    this.http.post<{message: string, inventoryId: string}>('http://localhost:3000/api/inventory',inventory)
+  addInventory( name: string, quantity: string, batchId: string, expireDate: string , image: File) {
+    const inventoryData = new FormData();
+    inventoryData.append("name", name);
+    inventoryData.append("quantity", quantity);
+    inventoryData.append("batchId", batchId);
+    inventoryData.append("expireDate", expireDate);
+    inventoryData.append("image", image, name);
+
+    this.http.post<{message: string, inventory: Inventory}>('http://localhost:3000/api/inventory',inventoryData)
     .subscribe((responseData)=>{
-      const id = responseData.inventoryId;
-      inventory.id =id;
+      const inventory: Inventory ={id: responseData.inventory.id,
+                                   name:name ,
+                                   quantity: quantity,
+                                   batchId: batchId ,
+                                   expireDate: expireDate ,
+                                   imagePath : responseData.inventory.imagePath};
+
       this.inventory.push(inventory);
       this.inventoryUpdated.next([...this.inventory]);
       this.router.navigate(["/inventory/create"]);
@@ -66,7 +73,7 @@ export class InventoryInteractionService {
   }
 
   updateInventory(id: string , name: string, quantity: string, batchId: string, expireDate: string){
-    const inventory : Inventory ={id:id , name:name , quantity:quantity , batchId:batchId , expireDate:expireDate};
+    const inventory : Inventory ={id:id , name:name , quantity:quantity , batchId:batchId , expireDate:expireDate , imagePath:null};
     this.http
              .put('http://localhost:3000/api/inventory/' + id , inventory)
              .subscribe(response => {

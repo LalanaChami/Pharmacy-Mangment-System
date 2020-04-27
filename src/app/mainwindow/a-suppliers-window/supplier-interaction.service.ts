@@ -73,7 +73,7 @@ export class SupplierInteractionService {
                const oldSupplierIndex = updatedSuppliers.findIndex(s => s.id ===supplier.id);
                updatedSuppliers[oldSupplierIndex] = supplier;
                this.supplierUpdated.next([...this.supplier]);
-               this.router.navigate(["/"]);
+               this.router.navigate(["/suppliers/create"]);
              });
   }
 
