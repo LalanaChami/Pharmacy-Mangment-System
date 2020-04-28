@@ -44,7 +44,7 @@ export class InventoryInteractionService {
   }
 
   getInventorys(id: string){
-    return this.http.get<{_id: string  , name: string, quantity: string, batchId: string, expireDate: string}>
+    return this.http.get<{_id: string  , name: string, quantity: string, batchId: string, expireDate: string , imagePath:string}>
     ('http://localhost:3000/api/inventory/' + id);
   }
 
@@ -72,13 +72,39 @@ export class InventoryInteractionService {
 
   }
 
-  updateInventory(id: string , name: string, quantity: string, batchId: string, expireDate: string){
-    const inventory : Inventory ={id:id , name:name , quantity:quantity , batchId:batchId , expireDate:expireDate , imagePath:null};
+  updateInventory(id: string , name: string, quantity: string, batchId: string, expireDate: string ,image: File | string){
+
+    let inventoryData: Inventory | FormData;
+
+    if (typeof(image)==='object'){
+      inventoryData = new FormData();
+      inventoryData.append("id", id);
+      inventoryData.append("name",name);
+      inventoryData.append("quantity",quantity);
+      inventoryData.append("batchId",batchId);
+      inventoryData.append("expireDate",expireDate);
+      inventoryData.append("image", image, name);
+
+    } else{
+       inventoryData  ={id : id ,
+                        name : name ,
+                        quantity : quantity ,
+                        batchId : batchId ,
+                        expireDate : expireDate ,
+                        imagePath: image};
+    }
     this.http
-             .put('http://localhost:3000/api/inventory/' + id , inventory)
+             .put('http://localhost:3000/api/inventory/' + id , inventoryData)
              .subscribe(response => {
                const updatedInventorys = [...this.inventory];
-               const oldInventoryIndex = updatedInventorys.findIndex(i => i.id ===inventory.id);
+               const oldInventoryIndex = updatedInventorys.findIndex(i => i.id === id);
+
+               const inventory : Inventory ={id : id ,
+                                             name : name ,
+                                             quantity : quantity ,
+                                             batchId : batchId ,
+                                             expireDate : expireDate ,
+                                             imagePath: " "};
                updatedInventorys[oldInventoryIndex] = inventory;
                this.inventoryUpdated.next([...this.inventory]);
                this.router.navigate(["/inventory/create"]);
