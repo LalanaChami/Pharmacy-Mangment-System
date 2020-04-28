@@ -47,12 +47,13 @@ export class AddInventoryElementsComponent implements OnInit {
                            quantity : inventoryData.quantity,
                            batchId: inventoryData.batchId,
                            expireDate: inventoryData.expireDate,
-                           imagePath: null
+                           imagePath: inventoryData.imagePath
                           };
         this.form.setValue({'name':this.inventory.name ,
                             'quantity':this.inventory.quantity ,
                             'batchId':this.inventory.batchId ,
-                            'expireDate':this.inventory.expireDate});
+                            'expireDate':this.inventory.expireDate,
+                             'image':this.inventory.imagePath});
         });
       }else{
         this.mode = "create";
@@ -91,7 +92,8 @@ export class AddInventoryElementsComponent implements OnInit {
       this.inventoryInteractionService.updateInventory(this.inventoryId,this.form.value.name,
         this.form.value.quantity,
         this.form.value.batchId,
-        this.form.value.expireDate);
+        this.form.value.expireDate,
+        this.form.value.image);
     }
 
     this.form.reset();
