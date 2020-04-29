@@ -14,6 +14,7 @@ export class AShoppingCartItemsComponent implements OnInit {
 
   inventorys: Inventory[] = [];
   isLoading= false;
+  currentPage= 1;
   totalItems= 10;
   itemsPerPage = 8;
   pageSizeOptions =[8,12,16,20,24];
@@ -23,7 +24,7 @@ export class AShoppingCartItemsComponent implements OnInit {
 
   ngOnInit() {
     this.isLoading = true;
-    this.inventoryInteractionService.getInventory();
+    this.inventoryInteractionService.getInventory(this.itemsPerPage,this.currentPage);
     this.inventorySubs = this.inventoryInteractionService.getInventoryUpdateListener()
       .subscribe((posts: Inventory[]) => {
         this.isLoading = false;
@@ -32,7 +33,9 @@ export class AShoppingCartItemsComponent implements OnInit {
   }
 
   onChangedPage(pageData: PageEvent){
-    console.log(pageData);
+    this.currentPage= pageData.pageIndex + 1;
+    this.itemsPerPage=  pageData.pageSize;
+    this.inventoryInteractionService.getInventory(this.itemsPerPage,this.currentPage);
   }
 
   ngOnDestroy() {
