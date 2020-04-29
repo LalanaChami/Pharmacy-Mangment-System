@@ -1,5 +1,5 @@
 
-
+<div>
 <div class="columns is-multiline is-mobile has-text-centered">
   <!-- section1 -->
   <div class="spinner-box loadCenter is-center" *ngIf="isLoading">
@@ -232,6 +232,12 @@
   </div> -->
 </div>
 
+<div>
+<mat-paginator [length]="totalItems" [pageSize]="itemsPerPage" [pageSizeOptions]="pageSizeOptions" (page)="onChangedPage($event)"></mat-paginator>
+</div>
+
+
+</div>
 <style>
   .container{
 	display: grid;
