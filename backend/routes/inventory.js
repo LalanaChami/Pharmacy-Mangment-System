@@ -73,7 +73,15 @@ router.put("/:id",multer({storage: storage}).single("image"), (req,res,next)=>{
 
 
 router.get("",(req,res,next)=>{
-  Inventory.find().then(documents=>{
+  const pageSize = +req.query.pagesize;
+  const currentPage = +req.query.page;
+  const postQuery = Inventory.find();
+  if(pageSize && currentPage){
+    postQuery
+      .skip(pageSize * (currentPage-1))
+      .limit(pageSize);
+  }
+  postQuery.then(documents=>{
     res.status(200).json({
       message : 'inventory added sucessfully',
       inventorys :documents

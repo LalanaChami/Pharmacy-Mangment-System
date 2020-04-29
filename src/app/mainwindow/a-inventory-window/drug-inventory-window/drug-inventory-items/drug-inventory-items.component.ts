@@ -17,7 +17,7 @@ export class DrugInventoryItemsComponent implements OnInit {
 
   ngOnInit() {
     this.isLoading = true;
-    this.inventoryInteractionService.getInventory();
+    this.inventoryInteractionService.getInventory(null,null);
     this.inventorySubs = this.inventoryInteractionService.getInventoryUpdateListener()
       .subscribe((posts: Inventory[]) => {
         this.isLoading = false;
