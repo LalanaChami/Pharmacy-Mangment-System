@@ -24,13 +24,13 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
               "src/styles.css",
               "node_modules/chartist/dist/chartist.min.css",
               "node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss",
               "node_modules/@fortawesome/fontawesome-free/scss/solid.scss",
               "node_modules/@fortawesome/fontawesome-free/scss/regular.scss",
               "node_modules/@fortawesome/fontawesome-free/scss/brands.scss",
-
               "node_modules/animate.css/animate.css"
             ],
             "scripts": [
@@ -100,6 +100,7 @@
               "src/assets"
             ],
             "styles": [
+              "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
               "./node_modules/font-awesome/css/",
               "./node_modules/bulma/css/bluma.css",
               "src/styles.css"
@@ -133,6 +134,7 @@
           }
         }
       }
-    }},
+    }
+  },
   "defaultProject": "pro"
 }

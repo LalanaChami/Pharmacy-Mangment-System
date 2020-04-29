@@ -1,7 +1,9 @@
 import { InventoryInteractionService } from './../../inventory-interaction.service';
+import { PageEvent } from '@angular/material';
 import { Subscription } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { Inventory } from '../../inventory.model';
+
 
 @Component({
   selector: 'app-a-shopping-cart-items',
@@ -12,6 +14,9 @@ export class AShoppingCartItemsComponent implements OnInit {
 
   inventorys: Inventory[] = [];
   isLoading= false;
+  totalItems= 10;
+  itemsPerPage = 8;
+  pageSizeOptions =[8,12,16,20,24];
   private inventorySubs: Subscription;
 
   constructor(private inventoryInteractionService: InventoryInteractionService) { }
@@ -24,6 +29,10 @@ export class AShoppingCartItemsComponent implements OnInit {
         this.isLoading = false;
         this.inventorys = posts;
       });
+  }
+
+  onChangedPage(pageData: PageEvent){
+    console.log(pageData);
   }
 
   ngOnDestroy() {
