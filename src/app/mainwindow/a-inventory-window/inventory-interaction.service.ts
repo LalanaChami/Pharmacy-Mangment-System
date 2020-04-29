@@ -18,8 +18,9 @@ export class InventoryInteractionService {
 
   constructor(private http: HttpClient, private router : Router){}
 
-  getInventory() {
-    this.http.get<{message: string, inventorys: any}>('http://localhost:3000/api/inventory')
+  getInventory(itemsPerPage: number , currentPage:number) {
+    const queryParams = `?pagesize=${itemsPerPage}&page=${currentPage}`;
+    this.http.get<{message: string, inventorys: any}>('http://localhost:3000/api/inventory' + queryParams)
     .pipe(map(inventoryData => {
      return inventoryData.inventorys.map(inventory=>{
        return{
