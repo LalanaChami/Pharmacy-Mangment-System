@@ -1,3 +1,4 @@
+import { Router, NavigationStart } from '@angular/router';
 import { Component } from '@angular/core';
 
 @Component({
@@ -7,4 +8,13 @@ import { Component } from '@angular/core';
 })
 export class AppComponent {
   title = 'pro';
+  showMenu = true;
+  constructor(router:Router) {
+    router.events.forEach((event) => {
+        if(event instanceof NavigationStart) {
+            this.showMenu = event.url !== "/login";
+        }
+      });
+    }
+
 }

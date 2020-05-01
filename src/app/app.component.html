@@ -1,12 +1,12 @@
 <div style=" overflow: hidden; " scroll="no">
-<app-header></app-header>
+<app-header *ngIf="showMenu"></app-header>
 <div class="columns" style="margin-top: 0%; ">
-  <div class="column is-sidebar-menu is-hidden-mobile is-2" style="background-color:hsl(0, 0%, 29%) ;width: 270px;">
-    <app-sidemenu></app-sidemenu>
+  <div class="column is-sidebar-menu is-hidden-mobile is-2" style="background-color:hsl(0, 0%, 29%) ;width: 270px;" *ngIf="showMenu">
+    <app-sidemenu ></app-sidemenu>
   </div>
   <div class="column main ">
     <router-outlet></router-outlet>
-    <!-- <app-mainwindow></app-mainwindow> -->
+
   </div>
 </div>
 </div>
