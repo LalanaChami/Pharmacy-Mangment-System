@@ -1,4 +1,4 @@
-<div class="container" style="background-color: #041221;max-width: none;">
+<div class="container" style="background-color: #041221;max-width: none;margin-top: -1%;">
   <div id="flow">
       <span class="flow-1"></span>
       <span class="flow-2"></span>
@@ -17,16 +17,24 @@
                       <figure class="avatar">
                           <img src="https://placehold.it/128x128">
                       </figure>
-                      <form>
+
+
+                      <form (submit)="onLogin(loginForm)" #loginForm="ngForm">
                           <div class="field">
                               <div class="control">
-                                  <input class="input is-medium" type="email" placeholder="Your Email" autofocus="">
+
+                                  <input name="email" ngModel #emailInput="ngModel" class="input is-medium" type="email" placeholder="Your Email" autofocus="" required email>
+                                  <p class="login-error" *ngIf="!emailInput.valid && emailInput.touched">Please enter valid email</p>
+
                               </div>
                           </div>
 
                           <div class="field">
                               <div class="control">
-                                  <input class="input is-medium" type="password" placeholder="Your Password">
+
+                                  <input name="password" ngModel #passwordInput="ngModel" class="input is-medium" type="password" placeholder="Your Password" required>
+                                  <p class="login-error" *ngIf="!passwordInput.valid && passwordInput.touched">Please enter valid password</p>
+
                               </div>
                           </div>
                           <div class="field">
@@ -37,6 +45,8 @@
                           </div>
                           <button class="button is-block is-primary is-medium is-fullwidth">Login <i class="fas fas-sign-in" aria-hidden="true"></i></button>
                       </form>
+
+
                   </div>
                   <p class="has-text-grey" style="color: #00d1b2;">
                       <a style="color: #00d1b2;" href="../">Sign Up</a> &nbsp;·&nbsp;
