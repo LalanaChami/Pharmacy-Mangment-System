@@ -6,7 +6,7 @@ import { ChartsModule } from 'ng2-charts';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 
-import { MatPaginatorModule } from '@angular/material';
+import { MatPaginatorModule, MatInputModule } from '@angular/material';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { HeaderUserdetailsComponent } from './header/header-userdetails/header-userdetails.component';
@@ -161,6 +161,7 @@ const appRoutes: Routes =[
     HttpClientModule,
     BrowserAnimationsModule,
     MatPaginatorModule,
+    MatInputModule,
     FormsModule
   ],
   providers: [],

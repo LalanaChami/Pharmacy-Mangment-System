@@ -158,3 +158,8 @@ color: lemonchiffon;
 
 ::selection
 {background-color:#DEF4FF}
+
+.login-error{
+  color:  red;
+  font-weight: lighter;
+}
