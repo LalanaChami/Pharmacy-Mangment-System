@@ -9,10 +9,15 @@ import { Component } from '@angular/core';
 export class AppComponent {
   title = 'pro';
   showMenu = true;
+  showSignup =true;
   constructor(router:Router) {
     router.events.forEach((event) => {
         if(event instanceof NavigationStart) {
             this.showMenu = event.url !== "/login";
+
+        }
+        if(event instanceof NavigationStart){
+          this.showSignup = event.url !== "/signup";
         }
       });
     }

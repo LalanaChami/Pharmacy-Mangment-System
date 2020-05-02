@@ -1,0 +1,165 @@
+html,body {
+  font-family: 'Questrial', sans-serif;
+  font-size: 14px;
+  font-weight: 300;
+  background-color: #041221;
+}
+.hero.is-success {
+  background: #041221;
+}
+.hero .nav, .hero.is-success .nav {
+  -webkit-box-shadow: none;
+  box-shadow: none;
+}
+.box {
+  margin-top: 5rem;
+}
+.avatar {
+  margin-top: -70px;
+  padding-bottom: 20px;
+}
+.avatar img {
+  padding: 5px;
+  background: #fff;
+  border-radius: 50%;
+  -webkit-box-shadow: 0 2px 3px rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,.1);
+  box-shadow: 0 2px 3px rgba(10,10,10,.1), 0 0 0 1px rgba(10,10,10,.1);
+}
+input {
+  font-weight: 300;
+}
+p {
+  font-weight: 700;
+}
+p.subtitle {
+  padding-top: 1rem;
+}
+
+.login-hr{
+  border-bottom: 1px solid white;
+}
+
+.has-text-black{
+  color: black;
+}
+
+.field{
+  padding-bottom: 10px;
+}
+
+.fa{
+  margin-left: 5px;
+}
+
+  body {
+background: #041221;
+}
+/* Card start*/
+.card {overflow:hidden}
+.card.large {
+height: 600px;
+-webkit-backface-visibility: hidden;
+backface-visibility: initial;
+border-radius: 5px;
+}
+/* Card end */
+.media-content {
+overflow: hidden;
+}
+.title.no-padding {
+margin-bottom: 0 !important;
+}
+#flow span {
+display: block;
+width: 200vw;
+height: 200vw;
+position: absolute;
+top: -180vw;
+left: -50vw;
+border-radius: 90vw;
+opacity: 0.6;
+}
+.flow-1 {
+background: #3281ff;
+-webkit-animation: rotating 20s linear infinite;
+-moz-animation: rotating 20s linear infinite;
+-ms-animation: rotating 20s linear infinite;
+-o-animation: rotating 20s linear infinite;
+animation: rotating 20s linear infinite;
+}
+.flow-2 {
+background: #f442ee;
+position: absolute;
+-webkit-animation: rotating 15s linear infinite;
+-moz-animation: rotating 15s linear infinite;
+-ms-animation: rotating 15s linear infinite;
+-o-animation: rotating 15s linear infinite;
+animation: rotating 15s linear infinite;
+}
+.flow-3 {
+background: #42eef4;
+position: absolute;
+-webkit-animation: rotating 7s linear infinite;
+-moz-animation: rotating 7s linear infinite;
+-ms-animation: rotating 7s linear infinite;
+-o-animation: rotating 7s linear infinite;
+animation: rotating 7s linear infinite;
+}
+@-webkit-keyframes rotating {
+from {
+-ms-transform: rotate(0deg);
+-moz-transform: rotate(0deg);
+-webkit-transform: rotate(0deg);
+-o-transform: rotate(0deg);
+transform: rotate(0deg);
+}
+to {
+-ms-transform: rotate(360deg);
+-moz-transform: rotate(360deg);
+-webkit-transform: rotate(360deg);
+-o-transform: rotate(360deg);
+transform: rotate(360deg);
+}
+}
+@keyframes rotating {
+from {
+-ms-transform: rotate(0deg);
+-moz-transform: rotate(0deg);
+-webkit-transform: rotate(0deg);
+-o-transform: rotate(0deg);
+transform: rotate(0deg);
+}
+to {
+-ms-transform: rotate(360deg);
+-moz-transform: rotate(360deg);
+-webkit-transform: rotate(360deg);
+-o-transform: rotate(360deg);
+transform: rotate(360deg);
+}
+}
+.rotating {
+-webkit-animation: rotating 2s linear infinite;
+-moz-animation: rotating 2s linear infinite;
+-ms-animation: rotating 2s linear infinite;
+-o-animation: rotating 2s linear infinite;
+animation: rotating 2s linear infinite;
+}
+.footer{
+background-color: #222831;
+color: lemonchiffon;
+}
+.footer p, strong
+{color: lemonchiffon}
+.footer a:hover
+{color: crimson;}
+.fa
+{color: lemonchiffon;
+    margin: 10px}
+
+::selection
+{background-color:#DEF4FF}
+
+.login-error{
+  color:  red;
+  font-weight: lighter;
+}
