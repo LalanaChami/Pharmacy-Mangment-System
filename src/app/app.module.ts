@@ -1,12 +1,12 @@
 import { Routes, RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { ReactiveFormsModule } from '@angular/forms';
+import { ReactiveFormsModule , FormsModule } from '@angular/forms';
 import { ChartsModule } from 'ng2-charts';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule } from '@angular/common/http';
 
-import { MatPaginatorModule } from '@angular/material';
+import { MatPaginatorModule, MatInputModule } from '@angular/material';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { HeaderUserdetailsComponent } from './header/header-userdetails/header-userdetails.component';
@@ -71,6 +71,7 @@ import { AboutToFinishItemsComponent } from './mainwindow/a-exp-outofstock-windo
 import { AShoppingCartWindowComponent } from './mainwindow/a-inventory-window/a-shopping-cart-window/a-shopping-cart-window.component';
 import { AShoppingCartItemsComponent } from './mainwindow/a-inventory-window/a-shopping-cart-window/a-shopping-cart-items/a-shopping-cart-items.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { LoginComponent } from './auth/login/login.component';
 
 const appRoutes: Routes =[
   { path: '',component:  MainwindowComponent },
@@ -148,7 +149,7 @@ const appRoutes: Routes =[
     AboutToFinishItemsComponent,
     AShoppingCartWindowComponent,
     AShoppingCartItemsComponent,
-
+    LoginComponent
 
   ],
   imports: [
@@ -159,7 +160,9 @@ const appRoutes: Routes =[
     ReactiveFormsModule,
     HttpClientModule,
     BrowserAnimationsModule,
-    MatPaginatorModule
+    MatPaginatorModule,
+    MatInputModule,
+    FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
