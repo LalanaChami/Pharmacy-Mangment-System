@@ -6,6 +6,7 @@ const mongoose = require('mongoose');
 const app = express();
 const supplierRoutes = require('./routes/supplier');
 const inventoryRoutes = require('./routes/inventory');
+const userRoutes = require('./routes/user')
 
 
 mongoose.connect('mongodb+srv://lalana:OJx2X4IllVNl9up4@cluster0-rjtww.mongodb.net/pharmacy?retryWrites=true&w=majority',{useNewUrlParser: true , useUnifiedTopology: true})
@@ -15,6 +16,7 @@ mongoose.connect('mongodb+srv://lalana:OJx2X4IllVNl9up4@cluster0-rjtww.mongodb.n
   .catch(()=>{
     console.log('connection failed! ');
   });
+  mongoose.set('useCreateIndex', true);
 
 //OJx2X4IllVNl9up4
 
@@ -100,5 +102,6 @@ app.use((req,res,next)=>{
 
 app.use("/api/supplier",supplierRoutes);
 app.use("/api/inventory",inventoryRoutes);
+app.use("/api/user",userRoutes);
 
 module.exports = app;

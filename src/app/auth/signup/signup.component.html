@@ -27,8 +27,8 @@
                         <div class="field">
                           <div class="control">
 
-                              <input name="name" ngModel #nameInput="ngModel" class="input is-medium" type="name" placeholder="Your Name" autofocus="" required name>
-                              <p class="login-error" *ngIf="!nameInput.valid && nameInput.touched">Please enter the name</p>
+                              <input name="name" ngModel #nameInput="ngModel" class="input is-medium" type="name" placeholder="Your Name" autofocus="" required >
+                              <p class="login-error" *ngIf="nameInput.invalid && nameInput.touched">Please enter the name</p>
 
                           </div>
                       </div>
@@ -36,8 +36,8 @@
                       <div class="field">
                         <div class="control">
 
-                            <input name="contact" ngModel #contactInput="ngModel" class="input is-medium" type="contact" placeholder="Your Contact Number" autofocus="" required contact>
-                            <p class="login-error" *ngIf="!contactInput.valid && contactInput.touched">Please enter valid contact number</p>
+                            <input name="contact" ngModel #contactInput="ngModel" class="input is-medium" type="contact" placeholder="Your Contact Number" autofocus="" required >
+                            <p class="login-error" *ngIf="contactInput.invalid && contactInput.touched">Please enter valid contact number</p>
 
                         </div>
                       </div>
@@ -46,8 +46,8 @@
                       <div class="field">
                         <div class="control">
 
-                            <input name="nic" ngModel #nicInput="ngModel" class="input is-medium" type="nic" placeholder="Your NIC" autofocus="" required name>
-                            <p class="login-error" *ngIf="!nicInput.valid && nicInput.touched">Please enter valid NIC</p>
+                            <input name="nic" ngModel #nicInput="ngModel" class="input is-medium" type="nic" placeholder="Your NIC" autofocus="" required >
+                            <p class="login-error" *ngIf="nicInput.invalid && nicInput.touched">Please enter valid NIC</p>
 
                         </div>
                       </div>
@@ -57,7 +57,7 @@
                             <div class="control">
 
                               <input name="email" ngModel #emailInput="ngModel" class="input is-medium" type="email" placeholder="Your Email" autofocus="" required email>
-                              <p class="login-error" *ngIf="!emailInput.valid && emailInput.touched">Please enter valid email</p>
+                              <p class="login-error" *ngIf="emailInput.invalid && emailInput.touched">Please enter valid email</p>
 
                             </div>
                       </div>
@@ -68,7 +68,7 @@
                             <div class="control">
 
                                 <input name="password" ngModel #passwordInput="ngModel" class="input is-medium" type="password" placeholder="Your Password" required>
-                                <p class="login-error" *ngIf="!passwordInput.valid && passwordInput.touched">Please enter valid password</p>
+                                <p class="login-error" *ngIf="passwordInput.invalid && passwordInput.touched">Please enter valid password</p>
 
                             </div>
                        </div>
