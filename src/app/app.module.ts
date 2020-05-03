@@ -72,6 +72,7 @@ import { AShoppingCartWindowComponent } from './mainwindow/a-inventory-window/a-
 import { AShoppingCartItemsComponent } from './mainwindow/a-inventory-window/a-shopping-cart-window/a-shopping-cart-items/a-shopping-cart-items.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './auth/login/login.component';
+import { SignupComponent } from './auth/signup/signup.component';
 
 const appRoutes: Routes =[
   { path: '',component:  MainwindowComponent },
@@ -149,7 +150,8 @@ const appRoutes: Routes =[
     AboutToFinishItemsComponent,
     AShoppingCartWindowComponent,
     AShoppingCartItemsComponent,
-    LoginComponent
+    LoginComponent,
+    SignupComponent
 
   ],
   imports: [
