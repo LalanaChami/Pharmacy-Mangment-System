@@ -16,11 +16,12 @@
       <button class="button is-light" routerLink="/shoppingcart">
         Search
       </button>
-      <button class="button is-primary" routerLink="/login">
-
-        <strong>Log Out</strong>
-
-    </button>
+      <button *ngIf="!userIsAuthenticated" class="button is-primary"  routerLink="/login">
+        <strong>Log in as Admin</strong>
+      </button>
+      <button *ngIf="userIsAuthenticated" class="button is-primary"  routerLink="/login">
+        <strong>Log out</strong>
+      </button>
     </div>
 
 

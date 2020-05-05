@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule , FormsModule } from '@angular/forms';
 import { ChartsModule } from 'ng2-charts';
 import { AppRoutingModule } from './app-routing.module';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
 import { MatPaginatorModule, MatInputModule } from '@angular/material';
 import { AppComponent } from './app.component';
@@ -73,6 +73,7 @@ import { AShoppingCartItemsComponent } from './mainwindow/a-inventory-window/a-s
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
+import { AuthInterceptor } from './auth/auth-interceptor';
 
 const appRoutes: Routes =[
   { path: '',component:  MainwindowComponent },
@@ -166,7 +167,7 @@ const appRoutes: Routes =[
     MatInputModule,
     FormsModule
   ],
-  providers: [],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor , multi: true}],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
