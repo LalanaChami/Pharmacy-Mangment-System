@@ -1,15 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs';
+import { AuthService } from './../../auth/auth.service';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 
 @Component({
   selector: 'app-header-taskbar',
   templateUrl: './header-taskbar.component.html',
   styleUrls: ['./header-taskbar.component.css']
 })
-export class HeaderTaskbarComponent implements OnInit {
+export class HeaderTaskbarComponent implements OnInit, OnDestroy {
+  userIsAuthenticated =false;
+  private authListenerSubs: Subscription;
 
-  constructor() { }
+  constructor(private authService:AuthService) { }
 
   ngOnInit() {
+    this.authListenerSubs = this.authService.getAuthStatusListener()
+    .subscribe(isAuthenticated =>{
+      this.userIsAuthenticated= isAuthenticated;
+    });
+  }
+
+  ngOnDestroy(){
+    this.authListenerSubs.unsubscribe();
   }
 
 }
