@@ -2,6 +2,7 @@ import { SupplierInteractionService } from './../../../a-suppliers-window/suppli
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
 import { Supplier } from '../../supplier.model';
+import { AuthService } from 'src/app/auth/auth.service';
 
 @Component({
   selector: 'app-supplier-inventory-items',
@@ -12,9 +13,11 @@ export class SupplierInventoryItemsComponent implements OnInit,OnDestroy {
 
   suppliers: Supplier[] = [];
   isLoading= false;
+  userIsAuthenticated = false;
   private supplierSubs: Subscription;
+  private authStatusSub: Subscription;
 
-  constructor(private supplierInteractionService: SupplierInteractionService){}
+  constructor(private supplierInteractionService: SupplierInteractionService, private authService: AuthService){}
 
   ngOnInit() {
     this.isLoading = true;
@@ -25,6 +28,12 @@ export class SupplierInventoryItemsComponent implements OnInit,OnDestroy {
         this.suppliers = posts;
       });
 
+    this.userIsAuthenticated = this.authService.getIsAuth();
+
+    this.authStatusSub = this.authService.getAuthStatusListener()
+    .subscribe(isAuthenticated =>{
+      this.userIsAuthenticated = isAuthenticated;
+    });
   }
 
   onDelete(supplierId: string) {
@@ -33,6 +42,7 @@ export class SupplierInventoryItemsComponent implements OnInit,OnDestroy {
 
   ngOnDestroy() {
     this.supplierSubs.unsubscribe();
+    this.authStatusSub.unsubscribe();
   }
 
 }
