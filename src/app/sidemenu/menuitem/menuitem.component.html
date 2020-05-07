@@ -14,10 +14,10 @@
   <li class="newclass :hover">
     <a class="btn" routerLink="/suppliers"><span class="icon"><i class="fa fa-truck fa-lg" style="margin-right:7px;"></i></span>Suppliers</a>
   </li>
-  <li class="newclass :hover">
+  <li class="newclass :hover" *ngIf="userIsAuthenticated">
     <a class="btn" routerLink="/predictionreport"><span class="icon"><i class="fa fa-bar-chart-o fa-lg" style="margin-right: 7px;"></i></span>Prediction Report</a>
   </li>
-  <li class="newclass :hover">
+  <li class="newclass :hover" *ngIf="userIsAuthenticated">
     <a class="btn" routerLink="/salesreport"><span class="icon"><i class="fa fa-line-chart fa-lg" style="margin-right: 7px;"></i></span>Sales Report</a>
   </li>
   <li class="newclass :hover">
@@ -26,8 +26,10 @@
   <li class="newclass :hover">
     <a class="btn" routerLink="/expoutofstock"><span class="icon"><i class="fa fa-exclamation-triangle fa-lg" style="margin-right: 7px;"></i></span> Expired</a>
   </li>
-</ul>
-
+</ul><br>
+<p class="menu-label" *ngIf="!userIsAuthenticated" style="color: azure; padding-top: 5%;padding-left: 5%;padding-right: 5%; text-align: center;">
+  Some admin functionalities <br> may not be accessible
+</p>
 
 <style>
   .menu-list{
