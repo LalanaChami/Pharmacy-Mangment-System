@@ -7,14 +7,25 @@
 
   <div id="navbarBasicExample" class="navbar-menu level-item logo-margin">
 
-    <div class="navbar-start" style="margin-top: 6px;">
+    <div class="navbar-start" style="margin-top: 6px;" *ngIf="userIsAuthenticated" >
       <div style="padding: 4px;margin-right: -10px;">
         <figure class="image is-48x48">
           <img class="is-rounded" src="https://bulma.io/images/placeholders/128x128.png">
         </figure>
       </div>
       <a class="navbar-item subtitle" style="color: azure;">
-        User name
+        Pharmacist
+      </a>
+    </div>
+
+    <div class="navbar-start" style="margin-top: 6px;" *ngIf="!userIsAuthenticated" >
+      <div style="padding: 4px;margin-right: -10px;">
+        <figure class="image is-48x48">
+          <img class="is-rounded" src="https://bulma.io/images/placeholders/128x128.png">
+        </figure>
+      </div>
+      <a class="navbar-item subtitle" style="color: azure;">
+        Cashier
       </a>
     </div>
 
