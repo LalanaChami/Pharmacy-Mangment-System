@@ -1,3 +1,4 @@
+import { AuthGuard } from './auth/auth.guard';
 import { DrugInventoryWindowComponent } from './mainwindow/a-inventory-window/drug-inventory-window/drug-inventory-window.component';
 import { SupplierInventoryWindowComponent } from './mainwindow/a-suppliers-window/supplier-inventory-window/supplier-inventory-window.component';
 import { SupplierInventoryItemsComponent } from './mainwindow/a-suppliers-window/supplier-inventory-window/supplier-inventory-items/supplier-inventory-items.component';
@@ -10,13 +11,13 @@ import { SignupComponent } from './auth/signup/signup.component';
 
 
 const routes: Routes = [
-  {path: 'suppliers', component: AddSupplierWindowComponent },
+  {path: 'suppliers', component: AddSupplierWindowComponent  },
   {path: 'suppliers/create', component: SupplierInventoryWindowComponent },
-  {path: 'edit/:supplierId', component: AddSupplierWindowComponent },
+  {path: 'edit/:supplierId', component: AddSupplierWindowComponent ,canActivate:[AuthGuard]},
 
   {path: 'inventory', component: AddInventoryWindowComponent },
   {path: 'inventory/create', component: DrugInventoryWindowComponent },
-  {path: 'editi/:inventoryId', component: AddInventoryWindowComponent },
+  {path: 'editi/:inventoryId', component: AddInventoryWindowComponent ,canActivate:[AuthGuard]},
 
   {path: 'login', component: LoginComponent},
   {path: 'signup', component: SignupComponent}
@@ -25,6 +26,7 @@ const routes: Routes = [
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
+  providers: [AuthGuard]
 })
 export class AppRoutingModule { }
