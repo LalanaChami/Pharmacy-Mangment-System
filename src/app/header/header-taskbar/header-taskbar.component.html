@@ -19,7 +19,7 @@
       <button *ngIf="!userIsAuthenticated" class="button is-primary"  routerLink="/login">
         <strong>Log in as Admin</strong>
       </button>
-      <button *ngIf="userIsAuthenticated" class="button is-primary"  routerLink="/login">
+      <button *ngIf="userIsAuthenticated" class="button is-primary" (click)="onLogout()" >
         <strong>Log out</strong>
       </button>
     </div>

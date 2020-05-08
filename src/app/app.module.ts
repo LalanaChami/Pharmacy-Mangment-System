@@ -1,3 +1,4 @@
+import { AuthGuard } from './auth/auth.guard';
 import { Routes, RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
@@ -76,12 +77,12 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { AuthInterceptor } from './auth/auth-interceptor';
 
 const appRoutes: Routes =[
-  { path: '',component:  MainwindowComponent },
+  { path: '',component:  MainwindowComponent},
   { path: 'doctororders',component:  ADoctorOrderWindowComponent },
   { path: 'pos',component:  APointofsaleWindowComponent },
   { path: 'suppliers',component:  ASuppliersWindowComponent },
-  { path: 'predictionreport',component:  APredictionReportWindowComponent },
-  { path: 'salesreport',component:  ASalesWindowComponent },
+  { path: 'predictionreport',component:  APredictionReportWindowComponent,canActivate:[AuthGuard] },
+  { path: 'salesreport',component:  ASalesWindowComponent,canActivate:[AuthGuard] },
   { path: 'inventory',component:  AInventoryWindowComponent },
   { path: 'expoutofstock',component:  AExpOutofstockWindowComponent },
   { path: 'shoppingcart',component:  AShoppingCartWindowComponent }
@@ -167,7 +168,7 @@ const appRoutes: Routes =[
     MatInputModule,
     FormsModule
   ],
-  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor , multi: true}],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor , multi: true},AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
