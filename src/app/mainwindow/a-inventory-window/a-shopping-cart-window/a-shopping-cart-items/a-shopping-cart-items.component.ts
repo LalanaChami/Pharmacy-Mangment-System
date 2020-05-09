@@ -11,7 +11,7 @@ import { Inventory } from '../../inventory.model';
   styleUrls: ['./a-shopping-cart-items.component.css']
 })
 export class AShoppingCartItemsComponent implements OnInit {
-
+  searchTerm: string;
   inventorys: Inventory[] = [];
   isLoading= false;
   currentPage= 1;
