@@ -9,6 +9,7 @@ import { Inventory } from '../../inventory.model';
   styleUrls: ['./drug-inventory-items.component.css']
 })
 export class DrugInventoryItemsComponent implements OnInit {
+  searchTerm : string;
   inventorys: Inventory[] = [];
   isLoading= false;
   private inventorySubs: Subscription;

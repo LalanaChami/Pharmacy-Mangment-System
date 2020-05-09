@@ -1,3 +1,27 @@
+<section class="panel">
+
+  <div class="panel-block ">
+    <div  style="height: 50px; width: 100%;">
+
+      <div class="field has-addons is-full" >
+        <div class="control is-full" style="width: 100%;">
+          <input class="input" type="text" placeholder="Find suppliers by name" [(ngModel)]="searchTerm">
+        </div>
+        <div class="control">
+          <a class="button is-primary">
+            Search
+          </a>
+        </div>
+      </div>
+
+
+    </div>
+  </div>
+  <div class="panel-block">
+
+  </div>
+</section>
+
 <div style="overflow-y:auto ;overflow-x: hidden;height: 500px;">
   <table class="table is-full menu-list"  >
     <tbody>
@@ -11,7 +35,7 @@
         </div>
       </div>
         <div *ngIf="!isLoading">
-        <tr  *ngFor="let supplier of suppliers" >
+        <tr  *ngFor="let supplier of suppliers | supplierFilter: searchTerm" >
           <div class="div columns  is-full btn r" style="width: 135%;" >
               <div class="div column" >
                 <table class="table is-full" style="width: 100%;">

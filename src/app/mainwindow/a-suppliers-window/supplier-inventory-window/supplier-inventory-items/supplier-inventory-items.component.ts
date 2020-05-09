@@ -10,7 +10,7 @@ import { AuthService } from 'src/app/auth/auth.service';
   styleUrls: ['./supplier-inventory-items.component.css']
 })
 export class SupplierInventoryItemsComponent implements OnInit,OnDestroy {
-
+  searchTerm : string;
   suppliers: Supplier[] = [];
   isLoading= false;
   userIsAuthenticated = false;
