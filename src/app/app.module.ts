@@ -76,6 +76,7 @@ import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { AuthInterceptor } from './auth/auth-interceptor';
 import { SupplierFilterPipe } from './mainwindow/a-suppliers-window/supplier-filter.pipe';
+import { InventoryFilterPipe } from './mainwindow/a-inventory-window/inventory-filter.pipe';
 
 const appRoutes: Routes =[
   { path: '',component:  MainwindowComponent},
@@ -155,7 +156,8 @@ const appRoutes: Routes =[
     AShoppingCartItemsComponent,
     LoginComponent,
     SignupComponent,
-    SupplierFilterPipe
+    SupplierFilterPipe,
+    InventoryFilterPipe
 
   ],
   imports: [
