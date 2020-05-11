@@ -6,6 +6,7 @@ import { ReactiveFormsModule , FormsModule } from '@angular/forms';
 import { ChartsModule } from 'ng2-charts';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+import { Ng2CarouselamosModule } from 'ng2-carouselamos';
 
 import { MatPaginatorModule, MatInputModule } from '@angular/material';
 import { AppComponent } from './app.component';
@@ -170,7 +171,8 @@ const appRoutes: Routes =[
     BrowserAnimationsModule,
     MatPaginatorModule,
     MatInputModule,
-    FormsModule
+    FormsModule,
+    Ng2CarouselamosModule
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor , multi: true},AuthGuard],
   bootstrap: [AppComponent]

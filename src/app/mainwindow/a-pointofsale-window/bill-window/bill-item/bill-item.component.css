@@ -1,0 +1,41 @@
+.menu-list{
+  border-radius: 2px;
+  width: 220%;
+  display: block;
+  padding: 10px;
+  }
+  .btn{
+    width: 100%;
+    color:hsl(0, 0%, 21%);
+    background-color: hsl(0, 0%, 88%);
+    border-radius: 3px;
+  }
+  .newclass :hover{
+    background-color: hsl(0, 0%, 21%);
+    color: hsl(0, 0%, 88%);
+  }
+
+.items{
+  min-width: 300px;
+  height: 300px;
+  background-color: red;
+}
+.container{
+	display: grid;
+	grid-template-columns: repeat(auto-fill, minmax(250px,1fr));
+	grid-gap: 0.5em;
+}
+
+.card{
+	height: max-content;
+}
+
+.btn {
+      font-size:0.875em;
+      display:block;
+      left:-60px;
+      margin-top:35px;
+      width:100%;
+    }
+
+
