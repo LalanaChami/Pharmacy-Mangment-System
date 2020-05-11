@@ -1,65 +1,259 @@
-<div style="overflow-y:auto ;overflow-x: hidden;height: 500px;">
+<div style="margin-top: 5%;height: 100%;">
+  <section class="section columns">
+    <div class="column is-full-desktop is-full-mobile">
 
 
-  <table class="table is-full" style="width:100%">
-    <thead>
-      <tr>
-        <th>NAME</th>
-        <th>ID</th>
-        <th>QUANTITY</th>
-        <th>EXPIRE DATE</th>
-        <th>PRICE</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td>ITEM - cell A1</td>
-        <td>ITEM - cell B1</td>
-        <td><input type="number" class="is-center" id="number" value="1" style="width: 50%;" /></td>
-        <td>ITEM - cell D1</td>
-        <td>ITEM - cell E1</td>
-      </tr>
-      <tr>
-        <td>ITEM - cell A2</td>
-        <td>ITEM - cell B2</td>
-        <td><input type="number" class="is-center" id="number" value="1" style="width: 50%;" /></td>
-        <td>ITEM - cell D2</td>
-        <td>ITEM - cell E2</td>
-      </tr>
-      <tr>
-        <td>ITEM - cell A3</td>
-        <td>ITEM - cell B3</td>
-        <td><input type="number" class="is-center" id="number" value="1" style="width: 50%;" /></td>
-        <td>ITEM - cell D3</td>
-        <td>ITEM - cell E3</td>
-      </tr>
-      <tr>
-        <td>ITEM - cell A4</td>
-        <td>ITEM - cell B4</td>
-        <td><input type="number" class="is-center" id="number" value="1" style="width: 50%;" /></td>
-        <td>ITEM - cell D4</td>
-        <td>ITEM - cell E4</td>
-      </tr>
-      <tr>
-        <td>ITEM - cell A5</td>
-        <td>ITEM - cell B5</td>
-        <td><input type="number" class="is-center" id="number" value="1" style="width: 50%;" /></td>
-        <td>ITEM - cell D5</td>
-        <td>ITEM - cell E5</td>
-      </tr>
-      <tr>
-        <td>ITEM - cell A6</td>
-        <td>ITEM - cell B6</td>
-        <td><input type="number" class="is-center" id="number" value="1" style="width: 50%;" /></td>
-        <td>ITEM - cell D6</td>
-        <td>ITEM - cell E6</td>
-      </tr>
-    </tbody>
-  </table>
+    <!-- <app-add-to-bill></app-add-to-bill> -->
+
+      <section class="panel">
+        <p class="panel-heading" style="background-color:hsl(0, 0%, 88%) ;color:hsl(0, 0%, 21%)">
+          Search Drugs
+        </p>
+        <div class="panel-block ">
+          <div  style="height: 50px; width: 100%;">
+
+            <div class="field has-addons is-full" >
+              <div class="control is-full" style="width: 100%;">
+                <input class="input" type="text" placeholder="Find drugs">
+              </div>
+              <div class="control">
+                <a class="button is-primary">
+                  Search
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
 
 
 
-  </div>
+<br>
+
+
+        <div class="slides-wrapper" ng2-carouselamos
+        [items]="items"
+        [width]="1300"
+        [$prev]="prev"
+        [$next]="next"
+        [$item]="item"
+        ></div>
+
+
+
+      <ng-template #prev>
+        <i class="fas fa-chevron-circle-left fa-5x" ></i>
+      </ng-template>
+
+      <ng-template #next>
+        <i class="fas fa-chevron-circle-right fa-5x"></i>
+      </ng-template>
+
+      <ng-template #item  >
+        <div  style="height:470px;">
+
+
+          <!-- <div class="items">
+            <img src="{{item.name}}">
+          </div> -->
+
+
+          <div class="column is-3-tablet is-6-mobile" style="width: 100%;" >
+            <div >
+            <div class="card">
+              <div class="card-image">
+                <figure class="image is-4by3 shadowp">
+                  <img src="https://bulma.io/images/placeholders/480x480.png" >
+                </figure>
+              </div>
+              <div class="card-content">
+                <header class="card-header">
+                  <p class="card-header-title">
+                    dksjfkjasdfkasdf
+                  </p>
+
+                </header>
+
+                <div class="card-content ">
+                  <p class="is-left">sdfasdfasdfadsf</p>
+                </div>
+                <footer class="card-footer">
+
+                  <button class="button btn is-primary is-rounded is-small-mobile  is-focused " style="margin-left: 50%;" >Add to Cart</button>
+
+                </footer>
+              </div>
+            </div>
+
+           </div>
+         </div>
+
+
+        </div>
+      </ng-template>
+
+
+
+      </section>
+
+    </div>
+  </section>
+
+
+  <section class="section columns is-centered" >
+    <div class="column is-three-quarters is-full-mobile">
+      <!-- <app-bill-window></app-bill-window> -->
+
+      <section class="panel">
+        <p class="panel-heading" style="background-color:hsl(0, 0%, 88%) ;color:hsl(0, 0%, 21%)">
+          Bill
+        </p>
+        <div class="panel-block ">
+          <div  style="height: 300px; width: 100%;">
+
+            <div style="overflow-y:auto ;overflow-x: hidden;height: 500px;">
+              <table class="table is-full" style="width:100%">
+                <thead>
+                  <tr>
+                    <th>NAME</th>
+                    <th>ID</th>
+                    <th>QUANTITY</th>
+                    <th>EXPIRE DATE</th>
+                    <th>PRICE</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td>ITEM - cell A1</td>
+                    <td>ITEM - cell B1</td>
+                    <td><input type="number" class="is-center" id="number" value="1" style="width: 50%;" /></td>
+                    <td>ITEM - cell D1</td>
+                    <td>ITEM - cell E1</td>
+                  </tr>
+                  <tr>
+                    <td>ITEM - cell A2</td>
+                    <td>ITEM - cell B2</td>
+                    <td><input type="number" class="is-center" id="number" value="1" style="width: 50%;" /></td>
+                    <td>ITEM - cell D2</td>
+                    <td>ITEM - cell E2</td>
+                  </tr>
+                  <tr>
+                    <td>ITEM - cell A3</td>
+                    <td>ITEM - cell B3</td>
+                    <td><input type="number" class="is-center" id="number" value="1" style="width: 50%;" /></td>
+                    <td>ITEM - cell D3</td>
+                    <td>ITEM - cell E3</td>
+                  </tr>
+                  <tr>
+                    <td>ITEM - cell A4</td>
+                    <td>ITEM - cell B4</td>
+                    <td><input type="number" class="is-center" id="number" value="1" style="width: 50%;" /></td>
+                    <td>ITEM - cell D4</td>
+                    <td>ITEM - cell E4</td>
+                  </tr>
+                  <tr>
+                    <td>ITEM - cell A5</td>
+                    <td>ITEM - cell B5</td>
+                    <td><input type="number" class="is-center" id="number" value="1" style="width: 50%;" /></td>
+                    <td>ITEM - cell D5</td>
+                    <td>ITEM - cell E5</td>
+                  </tr>
+                  <tr>
+                    <td>ITEM - cell A6</td>
+                    <td>ITEM - cell B6</td>
+                    <td><input type="number" class="is-center" id="number" value="1" style="width: 50%;" /></td>
+                    <td>ITEM - cell D6</td>
+                    <td>ITEM - cell E6</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+          </div>
+        </div>
+        <div class="panel-block">
+          <button class="button is-primary   is-fullwidth">
+            Check Out
+          </button>
+        </div>
+      </section>
+
+
+    </div>
+    <div class="column is-one-quarter is-full-mobile">
+
+
+      <!-- <app-check-out-window></app-check-out-window> -->
+
+      <section class="panel">
+        <p class="panel-heading" style="background-color:hsl(0, 0%, 88%) ;color:hsl(0, 0%, 21%)">
+          Check Out
+        </p>
+        <div class="panel-block ">
+          <div  style="height: 300px; width: 100%;">
+            <br>
+            <div class="field has-addons">
+              <div class="control" style="margin-right: 20%;padding-top: 3%;">
+                <label class="label">Total : </label>
+              </div>
+              <div class="control" style="padding-top: 3%;">
+                <label class="label">1231290475934875  </label>
+              </div>
+            </div>
+            <br>
+
+
+
+            <div class="field has-addons">
+              <div class="control" style="margin-right: 23%;padding-top: 3%;">
+                <label class="label">Tax: </label>
+              </div>
+              <div class="control">
+                <input class="input" type="text" placeholder="Enter amount">
+              </div>
+            </div>
+            <br>
+            <div class="field has-addons">
+              <div class="control" style="margin-right: 0%;padding-top: 0%;">
+                <label class="label">Paid Amount :</label>
+              </div>
+              <div class="control">
+                <input class="input" type="text" placeholder="Enter amount">
+              </div>
+            </div>
+            <br>
+            <div class="field has-addons">
+              <div class="control" style="margin-right: 15%;padding-top: 3%;">
+                <label class="label">Balance :</label>
+              </div>
+              <div class="control" style="padding-top: 3%;">
+                <label class="label">1231290475934875  </label>
+              </div>
+            </div>
+
+          </div>
+        </div>
+        <div class="panel-block">
+          <button class="button is-primary   is-fullwidth">
+            Print Bill
+          </button>
+        </div>
+      </section>
+
+    </div>
+  </section>
+</div>
+
+
+<script src="../../../../../../node_modules/flickity/dist/flickity.pkgd.min.js"></script>
+
+
+
+
+
+
+
+
+
   <style>
 
     .menu-list{
@@ -79,8 +273,44 @@
         color: hsl(0, 0%, 88%);
       }
 
-  </style>
-  <script>
 
-  </script>
+
+      /* external css: flickity.css */
+
+*{
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+body { font-family: sans-serif; }
+
+.gallery {
+  background: #EEE;
+}
+
+.gallery-cell {
+  width: 66%;
+  height: 200px;
+  margin-right: 10px;
+  background: #8C8;
+  counter-increment:gallery-cell;
+}
+
+/* cell number */
+.gallery-cell:before {
+  display: block;
+  text-align: center;
+  content: counter(gallery-cell);
+  line-height: 200px;
+  font-size: 80px;
+  color: white;
+}
+
+  </style>
+
+
+<script
+  src="https://code.jquery.com/jquery-3.5.1.js"
+  integrity="sha256-QWo7LDvxbWT2tbbQ97B53yJnYU3WhH/C8ycbRAkjPDc="
+  crossorigin="anonymous"></script>
 

@@ -26,6 +26,7 @@
             "styles": [
               "./node_modules/@angular/material/prebuilt-themes/deeppurple-amber.css",
               "src/styles.css",
+              "node_modules/flickity/dist/flickity.min.css",
               "node_modules/chartist/dist/chartist.min.css",
               "node_modules/@fortawesome/fontawesome-free/scss/fontawesome.scss",
               "node_modules/@fortawesome/fontawesome-free/scss/solid.scss",
@@ -34,9 +35,12 @@
               "node_modules/animate.css/animate.css"
             ],
             "scripts": [
+              "node_modules/flickity/dist/flickity.pkgd.min.js",
               "node_modules/chartist/dist/chartist.min.js",
               "node_modules/hammerjs/hammer.min.js",
-              "node_modules/chart.js/dist/Chart.js"
+              "node_modules/chart.js/dist/Chart.js",
+              "node_modules/flickity/dist/flickity.pkgd.min.js"
+
             ]
           },
           "configurations": {
@@ -105,7 +109,9 @@
               "./node_modules/bulma/css/bluma.css",
               "src/styles.css"
             ],
-            "scripts": []
+            "scripts": [
+              "node_modules/flickity/dist/flickity.pkgd.min.js"
+            ]
           }
         },
         "lint": {
