@@ -49,32 +49,27 @@
       </ng-template>
 
       <ng-template #item  >
-        <div  style="height:470px;">
 
 
-          <!-- <div class="items">
-            <img src="{{item.name}}">
-          </div> -->
-
-
+        <div  style="height:470px;" *ngFor="let inventory of inventorys">
           <div class="column is-3-tablet is-6-mobile" style="width: 100%;" >
             <div >
             <div class="card">
               <div class="card-image">
-                <figure class="image is-4by3 shadowp">
-                  <img src="https://bulma.io/images/placeholders/480x480.png" >
+                <figure class="image is-4by3 shadowp" >
+                  <img [src]="inventory.imagePath" [alt]="inventory.name" >
                 </figure>
               </div>
               <div class="card-content">
                 <header class="card-header">
                   <p class="card-header-title">
-                    dksjfkjasdfkasdf
+                    {{ inventory.name }}
                   </p>
 
                 </header>
 
                 <div class="card-content ">
-                  <p class="is-left">sdfasdfasdfadsf</p>
+                  <p class="is-left">{{ inventory.quantity }}</p>
                 </div>
                 <footer class="card-footer">
 
@@ -86,9 +81,11 @@
 
            </div>
          </div>
-
-
         </div>
+
+
+
+
       </ng-template>
 
 
