@@ -38,4 +38,17 @@
       width:100%;
     }
 
+    .fa-chevron-circle-left{
+      color : #00d1b2;
+      opacity: 0.6
+    }
+    .fa-chevron-circle-right{
+      color : #00d1b2;
+      opacity: 0.6;
+    }
+
+    .img{
+      height: 100px;
+      width: 100px;
+    }
 
