@@ -11,6 +11,8 @@ import { Component, OnInit } from '@angular/core';
 })
 export class BillItemComponent implements OnInit {
   items: Array<any> =[];
+  arr: Array<any> =[];
+  itemArray: Array<any> =[];
   searchTerm: string;
   inventorys: Inventory[] = [];
   isLoading= false;
@@ -20,8 +22,6 @@ export class BillItemComponent implements OnInit {
   constructor(private inventoryInteractionService: InventoryInteractionService) {
     this.items =[
       {name: 'https://i.ibb.co/L9X6wKM/pharmacare-logo-hori-tagline-2.png'},
-
-
     ]
    }
 
@@ -37,6 +37,16 @@ export class BillItemComponent implements OnInit {
 
   ngOnDestroy() {
     this.inventorySubs.unsubscribe();
+  }
+
+  onAddToBill(itemId:string, name:string , expireDate:string , quantity:string){
+
+  this.itemArray.push([itemId,name,expireDate,quantity]);
+  this.arr.push(this.itemArray);
+  console.log(this.arr);
+
+
+
   }
 
 }

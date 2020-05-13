@@ -73,7 +73,7 @@
                 </div>
                 <footer class="card-footer">
 
-                  <button class="button btn is-primary is-rounded is-small-mobile  is-focused " style="margin-left: 50%;" >Add to Cart</button>
+                  <button class="button btn is-primary is-rounded is-small-mobile  is-focused " style="margin-left: 50%;" (click)="onAddToBill(inventory.id, inventory.name,inventory.expireDate,inventory.quantity)">Add to Cart</button>
 
                 </footer>
               </div>
@@ -119,48 +119,16 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr>
-                    <td>ITEM - cell A1</td>
-                    <td>ITEM - cell B1</td>
+                  <tr *ngFor="let itemArrays of arr">
+
+                    <td *ngFor="let obj of itemArrays">{{obj[1]}}</td>
+                    <td *ngFor="let obj of itemArrays">{{obj[0]}}</td>
                     <td><input type="number" class="is-center" id="number" value="1" style="width: 50%;" /></td>
-                    <td>ITEM - cell D1</td>
-                    <td>ITEM - cell E1</td>
+                    <td *ngFor="let obj of itemArrays">{{obj[2]}}</td>
+                    <td *ngFor="let obj of itemArrays">{{obj[3]}}</td>
+
                   </tr>
-                  <tr>
-                    <td>ITEM - cell A2</td>
-                    <td>ITEM - cell B2</td>
-                    <td><input type="number" class="is-center" id="number" value="1" style="width: 50%;" /></td>
-                    <td>ITEM - cell D2</td>
-                    <td>ITEM - cell E2</td>
-                  </tr>
-                  <tr>
-                    <td>ITEM - cell A3</td>
-                    <td>ITEM - cell B3</td>
-                    <td><input type="number" class="is-center" id="number" value="1" style="width: 50%;" /></td>
-                    <td>ITEM - cell D3</td>
-                    <td>ITEM - cell E3</td>
-                  </tr>
-                  <tr>
-                    <td>ITEM - cell A4</td>
-                    <td>ITEM - cell B4</td>
-                    <td><input type="number" class="is-center" id="number" value="1" style="width: 50%;" /></td>
-                    <td>ITEM - cell D4</td>
-                    <td>ITEM - cell E4</td>
-                  </tr>
-                  <tr>
-                    <td>ITEM - cell A5</td>
-                    <td>ITEM - cell B5</td>
-                    <td><input type="number" class="is-center" id="number" value="1" style="width: 50%;" /></td>
-                    <td>ITEM - cell D5</td>
-                    <td>ITEM - cell E5</td>
-                  </tr>
-                  <tr>
-                    <td>ITEM - cell A6</td>
-                    <td>ITEM - cell B6</td>
-                    <td><input type="number" class="is-center" id="number" value="1" style="width: 50%;" /></td>
-                    <td>ITEM - cell D6</td>
-                    <td>ITEM - cell E6</td>
-                  </tr>
+
                 </tbody>
               </table>
             </div>
