@@ -12,9 +12,11 @@ import { Component, OnInit } from '@angular/core';
 export class BillItemComponent implements OnInit {
   items: Array<any> =[];
   arr: Array<any> =[];
+  arr1: Array<any> =[];
   itemArray: Array<any> =[];
   searchTerm: string;
   inventorys: Inventory[] = [];
+  inven: Inventory[] = [];
   isLoading= false;
   private inventorySubs: Subscription;
 
@@ -42,10 +44,8 @@ export class BillItemComponent implements OnInit {
   onAddToBill(itemId:string, name:string , expireDate:string , quantity:string){
 
   this.itemArray.push([itemId,name,expireDate,quantity]);
-  this.arr.push(this.itemArray);
-  console.log(this.arr);
-
-
+  this.arr.push([this.itemArray]);
+  console.log(this.itemArray);
 
   }
 

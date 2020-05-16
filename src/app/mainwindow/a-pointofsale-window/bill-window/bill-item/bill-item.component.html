@@ -5,7 +5,7 @@
 
     <!-- <app-add-to-bill></app-add-to-bill> -->
 
-      <section class="panel">
+    <section class="panel">
         <p class="panel-heading" style="background-color:hsl(0, 0%, 88%) ;color:hsl(0, 0%, 21%)">
           Search Drugs
         </p>
@@ -25,12 +25,9 @@
           </div>
         </div>
 
+        <br>
 
-
-<br>
-
-
-        <div class="slides-wrapper" ng2-carouselamos
+        <div class="slides-wrapper" ng2-carouselamos style="height: 400px;"
         [items]="items"
         [width]="1300"
         [$prev]="prev"
@@ -48,7 +45,7 @@
         <i class="fas fa-chevron-circle-right fa-5x"></i>
       </ng-template>
 
-      <ng-template #item  >
+      <ng-template #item   >
 
 
         <div  style="height:470px;" *ngFor="let inventory of inventorys">
@@ -73,7 +70,7 @@
                 </div>
                 <footer class="card-footer">
 
-                  <button class="button btn is-primary is-rounded is-small-mobile  is-focused " style="margin-left: 50%;" (click)="onAddToBill(inventory.id, inventory.name,inventory.expireDate,inventory.quantity)">Add to Cart</button>
+                  <button class="button btn is-primary is-rounded is-small-mobile  is-focused " style="margin-left: 50%;" (click)="onAddToBill(inventory.id, inventory.name,inventory.expireDate,inventory.quantity)">Add to Bill</button>
 
                 </footer>
               </div>
@@ -82,21 +79,14 @@
            </div>
          </div>
         </div>
-
-
-
-
       </ng-template>
-
-
-
-      </section>
+    </section>
 
     </div>
   </section>
 
 
-  <section class="section columns is-centered" >
+  <section class="section columns is-centered" style="margin-top: -4%;">
     <div class="column is-three-quarters is-full-mobile">
       <!-- <app-bill-window></app-bill-window> -->
 
@@ -107,9 +97,9 @@
         <div class="panel-block ">
           <div  style="height: 300px; width: 100%;">
 
-            <div style="overflow-y:auto ;overflow-x: hidden;height: 500px;">
+            <div style="overflow-y:auto ;overflow-x: hidden;height: 300px;">
               <table class="table is-full" style="width:100%">
-                <thead>
+                <thead >
                   <tr>
                     <th>NAME</th>
                     <th>ID</th>
@@ -119,16 +109,15 @@
                   </tr>
                 </thead>
                 <tbody>
-                  <tr *ngFor="let itemArrays of arr">
+                  <tr *ngFor="let entries of itemArray">
 
-                    <td *ngFor="let obj of itemArrays">{{obj[1]}}</td>
-                    <td *ngFor="let obj of itemArrays">{{obj[0]}}</td>
+                    <td >{{entries[1]}}</td>
+                    <td >{{entries[0]}}</td>
                     <td><input type="number" class="is-center" id="number" value="1" style="width: 50%;" /></td>
-                    <td *ngFor="let obj of itemArrays">{{obj[2]}}</td>
-                    <td *ngFor="let obj of itemArrays">{{obj[3]}}</td>
+                    <td >{{entries[2]}}</td>
+                    <td >{{entries[3]}}</td>
 
                   </tr>
-
                 </tbody>
               </table>
             </div>
