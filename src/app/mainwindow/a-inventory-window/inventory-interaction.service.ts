@@ -1,11 +1,14 @@
 import { Injectable } from '@angular/core';
 import { Inventory } from './inventory.model';
 
+
 import { Subject } from 'rxjs';
 
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
+
+const InventorySchema = '../../../../backend/models/inventory.js';
 
 @Injectable({
   providedIn: 'root'
@@ -39,6 +42,29 @@ export class InventoryInteractionService {
     });
 
   }
+
+  // getItemsOfId(id: string){
+  //   this.http.get<{message: string, inventorys: any}>('http://localhost:3000/api/inventory/' + id)
+  //   .pipe(map(inventoryData => {
+  //     return inventoryData.inventorys.map(inventory=>{
+  //       return{
+  //        name: inventory.name,
+  //        quantity:inventory.quantity,
+  //        batchId:inventory.batchId,
+  //        expireDate: inventory.expireDate,
+  //        id: inventory._id,
+  //        imagePath:  inventory.imagePath
+  //       }
+  //     })
+  //    }))
+  //     .subscribe(() =>{
+  //       const inventoryUpdated = this.inventory.filter(inventory => inventory.id !== id);
+  //       this.inventory = inventoryUpdated;
+  //       this.inventoryUpdated.next([...this.inventory])
+  //     });
+  //   }
+
+
 
   getInventoryUpdateListener() {
     return this.inventoryUpdated.asObservable();
