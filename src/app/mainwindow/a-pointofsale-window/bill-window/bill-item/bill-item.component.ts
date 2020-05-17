@@ -1,3 +1,4 @@
+import { NgForm } from '@angular/forms';
 import { InventoryInteractionService } from './../../../a-inventory-window/inventory-interaction.service';
 import { Subscription } from 'rxjs';
 import { Inventory } from './../../../a-inventory-window/inventory.model';
@@ -18,6 +19,9 @@ export class BillItemComponent implements OnInit {
   searchTerm: string;
   inventorys: Inventory[] = [];
   inven: Inventory[] = [];
+  newArray: Array<any> =[];
+  num: string;
+
   isLoading= false;
   private inventorySubs: Subscription;
 
@@ -42,11 +46,18 @@ export class BillItemComponent implements OnInit {
     this.inventorySubs.unsubscribe();
   }
 
-  onAddToBill(itemId:string, name:string , expireDate:string , quantity:string){
+  onAddToBill(itemId:string, name:string , expireDate:string , quantity:string, form:NgForm ){
 
-  this.itemArray.push([itemId,name,expireDate,quantity]);
-  this.arr.push([this.itemArray]);
-  console.log(this.itemArray);
+  this.itemArray.push([itemId,name,expireDate,quantity,form.value.quantityNumber]);
+
+  // console.log(this.itemArray);
+
+  }
+
+  onAddToCheckout(checkoutArray: Array<any> =[], form: NgForm){
+
+
+    console.log(checkoutArray);
 
   }
 
