@@ -10,6 +10,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./bill-item.component.css']
 })
 export class BillItemComponent implements OnInit {
+
   items: Array<any> =[];
   arr: Array<any> =[];
   arr1: Array<any> =[];
