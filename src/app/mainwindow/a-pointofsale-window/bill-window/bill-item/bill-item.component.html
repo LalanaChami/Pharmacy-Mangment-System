@@ -14,7 +14,7 @@
 
             <div class="field has-addons is-full" >
               <div class="control is-full" style="width: 100%;">
-                <input class="input" type="text" placeholder="Find drugs">
+                <input class="input" type="text" placeholder="Find drugs" [(ngModel)]="searchTerm">
               </div>
               <div class="control">
                 <a class="button is-primary">
@@ -48,7 +48,7 @@
       <ng-template #item   >
 
 
-        <div  style="height:470px;" *ngFor="let inventory of inventorys">
+        <div  style="height:470px;" *ngFor="let inventory of inventorys | inventoryFilter: searchTerm">
           <div class="column is-3-tablet is-6-mobile" style="width: 100%;" >
             <div >
             <div class="card">
