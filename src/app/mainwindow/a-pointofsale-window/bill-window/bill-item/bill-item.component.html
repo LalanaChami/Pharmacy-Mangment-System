@@ -57,6 +57,7 @@
                   <img [src]="inventory.imagePath" [alt]="inventory.name" >
                 </figure>
               </div>
+              <form (submit)="onAddToBill(inventory.id, inventory.name,inventory.expireDate,inventory.quantity,quantityForm)" #quantityForm="ngForm">
               <div class="card-content">
                 <header class="card-header">
                   <p class="card-header-title">
@@ -67,14 +68,18 @@
 
                 <div class="card-content ">
                   <p class="is-left">{{ inventory.quantity }}</p>
+                  <input type="number" class="is-center"  style="width: 50%;" name="quantityNumber" ngModel #quantityNumberInput="ngModel"/>
                 </div>
+
                 <footer class="card-footer">
 
                   <button class="button btn is-primary is-rounded is-small-mobile  is-focused " style="margin-left: 50%;" (click)="onAddToBill(inventory.id, inventory.name,inventory.expireDate,inventory.quantity)">Add to Bill</button>
 
                 </footer>
               </div>
+            </form>
             </div>
+
 
            </div>
          </div>
@@ -91,6 +96,7 @@
       <!-- <app-bill-window></app-bill-window> -->
 
       <section class="panel">
+        <form (submit)="onAddToCheckout(itemArray,billForm)" #billForm="ngForm">
         <p class="panel-heading" style="background-color:hsl(0, 0%, 88%) ;color:hsl(0, 0%, 21%)">
           Bill
         </p>
@@ -113,7 +119,7 @@
 
                     <td >{{entries[1]}}</td>
                     <td >{{entries[0]}}</td>
-                    <td><input type="number" class="is-center" id="number" value="1" style="width: 50%;" /></td>
+                    <td >{{entries[4]}}</td>
                     <td >{{entries[2]}}</td>
                     <td >{{entries[3]}}</td>
 
@@ -125,10 +131,11 @@
           </div>
         </div>
         <div class="panel-block">
-          <button class="button is-primary   is-fullwidth">
+          <button class="button is-primary   is-fullwidth"  type="submit">
             Check Out
           </button>
         </div>
+      </form>
       </section>
 
 
