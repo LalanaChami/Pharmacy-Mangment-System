@@ -31,6 +31,7 @@ export class InventoryInteractionService {
         quantity:inventory.quantity,
         batchId:inventory.batchId,
         expireDate: inventory.expireDate,
+        price: inventory.price,
         id: inventory._id,
         imagePath:  inventory.imagePath
        }
@@ -71,16 +72,17 @@ export class InventoryInteractionService {
   }
 
   getInventorys(id: string){
-    return this.http.get<{_id: string  , name: string, quantity: string, batchId: string, expireDate: string , imagePath:string}>
+    return this.http.get<{_id: string  , name: string, quantity: string, batchId: string, expireDate: string, price:string ,imagePath:string}>
     ('http://localhost:3000/api/inventory/' + id);
   }
 
-  addInventory( name: string, quantity: string, batchId: string, expireDate: string , image: File) {
+  addInventory( name: string, quantity: string, batchId: string, expireDate: string, price: string , image: File) {
     const inventoryData = new FormData();
     inventoryData.append("name", name);
     inventoryData.append("quantity", quantity);
     inventoryData.append("batchId", batchId);
     inventoryData.append("expireDate", expireDate);
+    inventoryData.append("price", price);
     inventoryData.append("image", image, name);
 
     this.http.post<{message: string, inventory: Inventory}>('http://localhost:3000/api/inventory',inventoryData)
@@ -90,6 +92,7 @@ export class InventoryInteractionService {
                                    quantity: quantity,
                                    batchId: batchId ,
                                    expireDate: expireDate ,
+                                   price: price,
                                    imagePath : responseData.inventory.imagePath};
 
       this.inventory.push(inventory);
@@ -99,7 +102,7 @@ export class InventoryInteractionService {
 
   }
 
-  updateInventory(id: string , name: string, quantity: string, batchId: string, expireDate: string ,image: File | string){
+  updateInventory(id: string , name: string, quantity: string, batchId: string, expireDate: string, price: string ,image: File | string){
 
     let inventoryData: Inventory | FormData;
 
@@ -110,6 +113,7 @@ export class InventoryInteractionService {
       inventoryData.append("quantity",quantity);
       inventoryData.append("batchId",batchId);
       inventoryData.append("expireDate",expireDate);
+      inventoryData.append("price",price);
       inventoryData.append("image", image, name);
 
     } else{
@@ -118,6 +122,7 @@ export class InventoryInteractionService {
                         quantity : quantity ,
                         batchId : batchId ,
                         expireDate : expireDate ,
+                        price: price,
                         imagePath: image};
     }
     this.http
@@ -131,6 +136,7 @@ export class InventoryInteractionService {
                                              quantity : quantity ,
                                              batchId : batchId ,
                                              expireDate : expireDate ,
+                                             price: price,
                                              imagePath: " "};
                updatedInventorys[oldInventoryIndex] = inventory;
                this.inventoryUpdated.next([...this.inventory]);

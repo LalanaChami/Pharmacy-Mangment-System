@@ -5,6 +5,7 @@ const inventorySchema = mongoose.Schema({
   quantity: {type: String , require:true},
   batchId: {type: String , require:true},
   expireDate: {type: String , require:true},
+  price: {type: String , require:true},
   imagePath : { type: String , require: true}
 })
 
