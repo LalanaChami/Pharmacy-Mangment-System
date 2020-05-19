@@ -34,6 +34,7 @@ router.post("",multer({storage: storage}).single("image"),(req,res,next)=>{
     quantity: req.body.quantity,
     batchId: req.body.batchId,
     expireDate: req.body.expireDate,
+    price: req.body.price,
     imagePath : url + "/images/" + req.file.filename
     });
   inventory.save().then(createdInventory=>{
@@ -62,6 +63,7 @@ router.put("/:id",multer({storage: storage}).single("image"), (req,res,next)=>{
     quantity: req.body.quantity,
     batchId: req.body.batchId,
     expireDate: req.body.expireDate,
+    price: req.body.price,
     imagePath: imagePath
   });
   console.log(inventory);

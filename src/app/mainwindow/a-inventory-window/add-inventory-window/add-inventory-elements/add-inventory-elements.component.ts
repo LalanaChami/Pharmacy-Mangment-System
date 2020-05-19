@@ -15,6 +15,7 @@ export class AddInventoryElementsComponent implements OnInit {
   enteredQuantity = "";
   enteredBatchId = "";
   enteredExpireDate = "";
+  enteredPrice = "";
 
   inventory : Inventory ;
   isLoading = false;
@@ -32,6 +33,7 @@ export class AddInventoryElementsComponent implements OnInit {
       'quantity': new FormControl(null,{validators: [Validators.required, Validators.minLength(1)]}),
       'batchId': new FormControl(null,{validators: [Validators.required, Validators.minLength(1)]}),
       'expireDate': new FormControl(null,{validators: [Validators.required, Validators.minLength(1)]}),
+      'price': new FormControl(null,{validators: [Validators.required, Validators.minLength(1)]}),
       'image': new FormControl(null,{validators: [Validators.required],asyncValidators:[mimeType]})
 
     });
@@ -47,12 +49,14 @@ export class AddInventoryElementsComponent implements OnInit {
                            quantity : inventoryData.quantity,
                            batchId: inventoryData.batchId,
                            expireDate: inventoryData.expireDate,
+                           price: inventoryData.price,
                            imagePath: inventoryData.imagePath
                           };
         this.form.setValue({'name':this.inventory.name ,
                             'quantity':this.inventory.quantity ,
                             'batchId':this.inventory.batchId ,
                             'expireDate':this.inventory.expireDate,
+                            'price':this.inventory.price,
                              'image':this.inventory.imagePath});
         });
       }else{
@@ -85,6 +89,7 @@ export class AddInventoryElementsComponent implements OnInit {
         this.form.value.quantity,
         this.form.value.batchId,
         this.form.value.expireDate,
+        this.form.value.price,
         this.form.value.image
 
         );
@@ -93,6 +98,7 @@ export class AddInventoryElementsComponent implements OnInit {
         this.form.value.quantity,
         this.form.value.batchId,
         this.form.value.expireDate,
+        this.form.value.price,
         this.form.value.image);
     }
 
