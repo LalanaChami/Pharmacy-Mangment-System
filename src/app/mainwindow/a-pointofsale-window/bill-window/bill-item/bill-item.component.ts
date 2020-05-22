@@ -46,11 +46,11 @@ export class BillItemComponent implements OnInit {
     this.inventorySubs.unsubscribe();
   }
 
-  onAddToBill(itemId:string, name:string , expireDate:string , quantity:string, form:NgForm ){
+  onAddToBill(itemId:string, name:string , expireDate:string , price:string, form:NgForm ){
 
-  this.itemArray.push([itemId,name,expireDate,quantity,form.value.quantityNumber]);
+  this.itemArray.push([itemId,name,expireDate,price,form.value.quantityNumber]);
 
-  // console.log(this.itemArray);
+   console.log(this.itemArray);
 
   }
 
