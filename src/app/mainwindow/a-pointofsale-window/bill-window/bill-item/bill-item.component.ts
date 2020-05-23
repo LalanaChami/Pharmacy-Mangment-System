@@ -21,6 +21,7 @@ export class BillItemComponent implements OnInit {
   inven: Inventory[] = [];
   newArray: Array<any> =[];
   num: string;
+  total :number;
 
   isLoading= false;
   private inventorySubs: Subscription;
@@ -58,7 +59,27 @@ export class BillItemComponent implements OnInit {
 
 
     console.log(checkoutArray);
+    let length = checkoutArray.length;
+    let x ;
+    let z ;
+    let sum;
+    this.total = 0;
+
+    for (let count = 0 ; count < length; count++) {
+       x = checkoutArray[count][3];
+
+       z = checkoutArray[count][4];
+       sum = +x * +z ;
+
+       this.total = this.total + sum;
+
+    }
+
+    console.log(this.total);
+    return this.total;
 
   }
+
+
 
 }
