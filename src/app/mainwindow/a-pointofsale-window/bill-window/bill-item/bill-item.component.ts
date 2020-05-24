@@ -21,6 +21,7 @@ export class BillItemComponent implements OnInit {
   inven: Inventory[] = [];
   newArray: Array<any> =[];
   num: string;
+  total :number;
 
   isLoading= false;
   private inventorySubs: Subscription;
@@ -46,11 +47,11 @@ export class BillItemComponent implements OnInit {
     this.inventorySubs.unsubscribe();
   }
 
-  onAddToBill(itemId:string, name:string , expireDate:string , quantity:string, form:NgForm ){
+  onAddToBill(itemId:string, name:string , expireDate:string , price:string, form:NgForm ){
 
-  this.itemArray.push([itemId,name,expireDate,quantity,form.value.quantityNumber]);
+  this.itemArray.push([itemId,name,expireDate,price,form.value.quantityNumber]);
 
-  // console.log(this.itemArray);
+   console.log(this.itemArray);
 
   }
 
@@ -58,7 +59,27 @@ export class BillItemComponent implements OnInit {
 
 
     console.log(checkoutArray);
+    let length = checkoutArray.length;
+    let x ;
+    let z ;
+    let sum;
+    this.total = 0;
+
+    for (let count = 0 ; count < length; count++) {
+       x = checkoutArray[count][3];
+
+       z = checkoutArray[count][4];
+       sum = +x * +z ;
+
+       this.total = this.total + sum;
+
+    }
+
+    console.log(this.total);
+    return this.total;
 
   }
+
+
 
 }
