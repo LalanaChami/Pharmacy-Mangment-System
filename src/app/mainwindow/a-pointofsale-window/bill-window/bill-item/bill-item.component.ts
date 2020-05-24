@@ -19,9 +19,12 @@ export class BillItemComponent implements OnInit {
   searchTerm: string;
   inventorys: Inventory[] = [];
   inven: Inventory[] = [];
-  newArray: Array<any> =[];
+  newArray: Array<any> = [];
   num: string;
-  total :number;
+  total: number;
+  tax: number;
+  paidAmount: number;
+  balance: number;
 
   isLoading= false;
   private inventorySubs: Subscription;
@@ -51,14 +54,14 @@ export class BillItemComponent implements OnInit {
 
   this.itemArray.push([itemId,name,expireDate,price,form.value.quantityNumber]);
 
-   console.log(this.itemArray);
+  //  console.log(this.itemArray);
 
   }
 
   onAddToCheckout(checkoutArray: Array<any> =[], form: NgForm){
 
 
-    console.log(checkoutArray);
+    // console.log(checkoutArray);
     let length = checkoutArray.length;
     let x ;
     let z ;
@@ -76,7 +79,23 @@ export class BillItemComponent implements OnInit {
     }
 
     console.log(this.total);
+
+
     return this.total;
+
+  }
+
+  onPrintBill(total: number,form: NgForm,checkoutArray: Array<any> =[]){
+
+    this.tax = form.value.tax;
+    this.paidAmount = form.value.paidAmount;
+    let reducingAmount = +this.tax + +this.paidAmount;
+    this.balance = reducingAmount - total ;
+
+    console.log(this.tax);
+    console.log(this.paidAmount);
+    console.log(reducingAmount);
+    console.log(this.balance);
 
   }
 
