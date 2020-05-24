@@ -1,8 +1,10 @@
+import { SalesInformationArray } from './../../salesInformationArray.model';
 import { NgForm } from '@angular/forms';
 import { InventoryInteractionService } from './../../../a-inventory-window/inventory-interaction.service';
 import { Subscription } from 'rxjs';
 import { Inventory } from './../../../a-inventory-window/inventory.model';
 import { Component, OnInit } from '@angular/core';
+import { SalesInteractionService } from './../../sales-interaction.service';
 
 
 @Component({
@@ -11,7 +13,7 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./bill-item.component.css']
 })
 export class BillItemComponent implements OnInit {
-
+  array: Array<SalesInformationArray> =[];
   items: Array<any> =[];
   arr: Array<any> =[];
   arr1: Array<any> =[];
@@ -30,7 +32,7 @@ export class BillItemComponent implements OnInit {
   private inventorySubs: Subscription;
 
 
-  constructor(private inventoryInteractionService: InventoryInteractionService) {
+  constructor(private inventoryInteractionService: InventoryInteractionService, private salesInteractionService:SalesInteractionService ) {
     this.items =[
       {name: 'https://i.ibb.co/L9X6wKM/pharmacare-logo-hori-tagline-2.png'},
     ]
@@ -86,7 +88,7 @@ export class BillItemComponent implements OnInit {
   }
 
   onPrintBill(total: number,form: NgForm,checkoutArray: Array<any> =[]){
-
+    //this.array = ['nnkn','kdjfh'];
     this.tax = form.value.tax;
     this.paidAmount = form.value.paidAmount;
     let reducingAmount = +this.tax + +this.paidAmount;
@@ -96,6 +98,13 @@ export class BillItemComponent implements OnInit {
     console.log(this.paidAmount);
     console.log(reducingAmount);
     console.log(this.balance);
+
+    this.salesInteractionService.addSales(this.array,
+      this.total,
+      this.tax,
+      this.paidAmount,
+      this.balance
+      );
 
   }
 
