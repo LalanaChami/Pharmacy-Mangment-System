@@ -145,10 +145,11 @@
 
       <!-- <app-check-out-window></app-check-out-window> -->
 
-      <section class="panel">
+  <section class="panel">
         <p class="panel-heading" style="background-color:hsl(0, 0%, 88%) ;color:hsl(0, 0%, 21%)">
           Check Out
         </p>
+      <form (submit)="onPrintBill(total,billForm,itemArray)" #billForm="ngForm">
         <div class="panel-block ">
           <div  style="height: 300px; width: 100%;">
             <br>
@@ -169,7 +170,7 @@
                 <label class="label">Tax: </label>
               </div>
               <div class="control">
-                <input class="input" type="text" placeholder="Enter amount">
+                <input class="input" type="text" placeholder="Enter amount" name="tax" ngModel #taxInput="ngModel">
               </div>
             </div>
             <br>
@@ -178,7 +179,7 @@
                 <label class="label">Paid Amount :</label>
               </div>
               <div class="control">
-                <input class="input" type="text" placeholder="Enter amount">
+                <input class="input" type="text" placeholder="Enter amount" name="paidAmount" ngModel #paidAmountInput="ngModel">
               </div>
             </div>
             <br>
@@ -187,18 +188,19 @@
                 <label class="label">Balance :</label>
               </div>
               <div class="control" style="padding-top: 3%;">
-                <label class="label">1231290475934875  </label>
+                <label class="label">{{balance}}  </label>
               </div>
             </div>
 
           </div>
         </div>
         <div class="panel-block">
-          <button class="button is-primary   is-fullwidth">
+          <button class="button is-primary   is-fullwidth" type="submit">
             Print Bill
           </button>
         </div>
-      </section>
+      </form>
+    </section>
 
     </div>
   </section>
