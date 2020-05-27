@@ -1,4 +1,8 @@
+import { AuthService } from 'src/app/auth/auth.service';
+import { SalesInteractionService } from './../../../a-pointofsale-window/sales-interaction.service';
+import { Subscription } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
+import { Sales } from 'src/app/mainwindow/a-pointofsale-window/sales.model';
 
 @Component({
   selector: 'app-sales-report-items',
@@ -7,9 +11,30 @@ import { Component, OnInit } from '@angular/core';
 })
 export class SalesReportItemsComponent implements OnInit {
 
-  constructor() { }
+  searchTerm : string;
+  sales: Sales[] = [];
+  isLoading= false;
+  userIsAuthenticated = false;
+   salesSubs: Subscription;
+   authStatusSub: Subscription;
+
+  constructor(private salesInteractionService: SalesInteractionService, private authService: AuthService){}
 
   ngOnInit() {
+    this.isLoading = true;
+    this.salesInteractionService.getSales();
+    this.salesSubs = this.salesInteractionService.getSalesUpdateListener()
+      .subscribe((posts: Sales[]) => {
+        this.isLoading = false;
+        this.sales = posts;
+      });
+
+    this.userIsAuthenticated = this.authService.getIsAuth();
+
+    this.authStatusSub = this.authService.getAuthStatusListener()
+    .subscribe(isAuthenticated =>{
+      this.userIsAuthenticated = isAuthenticated;
+    });
   }
 
 }

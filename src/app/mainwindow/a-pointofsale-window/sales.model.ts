@@ -6,4 +6,5 @@ export interface Sales {
   tax: number;
   paidAmount: number;
   balance: number;
+  dateTime: any;
 }
