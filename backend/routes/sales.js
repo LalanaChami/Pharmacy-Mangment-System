@@ -22,4 +22,13 @@ router.post("",(req,res,next)=>{
 
   });
 
+  router.get("",(req,res,next)=>{
+    Sales.find().then(documents=>{
+      res.status(200).json({
+        message : 'sales added sucessfully',
+        sales :documents
+      });
+    });
+  });
+
   module.exports = router;
