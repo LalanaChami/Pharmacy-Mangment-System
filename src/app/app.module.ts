@@ -8,6 +8,8 @@ import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Ng2CarouselamosModule } from 'ng2-carouselamos';
 
+import { MatSelectModule, MatSelect } from '@angular/material/select';
+import { MatFormFieldModule } from '@angular/material/form-field';
 import { MatPaginatorModule, MatInputModule } from '@angular/material';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -158,7 +160,7 @@ const appRoutes: Routes =[
     LoginComponent,
     SignupComponent,
     SupplierFilterPipe,
-    InventoryFilterPipe
+    InventoryFilterPipe,
 
   ],
   imports: [
@@ -172,7 +174,9 @@ const appRoutes: Routes =[
     MatPaginatorModule,
     MatInputModule,
     FormsModule,
-    Ng2CarouselamosModule
+    Ng2CarouselamosModule,
+    MatFormFieldModule,
+    MatSelectModule
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor , multi: true},AuthGuard],
   bootstrap: [AppComponent]
