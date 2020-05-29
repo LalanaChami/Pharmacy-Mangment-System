@@ -332,7 +332,7 @@ body {
 
 body {
   font: 14px/22px "Lato", Arial, sans-serif;
-  background: #3ff9dc;
+  background: #00d1b2;
 }
 
 .lighter-text {
@@ -340,7 +340,7 @@ body {
 }
 
 .main-color-text {
-  color: #3ff9dc;
+  color: #00d1b2;
 }
 
 nav {
@@ -372,9 +372,9 @@ nav ul li a:hover {
 }
 
 .badge {
-  background-color: #3ff9dc;
+  background-color: #00d1b2;
   border-radius: 10px;
-  color: white;
+  color: hsl(0, 0%, 33%);
   display: inline-block;
   font-size: 12px;
   line-height: 1;
@@ -417,7 +417,7 @@ nav ul li a:hover {
 }
 .shopping-cart .shopping-cart-items .item-price {
   margin-top: -33px;
-  color: #3ff9dc;
+  color: #00d1b2;
   margin-right: 0px;
   font-size: 16px;
 }
@@ -443,14 +443,14 @@ nav ul li a:hover {
 }
 
 .cart-icon {
-  color: #3ff9dc;
+  color: #00d1b2;
   font-size: 24px;
   margin-right: 7px;
   float: left;
 }
 
 .button1 {
-  background: #3ff9dc;
+  background: #00d1b2;
   color: white;
   text-align: center;
   padding: 12px;
@@ -461,7 +461,7 @@ nav ul li a:hover {
   margin: 25px 0 15px 0;
 }
 .button1:hover {
-  background: #3ff9dc;
+  background: #00d1b2;
 }
 
 .clearfix:after {
@@ -476,4 +476,8 @@ nav ul li a:hover {
 
 ::ng-deep .mat-select-panel {
   max-height: 80vh !important;
+}
+
+.fa-cog {
+  color: #00d1b2;
 }
