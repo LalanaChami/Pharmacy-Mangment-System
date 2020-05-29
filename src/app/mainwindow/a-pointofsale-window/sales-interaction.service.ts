@@ -40,7 +40,6 @@ export class SalesInteractionService {
     .pipe(map(salesData => {
      return salesData.sales.map(sales=>{
        return{
-
         drugName: sales.drugName,
         dateTime: sales.dateTime,
         totalPrice: sales.totalPrice,
