@@ -35,6 +35,12 @@ export class SalesReportItemsComponent implements OnInit {
     .subscribe(isAuthenticated =>{
       this.userIsAuthenticated = isAuthenticated;
     });
+
+
+
+
   }
+
+
 
 }

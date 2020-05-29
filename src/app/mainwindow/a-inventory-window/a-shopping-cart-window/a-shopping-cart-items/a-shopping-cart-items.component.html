@@ -1,11 +1,144 @@
 
 <div>
+  <script src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
+
+  <!-- <div class="navbar">
+    <a href="#home">Home</a>
+    <a href="#news">News</a>
+    <div class="dropdown">
+      <button class="dropbtn">Dropdown
+        <i class="fa fa-caret-down"></i>
+      </button>
+      <div class="dropdown-content">
+        <div class="container">
+    <div class="shopping-cart">
+      <div class="shopping-cart-header">
+        <i class="fa fa-shopping-cart cart-icon"></i><span class="badge">3</span>
+        <div class="shopping-cart-total">
+          <span class="lighter-text">Total:</span>
+          <span class="main-color-text">$2,229.97</span>
+        </div>
+      </div>
+
+      <ul class="shopping-cart-items">
+        <li class="clearfix">
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/cart-item1.jpg" alt="item1" />
+          <span class="item-name">Sony DSC-RX100M III</span>
+          <span class="item-price">$849.99</span>
+          <span class="item-quantity">Quantity: 01</span>
+        </li>
+
+        <li class="clearfix">
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/cart-item2.jpg" alt="item1" />
+          <span class="item-name">KS Automatic Mechanic...</span>
+          <span class="item-price">$1,249.99</span>
+          <span class="item-quantity">Quantity: 01</span>
+        </li>
+
+        <li class="clearfix">
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/cart-item3.jpg" alt="item1" />
+          <span class="item-name">Kindle, 6" Glare-Free To...</span>
+          <span class="item-price">$129.99</span>
+          <span class="item-quantity">Quantity: 01</span>
+        </li>
+      </ul>
+
+      <a href="#" class="button">Checkout</a>
+    </div>
+  </div>
+      </div>
+    </div>
+  </div> -->
 
 
   <section class="panel">
-    <p class="panel-heading" style="background-color:hsl(0, 0%, 88%) ;color:hsl(0, 0%, 21%)">
-      Search Drugs
-    </p>
+
+
+    <div class="panel-heading level-item" style="background-color:hsl(0, 0%, 88%) ;color:hsl(0, 0%, 21%)">
+
+
+      <div class="level-left navbar-start" >
+        <div style="padding: 0px;">
+          <figure class="image is-48x48">
+            <img class="is-rounded" src="https://bulma.io/images/placeholders/128x128.png">
+          </figure>
+        </div>
+        <a class="navbar-item subtitle" style="color:black;">
+          Dr Name
+        </a>
+      </div>
+
+      <div class="level-right navbar-end" >
+        <div style="padding: 0px;">
+<mat-form-field>
+  <mat-label>
+
+    <ul class="navbar-right">
+      <li><a href="#" id="cart"><i class="fa fa-shopping-cart"></i> Cart <span class="badge">3</span></a></li>
+    </ul>
+
+  </mat-label>
+  <mat-select >
+    <div class="shopping-cart" style="height: 200%;">
+      <mat-option style="padding-top: 40px;padding-bottom: 4px; background-color: rgb(65, 64, 64);margin-top: -8px;">
+      <div class="shopping-cart-header">
+        <i class="fa fa-shopping-cart cart-icon"></i><span class="badge" style="color: rgb(65, 64, 64) ;">3</span>
+        <div class="shopping-cart-total">
+          <span class="lighter-text">Total:</span>
+          <span class="main-color-text">$2,229.97</span>
+        </div>
+      </div> <!--end shopping-cart-header -->
+    </mat-option>
+
+
+      <ul class="shopping-cart-items">
+        <mat-option style="padding-top: 70px;padding-bottom: 50px;">
+        <li class="clearfix">
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/cart-item1.jpg" alt="item1" />
+          <span class="item-name">Sony DSC-RX100M III</span>
+          <span class="item-price">$849.99</span>
+          <span class="item-quantity">Quantity: 01</span>
+        </li>
+      </mat-option><hr  style="height:2px;border-width:0;color:gray;background-color:gray">
+
+      <mat-option style="padding-top: 70px;padding-bottom: 40px;">
+        <li class="clearfix">
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/cart-item2.jpg" alt="item1" />
+          <span class="item-name">KS Automatic Mechanic...</span>
+          <span class="item-price">$1,249.99</span>
+          <span class="item-quantity">Quantity: 01</span>
+        </li>
+      </mat-option><hr  style="height:2px;border-width:0;color:gray;background-color:gray">
+
+      <mat-option style="padding-top: 70px;padding-bottom: 40px;">
+        <li class="clearfix">
+          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/cart-item3.jpg" alt="item1" />
+          <span class="item-name">Kindle, 6" Glare-Free To...</span>
+          <span class="item-price">$129.99</span>
+          <span class="item-quantity">Quantity: 01</span>
+        </li>
+      </mat-option><hr  style="height:2px;border-width:0;color:gray;background-color:gray">
+      </ul>
+
+      <a href="#" class="button1">Checkout</a>
+    </div>
+
+  </mat-select>
+</mat-form-field>
+
+        </div>
+        <a class="navbar-item subtitle" style="color:black;">
+
+        </a>
+      </div>
+
+    </div>
+
+
+
+
+
+
     <div class="panel-block ">
       <div  style="height: 50px; width: 100%;">
 
@@ -87,4 +220,8 @@
       margin-top:35px;
       width:100%;
     }
+
+
 </style>
+
+

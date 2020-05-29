@@ -27,6 +27,7 @@
     "animate.css": "^3.7.2",
     "bcrypt": "^4.0.1",
     "body-parser": "^1.19.0",
+    "bootstrap": "^4.5.0",
     "bulma": "^0.8.0",
     "chart.js": "^2.9.3",
     "chartist": "^0.11.4",
