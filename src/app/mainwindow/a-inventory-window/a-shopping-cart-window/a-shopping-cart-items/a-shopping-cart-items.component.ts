@@ -18,6 +18,7 @@ export class AShoppingCartItemsComponent implements OnInit {
   isLoading= false;
   currentPage= 1;
   totalItems= 10;
+  total : number;
   itemsPerPage = 8;
   pageSizeOptions =[8,12,16,20,24];
   private inventorySubs: Subscription;
@@ -50,6 +51,27 @@ export class AShoppingCartItemsComponent implements OnInit {
 
     console.log(this.itemArray);
     this.itemNumber = this.itemArray.length;
+
+    let length = this.itemArray.length;
+    let x ;
+    let z ;
+    let sum;
+    this.total = 0;
+
+    for (let count = 0 ; count < length; count++) {
+       x = this.itemArray[count][3];
+
+       z = this.itemArray[count][4];
+       sum = +x * +z ;
+
+       this.total = this.total + sum;
+
+    }
+
+   // console.log(this.total);
+
+
+    return this.total;
   }
 
 }

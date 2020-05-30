@@ -82,10 +82,10 @@
     <div class="shopping-cart" style="height: 200%;">
       <mat-option style="padding-top: 40px;padding-bottom: 4px; background-color: rgb(65, 64, 64);margin-top: -8px; border-radius: 10px;">
       <div class="shopping-cart-header">
-        <i style="margin-top: 20px;" class="fa fa-shopping-cart cart-icon"></i><span class="badge" style="color: rgb(65, 64, 64) ;">3</span>
+        <i style="margin-top: 20px;" class="fa fa-shopping-cart cart-icon"></i><span class="badge" style="color: rgb(65, 64, 64) ;">{{itemNumber}}</span>
         <div class="shopping-cart-total" style="margin-bottom: 30px;">
-          <span class="lighter-text">Total:</span>
-          <span class="main-color-text">$2,229.97</span>
+          <span class="lighter-text">Total : </span>
+          <span class="main-color-text">Rs. {{total}}</span>
         </div>
       </div> <!--end shopping-cart-header -->
     </mat-option>
