@@ -10,7 +10,7 @@ import { Inventory } from '../../inventory.model';
 })
 export class DrugInventoryItemsComponent implements OnInit {
   searchTerm : string;
-  inventorys: Inventory[] = [];
+  inventorys : Inventory[] = [];
   isLoading= false;
   private inventorySubs: Subscription;
 
