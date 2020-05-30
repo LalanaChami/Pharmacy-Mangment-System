@@ -74,7 +74,7 @@
   <mat-label>
 
     <ul class="navbar-right">
-      <li><a href="#" id="cart" style="color: #00d1b2;"><i class="fa fa-shopping-cart fa-cog"></i> Cart <span class="badge" >3</span></a></li>
+      <li><a href="#" id="cart" style="color: #00d1b2;"><i class="fa fa-shopping-cart fa-cog"></i> Cart <span class="badge"  >{{itemNumber}}</span></a></li>
     </ul>
 
   </mat-label>
@@ -91,17 +91,18 @@
     </mat-option>
 
 
-      <ul class="shopping-cart-items">
-        <mat-option style="padding-top: 70px;padding-bottom: 50px;">
+      <ul class="shopping-cart-items" >
+        <div *ngFor="let entries of itemArray">
+        <mat-option style="padding-top: 70px;padding-bottom: 50px;" >
         <li class="clearfix">
           <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/cart-item1.jpg" alt="item1" />
-          <span class="item-name">Sony DSC-RX100M III</span>
-          <span class="item-price">$849.99</span>
-          <span class="item-quantity">Quantity: 01</span>
+          <span class="item-name">{{entries[1]}}</span>
+          <span class="item-price">Price : Rs.{{entries[3]}}</span>
+          <span class="item-quantity">Quantity : {{entries[4]}}</span>
         </li>
       </mat-option><hr  style="height:2px;border-width:0;color:rgb(208, 205, 205);background-color:rgb(208, 205, 205)">
-
-      <mat-option style="padding-top: 70px;padding-bottom: 40px;">
+    </div>
+      <!-- <mat-option style="padding-top: 70px;padding-bottom: 40px;">
         <li class="clearfix">
           <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/cart-item2.jpg" alt="item1" />
           <span class="item-name">KS Automatic Mechanic...</span>
@@ -117,7 +118,7 @@
           <span class="item-price">$129.99</span>
           <span class="item-quantity">Quantity: 01</span>
         </li>
-      </mat-option><hr  style="height:2px;border-width:0;color:rgb(208, 205, 205);background-color:rgb(208, 205, 205)">
+      </mat-option><hr  style="height:2px;border-width:0;color:rgb(208, 205, 205);background-color:rgb(208, 205, 205)"> -->
       </ul>
 
       <a href="#" class="button1">Checkout</a>
@@ -170,6 +171,7 @@
                 <img [src]="inventory.imagePath" [alt]="inventory.name">
               </figure>
             </div>
+            <form (submit)="onAddToCart(inventory.id, inventory.name,inventory.expireDate,inventory.price,quantityForm)" #quantityForm="ngForm">
             <div class="card-content">
               <header class="card-header">
                 <p class="card-header-title">
@@ -181,19 +183,21 @@
               <div class="card-content ">
                 <p class="is-left">{{ inventory.price }}</p>
               </div>
+              <div class="card-content ">
+                <p class="is-left">Quantity</p>
+                <input type="number" class="is-center"  style="width: 50%;" name="quantityNumber" ngModel #quantityNumberInput="ngModel"/>
+              </div>
               <footer class="card-footer">
 
-                <button class="button btn is-primary is-rounded is-small-mobile  is-focused " style="margin-left: 50%;" >Add to Cart</button>
+                <button class="button btn is-primary is-rounded is-small-mobile  is-focused " style="margin-left: 50%;" type="submit">Add to Cart</button>
 
               </footer>
             </div>
+            </form>
           </div>
 
         </div>
       </div>
-
-
-
 </div>
 
 <div>
