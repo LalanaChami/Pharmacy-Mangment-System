@@ -60,6 +60,7 @@
       <div class="level-left navbar-start"  >
         <div style="padding: 0px;">
           <figure class="image is-48x48">
+
             <img class="is-rounded" src="https://bulma.io/images/placeholders/128x128.png">
           </figure>
         </div>
@@ -95,7 +96,7 @@
         <div *ngFor="let entries of itemArray">
         <mat-option style="padding-top: 70px;padding-bottom: 50px;" >
         <li class="clearfix">
-          <img src="https://s3-us-west-2.amazonaws.com/s.cdpn.io/195612/cart-item1.jpg" alt="item1" />
+          <img class="image is-64x64" [src]="entries[5]" alt="item1" />
           <span class="item-name">{{entries[1]}}</span>
           <span class="item-price">Price : Rs.{{entries[3]}}</span>
           <span class="item-quantity">Quantity : {{entries[4]}}</span>
@@ -171,7 +172,7 @@
                 <img [src]="inventory.imagePath" [alt]="inventory.name">
               </figure>
             </div>
-            <form (submit)="onAddToCart(inventory.id, inventory.name,inventory.expireDate,inventory.price,quantityForm)" #quantityForm="ngForm">
+            <form (submit)="onAddToCart(inventory.id, inventory.name,inventory.expireDate,inventory.price,quantityForm,inventory.imagePath )" #quantityForm="ngForm">
             <div class="card-content">
               <header class="card-header">
                 <p class="card-header-title">

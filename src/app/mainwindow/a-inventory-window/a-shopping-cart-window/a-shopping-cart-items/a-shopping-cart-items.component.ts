@@ -46,8 +46,8 @@ export class AShoppingCartItemsComponent implements OnInit {
     this.inventorySubs.unsubscribe();
   }
 
-  onAddToCart(itemId:string, name:string , expireDate:string , price:string, form:NgForm ){
-    this.itemArray.push([itemId,name,expireDate,price,form.value.quantityNumber]);
+  onAddToCart(itemId:string, name:string , expireDate:string ,price:string, form:NgForm ,imagePath:string ){
+    this.itemArray.push([itemId,name,expireDate,price,form.value.quantityNumber,imagePath]);
 
     console.log(this.itemArray);
     this.itemNumber = this.itemArray.length;
