@@ -1,10 +1,8 @@
 const mongoose = require('mongoose');
 
 const salesSchema = mongoose.Schema({
-  drugName: [{
-    name: {type: String},
-    quantity: {type: String},
-  }],
+  drugName: {type: Array, require:true},
+  // drugName:{type: String,require:true},
   dateTime: {type: Date, default: Date.now , require:true},
   totalPrice: {type: String , require:true},
   tax: {type: String , require:true},

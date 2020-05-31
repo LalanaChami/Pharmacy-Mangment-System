@@ -4,6 +4,7 @@ import { PageEvent } from '@angular/material';
 import { Subscription } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { Inventory } from '../../inventory.model';
+import { SalesInformationArray } from 'src/app/mainwindow/a-pointofsale-window/salesInformationArray.model';
 
 
 @Component({
@@ -23,6 +24,7 @@ export class AShoppingCartItemsComponent implements OnInit {
   pageSizeOptions =[8,12,16,20,24];
   private inventorySubs: Subscription;
   itemNumber: number;
+  dataArray: Array<any> =[];
 
   constructor(private inventoryInteractionService: InventoryInteractionService) { }
 
@@ -48,7 +50,7 @@ export class AShoppingCartItemsComponent implements OnInit {
 
   onAddToCart(itemId:string, name:string , expireDate:string ,price:string, form:NgForm ,imagePath:string ){
     this.itemArray.push([itemId,name,expireDate,price,form.value.quantityNumber,imagePath]);
-
+    // this.dataArray.push([name,form.value.quantityNumber]);
     console.log(this.itemArray);
     this.itemNumber = this.itemArray.length;
 
@@ -66,9 +68,10 @@ export class AShoppingCartItemsComponent implements OnInit {
 
        this.total = this.total + sum;
 
+
     }
 
-   // console.log(this.total);
+  //  console.log(this.dataArray);
 
 
     return this.total;
