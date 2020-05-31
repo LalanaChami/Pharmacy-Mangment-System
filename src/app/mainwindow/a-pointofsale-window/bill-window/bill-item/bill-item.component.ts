@@ -27,6 +27,7 @@ export class BillItemComponent implements OnInit {
   tax: number;
   paidAmount: number;
   balance: number;
+  dataArray: Array<any> =[];
 
   isLoading= false;
   private inventorySubs: Subscription;
@@ -55,6 +56,7 @@ export class BillItemComponent implements OnInit {
   onAddToBill(itemId:string, name:string , expireDate:string , price:string, form:NgForm ){
 
   this.itemArray.push([itemId,name,expireDate,price,form.value.quantityNumber]);
+  this.dataArray.push([name,form.value.quantityNumber]);
 
   //  console.log(this.itemArray);
 
@@ -98,8 +100,9 @@ export class BillItemComponent implements OnInit {
     console.log(this.paidAmount);
     console.log(reducingAmount);
     console.log(this.balance);
+    console.log(this.dataArray);
 
-    this.salesInteractionService.addSales(this.array,
+    this.salesInteractionService.addSales(this.dataArray,
       this.total,
       this.tax,
       this.paidAmount,
