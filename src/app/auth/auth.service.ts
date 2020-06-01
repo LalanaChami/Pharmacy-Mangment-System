@@ -1,3 +1,4 @@
+//import { HeaderUserdetailsComponent } from './../header/header-userdetails/header-userdetails.component';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
 import { AuthData } from './auth-data.model';
@@ -13,7 +14,7 @@ export class AuthService{
   private authStatusListener  = new Subject<boolean>();
 
 
-  constructor(private http: HttpClient, private router: Router){}
+  constructor(private http: HttpClient, private router: Router ){}
 
   getToken(){
     return this.token;
@@ -49,10 +50,11 @@ export class AuthService{
           this.authStatusListener.next(true);
           const now = new Date();
           const expirationDate = new Date(now.getTime() + expiresInDuration * 1000);
-          console.log(expirationDate);
+          console.log(expirationDate,email);
           this.saveAuthData(token, expirationDate );
 
           this.router.navigate(['/']);
+          // this.headerUserdetailsComponent.onViewUserEmail(email);
         }
       });
   }

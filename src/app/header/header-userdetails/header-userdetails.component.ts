@@ -11,6 +11,7 @@ export class HeaderUserdetailsComponent implements OnInit {
 
   userIsAuthenticated =false;
   private authListenerSubs: Subscription;
+  email:string;
 
   constructor(private authService:AuthService) { }
 
@@ -24,6 +25,10 @@ export class HeaderUserdetailsComponent implements OnInit {
 
   ngOnDestroy(){
     this.authListenerSubs.unsubscribe();
+  }
+
+  onViewUserEmail(email:string){
+    this.email = email;
   }
 
 }
