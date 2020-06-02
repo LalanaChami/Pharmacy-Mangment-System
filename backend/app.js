@@ -7,7 +7,8 @@ const app = express();
 const supplierRoutes = require('./routes/supplier');
 const inventoryRoutes = require('./routes/inventory');
 const userRoutes = require('./routes/user');
-const salesRoutes = require('./routes/sales')
+const salesRoutes = require('./routes/sales');
+const doctorUserRoutes = require('./routes/doctorUser');
 
 
 mongoose.connect('mongodb+srv://lalana:OJx2X4IllVNl9up4@cluster0-rjtww.mongodb.net/pharmacy?retryWrites=true&w=majority',{useNewUrlParser: true , useUnifiedTopology: true})
@@ -105,5 +106,6 @@ app.use("/api/supplier",supplierRoutes);
 app.use("/api/inventory",inventoryRoutes);
 app.use("/api/user",userRoutes);
 app.use("/api/sales",salesRoutes);
+app.use("/api/doctorUser",doctorUserRoutes);
 
 module.exports = app;
