@@ -1,3 +1,4 @@
+import { DoctorSignupComponent } from './auth/doctorAuth/doctorSignup/doctorSignup.component';
 import { AuthGuard } from './auth/auth.guard';
 import { Routes, RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
@@ -80,6 +81,7 @@ import { SignupComponent } from './auth/signup/signup.component';
 import { AuthInterceptor } from './auth/auth-interceptor';
 import { SupplierFilterPipe } from './mainwindow/a-suppliers-window/supplier-filter.pipe';
 import { InventoryFilterPipe } from './mainwindow/a-inventory-window/inventory-filter.pipe';
+import { DoctorLoginComponent } from './auth/doctorAuth/doctorLogin/doctorLogin.component';
 
 const appRoutes: Routes =[
   { path: '',component:  MainwindowComponent},
@@ -161,6 +163,8 @@ const appRoutes: Routes =[
     SignupComponent,
     SupplierFilterPipe,
     InventoryFilterPipe,
+    DoctorLoginComponent,
+    DoctorSignupComponent
 
   ],
   imports: [

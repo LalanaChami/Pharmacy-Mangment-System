@@ -1,0 +1,66 @@
+<div class="container" style="background-color: #393939;max-width: none;margin-top: -1%;">
+  <div id="flow">
+      <span class="flow-1"></span>
+      <span class="flow-2"></span>
+      <span class="flow-3"></span>
+  </div>
+  <div class="section" >
+
+    <section class="hero is-success is-fullheight mobile is-mobile is-tablet">
+      <div class="hero-body">
+          <div class="container has-text-centered" style="max-width: 1132px;">
+              <div class="column is-4 is-offset-4">
+                  <h3 class="title ">Login</h3>
+                  <hr class="login-hr">
+
+                  <div class="box">
+                      <figure class="avatar">
+                          <img src="https://placehold.it/128x128">
+                      </figure>
+
+
+                      <form (submit)="onDoctorLogin(loginForm)" #loginForm="ngForm">
+                          <div class="field">
+                              <div class="control">
+
+                                  <input name="email" ngModel #emailInput="ngModel" class="input is-medium" type="email" placeholder="Your Email" autofocus="" required email>
+                                  <p class="login-error" *ngIf="!emailInput.valid && emailInput.touched">Please enter valid email</p>
+
+                              </div>
+                          </div>
+
+                          <div class="field">
+                              <div class="control">
+
+                                  <input name="password" ngModel #passwordInput="ngModel" class="input is-medium" type="password" placeholder="Your Password" required>
+                                  <p class="login-error" *ngIf="!passwordInput.valid && passwordInput.touched">Please enter valid password</p>
+
+                              </div>
+                          </div>
+                          <div class="field">
+                              <label class="checkbox">
+                              <input type="checkbox">
+                              Remember me
+                            </label>
+                          </div>
+                          <button class="button is-block is-primary is-medium is-fullwidth" type="submit">Login <i class="fas fas-sign-in" aria-hidden="true"></i></button>
+                      </form>
+
+
+                  </div>
+                  <p class="has-text-grey" style="color: #00d1b2;">
+                      <a style="color: #00d1b2;" routerLink="/doctorSignup">Sign Up</a> &nbsp;·&nbsp;
+                      <a style="color: #00d1b2;" routerLink="/">Forgot Password</a> &nbsp;·&nbsp;
+                      <a style="color: #00d1b2;" href="../">Need Help?</a>
+                  </p><br><br><br>
+                  <!-- <p class="subtitle ">Please login to proceed.</p> -->
+                  <a class=" level-item logo-margin" >
+                    <img src="https://i.ibb.co/L9X6wKM/pharmacare-logo-hori-tagline-2.png" width="152" height="140">
+                  </a>
+              </div>
+          </div>
+      </div>
+    </section>
+
+  </div>
+</div>
