@@ -1,0 +1,129 @@
+<div class="container" style="background-color: #041221;max-width: none;margin-top: -1%;">
+  <div id="flow">
+      <span class="flow-1"></span>
+      <span class="flow-2"></span>
+      <span class="flow-3"></span>
+  </div>
+  <div class="section" >
+
+    <section class="hero is-success is-fullheight">
+      <div class="hero-body">
+          <div class="container has-text-centered" style="max-width: 1132px;">
+              <div class="column is-4 is-offset-4">
+                  <h3 class="title ">Signup</h3>
+                  <hr class="login-hr">
+
+                  <div class="box">
+                      <!-- <figure class="avatar">
+                          <img src="https://placehold.it/128x128">
+                      </figure> -->
+                      <a class=" level-item logo-margin" >
+                        <img src="https://i.ibb.co/L9X6wKM/pharmacare-logo-hori-tagline-2.png" width="152" height="140">
+                      </a><br>
+
+                      <form (submit)="onDoctorSignup(signupForm)" #signupForm="ngForm">
+
+
+                        <div class="field">
+                          <div class="control">
+
+                              <input name="name" ngModel #nameInput="ngModel" class="input is-medium" type="name" placeholder="Your Name" autofocus="" required >
+                              <p class="login-error" *ngIf="nameInput.invalid && nameInput.touched">Please enter the name</p>
+
+                          </div>
+                      </div>
+
+                      <div class="field">
+                        <div class="control">
+
+                            <input name="contact" ngModel #contactInput="ngModel" class="input is-medium" type="contact" placeholder="Your Contact Number" autofocus="" required >
+                            <p class="login-error" *ngIf="contactInput.invalid && contactInput.touched">Please enter valid contact number</p>
+
+                        </div>
+                      </div>
+
+
+                      <div class="field">
+                        <div class="control">
+
+                            <input name="nic" ngModel #nicInput="ngModel" class="input is-medium" type="nic" placeholder="Your SLMC register number" autofocus="" required >
+                            <p class="login-error" *ngIf="nicInput.invalid && nicInput.touched">Please enter valid SLMC register number</p>
+
+                        </div>
+                      </div>
+
+
+                      <div class="field">
+                            <div class="control">
+
+                              <input name="email" ngModel #emailInput="ngModel" class="input is-medium" type="email" placeholder="Your Email" autofocus="" required email>
+                              <p class="login-error" *ngIf="emailInput.invalid && emailInput.touched">Please enter valid email</p>
+
+                            </div>
+                      </div>
+
+
+
+                      <div class="field">
+                            <div class="control">
+
+                                <input name="password" ngModel #passwordInput="ngModel" class="input is-medium" type="password" placeholder="Your Password" required>
+                                <p class="login-error" *ngIf="passwordInput.invalid && passwordInput.touched">Please enter valid password</p>
+
+                            </div>
+                       </div>
+
+                       <div class="field">
+                        <label class="label"></label>
+                        <div class="file has-name is-full">
+                          <label class="file-label">
+                            <button class="file-input" type="button" name="resume" (click)=filePicker.click()></button>
+                            <input class="file-input" type="file" #filePicker (change)="onImagePicked($event)">
+                            <span class="file-cta">
+                              <span class="file-icon">
+                                <i class="fa fa-upload"></i>
+                              </span>
+                              <span class="file-label" style="color: rgb(162, 162, 162);">
+                                Choose Profile Picture
+                              </span>
+                            </span>
+                            <span class="file-name is-full" style="width: 900px; color: rgb(162, 162, 162);">
+                              Image
+                            </span>
+                          </label>
+                        </div>
+                        <!-- <div class="image-preview" *ngIf=" imagePreview !== '' && imagePreview && form.get('image').valid">
+                          <img [src]="imagePreview" [alt]="form.value.name">
+                        </div> -->
+                      </div>
+
+
+
+
+                          <button class="button is-block is-primary is-medium is-fullwidth">SignUp <i class="fas fas-sign-in" aria-hidden="true"></i></button>
+                      </form>
+
+
+                  </div>
+                  <p class="has-text-grey" style="color: #00d1b2;">
+                      <a style="color: #00d1b2;" routerLink="/doctorLogin">Login</a> &nbsp;&nbsp;
+                      <!-- <a style="color: #00d1b2;" href="../">Forgot Password</a> &nbsp;·&nbsp;
+                      <a style="color: #00d1b2;" href="../">Need Help?</a> -->
+                  </p><br><br><br>
+                  <!-- <p class="subtitle ">Please login to proceed.</p> -->
+
+              </div>
+          </div>
+      </div>
+    </section>
+
+  </div>
+</div>
+
+<script>
+  var dropdown = document.querySelector('.dropdown');
+dropdown.addEventListener('click', function(event) {
+  event.stopPropagation();
+  dropdown.classList.toggle('is-active');
+});
+</script>

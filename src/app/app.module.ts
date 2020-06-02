@@ -1,3 +1,4 @@
+import { DoctorSignupComponent } from './auth/doctorAuth/doctorSignup/doctorSignup.component';
 import { AuthGuard } from './auth/auth.guard';
 import { Routes, RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
@@ -162,7 +163,8 @@ const appRoutes: Routes =[
     SignupComponent,
     SupplierFilterPipe,
     InventoryFilterPipe,
-    DoctorLoginComponent
+    DoctorLoginComponent,
+    DoctorSignupComponent
 
   ],
   imports: [

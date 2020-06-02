@@ -1,3 +1,4 @@
+import { DoctorSignupComponent } from './auth/doctorAuth/doctorSignup/doctorSignup.component';
 import { AuthGuard } from './auth/auth.guard';
 import { DrugInventoryWindowComponent } from './mainwindow/a-inventory-window/drug-inventory-window/drug-inventory-window.component';
 import { SupplierInventoryWindowComponent } from './mainwindow/a-suppliers-window/supplier-inventory-window/supplier-inventory-window.component';
@@ -22,7 +23,8 @@ const routes: Routes = [
 
   {path: 'login', component: LoginComponent},
   {path: 'signup', component: SignupComponent},
-  {path: 'doctorLogin', component: DoctorLoginComponent}
+  {path: 'doctorLogin', component: DoctorLoginComponent},
+  {path: 'doctorSignup', component: DoctorSignupComponent}
 
 ];
 
