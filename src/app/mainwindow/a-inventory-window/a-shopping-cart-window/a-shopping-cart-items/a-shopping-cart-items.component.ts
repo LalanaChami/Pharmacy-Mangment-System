@@ -1,3 +1,5 @@
+import { AuthDoctorData } from './../../../../auth/doctorAuth/doctorAuth-model';
+import { AuthDoctorUserService } from './../../../../auth/doctorAuth/authDoctorUser.service';
 import { NgForm } from '@angular/forms';
 import { InventoryInteractionService } from './../../inventory-interaction.service';
 import { PageEvent } from '@angular/material';
@@ -13,6 +15,7 @@ import { SalesInformationArray } from 'src/app/mainwindow/a-pointofsale-window/s
   styleUrls: ['./a-shopping-cart-items.component.css']
 })
 export class AShoppingCartItemsComponent implements OnInit {
+  email2: string;
   searchTerm: string;
   inventorys: Inventory[] = [];
   itemArray: Array<any> =[];
@@ -25,8 +28,13 @@ export class AShoppingCartItemsComponent implements OnInit {
   private inventorySubs: Subscription;
   itemNumber: number;
   dataArray: Array<any> =[];
+  details: AuthDoctorData;
 
-  constructor(private inventoryInteractionService: InventoryInteractionService) { }
+  name: string;
+  userIsAuthenticated =false;
+  private authListenerSubs: Subscription;
+
+  constructor(private inventoryInteractionService: InventoryInteractionService, private authDoctorUserService:AuthDoctorUserService) { }
 
   ngOnInit() {
     this.isLoading = true;
@@ -36,6 +44,12 @@ export class AShoppingCartItemsComponent implements OnInit {
         this.isLoading = false;
         this.inventorys = posts;
       });
+
+      this.userIsAuthenticated = this.authDoctorUserService.getIsAuth();
+    this.authListenerSubs = this.authDoctorUserService.getAuthStatusListener()
+    .subscribe(isAuthenticated =>{
+      this.userIsAuthenticated= isAuthenticated;
+    });
   }
 
   onChangedPage(pageData: PageEvent){
@@ -76,5 +90,19 @@ export class AShoppingCartItemsComponent implements OnInit {
 
     return this.total;
   }
+
+  onViewUserEmail(email:string){
+    this.email2 = email;
+    this.name ="hjhvjhvhjvjh";
+    console.log(this.email2);
+
+    // this.authDoctorUserService.getDoctors(this.email);
+
+  }
+  onLogout(){
+    this.authDoctorUserService.logout();
+  }
+
+
 
 }
