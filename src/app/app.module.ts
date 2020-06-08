@@ -1,3 +1,4 @@
+import { AuthDoctorUserService } from './auth/doctorAuth/authDoctorUser.service';
 import { DoctorSignupComponent } from './auth/doctorAuth/doctorSignup/doctorSignup.component';
 import { AuthGuard } from './auth/auth.guard';
 import { Routes, RouterModule } from '@angular/router';
@@ -182,7 +183,7 @@ const appRoutes: Routes =[
     MatFormFieldModule,
     MatSelectModule
   ],
-  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor , multi: true},AuthGuard],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor , multi: true},AuthGuard,AShoppingCartItemsComponent],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

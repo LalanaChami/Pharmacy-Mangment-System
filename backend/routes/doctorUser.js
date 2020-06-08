@@ -3,6 +3,7 @@ const router = express.Router();
 const multer = require("multer");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
+const checkDocAuth = require("../middleware/check-docAuth");
 
 const DoctorUser = require('../models/doctorUser');
 
@@ -33,6 +34,51 @@ router.post("/doctorSignup",(req,res,next)=>{
         });
     })
 
+});
+
+
+router.post("/doctorLogin" , (req, res ,  next)=>{
+  let fetchedUser;
+  DoctorUser.findOne({email: req.body.email}).then(user=>{
+    if(!user){
+      return res.status(401).json({
+        message: "Auth failed"
+      });
+    }
+    fetchedUser=user;
+    return bcrypt.compare(req.body.password, user.password);
+  })
+  .then(result =>{
+    if(!result){
+      return res.status(401).json({
+        message: "Auth failed"
+      });
+    }
+    const token = jwt.sign(
+      {email: fetchedUser.email , userId : fetchedUser ._id } ,
+      'this_is_the_webToken_secret_key' ,
+      { expiresIn : "1h"}
+      );
+      res.status(200).json({
+        token: token,
+        expiresIn: 3600
+      });
+  })
+  .catch(err =>{
+    return res.status(401).json({
+      message: "Auth failed"
+    });
+  });
+})
+
+router.get("/doctorLogin",(req,res,next)=>{
+  DoctorUser.findById(req.body.email).then(doctor =>{
+    if(doctor){
+      res.status(200).json(doctor);
+    }else{
+      res.status(200).json({message:'doctor not found'});
+    }
+  });
 });
 
 module.exports = router;
