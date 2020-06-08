@@ -19,7 +19,7 @@
         </figure>
       </div>
       <a class="navbar-item subtitle" style="color: azure;">
-        Doctor Name
+        {{email2}}
       </a>
     </div>
 
@@ -61,7 +61,7 @@
       <!-- <button  class="button is-primary"  routerLink="/login">
         <strong>Log in as Admin</strong>
       </button> -->
-      <button  class="button is-primary"  >
+      <button  class="button is-primary"  (click)="onLogout()">
         <strong>Log out</strong>
       </button>
     </div>
@@ -140,7 +140,7 @@
           </figure>
         </div>
         <a class="navbar-item subtitle" style="color:rgb(170, 170, 170);">
-          Dr Name
+          {{email2}}
         </a>
       </div>
 
