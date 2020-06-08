@@ -31,6 +31,8 @@ export class AShoppingCartItemsComponent implements OnInit {
   details: AuthDoctorData;
 
   name: string;
+  userIsAuthenticated =false;
+  private authListenerSubs: Subscription;
 
   constructor(private inventoryInteractionService: InventoryInteractionService, private authDoctorUserService:AuthDoctorUserService) { }
 
@@ -43,11 +45,11 @@ export class AShoppingCartItemsComponent implements OnInit {
         this.inventorys = posts;
       });
 
-      // this.authDoctorUserService.profile().subscribe(user => {
-      //   this.details = user;
-      // }, (err) => {
-      //   console.error(err);
-      // });
+      this.userIsAuthenticated = this.authDoctorUserService.getIsAuth();
+    this.authListenerSubs = this.authDoctorUserService.getAuthStatusListener()
+    .subscribe(isAuthenticated =>{
+      this.userIsAuthenticated= isAuthenticated;
+    });
   }
 
   onChangedPage(pageData: PageEvent){

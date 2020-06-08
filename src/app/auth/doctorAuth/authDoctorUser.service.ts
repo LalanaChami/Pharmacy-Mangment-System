@@ -87,6 +87,30 @@ export class AuthDoctorUserService {
 
   }
 
+  getToken(){
+    return this.token;
+  }
+
+  getIsAuth(){
+    return this.isAuthenticated;
+  }
+
+  getAuthStatusListener(){
+    return this.authStatusListener.asObservable();
+  }
+
+  private getAuthData(){
+    const token = localStorage.getItem("token");
+    const expirationDate = localStorage.getItem("expiration");
+    if(!token || !expirationDate){
+      return;
+    }
+    return{
+      token: token,
+      expirationDate : new Date(expirationDate)
+    }
+  }
+
 
   /////////////////////////////////////////////////////////////
 
