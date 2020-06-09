@@ -1,11 +1,73 @@
-<div style="overflow-y:auto ;overflow-x: hidden;height: 500px;">
-  <table class="table is-full menu-list"  >
+<section class="panel">
+  <p class="panel-heading" style="background-color:hsl(0, 0%, 88%) ;color:hsl(0, 0%, 21%)">
+    Sales Report
+  </p>
+  <div class="panel-block ">
+    <div  style="height: 500px; width: 100%;">
+
+      <div style="overflow-y:auto ;overflow-x: hidden;height: 500px;">
+        <table  class="table is-full menu-list"  >
+          <tbody>
+            <div class="" >
+              <tr *ngFor="let sale of sales ">
+                <div class="div columns  is-full btn " style="width: 625px;" >
+                    <div class="div column" >
+                      <table class="table is-full" style="width: 600px;">
+                        <thead style="font-weight: bold;">
+                          <td>Drug Name</td>
+                          <td>Date and Time </td>
+                          <td >Total Amount </td>
+                          <td >Tax </td>
+                          <td >Paid Amount </td>
+                          <td >Balance </td>
+                        </thead>
+                        <tbody>
+                          <td>{{sale.drugName[0]}}  <br>{{sale.drugName[1]}}  <br>{{sale.drugName[2]}}  <br>{{sale.drugName[3]}}  <br>{{sale.drugName[4]}}  <br>{{sale.drugName[5]}}  {{sale.drugName[6]}}  <br>{{sale.drugName[7]}}  <br>{{sale.drugName[8]}}</td>
+                          <td>{{sale.dateTime}}</td>
+                          <td >{{sale.totalPrice}} </td>
+                          <td >{{sale.tax}} </td>
+                          <td >{{sale.paidAmount }}</td>
+                          <td >{{sale.balance}} </td>
+                        </tbody>
+                      </table>
+                    </div>
+                    <div class="panel-block">
+
+                  </div>
+                </div><br>
+              </tr>
+              <br><br>
+              <tr>
+
+              </tr>
+            </div>
+      <br>
+
+
+          </tbody>
+        </table>
+        </div>
+
+    </div>
+  </div>
+  <div class="panel-block">
+    <button class="button is-primary   is-full" (click)="downloard()" >Save Sales Report</button>
+  </div>
+
+
+</section>
+
+<div style="margin-top: 500px;">
+  <table id="table" class="table is-full menu-list" style="margin-left: 20px;" >
     <tbody>
       <div class="" >
-        <tr *ngFor="let sale of sales ">
-          <div class="div columns  is-full btn " style="width: 645px;" >
+        <tr >
+          <div class=" is-center">
+            <p class="title is-1 is-center" style="margin-left: 30%;">Sales Report</p>
+          </div><br><br>
+          <div class="div columns  is-full btn " style="width: 745px;" >
               <div class="div column" >
-                <table class="table is-full" style="width: 620px;">
+                <table class="table is-full" style="width: 720px;">
                   <thead style="font-weight: bold;">
                     <td>Drug Name</td>
                     <td>Date and Time </td>
@@ -14,7 +76,7 @@
                     <td >Paid Amount </td>
                     <td >Balance </td>
                   </thead>
-                  <tbody>
+                  <tbody *ngFor="let sale of sales ">
                     <td>{{sale.drugName[0]}}  <br>{{sale.drugName[1]}}  <br>{{sale.drugName[2]}}  <br>{{sale.drugName[3]}}  <br>{{sale.drugName[4]}}  <br>{{sale.drugName[5]}}  {{sale.drugName[6]}}  <br>{{sale.drugName[7]}}  <br>{{sale.drugName[8]}}</td>
                     <td>{{sale.dateTime}}</td>
                     <td >{{sale.totalPrice}} </td>
@@ -24,7 +86,8 @@
                   </tbody>
                 </table>
               </div>
-              <div>
+              <div class="panel-block">
+
             </div>
           </div><br>
         </tr>
@@ -38,7 +101,10 @@
 
     </tbody>
   </table>
-  </div>
+</div>
+
+
+
   <style>
 
     .menu-list{
