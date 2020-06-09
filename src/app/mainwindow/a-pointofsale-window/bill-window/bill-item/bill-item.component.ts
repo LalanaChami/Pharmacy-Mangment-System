@@ -111,6 +111,32 @@ export class BillItemComponent implements OnInit {
 
   }
 
+  print(): void {
+    let printContents, popupWin;
+    printContents = document.getElementById('print-section').innerHTML;
+    popupWin = window.open('', '_blank', 'top=0,left=0,height=100%,width=auto');
+    popupWin.document.open();
+    popupWin.document.write(`
+      <html>
+        <head>
+          <title>Print tab</title>
+          <style>
+          //........Customized style.......
+          </style>
+        </head>
+    <body onload="window.print();window.close()">${printContents}</body>
+      </html>`
+    );
+    popupWin.document.close();
+// const printContent = document.getElementById("print-section");
+// const WindowPrt = window.open('', '', 'left=0,top=0,width=900,height=900,toolbar=0,scrollbars=0,status=0');
+// WindowPrt.document.write(printContent.innerHTML);
+// WindowPrt.document.close();
+// WindowPrt.focus();
+// WindowPrt.print();
+// WindowPrt.close();
+}
+
 
 
 }

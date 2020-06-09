@@ -1,8 +1,10 @@
+import { element } from 'protractor';
 import { AuthService } from 'src/app/auth/auth.service';
 import { SalesInteractionService } from './../../../a-pointofsale-window/sales-interaction.service';
 import { Subscription } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { Sales } from 'src/app/mainwindow/a-pointofsale-window/sales.model';
+import * as html2pdf from 'html2pdf.js';
 
 @Component({
   selector: 'app-sales-report-items',
@@ -17,6 +19,7 @@ export class SalesReportItemsComponent implements OnInit {
   userIsAuthenticated = false;
    salesSubs: Subscription;
    authStatusSub: Subscription;
+   isHidden: boolean = true;
 
   constructor(private salesInteractionService: SalesInteractionService, private authService: AuthService){}
 
@@ -39,6 +42,21 @@ export class SalesReportItemsComponent implements OnInit {
 
 
 
+  }
+
+  downloard(){
+    const options ={
+      name: 'output.pdf',
+      image: {type: 'jpeg'},
+      html2canvas:{},
+      jsPDF: {orientation: 'portrait'}
+    }
+    const element:Element = document.getElementById('table')
+
+    html2pdf()
+            .from(element)
+            .set(options)
+            .save()
   }
 
 

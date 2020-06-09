@@ -5,7 +5,7 @@ const checkDocAuth = require("../middleware/check-docAuth");
 
 const Supplier = require('../models/supplier');
 
-router.post("",checkAuth,checkDocAuth,(req,res,next)=>{
+router.post("",checkAuth,(req,res,next)=>{
   const supplier = new Supplier({
     supplierID: req.body.supplierID,
     name: req.body.name,
@@ -23,7 +23,7 @@ router.post("",checkAuth,checkDocAuth,(req,res,next)=>{
 
   });
 
-  router.put("/:id",checkAuth,checkDocAuth,(req,res,next)=>{
+  router.put("/:id",checkAuth,(req,res,next)=>{
     const supplier = new Supplier({
       _id: req.body.id,
       supplierID: req.body.supplierID,
@@ -38,7 +38,7 @@ router.post("",checkAuth,checkDocAuth,(req,res,next)=>{
     });
   });
 
-  router.get("",checkDocAuth,(req,res,next)=>{
+  router.get("",(req,res,next)=>{
     Supplier.find().then(documents=>{
       res.status(200).json({
         message : 'supplier added sucessfully',
@@ -48,7 +48,7 @@ router.post("",checkAuth,checkDocAuth,(req,res,next)=>{
   });
 
 
-  router.get("/:id",checkDocAuth,(req,res,next)=>{
+  router.get("/:id",(req,res,next)=>{
     Supplier.findById(req.params.id).then(supplier =>{
       if(supplier){
         res.status(200).json(supplier);
@@ -58,7 +58,7 @@ router.post("",checkAuth,checkDocAuth,(req,res,next)=>{
     });
   });
 
-  router.delete("/:id", checkAuth,checkDocAuth,(req, res, next) => {
+  router.delete("/:id", checkAuth,(req, res, next) => {
     Supplier.deleteOne({ _id: req.params.id }).then(result => {
       console.log(result);
       res.status(200).json({ message: 'Supplier deleted!' });
