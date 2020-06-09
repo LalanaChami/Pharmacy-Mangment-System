@@ -195,7 +195,10 @@
           </div>
         </div>
         <div class="panel-block">
-          <button class="button is-primary   is-fullwidth" type="submit">
+          <button class="button is-primary   is-fullwidth"  type="submit" >
+            Get Balance
+          </button>
+          <button class="button is-primary   is-fullwidth"  (click)="print()">
             Print Bill
           </button>
         </div>
@@ -204,6 +207,67 @@
 
     </div>
   </section>
+</div>
+
+<div id="print-section">
+  <div  style="height: 300px; width: 100%;">
+    <br>
+    <div class="field has-addons">
+      <div class="control" style="margin-right: 20%;padding-top: 3%;">
+        <label class="label">Total : {{total}}</label>
+      </div>
+
+    </div>
+    <br>
+
+    <div class="field has-addons">
+      <div class="control" style="margin-right: 23%;padding-top: 3%;">
+        <label class="label">Tax:       {{tax}}</label>
+      </div>
+
+    </div>
+    <br>
+    <div class="field has-addons">
+      <div class="control" style="margin-right: 0%;padding-top: 0%;">
+        <label class="label">Paid Amount :   {{paidAmount}}</label>
+      </div>
+
+    </div>
+    <br>
+    <div class="field has-addons">
+      <div class="control" style="margin-right: 15%;padding-top: 3%;">
+        <label class="label">Balance :   {{balance}}</label>
+      </div>
+
+    </div>
+
+    <br>
+    <div class="field has-addons">
+      <div class="control" style="margin-right: 15%;padding-top: 3%;">
+        <label class="label">Items :</label>
+      </div>
+      <div class="control" style="padding-top: 3%;">
+        <label class="label">{{dataArray[0]}}  </label><br>
+        <label class="label">{{dataArray[1]}}  </label><br>
+        <label class="label">{{dataArray[1]}}  </label><br>
+        <label class="label">{{dataArray[2]}}  </label><br>
+        <label class="label">{{dataArray[3]}}  </label><br>
+        <label class="label">{{dataArray[4]}}  </label><br>
+        <label class="label">{{dataArray[5]}}  </label><br>
+        <label class="label">{{dataArray[6]}}  </label><br>
+        <label class="label">{{dataArray[7]}}  </label><br>
+        <label class="label">{{dataArray[8]}}  </label><br>
+        <label class="label">{{dataArray[9]}}  </label><br>
+        <label class="label">{{dataArray[10]}}  </label><br>
+        <label class="label">{{dataArray[11]}}  </label><br>
+        <label class="label">{{dataArray[12]}}  </label><br>
+        <label class="label">{{dataArray[13]}}  </label><br>
+        <label class="label">{{dataArray[14]}}  </label><br>
+      </div>
+    </div>
+
+
+  </div>
 </div>
 
 
@@ -270,6 +334,8 @@ body { font-family: sans-serif; }
 }
 
   </style>
+
+
 
 
 <script
