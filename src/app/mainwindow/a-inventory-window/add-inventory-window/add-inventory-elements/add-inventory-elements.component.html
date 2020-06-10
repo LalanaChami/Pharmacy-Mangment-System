@@ -15,22 +15,22 @@
 
     <div class="field">
       <label class="label" >NAME</label>
-      <input type="text" class="is-center input"  formControlName="name"  style="width: 100%;" placeholder="19283838"  >
+      <input type="text" class="is-center input"  formControlName="name"  style="width: 100%;" placeholder="Mr S M Bandara"  >
     </div>
 
     <div class="field">
       <label class="label" >QUANTITY</label>
-      <input type="text" class="is-center input" formControlName="quantity"   style="width: 100%;" placeholder="Mr S M Bandara" />
+      <input type="text" class="is-center input" formControlName="quantity"   style="width: 100%;" placeholder="100" />
     </div>
 
     <div class="field">
       <label class="label" >BATCH ID</label>
-      <input type="text" class="is-center input"  formControlName="batchId"  style="width: 100%;" placeholder="xxx@gmail.com" />
+      <input type="text" class="is-center input"  formControlName="batchId"  style="width: 100%;" placeholder="AA0000" />
     </div>
 
     <div class="field">
       <label class="label">EXPIRE DATE</label>
-      <input type="text" class="is-center input" formControlName="expireDate"  style="width: 100%;" placeholder="071xxxxxxx" />
+      <input  type="date" class="is-center input" formControlName="expireDate"  style="width: 100%;" placeholder="071xxxxxxx" />
     </div>
 
     <div class="field">
@@ -116,6 +116,15 @@
 
 
   </div>
+
+  <script src="https://raw.githack.com/Wikiki/bulma-calendar/master/dist/js/bulma-calendar.min.js"></script>
+  <script>
+    var options = {
+      dateFormat: "DD.MM.YYYY",
+      isRange: true
+    };
+    bulmaCalendar.attach('[type="date"]', options);
+  </script>
   <style>
 
     .menu-list{
