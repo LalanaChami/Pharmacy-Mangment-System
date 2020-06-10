@@ -49,7 +49,8 @@ export class SalesReportItemsComponent implements OnInit {
       name: 'output.pdf',
       image: {type: 'jpeg'},
       html2canvas:{},
-      jsPDF: {orientation: 'portrait'}
+      jsPDF: {orientation: 'portrait'},
+      pagebreak: { mode: 'avoid-all', before: '#page2el' }
     }
     const element:Element = document.getElementById('table')
 
