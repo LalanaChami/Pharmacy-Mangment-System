@@ -1,3 +1,10 @@
 .logo-margin{
   margin-left: 13%;
 }
+.bg-img {
+  background-image: url(https://i.ibb.co/r3VjTw7/Screenshot-2020-06-10-at-23-41-35.png) ;
+  background-position: center center;
+  background-repeat:  no-repeat;
+  background-attachment: fixed;
+  background-size:  cover;
+}
