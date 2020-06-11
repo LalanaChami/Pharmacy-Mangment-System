@@ -1,4 +1,4 @@
-<div style="overflow-y:auto ;overflow-x: hidden;height: 500px;">
+<div style="overflow-y:auto ;overflow-x: hidden;height: 590px;">
 
   <div class="spinner-box loadCenter" *ngIf="isLoading">
     <div class="configure-border-1">
@@ -15,7 +15,8 @@
 
     <div class="field">
       <label class="label" >NAME</label>
-      <input type="text" class="is-center input"  formControlName="name"  style="width: 100%;" placeholder="Mr S M Bandara"  >
+      <input type="text" class="is-center input" #nameInput  formControlName="name"  style="width: 100%;" placeholder="Mr S M Bandara"  >
+      <p class="login-error" *ngIf="!nameInput.valid && nameInput.touched">Please enter valid email</p>
     </div>
 
     <div class="field">

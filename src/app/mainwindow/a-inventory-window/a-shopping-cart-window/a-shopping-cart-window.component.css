@@ -6,5 +6,7 @@
   background-position: center center;
   background-repeat:  no-repeat;
   background-attachment: fixed;
-  background-size:  cover;
+  background-size: contain;
+  background-color: rgba(255, 255, 255, 0.781);
+    background-blend-mode: lighten;
 }

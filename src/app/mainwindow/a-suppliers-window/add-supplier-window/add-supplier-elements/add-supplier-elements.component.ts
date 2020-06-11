@@ -31,10 +31,11 @@ export class AddSupplierElementsComponent implements OnInit {
 
   ngOnInit() {
     this.form = new FormGroup({
-      'supplierID': new FormControl(null,{validators: [Validators.required, Validators.minLength(1)]}),
+      'supplierID': new FormControl(null,{validators: [Validators.required, Validators.minLength(1),Validators.pattern('[0-9]+[Vv]')]}),
       'name': new FormControl(null,{validators: [Validators.required, Validators.minLength(1)]}),
-      'email': new FormControl(null,{validators: [Validators.required, Validators.minLength(1)]}),
-      'contact': new FormControl(null,{validators: [Validators.required, Validators.minLength(1)]}),
+      'email': new FormControl(null,{validators: [Validators.required,Validators.email, Validators.minLength(1),
+        Validators.pattern("[^ @]*@[^ @]*"),emailDomainValidator]}),
+      'contact': new FormControl(null,{validators: [Validators.required, Validators.minLength(1), Validators.pattern("^[0-9]{10,12}$")]}),
       'drugsAvailable': new FormControl(null,{validators: [Validators.required, Validators.minLength(1)]})
     });
     this.route.paramMap.subscribe((paramMap: ParamMap)=>{
@@ -64,6 +65,9 @@ export class AddSupplierElementsComponent implements OnInit {
       }
     })
   }
+  get registerFormControl() {
+    return this.form.controls;
+  }
 
   onAddSupplier() {
     if (this.form.invalid) {
@@ -92,4 +96,20 @@ export class AddSupplierElementsComponent implements OnInit {
 
 
 
+}
+
+//supplier email validation
+function emailDomainValidator(control: FormControl) { (1)
+  let email = control.value; (2)
+  if (email && email.indexOf("@") != -1) { (3)
+    let [_, domain] = email.split("@"); (4)
+    if (domain !== "gmail.com") { (5)
+      return {
+        emailDomain: {
+          parsedDomain: domain
+        }
+      }
+    }
+  }
+  return null; (6)
 }
