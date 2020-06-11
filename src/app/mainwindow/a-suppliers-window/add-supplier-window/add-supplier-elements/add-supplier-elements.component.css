@@ -319,3 +319,9 @@ body {
   margin: auto;
 }
 
+
+.error-msg{
+  color:  red;
+  font-weight: lighter;
+  font-size: 12px;
+}
