@@ -31,11 +31,11 @@ export class AddSupplierElementsComponent implements OnInit {
 
   ngOnInit() {
     this.form = new FormGroup({
-      'supplierID': new FormControl(null,{validators: [Validators.required, Validators.minLength(1)]}),
+      'supplierID': new FormControl(null,{validators: [Validators.required, Validators.minLength(1),Validators.pattern('[0-9]+[Vv]')]}),
       'name': new FormControl(null,{validators: [Validators.required, Validators.minLength(1)]}),
-      'email': new FormControl(null,{validators: [Validators.required,Validators.email, Validators.minLength(1),Validators.pattern("[^ @]*@[^ @]*"),
-      emailDomainValidator]}),
-      'contact': new FormControl(null,{validators: [Validators.required, Validators.minLength(1)]}),
+      'email': new FormControl(null,{validators: [Validators.required,Validators.email, Validators.minLength(1),
+        Validators.pattern("[^ @]*@[^ @]*"),emailDomainValidator]}),
+      'contact': new FormControl(null,{validators: [Validators.required, Validators.minLength(1), Validators.pattern("^[0-9]{10,12}$")]}),
       'drugsAvailable': new FormControl(null,{validators: [Validators.required, Validators.minLength(1)]})
     });
     this.route.paramMap.subscribe((paramMap: ParamMap)=>{
