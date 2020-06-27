@@ -1,7 +1,7 @@
 import { map } from 'rxjs/operators';
 import { AShoppingCartItemsComponent } from './../../mainwindow/a-inventory-window/a-shopping-cart-window/a-shopping-cart-items/a-shopping-cart-items.component';
 import { Router } from '@angular/router';
-import { Subject, Observable } from 'rxjs';
+import { Subject, Observable, BehaviorSubject } from 'rxjs';
 //import { AuthData } from './auth-data.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
@@ -15,8 +15,20 @@ export class AuthDoctorUserService {
   private token : string;
   private tokenTimer : any;
   private authStatusListener  = new Subject<boolean>();
+  doctors: Array<any> = [];
+  private doctorUpdated = new Subject<AuthDoctorData[]>();
+  private currentUserSubject: BehaviorSubject<AuthDoctorData>;
+  public currentUser: Observable<AuthDoctorData>;
+  private name;
+  private contact;
+  private email;
+  private docId;
 
-  constructor(private http: HttpClient, private router: Router, private aShoppingCartItemsComponent:AShoppingCartItemsComponent){}
+
+  constructor(private http: HttpClient, private router: Router, private aShoppingCartItemsComponent:AShoppingCartItemsComponent){
+    this.currentUserSubject = new BehaviorSubject<AuthDoctorData>(JSON.parse(localStorage.getItem('currentUser')));
+        this.currentUser = this.currentUserSubject.asObservable();
+  }
 
   createDoctorUser(name: string , contact: string , docId: string ,email: string ,password: string ){
     const authDoctorData :AuthDoctorData = {name:name , contact:contact , docId:docId , email:email , password:password};
@@ -30,7 +42,7 @@ export class AuthDoctorUserService {
 
   login(email: string, password){
     const authDoctorData :AuthDoctorData = {name: name , contact: null , docId: null , email: email , password: password};
-    this.http.post<{token: string, expiresIn: number}>("http://localhost:3000/api/doctorUser/doctorLogin",authDoctorData)
+    this.http.post<{token: string, expiresIn: number, name:string, contact: string, email:string,docId:string}>("http://localhost:3000/api/doctorUser/doctorLogin",authDoctorData)
       .subscribe(response =>{
         const token= response.token;
         this.token=token;
@@ -43,11 +55,22 @@ export class AuthDoctorUserService {
           const expirationDate = new Date(now.getTime() + expiresInDuration * 1000);
           console.log(expirationDate,email);
           this.saveAuthData(token, expirationDate );
+          this.name = response.name;
+          this.contact = response.contact;
+          this.email = response.email;
+          this.docId = response.docId;
+          console.log(this.name,this.docId,this.contact,this.email);
           this.aShoppingCartItemsComponent.onViewUserEmail(email);
           this.router.navigate(['/shoppingcart']);
 
         }
+
+
+
       });
+      return this.http.get<{name: string , contact: string , docId: string, email: string}>
+    ('http://localhost:3000/api/doctorUser/shoppingcart/'+email);
+
   }
 
 
@@ -80,12 +103,7 @@ export class AuthDoctorUserService {
     localStorage.removeItem("expiration")
   }
 
-  getDoctors(email: string){
 
-    return this.http.get<{name: string , contact: string , docId: string, email: string}>
-    ('http://localhost:3000/api/shoppingcart/');
-
-  }
 
   getToken(){
     return this.token;
@@ -110,6 +128,22 @@ export class AuthDoctorUserService {
       expirationDate : new Date(expirationDate)
     }
   }
+
+  getDoctors(){
+    this.doctors.push([this.name,this.contact,this.email,this.docId]);
+    return(this.doctors);
+  }
+  // getDoctors(id: string) {
+  //   return this.http.get<{userId:string,role:string}>("http://localhost:3000/api/user/profile/"+id);
+  //  }
+
+  getCurrentDoctor(){
+    return this.currentUserSubject.value;
+  }
+
+//   getAll() {
+//     return this.http.get<AuthDoctorData[]>('http://localhost:3000/api/doctorUser');
+// }
 
 
   /////////////////////////////////////////////////////////////
