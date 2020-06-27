@@ -4,6 +4,7 @@ import { NgForm } from '@angular/forms';
 import { InventoryInteractionService } from './../../inventory-interaction.service';
 import { PageEvent } from '@angular/material';
 import { Subscription } from 'rxjs';
+import { first } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { Inventory } from '../../inventory.model';
 import { SalesInformationArray } from 'src/app/mainwindow/a-pointofsale-window/salesInformationArray.model';
@@ -29,12 +30,23 @@ export class AShoppingCartItemsComponent implements OnInit {
   itemNumber: number;
   dataArray: Array<any> =[];
   details: AuthDoctorData;
+  doc: string;
+  currentUser: AuthDoctorData;
+  currentUserSubscription: Subscription;
+  users: AuthDoctorData[] = [];
+  doctors: Array<any> = [];
+  TrimedDoctors: Array<any> = [];
+  docArrLength: number;
 
   name: string;
   userIsAuthenticated =false;
   private authListenerSubs: Subscription;
 
-  constructor(private inventoryInteractionService: InventoryInteractionService, private authDoctorUserService:AuthDoctorUserService) { }
+  constructor(private inventoryInteractionService: InventoryInteractionService, private authDoctorUserService:AuthDoctorUserService) {
+  //   this.currentUserSubscription = this.authDoctorUserService.currentUser.subscribe(user => {
+  //   this.currentUser = user;
+  // });
+  }
 
   ngOnInit() {
     this.isLoading = true;
@@ -45,11 +57,21 @@ export class AShoppingCartItemsComponent implements OnInit {
         this.inventorys = posts;
       });
 
-      this.userIsAuthenticated = this.authDoctorUserService.getIsAuth();
+    this.userIsAuthenticated = this.authDoctorUserService.getIsAuth();
     this.authListenerSubs = this.authDoctorUserService.getAuthStatusListener()
     .subscribe(isAuthenticated =>{
       this.userIsAuthenticated= isAuthenticated;
     });
+
+
+
+    this.authDoctorUserService.getDoctors();
+
+    this.doctors = this.authDoctorUserService.getDoctors();
+    this.docArrLength = this.doctors.length;
+    this.TrimedDoctors = this.doctors[this.docArrLength-1];
+    console.log(this.TrimedDoctors);
+
   }
 
   onChangedPage(pageData: PageEvent){
@@ -91,18 +113,26 @@ export class AShoppingCartItemsComponent implements OnInit {
     return this.total;
   }
 
-  onViewUserEmail(email:string){
-    this.email2 = email;
-    this.name ="hjhvjhvhjvjh";
-    console.log(this.email2);
 
-    // this.authDoctorUserService.getDoctors(this.email);
-
-  }
   onLogout(){
     this.authDoctorUserService.logout();
   }
 
+  onViewUserEmail(email:string){
+    this.email2 = email;
+    this.name = name;
+    console.log(this.email2, this.name);
+    //this.authDoctorUserService.getCurrentDoctor();
+    //setInterval(() => this.authDoctorUserService.getDoctors("lalanachamika123@gmail.com"), 5000);
+    //this.authDoctorUserService.getDoctors("lalanachamika123@gmail.com");
+  }
+
+
+//    private loadAllUsers() {
+//     this.authDoctorUserService.getAll().pipe(first()).subscribe(users => {
+//         this.users = users;
+//     });
+// }
 
 
 }

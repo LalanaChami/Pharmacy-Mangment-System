@@ -19,8 +19,8 @@
           <img class="is-rounded" src="https://bulma.io/images/placeholders/128x128.png">
         </figure>
       </div>
-      <a class="navbar-item subtitle" style="color: azure;">
-        {{email2}}
+      <a class="navbar-item subtitle" style="color: azure; margin-left: 10px;margin-bottom: 5px;">
+        {{   TrimedDoctors[0]}}
       </a>
     </div>
 
@@ -134,7 +134,7 @@
     <div class="panel-heading level-item" style="background-color:hsl(0, 0%, 33%);color:hsl(0, 0%, 21%) ;height: 90px;">
 
 
-      <div class="level-left navbar-start"  >
+      <div class="level-left navbar-start"  *ngFor="let user of users">
         <div style="padding: 0px;">
           <figure class="image is-48x48">
 
@@ -142,7 +142,7 @@
           </figure>
         </div>
         <a class="navbar-item subtitle" style="color:rgb(170, 170, 170);">
-          {{email2}}
+          {{TrimedDoctors[1]}}
         </a>
       </div>
 
@@ -183,7 +183,7 @@
 
       </ul>
 
-      <a href="#" class="button1">Checkout</a>
+      <a  class="button1"  >Checkout</a>
     </div>
 
   </mat-select>

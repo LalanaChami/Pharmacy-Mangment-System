@@ -55,13 +55,17 @@ router.post("/doctorLogin" , (req, res ,  next)=>{
       });
     }
     const token = jwt.sign(
-      {email: fetchedUser.email , userId : fetchedUser ._id } ,
+      {email: fetchedUser.email , userId : fetchedUser ._id, name:fetchedUser.name, contact:fetchedUser.contact , docId:fetchedUser.docId} ,
       'this_is_the_webToken_secret_key' ,
       { expiresIn : "1h"}
       );
       res.status(200).json({
         token: token,
-        expiresIn: 3600
+        expiresIn: 3600,
+        name: fetchedUser.name,
+        email: fetchedUser.email,
+        contact: fetchedUser.contact,
+        docId: fetchedUser.docId,
       });
   })
   .catch(err =>{
@@ -71,14 +75,36 @@ router.post("/doctorLogin" , (req, res ,  next)=>{
   });
 })
 
-router.get("/doctorLogin",(req,res,next)=>{
-  DoctorUser.findById(req.body.email).then(doctor =>{
-    if(doctor){
-      res.status(200).json(doctor);
-    }else{
-      res.status(200).json({message:'doctor not found'});
-    }
-  });
+router.get("/shoppingcart",(req,res,next)=>{
+  // DoctorUser.findById(req.params.email)
+  // .then(user =>{
+  //   if(user){
+  //   res.status(200).json(user);}
+  //   else{
+  //     res.status(404).json({message:"doctor not found"});
+  //   }
+  // })
+  // .catch(err =>{
+  //   res.status(500).json({
+  //     message:"Fetching doctor failed"
+  //   });
+  // })
+  console.log("sdfkjashdfjh");
 });
+//  exports.getDoctorDetailes = (req,res,next)=>{
+//   DoctorUser.findById(req.params.email)
+//   .then(user =>{
+//     if(user){
+//     res.status(200).json(user);}
+//     else{
+//       res.status(404).json({message:"doctor not found"});
+//     }
+//   })
+//   .catch(err =>{
+//     res.status(500).json({
+//       message:"Fetching doctor failed"
+//     });
+//   })
+//  }
 
 module.exports = router;

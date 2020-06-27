@@ -32,7 +32,9 @@ app.use((req,res,next)=>{
   res.setHeader("Access-Control-Allow-Origin","*");
   res.setHeader(
     "Access-Control-Allow-Headers",
-    "Origin, X-Requested-With ,Content-Type,Authorization ,Accept"
+    "Origin, X-Requested-With ,Content-Type,Authorization ,Accept",
+    "HTTP/1.1 200 OK",
+    "append,delete,entries,foreach,get,has,keys,set,values,Authorization"
   );
   res.setHeader(
     "Access-Control-Allow-Methods",
