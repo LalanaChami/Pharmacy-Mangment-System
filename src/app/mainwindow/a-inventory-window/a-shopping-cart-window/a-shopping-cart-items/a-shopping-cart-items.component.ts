@@ -37,6 +37,7 @@ export class AShoppingCartItemsComponent implements OnInit {
   doctors: Array<any> = [];
   TrimedDoctors: Array<any> = [];
   docArrLength: number;
+  oderDetail: Array<any> = [];
 
   name: string;
   userIsAuthenticated =false;
@@ -104,13 +105,15 @@ export class AShoppingCartItemsComponent implements OnInit {
 
        this.total = this.total + sum;
 
-
     }
-
   //  console.log(this.dataArray);
-
-
     return this.total;
+  }
+
+
+  onCheckout(checkoutForm:NgForm){
+    this.oderDetail.push(this.TrimedDoctors,this.itemArray,this.total,checkoutForm.value.pickupDateInput);
+    console.log(this.oderDetail);
   }
 
 
