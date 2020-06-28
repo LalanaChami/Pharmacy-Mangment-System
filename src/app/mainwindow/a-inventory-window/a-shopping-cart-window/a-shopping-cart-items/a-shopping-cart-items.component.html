@@ -182,8 +182,14 @@
     </div>
 
       </ul>
+      <form (submit)="onCheckout(pickupForm)" #pickupForm="ngForm">
+      <div class="field">
+        <label class="label">PICKUP DATE</label>
+        <input  type="date" name="pickupDateInput" ngModel #pickupDateInput="ngModel" class="is-center input"   style="width: 100%;" placeholder="071xxxxxxx" />
+      </div>
 
-      <a  class="button1"  >Checkout</a>
+      <button style="width: 100%;"  class="button1" type="submit" >Checkout</button>
+    </form>
     </div>
 
   </mat-select>
