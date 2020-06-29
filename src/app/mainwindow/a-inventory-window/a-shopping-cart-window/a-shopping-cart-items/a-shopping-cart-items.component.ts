@@ -122,7 +122,7 @@ export class AShoppingCartItemsComponent implements OnInit {
   onCheckout(checkoutForm:NgForm){
     this.oderDetail.push(this.TrimedDoctors,this.itemArray,this.total,checkoutForm.value.pickupDateInput);
     console.log(this.oderDetail);
-    console.log(this.drugNames);
+
     let doctorName = this.TrimedDoctors[0];
     let doctorContact = this.TrimedDoctors[1];
     let doctorId = this.TrimedDoctors[3];
@@ -132,7 +132,7 @@ export class AShoppingCartItemsComponent implements OnInit {
     let drugQuantity = this.drugQuantities;
     let totalAmount = this.total;
     let pickupDate = checkoutForm.value.pickupDateInput;
-
+    console.log(drugName);
     this.doctorOderService.createDoctorUser(doctorName,doctorContact,doctorId,doctorEmail,drugName,drugPrice,drugQuantity,totalAmount,pickupDate)
 
 

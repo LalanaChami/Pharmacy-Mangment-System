@@ -10,7 +10,7 @@ router.post("",(req,res,next)=>{
     doctorContact: req.body.doctorContact,
     doctorID: req.body.doctorID,
     doctorEmail: req.body.doctorEmail,
-    drugNames: req.body.drugNames,
+    drugNames: req.body.drugName,
     drugPrice: req.body.drugPrice,
     drugQuantity: req.body.drugQuantity,
     totalAmount: req.body.totalAmount,
