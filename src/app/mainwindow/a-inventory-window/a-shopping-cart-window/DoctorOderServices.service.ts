@@ -37,9 +37,9 @@ export class DoctorOderServices{
        return{
         doctorName : doctorOder.doctorName ,
         doctorContact : doctorOder.doctorContact ,
-        doctorId : doctorOder.doctorId ,
+        doctorId : doctorOder.doctorID,
         doctorEmail : doctorOder.doctorEmail ,
-        drugName : doctorOder.drugName ,
+        drugName : doctorOder.drugNames ,
         drugPrice : doctorOder.drugPrice,
         drugQuantity : doctorOder.drugQuantity,
         totalAmount : doctorOder.totalAmount,

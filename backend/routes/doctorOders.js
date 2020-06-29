@@ -8,7 +8,7 @@ router.post("",(req,res,next)=>{
   const docOder = new DoctorOder({
     doctorName: req.body.doctorName,
     doctorContact: req.body.doctorContact,
-    doctorID: req.body.doctorID,
+    doctorID: req.body.doctorId,
     doctorEmail: req.body.doctorEmail,
     drugNames: req.body.drugName,
     drugPrice: req.body.drugPrice,

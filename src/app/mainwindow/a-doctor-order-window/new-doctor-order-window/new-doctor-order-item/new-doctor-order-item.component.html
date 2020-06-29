@@ -1,10 +1,10 @@
 <div style="overflow-y:auto ;overflow-x: hidden;height: 500px;">
 <table class="table is-full menu-list"  >
   <tbody>
-      <tr>
+      <tr *ngFor="let docOder of docOders ">
         <div class="div columns  is-full btn r" style="width: 200%;" >
-            <div class="div column" *ngFor="let docOder of docOders ">
-              <table class="table is-full" style="width: 52%;">
+            <div class="div column" >
+              <table class="table is-full" style="width: 49%;">
                 <thead style="font-weight: bold;">
                   <td>Doctor Name</td>
                   <td>Doctor Contact </td>
@@ -12,7 +12,7 @@
                   <td >Doctor Email </td>
                   <td >Drug Names </td>
                   <td>Drug Prices</td>
-                  <td>Drug Quantities</td>
+                  <td>Quantities</td>
                   <td >Total</td>
                   <td >Pickup Date</td>
                   <td class="level-right"><a class="button is-small is-primary" href="#">Order Verify</a></td>
@@ -33,7 +33,7 @@
                 </tbody>
               </table>
             </div>
-        </div>
+        </div><br>
       </tr>
 <br>
 
