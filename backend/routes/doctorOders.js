@@ -25,4 +25,13 @@ router.post("",(req,res,next)=>{
   });
 
   });
+
+  router.get("",(req,res,next)=>{
+    DoctorOder.find().then(documents=>{
+      res.status(200).json({
+        message : 'Doctor oder added sucessfully',
+        doctorOders :documents
+      });
+    });
+  });
   module.exports = router;

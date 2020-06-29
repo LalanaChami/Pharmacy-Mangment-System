@@ -1,9 +1,15 @@
+
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
+import { Subject } from 'rxjs';
+import { map } from 'rxjs/operators';
 
 @Injectable({providedIn: 'root'})
 export class DoctorOderServices{
+  private docOders:any[] = [];
+  private docOdersUpdated = new Subject<any[]>();
+
   constructor(private http: HttpClient, private router: Router){
   }
 
@@ -22,6 +28,34 @@ export class DoctorOderServices{
         console.log(response);
       });
 
+  }
+
+  getDocOders() {
+    this.http.get<{message: string, doctorOders: any}>("http://localhost:3000/api/doctorOder")
+    .pipe(map(docOderData => {
+     return docOderData.doctorOders.map(doctorOder => {
+       return{
+        doctorName : doctorOder.doctorName ,
+        doctorContact : doctorOder.doctorContact ,
+        doctorId : doctorOder.doctorId ,
+        doctorEmail : doctorOder.doctorEmail ,
+        drugName : doctorOder.drugName ,
+        drugPrice : doctorOder.drugPrice,
+        drugQuantity : doctorOder.drugQuantity,
+        totalAmount : doctorOder.totalAmount,
+        pickupDate : doctorOder.pickupDate
+       }
+     })
+    }))
+    .subscribe((transformedDocOders)=>{
+      this.docOders = transformedDocOders;
+      this.docOdersUpdated.next([...this.docOders])
+    });
+
+  }
+
+  getDocOdersUpdateListener() {
+    return this.docOdersUpdated.asObservable();
   }
 
 }
