@@ -1,3 +1,5 @@
+import { Subscription } from 'rxjs';
+import { DoctorOderServices } from './../../../a-inventory-window/a-shopping-cart-window/DoctorOderServices.service';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +9,25 @@ import { Component, OnInit } from '@angular/core';
 })
 export class NewDoctorOrderItemComponent implements OnInit {
 
-  constructor() { }
+
+
+  docOders: any[] = [];
+  isLoading= false;
+
+  docOderSubs: Subscription;
+
+
+
+  constructor(private doctoderService: DoctorOderServices){}
 
   ngOnInit() {
+    this.isLoading = true;
+    this.doctoderService.getDocOders();
+    this.docOderSubs = this.doctoderService.getDocOdersUpdateListener()
+      .subscribe((posts) => {
+        this.isLoading = false;
+        this.docOders = posts;
+      });
   }
 
 }

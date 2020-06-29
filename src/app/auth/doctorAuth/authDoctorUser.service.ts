@@ -1,5 +1,5 @@
 import { map } from 'rxjs/operators';
-import { AShoppingCartItemsComponent } from './../../mainwindow/a-inventory-window/a-shopping-cart-window/a-shopping-cart-items/a-shopping-cart-items.component';
+//import { AShoppingCartItemsComponent } from './../../mainwindow/a-inventory-window/a-shopping-cart-window/a-shopping-cart-items/a-shopping-cart-items.component';
 import { Router } from '@angular/router';
 import { Subject, Observable, BehaviorSubject } from 'rxjs';
 //import { AuthData } from './auth-data.model';
@@ -25,7 +25,7 @@ export class AuthDoctorUserService {
   private docId;
 
 
-  constructor(private http: HttpClient, private router: Router, private aShoppingCartItemsComponent:AShoppingCartItemsComponent){
+  constructor(private http: HttpClient, private router: Router){
     this.currentUserSubject = new BehaviorSubject<AuthDoctorData>(JSON.parse(localStorage.getItem('currentUser')));
         this.currentUser = this.currentUserSubject.asObservable();
   }
@@ -60,7 +60,7 @@ export class AuthDoctorUserService {
           this.email = response.email;
           this.docId = response.docId;
           console.log(this.name,this.docId,this.contact,this.email);
-          this.aShoppingCartItemsComponent.onViewUserEmail(email);
+          //this.aShoppingCartItemsComponent.onViewUserEmail(email);
           this.router.navigate(['/shoppingcart']);
 
         }
