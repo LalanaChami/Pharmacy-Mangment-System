@@ -1,3 +1,4 @@
+import { DoctorOderServices } from './mainwindow/a-inventory-window/a-shopping-cart-window/DoctorOderServices.service';
 import { AuthDoctorUserService } from './auth/doctorAuth/authDoctorUser.service';
 import { DoctorSignupComponent } from './auth/doctorAuth/doctorSignup/doctorSignup.component';
 import { AuthGuard } from './auth/auth.guard';
@@ -183,7 +184,7 @@ const appRoutes: Routes =[
     MatFormFieldModule,
     MatSelectModule
   ],
-  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor , multi: true},AuthGuard,AShoppingCartItemsComponent],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor , multi: true},AuthGuard],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
