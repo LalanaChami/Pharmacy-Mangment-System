@@ -1,3 +1,4 @@
+import { DoctorOderServices } from './mainwindow/a-inventory-window/a-shopping-cart-window/DoctorOderServices.service';
 import { DoctorSignupComponent } from './auth/doctorAuth/doctorSignup/doctorSignup.component';
 import { AuthGuard } from './auth/auth.guard';
 import { DrugInventoryWindowComponent } from './mainwindow/a-inventory-window/drug-inventory-window/drug-inventory-window.component';

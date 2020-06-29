@@ -1,3 +1,4 @@
+//import { DoctorOderService } from './../DoctorOderService.service';
 import { AuthDoctorData } from './../../../../auth/doctorAuth/doctorAuth-model';
 import { AuthDoctorUserService } from './../../../../auth/doctorAuth/authDoctorUser.service';
 import { NgForm } from '@angular/forms';
@@ -8,6 +9,7 @@ import { first } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { Inventory } from '../../inventory.model';
 import { SalesInformationArray } from 'src/app/mainwindow/a-pointofsale-window/salesInformationArray.model';
+import { DoctorOderServices } from '../DoctorOderServices.service';
 
 
 @Component({
@@ -38,12 +40,15 @@ export class AShoppingCartItemsComponent implements OnInit {
   TrimedDoctors: Array<any> = [];
   docArrLength: number;
   oderDetail: Array<any> = [];
+  drugNames: Array<any> = [];
+  drugPrices: Array<any> = [];
+  drugQuantities: Array<any> = [];
 
   name: string;
   userIsAuthenticated =false;
   private authListenerSubs: Subscription;
 
-  constructor(private inventoryInteractionService: InventoryInteractionService, private authDoctorUserService:AuthDoctorUserService) {
+  constructor(private inventoryInteractionService: InventoryInteractionService, private authDoctorUserService:AuthDoctorUserService, private doctorOderService:DoctorOderServices) {
   //   this.currentUserSubscription = this.authDoctorUserService.currentUser.subscribe(user => {
   //   this.currentUser = user;
   // });
@@ -87,6 +92,9 @@ export class AShoppingCartItemsComponent implements OnInit {
 
   onAddToCart(itemId:string, name:string , expireDate:string ,price:string, form:NgForm ,imagePath:string ){
     this.itemArray.push([itemId,name,expireDate,price,form.value.quantityNumber,imagePath]);
+    this.drugNames.push(name);
+    this.drugPrices.push(price);
+    this.drugQuantities.push(form.value.quantityNumber);
     // this.dataArray.push([name,form.value.quantityNumber]);
     console.log(this.itemArray);
     this.itemNumber = this.itemArray.length;
@@ -114,6 +122,20 @@ export class AShoppingCartItemsComponent implements OnInit {
   onCheckout(checkoutForm:NgForm){
     this.oderDetail.push(this.TrimedDoctors,this.itemArray,this.total,checkoutForm.value.pickupDateInput);
     console.log(this.oderDetail);
+    console.log(this.drugNames);
+    let doctorName = this.TrimedDoctors[0];
+    let doctorContact = this.TrimedDoctors[1];
+    let doctorId = this.TrimedDoctors[3];
+    let doctorEmail = this.TrimedDoctors[2];
+    let drugName = this.drugNames;
+    let drugPrice = this.drugPrices;
+    let drugQuantity = this.drugQuantities;
+    let totalAmount = this.total;
+    let pickupDate = checkoutForm.value.pickupDateInput;
+
+    this.doctorOderService.createDoctorUser(doctorName,doctorContact,doctorId,doctorEmail,drugName,drugPrice,drugQuantity,totalAmount,pickupDate)
+
+
   }
 
 
