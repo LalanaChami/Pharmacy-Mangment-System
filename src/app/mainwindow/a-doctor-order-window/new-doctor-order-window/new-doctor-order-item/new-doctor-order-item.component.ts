@@ -1,6 +1,7 @@
 import { Subscription } from 'rxjs';
 import { DoctorOderServices } from './../../../a-inventory-window/a-shopping-cart-window/DoctorOderServices.service';
 import { Component, OnInit } from '@angular/core';
+import { EmailInteractionService } from '../email-Interaction.service';
 
 @Component({
   selector: 'app-new-doctor-order-item',
@@ -18,7 +19,7 @@ export class NewDoctorOrderItemComponent implements OnInit {
 
 
 
-  constructor(private doctoderService: DoctorOderServices){}
+  constructor(private doctoderService: DoctorOderServices, private emailInteractionService: EmailInteractionService){}
 
   ngOnInit() {
     this.isLoading = true;
@@ -30,4 +31,35 @@ export class NewDoctorOrderItemComponent implements OnInit {
       });
   }
 
-}
+  onOderVerify(name:string,email:string,total:string,pickupDate:string,drugName:any[] = [],drugPrice:any[] = [],drugQuantity:any[] = []){
+
+
+
+    let user={
+      name : name,
+      email : email,
+      total : total,
+      pickupDate : pickupDate,
+      drugName : drugName,
+      drugPrice : drugPrice,
+      drugQuantity : drugQuantity
+    }
+    console.log(user);
+
+    this.emailInteractionService.sendEmail("http://localhost:3000/api/doctorOder/sendmail", user).subscribe(
+      data => {
+        let res:any = data;
+        console.log(
+          `👏 > 👏 > 👏 > 👏 ${user.name} is successfully register and mail has been sent and the message id is ${res.messageId}`
+        );
+      },
+      err => {
+        console.log(err);
+
+      }
+    );
+  }
+
+  }
+
+
