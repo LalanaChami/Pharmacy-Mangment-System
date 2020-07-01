@@ -30,6 +30,24 @@ export class DoctorOderServices{
 
   }
 
+
+  createVerifiedDoctorOder(doctorName: string,doctorEmail: string,doctorId: string ,totalAmount: number,pickupDate: string, drugName: Array<any> = [],drugPrice: Array<any> = [] ,drugQuantity: Array<any> = [] ,doctorContact: string){
+    const VerifiedDoctorOderData  = {doctorName:doctorName ,
+                            doctorContact:doctorContact ,
+                            doctorId:doctorId ,
+                            doctorEmail:doctorEmail ,
+                            drugName:drugName ,
+                            drugPrice:drugPrice,
+                            drugQuantity:drugQuantity,
+                            totalAmount:totalAmount,
+                            pickupDate:pickupDate};
+    this.http.post("http://localhost:3000/api/verifiedDoctorOder",VerifiedDoctorOderData)
+      .subscribe(response =>{
+        console.log(response);
+      });
+
+  }
+
   getDocOders() {
     this.http.get<{message: string, doctorOders: any}>("http://localhost:3000/api/doctorOder")
     .pipe(map(docOderData => {
