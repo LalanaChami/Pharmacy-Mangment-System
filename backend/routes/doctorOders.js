@@ -1,6 +1,8 @@
 const express = require("express");
 const router = express.Router();
 const nodemailer = require("nodemailer");
+// var handlebars = require('handlebars');
+// var fs = require('fs');
 
 const DoctorOder = require('../models/doctorOders');
 
@@ -61,9 +63,99 @@ router.post("",(req,res,next)=>{
     let mailOptions = {
       from: '"Pharma Care Pharmacies"<example.gmail.com>', // sender address
       to: user.email, // list of receivers
-      subject: "Wellcome to Fun Of Heuristic 👻", // Subject line
-      html: `<h1>Hey ${user.name}</h1><br>
-      <h4>Thanks for joining us ${user.pickupDate}</h4>`
+      subject: "We Recived Your Oder 👻", // Subject line
+      html: `
+      <head>
+      <style>
+        table {
+          font-family: arial, sans-serif;
+          border-collapse: collapse;
+          width: 100%;
+        }
+
+        td, th {
+          border: 1px solid #dddddd;
+          text-align: left;
+          padding: 8px;
+        }
+
+        tr:nth-child(even) {
+          background-color: #dddddd;
+        }
+        </style>
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+        <script>
+
+            $(function(){
+              var results = [], row;
+              $('#table1').find('th, td').each(function(){
+                  if(!this.previousElementSibling && typeof(this) != 'undefined'){ //New Row?
+                      row = [];
+                      results.push(row);
+                  }
+                  row.push(this.textContent || this.innerText); //Add the values (textContent is standard while innerText is not)
+              });
+              console.log(results);
+          });
+
+        </script>
+        </head>
+
+      <body>
+      <h1>Hey Dr. ${user.name}</h1><br>
+      <h3>Thanks for the placing oder us </h3><br>
+      <h2>Your Oder has been verified</h2><br>
+      <h3>You can pick up the odered packaged on or after ${user.pickupDate}</h3>
+
+      <h2>These is the oder you placed on our online shop</h2>
+
+      <table id="table1">
+        <tr>
+          <th>Odered Drug Name</th>
+          <th>Drug Quantity</th>
+          <th>Price per unit (Rs.)</th>
+        </tr>
+        <tr>
+          <td>${user.drugName[0]}</td>
+          <td>${user.drugQuantity[0]}</td>
+          <td>${user.drugPrice[0]}</td>
+        </tr>
+        <tr>
+          <td>${user.drugName[1]}</td>
+          <td>${user.drugQuantity[1]}</td>
+          <td>${user.drugPrice[1]}</td>
+        </tr>
+        <tr>
+          <td>${user.drugName[2]}</td>
+          <td>${user.drugQuantity[2]}</td>
+          <td>${user.drugPrice[2]}</td>
+        </tr>
+        <tr>
+          <td>${user.drugName[3]}</td>
+          <td>${user.drugQuantity[3]}</td>
+          <td>${user.drugPrice[3]}</td>
+        </tr>
+        <tr>
+          <td>${user.drugName[4]}</td>
+          <td>${user.drugQuantity[4]}</td>
+          <td>${user.drugPrice[4]}</td>
+        </tr>
+        <tr>
+          <td>${user.drugName[5]}</td>
+          <td>${user.drugQuantity[5]}</td>
+          <td>${user.drugPrice[5]}</td>
+        </tr>
+        <tr>
+          <td>${user.drugName[6]}</td>
+          <td>${user.drugQuantity[6]}</td>
+          <td>${user.drugPrice[6]}</td>
+        </tr>
+      </table><br>
+      <h2>Total Amount :Rs. ${user.total}</h2><br>
+      <h3>Info* : </h3>
+      <h4>If there is any issue reagrding the oder please be free to contact us or email us (pharmacare.contactus@gmail.com) 😃 </h4>
+      </body>
+      `
     };
 
     // send mail with defined transport object
