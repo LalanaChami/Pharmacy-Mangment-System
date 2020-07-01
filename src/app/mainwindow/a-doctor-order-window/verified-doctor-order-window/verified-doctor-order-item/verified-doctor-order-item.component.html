@@ -1,134 +1,47 @@
 <div style="overflow-y:auto ;overflow-x: hidden;height: 500px;">
   <table class="table is-full menu-list"  >
     <tbody>
-      <div class="" >
-        <tr>
-          <div class="div columns  is-full btn  " style="width: 200%;" >
+      <div class="" *ngFor="let docOder of docOders ">
+        <tr >
+          <div class="div columns  is-full btn r" style="width: 200%;" >
               <div class="div column" >
-                <table class="table is-full" style="width: 54.5%;">
+                <table class="table is-full" style="width: 60.5%;">
                   <thead style="font-weight: bold;">
-                    <td>Name</td>
-                    <td>Drugs </td>
-                    <td >Order ID </td>
-                    <td >Pickup Date </td>
-                    <td >Order Date </td>
+                    <td>Doctor Name</td>
+                    <td>Doctor Contact </td>
+                    <td >DoctorID </td>
+                    <td >Doctor Email </td>
+                    <td >Drug Names </td>
+                    <td>Drug Prices</td>
+                    <td>Quantities</td>
+                    <td >Total</td>
+                    <td >Pickup Date</td>
+
                   </thead>
                   <tbody>
-                    <td>dkjfh</td>
-                    <td>Drsldflksugs </td>
-                    <td >Order sdlfkjsID </td>
-                    <td >Pickupslkdfj Date </td>
-                    <td >Ordersdlkfj Date </td>
+                    <td>{{docOder.doctorName}}</td>
+                    <td>{{docOder.doctorContact}} </td>
+                    <td >{{docOder.doctorId}} </td>
+                    <td >{{docOder.doctorEmail}}</td>
+                    <td >{{docOder.drugName[0]}}<br>{{docOder.drugName[1]}}<br>{{docOder.drugName[2]}}<br>{{docOder.drugName[3]}}<br>{{docOder.drugName[4]}}<br>{{docOder.drugName[5]}}</td>
+                    <td>{{docOder.drugPrice[0]}}<br>{{docOder.drugPrice[1]}}<br>{{docOder.drugPrice[2]}}<br>{{docOder.drugPrice[3]}}<br>{{docOder.drugPrice[4]}}<br>{{docOder.drugPrice[5]}}</td>
+                    <td>{{docOder.drugQuantity[0]}}<br>{{docOder.drugQuantity[1]}}<br>{{docOder.drugQuantity[2]}}<br>{{docOder.drugQuantity[3]}}<br>{{docOder.drugQuantity[4]}}<br>{{docOder.drugQuantity[5]}}  </td>
+                    <td >{{docOder.totalAmount}} </td>
+                    <td >{{docOder.pickupDate}} </td>
+
                   </tbody>
                 </table>
               </div>
-              <div>
-            </div>
           </div>
         </tr>
         <tr style="width: 74.5%;">
-          <div class=" " style="width: 106.5%;">
+          <div class=" " style="width: 119.6%;">
           <a class="button is-small is-primary is-right" style="font-weight: bold; " href="#">Picked Up</a>
         </div>
-        </tr>
+        </tr><br>
       </div>
-  <br>
-  <div class="" >
-    <tr>
-      <div class="div columns  is-full btn " style="width: 200%;" >
-          <div class="div column" >
-            <table class="table is-full" style="width: 54.5%;">
-              <thead style="font-weight: bold;">
-                <td>Name</td>
-                <td>Drugs </td>
-                <td >Order ID </td>
-                <td >Pickup Date </td>
-                <td >Order Date </td>
-              </thead>
-              <tbody>
-                <td>dkjfh</td>
-                <td>Drsldflksugs </td>
-                <td >Order sdlfkjsID </td>
-                <td >Pickupslkdfj Date </td>
-                <td >Ordersdlkfj Date </td>
-              </tbody>
-            </table>
-          </div>
-          <div>
-        </div>
-      </div>
-    </tr>
-    <tr>
-      <div class=" " style="width: 106.5%;">
-      <a class="button is-small is-primary is-right" style="font-weight: bold; " href="#">Picked Up</a>
-    </div>
-    </tr>
-  </div>
-<br>
-<div class="" >
-  <tr>
-    <div class="div columns  is-full btn " style="width: 200%;" >
-        <div class="div column" >
-          <table class="table is-full" style="width: 54.5%;">
-            <thead style="font-weight: bold;">
-              <td>Name</td>
-              <td>Drugs </td>
-              <td >Order ID </td>
-              <td >Pickup Date </td>
-              <td >Order Date </td>
-            </thead>
-            <tbody>
-              <td>dkjfh</td>
-              <td>Drsldflksugs </td>
-              <td >Order sdlfkjsID </td>
-              <td >Pickupslkdfj Date </td>
-              <td >Ordersdlkfj Date </td>
-            </tbody>
-          </table>
-        </div>
-        <div>
-      </div>
-    </div>
-  </tr>
-  <tr>
-    <div class=" " style="width: 106.5%;">
-    <a class="button is-small is-primary is-right" style="font-weight: bold; " href="#">Picked Up</a>
-  </div>
-  </tr>
-</div>
-<br>
-<div class="" >
-  <tr>
-    <div class="div columns  is-full btn " style="width: 200%;" >
-        <div class="div column" >
-          <table class="table is-full" style="width: 54.5%;">
-            <thead style="font-weight: bold;">
-              <td>Name</td>
-              <td>Drugs </td>
-              <td >Order ID </td>
-              <td >Pickup Date </td>
-              <td >Order Date </td>
-            </thead>
-            <tbody>
-              <td>dkjfh</td>
-              <td>Drsldflksugs </td>
-              <td >Order sdlfkjsID </td>
-              <td >Pickupslkdfj Date </td>
-              <td >Ordersdlkfj Date </td>
-            </tbody>
-          </table>
-        </div>
-        <div>
-      </div>
-    </div>
-  </tr>
-  <tr>
-    <div class=" " style="width: 106.5%;">
-    <a class="button is-small is-primary is-right" style="font-weight: bold; " href="#">Picked Up</a>
-  </div>
-  </tr>
-</div>
-<br>
+
+
 
 
 

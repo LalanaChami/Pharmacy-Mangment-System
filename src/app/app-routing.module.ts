@@ -1,3 +1,7 @@
+import { ADoctorOrderWindowComponent } from './mainwindow/a-doctor-order-window/a-doctor-order-window.component';
+import { NewDoctorOrderWindowComponent } from './mainwindow/a-doctor-order-window/new-doctor-order-window/new-doctor-order-window.component';
+import { PickupOrderWindowComponent } from './mainwindow/a-doctor-order-window/pickup-order-window/pickup-order-window.component';
+import { VerifiedDoctorOrderWindowComponent } from './mainwindow/a-doctor-order-window/verified-doctor-order-window/verified-doctor-order-window.component';
 import { DoctorOderServices } from './mainwindow/a-inventory-window/a-shopping-cart-window/DoctorOderServices.service';
 import { DoctorSignupComponent } from './auth/doctorAuth/doctorSignup/doctorSignup.component';
 import { AuthGuard } from './auth/auth.guard';
@@ -25,7 +29,11 @@ const routes: Routes = [
   {path: 'login', component: LoginComponent},
   {path: 'signup', component: SignupComponent},
   {path: 'doctorLogin', component: DoctorLoginComponent},
-  {path: 'doctorSignup', component: DoctorSignupComponent}
+  {path: 'doctorSignup', component: DoctorSignupComponent},
+
+  {path: 'doctororders/new', component: VerifiedDoctorOrderWindowComponent },
+  {path: 'doctororders', component: ADoctorOrderWindowComponent },
+  {path: 'doctororders/pickedUp', component: PickupOrderWindowComponent }
 
 ];
 
