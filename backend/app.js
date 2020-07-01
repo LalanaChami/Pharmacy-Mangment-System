@@ -10,6 +10,8 @@ const userRoutes = require('./routes/user');
 const salesRoutes = require('./routes/sales');
 const doctorUserRoutes = require('./routes/doctorUser');
 const doctorOderRoutes = require('./routes/doctorOders');
+const verifiedDoctorOderRoutes = require('./routes/verifiedDoctorOder');
+
 
 
 mongoose.connect('mongodb+srv://lalana:OJx2X4IllVNl9up4@cluster0-rjtww.mongodb.net/pharmacy?retryWrites=true&w=majority',{useNewUrlParser: true , useUnifiedTopology: true})
@@ -111,5 +113,6 @@ app.use("/api/user",userRoutes);
 app.use("/api/sales",salesRoutes);
 app.use("/api/doctorUser",doctorUserRoutes);
 app.use("/api/doctorOder",doctorOderRoutes);
+app.use("/api/verifiedDoctorOder",verifiedDoctorOderRoutes);
 
 module.exports = app;

@@ -31,8 +31,9 @@ export class NewDoctorOrderItemComponent implements OnInit {
       });
   }
 
-  onOderVerify(name:string,email:string,total:string,pickupDate:string,drugName:any[] = [],drugPrice:any[] = [],drugQuantity:any[] = []){
+  onOderVerify(name:string,email:string,total:number,pickupDate:string,drugName:any[] = [],drugPrice:any[] = [],drugQuantity:any[] = [],doctorId:string,doctorContact:string,id:string){
 
+    this.doctoderService.createVerifiedDoctorOder(name,email,doctorId,total,pickupDate,drugName,drugPrice,drugQuantity,doctorContact);
 
 
     let user={
@@ -50,7 +51,7 @@ export class NewDoctorOrderItemComponent implements OnInit {
       data => {
         let res:any = data;
         console.log(
-          `👏 > 👏 > 👏 > 👏 ${user.name} is successfully register and mail has been sent and the message id is ${res.messageId}`
+          `👏 ${user.name} an email has been successfully and the message id is ${res.messageId}`
         );
       },
       err => {
@@ -58,6 +59,8 @@ export class NewDoctorOrderItemComponent implements OnInit {
 
       }
     );
+
+    this.doctoderService.deleteItem(id);
   }
 
   }
