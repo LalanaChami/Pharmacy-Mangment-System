@@ -31,7 +31,7 @@ export class NewDoctorOrderItemComponent implements OnInit {
       });
   }
 
-  onOderVerify(name:string,email:string,total:number,pickupDate:string,drugName:any[] = [],drugPrice:any[] = [],drugQuantity:any[] = [],doctorId:string,doctorContact:string){
+  onOderVerify(name:string,email:string,total:number,pickupDate:string,drugName:any[] = [],drugPrice:any[] = [],drugQuantity:any[] = [],doctorId:string,doctorContact:string,id:string){
 
     this.doctoderService.createVerifiedDoctorOder(name,email,doctorId,total,pickupDate,drugName,drugPrice,drugQuantity,doctorContact);
 
@@ -59,6 +59,8 @@ export class NewDoctorOrderItemComponent implements OnInit {
 
       }
     );
+
+    this.doctoderService.deleteItem(id);
   }
 
   }

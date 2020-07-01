@@ -9,6 +9,8 @@ import { map } from 'rxjs/operators';
 export class DoctorOderServices{
   private docOders:any[] = [];
   private docOdersUpdated = new Subject<any[]>();
+  private VerifiedDocOders:any[] = [];
+  private VerifiedDocOdersUpdated = new Subject<any[]>();
 
   constructor(private http: HttpClient, private router: Router){
   }
@@ -61,7 +63,8 @@ export class DoctorOderServices{
         drugPrice : doctorOder.drugPrice,
         drugQuantity : doctorOder.drugQuantity,
         totalAmount : doctorOder.totalAmount,
-        pickupDate : doctorOder.pickupDate
+        pickupDate : doctorOder.pickupDate,
+        id: doctorOder._id
        }
      })
     }))
@@ -74,6 +77,43 @@ export class DoctorOderServices{
 
   getDocOdersUpdateListener() {
     return this.docOdersUpdated.asObservable();
+  }
+
+  getVerifiedDocOders() {
+    this.http.get<{message: string, doctorOders: any}>("http://localhost:3000/api/verifiedDoctorOder")
+    .pipe(map(docOderData => {
+     return docOderData.doctorOders.map(doctorOder => {
+       return{
+        doctorName : doctorOder.doctorName ,
+        doctorContact : doctorOder.doctorContact ,
+        doctorId : doctorOder.doctorID,
+        doctorEmail : doctorOder.doctorEmail ,
+        drugName : doctorOder.drugNames ,
+        drugPrice : doctorOder.drugPrice,
+        drugQuantity : doctorOder.drugQuantity,
+        totalAmount : doctorOder.totalAmount,
+        pickupDate : doctorOder.pickupDate,
+        id: doctorOder._id
+       }
+     })
+    }))
+    .subscribe((transformedDocOders)=>{
+      this.VerifiedDocOders = transformedDocOders;
+      this.VerifiedDocOdersUpdated.next([...this.VerifiedDocOders])
+    });
+  }
+
+  getVerifiedDocOdersUpdateListener() {
+    return this.VerifiedDocOdersUpdated.asObservable();
+  }
+
+  deleteItem(oderId: string) {
+    this.http.delete('http://localhost:3000/api/doctorOder/' + oderId)
+      .subscribe(() =>{
+        const inventoryUpdated = this.docOders.filter(order => order.id !== oderId);
+        this.docOders = inventoryUpdated;
+        this.docOdersUpdated.next([...this.docOders])
+      });
   }
 
 }

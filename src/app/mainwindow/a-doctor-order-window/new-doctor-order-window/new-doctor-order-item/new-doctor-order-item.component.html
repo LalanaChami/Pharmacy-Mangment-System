@@ -4,7 +4,7 @@
       <tr *ngFor="let docOder of docOders ">
         <div class="div columns  is-full btn r" style="width: 200%;" >
             <div class="div column" >
-              <table class="table is-full" style="width: 54%;">
+              <table class="table is-full" style="width: 55%;">
                 <thead style="font-weight: bold;">
                   <td>Doctor Name</td>
                   <td>Doctor Contact </td>
@@ -15,7 +15,7 @@
                   <td>Quantities</td>
                   <td >Total</td>
                   <td >Pickup Date</td>
-                  <td class="level-right"><a class="button is-small is-primary" (click)="onOderVerify(docOder.doctorName,docOder.doctorEmail,docOder.totalAmount,docOder.pickupDate,docOder.drugName,docOder.drugPrice,docOder.drugQuantity,docOder.doctorId,docOder.doctorContact)" >Order Verify</a></td>
+                  <td class="level-right"><a class="button is-small is-primary" (click)="onOderVerify(docOder.doctorName,docOder.doctorEmail,docOder.totalAmount,docOder.pickupDate,docOder.drugName,docOder.drugPrice,docOder.drugQuantity,docOder.doctorId,docOder.doctorContact,docOder.id)" >Order Verify</a></td>
                 </thead>
                 <tbody>
                   <td>{{docOder.doctorName}}</td>
