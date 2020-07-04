@@ -11,6 +11,7 @@ const salesRoutes = require('./routes/sales');
 const doctorUserRoutes = require('./routes/doctorUser');
 const doctorOderRoutes = require('./routes/doctorOders');
 const verifiedDoctorOderRoutes = require('./routes/verifiedDoctorOder');
+const pickedUpOdersRoutes = require('./routes/pickedUpOders');
 
 
 
@@ -114,5 +115,6 @@ app.use("/api/sales",salesRoutes);
 app.use("/api/doctorUser",doctorUserRoutes);
 app.use("/api/doctorOder",doctorOderRoutes);
 app.use("/api/verifiedDoctorOder",verifiedDoctorOderRoutes);
+app.use("/api/pickedUpOders",pickedUpOdersRoutes);
 
 module.exports = app;
