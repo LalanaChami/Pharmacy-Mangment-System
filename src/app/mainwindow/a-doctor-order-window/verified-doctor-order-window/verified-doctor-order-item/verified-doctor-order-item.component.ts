@@ -59,7 +59,7 @@ export class VerifiedDoctorOrderItemComponent implements OnInit {
       }
     );
 
-    //this.doctoderService.deleteItem(id);
+    this.doctoderService.deleteVerifiedItem(id);
   }
 
 }
