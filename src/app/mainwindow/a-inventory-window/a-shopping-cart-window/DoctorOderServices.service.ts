@@ -11,6 +11,8 @@ export class DoctorOderServices{
   private docOdersUpdated = new Subject<any[]>();
   private VerifiedDocOders:any[] = [];
   private VerifiedDocOdersUpdated = new Subject<any[]>();
+  private PickedUpDocOders:any[] = [];
+  private PickedUpDocOdersUpdated = new Subject<any[]>();
 
   constructor(private http: HttpClient, private router: Router){
   }
@@ -33,6 +35,8 @@ export class DoctorOderServices{
   }
 
 
+
+
   createVerifiedDoctorOder(doctorName: string,doctorEmail: string,doctorId: string ,totalAmount: number,pickupDate: string, drugName: Array<any> = [],drugPrice: Array<any> = [] ,drugQuantity: Array<any> = [] ,doctorContact: string){
     const VerifiedDoctorOderData  = {doctorName:doctorName ,
                             doctorContact:doctorContact ,
@@ -49,6 +53,27 @@ export class DoctorOderServices{
       });
 
   }
+
+
+
+  createPickedUpDoctorOder(doctorName: string,doctorEmail: string,doctorId: string ,totalAmount: number,pickupDate: string, drugName: Array<any> = [],drugPrice: Array<any> = [] ,drugQuantity: Array<any> = [] ,doctorContact: string){
+    const PickedUpDoctorOderData  = {doctorName:doctorName ,
+                            doctorContact:doctorContact ,
+                            doctorId:doctorId ,
+                            doctorEmail:doctorEmail ,
+                            drugName:drugName ,
+                            drugPrice:drugPrice,
+                            drugQuantity:drugQuantity,
+                            totalAmount:totalAmount,
+                            pickupDate:pickupDate};
+    this.http.post("http://localhost:3000/api/pickedUpOders",PickedUpDoctorOderData)
+      .subscribe(response =>{
+        console.log(response);
+      });
+
+  }
+
+
 
   getDocOders() {
     this.http.get<{message: string, doctorOders: any}>("http://localhost:3000/api/doctorOder")
@@ -79,6 +104,9 @@ export class DoctorOderServices{
     return this.docOdersUpdated.asObservable();
   }
 
+
+
+
   getVerifiedDocOders() {
     this.http.get<{message: string, doctorOders: any}>("http://localhost:3000/api/verifiedDoctorOder")
     .pipe(map(docOderData => {
@@ -107,8 +135,47 @@ export class DoctorOderServices{
     return this.VerifiedDocOdersUpdated.asObservable();
   }
 
+
+  getPickedUpDocOders() {
+    this.http.get<{message: string, doctorOders: any}>("http://localhost:3000/api/pickedUpOders")
+    .pipe(map(docOderData => {
+     return docOderData.doctorOders.map(doctorOder => {
+       return{
+        doctorName : doctorOder.doctorName ,
+        doctorContact : doctorOder.doctorContact ,
+        doctorId : doctorOder.doctorID,
+        doctorEmail : doctorOder.doctorEmail ,
+        drugName : doctorOder.drugNames ,
+        drugPrice : doctorOder.drugPrice,
+        drugQuantity : doctorOder.drugQuantity,
+        totalAmount : doctorOder.totalAmount,
+        pickupDate : doctorOder.pickupDate,
+        acctualDate : doctorOder.dateTime,
+        id: doctorOder._id
+       }
+     })
+    }))
+    .subscribe((transformedPickedUpDocOders)=>{
+      this.PickedUpDocOders = transformedPickedUpDocOders;
+      this.PickedUpDocOdersUpdated.next([...this.PickedUpDocOders])
+    });
+  }
+
+  getPickedUpDocOdersUpdateListener() {
+    return this.PickedUpDocOdersUpdated.asObservable();
+  }
+
   deleteItem(oderId: string) {
     this.http.delete('http://localhost:3000/api/doctorOder/' + oderId)
+      .subscribe(() =>{
+        const inventoryUpdated = this.docOders.filter(order => order.id !== oderId);
+        this.docOders = inventoryUpdated;
+        this.docOdersUpdated.next([...this.docOders])
+      });
+  }
+
+  deleteVerifiedItem(oderId: string) {
+    this.http.delete('http://localhost:3000/api/verifiedDoctorOder/' + oderId)
       .subscribe(() =>{
         const inventoryUpdated = this.docOders.filter(order => order.id !== oderId);
         this.docOders = inventoryUpdated;

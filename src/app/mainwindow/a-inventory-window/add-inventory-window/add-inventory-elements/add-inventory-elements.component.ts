@@ -11,6 +11,7 @@ import { mimeType } from './mime-type.validator'
   styleUrls: ['./add-inventory-elements.component.css']
 })
 export class AddInventoryElementsComponent implements OnInit {
+  enteredEmail = "";
   enteredName = "";
   enteredQuantity = "";
   enteredBatchId = "";
@@ -29,6 +30,7 @@ export class AddInventoryElementsComponent implements OnInit {
 
   ngOnInit() {
     this.form = new FormGroup({
+      'email': new FormControl(null,{validators: [Validators.required, Validators.minLength(1)]}),
       'name': new FormControl(null,{validators: [Validators.required, Validators.minLength(1)]}),
       'quantity': new FormControl(null,{validators: [Validators.required, Validators.minLength(1)]}),
       'batchId': new FormControl(null,{validators: [Validators.required, Validators.minLength(1)]}),
@@ -45,6 +47,7 @@ export class AddInventoryElementsComponent implements OnInit {
         this.inventoryInteractionService.getInventorys(this.inventoryId).subscribe(inventoryData =>{
         this.isLoading = false;
         this.inventory = {id:inventoryData._id,
+                           email: inventoryData.email,
                            name: inventoryData.name,
                            quantity : inventoryData.quantity,
                            batchId: inventoryData.batchId,
@@ -52,7 +55,8 @@ export class AddInventoryElementsComponent implements OnInit {
                            price: inventoryData.price,
                            imagePath: inventoryData.imagePath
                           };
-        this.form.setValue({'name':this.inventory.name ,
+        this.form.setValue({'email':this.inventory.email ,
+                            'name':this.inventory.name ,
                             'quantity':this.inventory.quantity ,
                             'batchId':this.inventory.batchId ,
                             'expireDate':this.inventory.expireDate,
@@ -85,7 +89,7 @@ export class AddInventoryElementsComponent implements OnInit {
     }
 
     if(this.mode === "create"){
-      this.inventoryInteractionService.addInventory(this.form.value.name,
+      this.inventoryInteractionService.addInventory(this.form.value.email,this.form.value.name,
         this.form.value.quantity,
         this.form.value.batchId,
         this.form.value.expireDate,
@@ -94,7 +98,7 @@ export class AddInventoryElementsComponent implements OnInit {
 
         );
     }else{
-      this.inventoryInteractionService.updateInventory(this.inventoryId,this.form.value.name,
+      this.inventoryInteractionService.updateInventory(this.inventoryId,this.form.value.email,this.form.value.name,
         this.form.value.quantity,
         this.form.value.batchId,
         this.form.value.expireDate,

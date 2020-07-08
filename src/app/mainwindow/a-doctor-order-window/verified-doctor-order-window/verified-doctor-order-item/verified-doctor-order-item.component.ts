@@ -29,4 +29,37 @@ export class VerifiedDoctorOrderItemComponent implements OnInit {
       });
   }
 
+
+  onPickup(name:string,email:string,total:number,pickupDate:string,drugName:any[] = [],drugPrice:any[] = [],drugQuantity:any[] = [],doctorId:string,doctorContact:string,id:string){
+
+    this.doctoderService.createPickedUpDoctorOder(name,email,doctorId,total,pickupDate,drugName,drugPrice,drugQuantity,doctorContact);
+
+
+    let user={
+      name : name,
+      email : email,
+      total : total,
+      pickupDate : pickupDate,
+      drugName : drugName,
+      drugPrice : drugPrice,
+      drugQuantity : drugQuantity
+    }
+    console.log(user);
+
+    this.emailInteractionService.sendEmail("http://localhost:3000/api/verifiedDoctorOder/sendmail", user).subscribe(
+      data => {
+        let res:any = data;
+        console.log(
+          `👏 ${user.name} an email has been successfully and the message id is ${res.messageId}`
+        );
+      },
+      err => {
+        console.log(err);
+
+      }
+    );
+
+    this.doctoderService.deleteVerifiedItem(id);
+  }
+
 }
