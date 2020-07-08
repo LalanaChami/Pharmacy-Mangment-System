@@ -36,9 +36,9 @@ router.get("",(req,res,next)=>{
 
 
 router.delete("/:id", (req, res, next) => {
-  DoctorOder.deleteOne({ _id: req.params.id }).then(result => {
+  VerifiedDoctorOder.deleteOne({ _id: req.params.id }).then(result => {
     console.log(result);
-    res.status(200).json({ message: 'Doctor order deleted!' });
+    res.status(200).json({ message: 'Doctor verified order deleted!' });
   });
 });
 

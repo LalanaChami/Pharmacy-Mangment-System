@@ -2,6 +2,7 @@
   <!-- <p class="panel-heading" style="background-color:hsl(0, 0%, 88%) ;color:hsl(0, 0%, 21%)">
     Search Drugs
   </p> -->
+
   <div class="panel-block ">
     <div  style="height: 50px; width: 100%;">
 
@@ -39,20 +40,26 @@
 
       <div *ngIf="!isLoading">
         <tr *ngFor="let inventory of inventorys | inventoryFilter: searchTerm">
+
+          <!-- <script>
+            document.getElementById("demo").innerHTML =moment.utc(inventory.expireDate).local();
+            console.log(moment.utc(inventory.expireDate).local());
+          </script> -->
           <div class="div columns  is-full btn r" style="width: 195%;" >
               <div class="div column" >
-                <table class="table is-full" style="width: 100%;">
+                <table class="table is-full" style="width: 72.5%;">
                   <thead style="font-weight: bold;">
-
-                    <td style="width: 20%;">Name </td>
-                    <td style="width: 20%;">Quantity </td>
-                    <td style="width: 20%;">Batch ID </td>
+                    <td style="width: 20%;">Supplier's Email </td>
+                    <td style="width: 18%;">Drug Name </td>
+                    <td style="width: 12%;">Quantity </td>
+                    <td style="width: 12%;">Batch ID </td>
                     <td style="width: 20%;">Expire Date</td>
-                    <td style="width: 20%;">Price</td>
+                    <td style="width: 12%;">Price</td>
                     <td ></td>
 
                   </thead>
                   <tbody>
+                    <td>{{ inventory.email }}</td>
                     <td>{{ inventory.name }}</td>
                     <td>{{ inventory.quantity }}</td>
                     <td >{{ inventory.batchId }}</td>

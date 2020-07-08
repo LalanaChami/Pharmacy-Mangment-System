@@ -12,11 +12,16 @@
 
   <form [formGroup]="form" (submit)="onAddInventory()"  *ngIf="!isLoading">
 
+    <div class="field">
+      <label class="label" >SUPPLIER'S EMAIL</label>
+      <input type="email" class="is-center input" #emailInput  formControlName="email"  style="width: 100%;" placeholder="bandara@gmail.com"  >
+      <p class="login-error" *ngIf="!emailInput.valid && emailInput.touched">Please enter valid email</p>
+    </div>
 
     <div class="field">
-      <label class="label" >NAME</label>
-      <input type="text" class="is-center input" #nameInput  formControlName="name"  style="width: 100%;" placeholder="Mr S M Bandara"  >
-      <p class="login-error" *ngIf="!nameInput.valid && nameInput.touched">Please enter valid email</p>
+      <label class="label" >DRUG NAME</label>
+      <input type="text" class="is-center input" #nameInput  formControlName="name"  style="width: 100%;" placeholder="Amoxilin"  >
+      <p class="login-error" *ngIf="!nameInput.valid && nameInput.touched">Please enter the drug name</p>
     </div>
 
     <div class="field">

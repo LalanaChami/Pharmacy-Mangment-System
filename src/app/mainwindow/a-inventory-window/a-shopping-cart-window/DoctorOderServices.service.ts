@@ -174,4 +174,13 @@ export class DoctorOderServices{
       });
   }
 
+  deleteVerifiedItem(oderId: string) {
+    this.http.delete('http://localhost:3000/api/verifiedDoctorOder/' + oderId)
+      .subscribe(() =>{
+        const inventoryUpdated = this.docOders.filter(order => order.id !== oderId);
+        this.docOders = inventoryUpdated;
+        this.docOdersUpdated.next([...this.docOders])
+      });
+  }
+
 }
