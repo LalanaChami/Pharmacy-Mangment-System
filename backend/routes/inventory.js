@@ -30,6 +30,7 @@ const storage =multer.diskStorage({
 router.post("",multer({storage: storage}).single("image"),(req,res,next)=>{
   const url =req.protocol + '://' + req.get("host");
   const inventory = new Inventory({
+    email: req.body.email,
     name: req.body.name,
     quantity: req.body.quantity,
     batchId: req.body.batchId,
@@ -59,10 +60,11 @@ router.put("/:id",multer({storage: storage}).single("image"), (req,res,next)=>{
   };
   const inventory = new Inventory({
     _id: req.body.id,
+    email: req.body.email,
     name: req.body.name,
     quantity: req.body.quantity,
     batchId: req.body.batchId,
-    expireDate: req.body.expireDate,
+    expireDate:new Date(req.body.expireDate),
     price: req.body.price,
     imagePath: imagePath
   });

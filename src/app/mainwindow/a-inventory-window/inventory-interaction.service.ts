@@ -27,6 +27,7 @@ export class InventoryInteractionService {
     .pipe(map(inventoryData => {
      return inventoryData.inventorys.map(inventory=>{
        return{
+        email: inventory.email,
         name: inventory.name,
         quantity:inventory.quantity,
         batchId:inventory.batchId,
@@ -72,12 +73,13 @@ export class InventoryInteractionService {
   }
 
   getInventorys(id: string){
-    return this.http.get<{_id: string  , name: string, quantity: string, batchId: string, expireDate: string, price:string ,imagePath:string}>
+    return this.http.get<{_id: string, email: string  , name: string, quantity: string, batchId: string, expireDate: string, price:string ,imagePath:string}>
     ('http://localhost:3000/api/inventory/' + id);
   }
 
-  addInventory( name: string, quantity: string, batchId: string, expireDate: string, price: string , image: File) {
+  addInventory( email: string, name: string, quantity: string, batchId: string, expireDate: string, price: string , image: File) {
     const inventoryData = new FormData();
+    inventoryData.append("email", email);
     inventoryData.append("name", name);
     inventoryData.append("quantity", quantity);
     inventoryData.append("batchId", batchId);
@@ -88,6 +90,7 @@ export class InventoryInteractionService {
     this.http.post<{message: string, inventory: Inventory}>('http://localhost:3000/api/inventory',inventoryData)
     .subscribe((responseData)=>{
       const inventory: Inventory ={id: responseData.inventory.id,
+                                   email:email ,
                                    name:name ,
                                    quantity: quantity,
                                    batchId: batchId ,
@@ -102,13 +105,14 @@ export class InventoryInteractionService {
 
   }
 
-  updateInventory(id: string , name: string, quantity: string, batchId: string, expireDate: string, price: string ,image: File | string){
+  updateInventory(id: string , email: string ,name: string, quantity: string, batchId: string, expireDate: string, price: string ,image: File | string){
 
     let inventoryData: Inventory | FormData;
 
     if (typeof(image)==='object'){
       inventoryData = new FormData();
       inventoryData.append("id", id);
+      inventoryData.append("email",email);
       inventoryData.append("name",name);
       inventoryData.append("quantity",quantity);
       inventoryData.append("batchId",batchId);
@@ -118,6 +122,7 @@ export class InventoryInteractionService {
 
     } else{
        inventoryData  ={id : id ,
+                        email : email ,
                         name : name ,
                         quantity : quantity ,
                         batchId : batchId ,
@@ -132,6 +137,7 @@ export class InventoryInteractionService {
                const oldInventoryIndex = updatedInventorys.findIndex(i => i.id === id);
 
                const inventory : Inventory ={id : id ,
+                                             email : email ,
                                              name : name ,
                                              quantity : quantity ,
                                              batchId : batchId ,
