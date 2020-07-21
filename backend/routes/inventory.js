@@ -94,6 +94,24 @@ router.get("",(req,res,next)=>{
 });
 
 
+router.get("/getExpired",(req,res,next)=>{
+  const pageSize = +req.query.pagesize;
+  const currentPage = +req.query.page;
+  const postQuery = Inventory.find({expireDate:{$lte:new Date()}});
+  if(pageSize && currentPage){
+    postQuery
+      .skip(pageSize * (currentPage-1))
+      .limit(pageSize);
+  }
+  postQuery.then(documents=>{
+    res.status(200).json({
+      message : 'inventory added sucessfully',
+      inventorys :documents
+    });
+  });
+});
+
+
 router.get("/:id",(req,res,next)=>{
   Inventory.findById(req.params.id).then(inventory =>{
     if(inventory){
