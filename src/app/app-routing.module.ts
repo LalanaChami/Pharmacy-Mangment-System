@@ -1,3 +1,5 @@
+import { AboutToFinishWindowComponent } from './mainwindow/a-exp-outofstock-window/about-to-finish-window/about-to-finish-window.component';
+import { OutOfStockWindowComponent } from './mainwindow/a-exp-outofstock-window/out-of-stock-window/out-of-stock-window.component';
 import { AExpOutofstockWindowComponent } from './mainwindow/a-exp-outofstock-window/a-exp-outofstock-window.component';
 import { AboutToExpireWindowComponent } from './mainwindow/a-exp-outofstock-window/about-to-expire-window/about-to-expire-window.component';
 import { ExpiredWindowComponent } from './mainwindow/a-exp-outofstock-window/expired-window/expired-window.component';
@@ -41,7 +43,10 @@ const routes: Routes = [
   {path: 'doctororders/pickedUp', component: PickupOrderWindowComponent },
 
   {path: 'expoutofstock', component: AExpOutofstockWindowComponent },
-  {path: 'expoutofstock/abouttoexpire', component: AboutToExpireWindowComponent }
+  {path: 'expoutofstock/abouttoexpire', component: AboutToExpireWindowComponent },
+
+  {path: 'outofstock', component: OutOfStockWindowComponent },
+  {path: 'outofstock/abouttofinish', component: AboutToFinishWindowComponent }
 
 
 ];
