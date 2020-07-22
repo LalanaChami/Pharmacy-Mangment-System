@@ -5,14 +5,15 @@
         <tr *ngFor="let inventor of inventoryis">
           <div class="div columns  is-full btn " style="width: 200%;" >
               <div class="div column" >
-                <table class="table is-full" style="width: 54.5%;">
+                <table class="table is-full" style="width: 55.6%;">
                   <thead style="font-weight: bold;">
                     <td style="width: 20%;">Supplier's Email </td>
-                    <td style="width: 20%;">Drug Name </td>
+                    <td style="width: 15%;">Drug Name </td>
                     <td style="width: 5%;">Quantity </td>
                     <td style="width: 10%;">Batch ID </td>
                     <td style="width: 30%;">Expire Date</td>
-                    <td style="width: 15%;">Price</td>
+                    <td style="width: 10%;">Price</td>
+                    <td style="width: 10%;"><a class="button is-small is-danger" style="font-weight: bold;" >{{ calcRemainingDays(inventor.expireDate)}} days remaining </a> </td>
                     <td ></td>
 
                   </thead>
@@ -23,16 +24,15 @@
                     <td >{{ inventor.batchId }}</td>
                     <td >{{ inventor.expireDate }} </td>
                     <td >{{ inventor.price }} </td>
+                    <td class="level-center" ><a class="button is-small is-primary" style="font-weight: bold;" href="#">Request</a></td>
                   </tbody>
                 </table>
               </div>
               <div>
             </div>
-          </div>
+          </div><br>
         </tr>
-        <tr>
 
-        </tr>
       </div>
   <br>
   <div class="" >
@@ -64,3 +64,5 @@
       }
 
   </style>
+
+

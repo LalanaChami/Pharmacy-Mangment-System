@@ -11,7 +11,7 @@ import { Inventory } from 'src/app/mainwindow/a-inventory-window/inventory.model
 export class AboutToExpireItemsComponent implements OnInit {
 
   searchTerm : string;
-  inventoryis : Inventory[] = [];
+  inventoryis  = [];
   isLoading= false;
   private inventorySubs: Subscription;
 
@@ -26,5 +26,14 @@ export class AboutToExpireItemsComponent implements OnInit {
         this.inventoryis = posts;
       });
   }
+
+  calcRemainingDays(expireDate){
+    let expDate = new Date(expireDate);
+    let currentDate = new Date();
+    let days = Math.abs(Math.floor((currentDate.getTime() - expDate.getTime()) / 1000 / 60 / 60 / 24));
+    return days;
+  }
+
+
 
 }

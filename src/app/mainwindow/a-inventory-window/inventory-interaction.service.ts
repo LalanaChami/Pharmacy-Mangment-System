@@ -71,6 +71,8 @@ export class InventoryInteractionService {
   }
 
   getAboutToExpireInventory(){
+    let currentDate = new Date();
+
     this.http.get<{message: string, inventorys: any}>('http://localhost:3000/api/inventory/getAboutToExpire')
     .pipe(map(inventoryData => {
      return inventoryData.inventorys.map(inventory=>{
@@ -83,6 +85,7 @@ export class InventoryInteractionService {
         price: inventory.price,
         id: inventory._id,
         imagePath:  inventory.imagePath
+
        }
      })
     }))
