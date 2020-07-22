@@ -18,6 +18,8 @@ export class InventoryInteractionService {
 
   private inventory: Inventory[] = [];
   private inventoryUpdated = new Subject<Inventory[]>();
+  private inventoryi: Inventory[] = [];
+  private inventoryUpdatedi = new Subject<Inventory[]>();
 
   constructor(private http: HttpClient, private router : Router){}
 
@@ -48,6 +50,28 @@ export class InventoryInteractionService {
 
   getExpiredInventory(){
     this.http.get<{message: string, inventorys: any}>('http://localhost:3000/api/inventory/getExpired')
+    .pipe(map(inventoryData => {
+     return inventoryData.inventorys.map(inventory=>{
+       return{
+        email: inventory.email,
+        name: inventory.name,
+        quantity:inventory.quantity,
+        batchId:inventory.batchId,
+        expireDate:new Date(inventory.expireDate),
+        price: inventory.price,
+        id: inventory._id,
+        imagePath:  inventory.imagePath
+       }
+     })
+    }))
+    .subscribe((transformedInventory)=>{
+      this.inventory = transformedInventory;
+      this.inventoryUpdated.next([...this.inventory])
+    });
+  }
+
+  getAboutToExpireInventory(){
+    this.http.get<{message: string, inventorys: any}>('http://localhost:3000/api/inventory/getAboutToExpire')
     .pipe(map(inventoryData => {
      return inventoryData.inventorys.map(inventory=>{
        return{

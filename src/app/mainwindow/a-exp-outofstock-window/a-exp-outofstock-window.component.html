@@ -1,8 +1,9 @@
-<div style="margin-top: 5%;">
-  <section class="section columns is-centered">
+<div >
+  <!-- <section class="section columns is-centered">
     <div class="column is-full-desktop is-full-mobile">
       <app-expired-window></app-expired-window>
     </div>
+
   </section>
   <section class="section columns">
     <div class="column is-full-desktop is-full-mobile">
@@ -16,6 +17,49 @@
     <div class="column is-half is-full-mobile">
       <app-about-to-finish-window></app-about-to-finish-window>
     </div>
-  </section>
+  </section> -->
+
+
+  <div style="margin-top: 5%;">
+    <div style="margin-top: 2%; height:900px">
+      <section class="section columns">
+        <div class="column is-full-desktop is-full-mobile">
+          <!-- <app-search-supplier-window></app-search-supplier-window> -->
+          <div class="tabs is-toggle is-fullwidth">
+            <ul>
+              <li class="is-active ">
+                <a routerLink="/expoutofstock">
+                  <!-- <span class="icon is-small"><i class="fas fa-music" aria-hidden="true"></i></span> -->
+                  <span>Expired Drugs</span>
+                </a>
+              </li>
+
+              <li>
+                <a routerLink="/expoutofstock/abouttoexpire/">
+                  <!-- <span class="icon is-small"><i class="fas fa-music" aria-hidden="true"></i></span> -->
+                  <span>About To Expire Drugs</span>
+                </a>
+              </li>
+
+
+            </ul>
+          </div>
+        </div>
+      </section>
+    <section class="panel" style="margin: 3px;margin-top: -30px; width: 99%;">
+
+      <div >
+        <div  style="height: 610px; width: 100%;">
+
+          <app-expired-window></app-expired-window>
+        </div>
+      </div>
+      <div class="panel-block">
+
+      </div>
+    </section>
+    </div>
+
+    </div>
 </div>
 

@@ -111,6 +111,27 @@ router.get("/getExpired",(req,res,next)=>{
   });
 });
 
+router.get("/getAboutToExpire",(req,res,next)=>{
+  const pageSize = +req.query.pagesize;
+  const currentPage = +req.query.page;
+  var date = new Date();
+  var date10 = new Date(date.getTime());
+  date10.setDate(date10.getDate() + 10);
+
+  const postQuery = Inventory.find({expireDate:{$lte:new Date(date10),$gte:new Date()}});
+  if(pageSize && currentPage){
+    postQuery
+      .skip(pageSize * (currentPage-1))
+      .limit(pageSize);
+  }
+  postQuery.then(documents=>{
+    res.status(200).json({
+      message : 'inventory added sucessfully',
+      inventorys :documents
+    });
+  });
+});
+
 
 router.get("/:id",(req,res,next)=>{
   Inventory.findById(req.params.id).then(inventory =>{
