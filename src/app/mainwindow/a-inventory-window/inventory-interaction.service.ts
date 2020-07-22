@@ -21,6 +21,11 @@ export class InventoryInteractionService {
   private inventoryi: Inventory[] = [];
   private inventoryUpdatedi = new Subject<Inventory[]>();
 
+  private inventor = [];
+  private inventoryUpdate = new Subject<any[]>();
+
+
+
   constructor(private http: HttpClient, private router : Router){}
 
   getInventory(itemsPerPage: number , currentPage:number) {
@@ -197,6 +202,20 @@ export class InventoryInteractionService {
                updatedInventorys[oldInventoryIndex] = inventory;
                this.inventoryUpdated.next([...this.inventory]);
                this.router.navigate(["/inventory/create"]);
+             });
+  }
+
+
+  updateQuantity(id: string ,quantity: number){
+    const inventory   ={id:id ,quantity:quantity };
+    this.http
+             .put('http://localhost:3000/api/inventory/updateQuantity/' + id , inventory)
+             .subscribe(response => {
+               const updatedInventory = [...this.inventor];
+               const oldInventoryIndex = updatedInventory.findIndex(s => s.id ===inventory.id);
+               updatedInventory[oldInventoryIndex] = inventory;
+               this.inventoryUpdate.next([...this.inventor]);
+               //this.router.navigate(["/suppliers/create"]);
              });
   }
 

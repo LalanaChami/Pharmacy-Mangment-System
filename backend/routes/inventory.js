@@ -76,6 +76,20 @@ router.put("/:id",multer({storage: storage}).single("image"), (req,res,next)=>{
 });
 
 
+router.put("/updateQuantity/:id",(req,res,next)=>{
+  const inventory = new Inventory({
+    _id: req.body.id,
+    quantity: req.body.quantity
+
+
+  });console.log(inventory)
+  Inventory.updateOne({_id: req.params.id}, inventory).then(result => {
+    console.log(result);
+    res.status(200).json({message : "Update quantity Successful !"});
+  });
+});
+
+
 router.get("",(req,res,next)=>{
   const pageSize = +req.query.pagesize;
   const currentPage = +req.query.page;
