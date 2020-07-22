@@ -1,3 +1,10 @@
+import { AboutToFinishWindowComponent } from './mainwindow/a-exp-outofstock-window/about-to-finish-window/about-to-finish-window.component';
+import { OutOfStockWindowComponent } from './mainwindow/a-exp-outofstock-window/out-of-stock-window/out-of-stock-window.component';
+import { AExpOutofstockWindowComponent } from './mainwindow/a-exp-outofstock-window/a-exp-outofstock-window.component';
+import { AboutToExpireWindowComponent } from './mainwindow/a-exp-outofstock-window/about-to-expire-window/about-to-expire-window.component';
+import { ExpiredWindowComponent } from './mainwindow/a-exp-outofstock-window/expired-window/expired-window.component';
+import { AboutToExpireItemsComponent } from './mainwindow/a-exp-outofstock-window/about-to-expire-window/about-to-expire-items/about-to-expire-items.component';
+import { ExpiredItemsComponent } from './mainwindow/a-exp-outofstock-window/expired-window/expired-items/expired-items.component';
 import { ADoctorOrderWindowComponent } from './mainwindow/a-doctor-order-window/a-doctor-order-window.component';
 import { NewDoctorOrderWindowComponent } from './mainwindow/a-doctor-order-window/new-doctor-order-window/new-doctor-order-window.component';
 import { PickupOrderWindowComponent } from './mainwindow/a-doctor-order-window/pickup-order-window/pickup-order-window.component';
@@ -33,7 +40,14 @@ const routes: Routes = [
 
   {path: 'doctororders/new', component: VerifiedDoctorOrderWindowComponent },
   {path: 'doctororders', component: ADoctorOrderWindowComponent },
-  {path: 'doctororders/pickedUp', component: PickupOrderWindowComponent }
+  {path: 'doctororders/pickedUp', component: PickupOrderWindowComponent },
+
+  {path: 'expoutofstock', component: AExpOutofstockWindowComponent },
+  {path: 'expoutofstock/abouttoexpire', component: AboutToExpireWindowComponent },
+
+  {path: 'outofstock', component: OutOfStockWindowComponent },
+  {path: 'outofstock/abouttofinish', component: AboutToFinishWindowComponent }
+
 
 ];
 

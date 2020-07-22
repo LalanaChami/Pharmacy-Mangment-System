@@ -76,6 +76,20 @@ router.put("/:id",multer({storage: storage}).single("image"), (req,res,next)=>{
 });
 
 
+router.put("/updateQuantity/:id",(req,res,next)=>{
+  const inventory = new Inventory({
+    _id: req.body.id,
+    quantity: req.body.quantity
+
+
+  });console.log(inventory)
+  Inventory.updateOne({_id: req.params.id}, inventory).then(result => {
+    console.log(result);
+    res.status(200).json({message : "Update quantity Successful !"});
+  });
+});
+
+
 router.get("",(req,res,next)=>{
   const pageSize = +req.query.pagesize;
   const currentPage = +req.query.page;
@@ -98,6 +112,27 @@ router.get("/getExpired",(req,res,next)=>{
   const pageSize = +req.query.pagesize;
   const currentPage = +req.query.page;
   const postQuery = Inventory.find({expireDate:{$lte:new Date()}});
+  if(pageSize && currentPage){
+    postQuery
+      .skip(pageSize * (currentPage-1))
+      .limit(pageSize);
+  }
+  postQuery.then(documents=>{
+    res.status(200).json({
+      message : 'inventory added sucessfully',
+      inventorys :documents
+    });
+  });
+});
+
+router.get("/getAboutToExpire",(req,res,next)=>{
+  const pageSize = +req.query.pagesize;
+  const currentPage = +req.query.page;
+  var date = new Date();
+  var date10 = new Date(date.getTime());
+  date10.setDate(date10.getDate() + 10);
+
+  const postQuery = Inventory.find({expireDate:{$lte:new Date(date10),$gte:new Date()}});
   if(pageSize && currentPage){
     postQuery
       .skip(pageSize * (currentPage-1))

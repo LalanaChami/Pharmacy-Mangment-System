@@ -18,6 +18,13 @@ export class InventoryInteractionService {
 
   private inventory: Inventory[] = [];
   private inventoryUpdated = new Subject<Inventory[]>();
+  private inventoryi: Inventory[] = [];
+  private inventoryUpdatedi = new Subject<Inventory[]>();
+
+  private inventor = [];
+  private inventoryUpdate = new Subject<any[]>();
+
+
 
   constructor(private http: HttpClient, private router : Router){}
 
@@ -59,6 +66,31 @@ export class InventoryInteractionService {
         price: inventory.price,
         id: inventory._id,
         imagePath:  inventory.imagePath
+       }
+     })
+    }))
+    .subscribe((transformedInventory)=>{
+      this.inventory = transformedInventory;
+      this.inventoryUpdated.next([...this.inventory])
+    });
+  }
+
+  getAboutToExpireInventory(){
+    let currentDate = new Date();
+
+    this.http.get<{message: string, inventorys: any}>('http://localhost:3000/api/inventory/getAboutToExpire')
+    .pipe(map(inventoryData => {
+     return inventoryData.inventorys.map(inventory=>{
+       return{
+        email: inventory.email,
+        name: inventory.name,
+        quantity:inventory.quantity,
+        batchId:inventory.batchId,
+        expireDate:new Date(inventory.expireDate),
+        price: inventory.price,
+        id: inventory._id,
+        imagePath:  inventory.imagePath
+
        }
      })
     }))
@@ -170,6 +202,20 @@ export class InventoryInteractionService {
                updatedInventorys[oldInventoryIndex] = inventory;
                this.inventoryUpdated.next([...this.inventory]);
                this.router.navigate(["/inventory/create"]);
+             });
+  }
+
+
+  updateQuantity(id: string ,quantity: number){
+    const inventory   ={id:id ,quantity:quantity };
+    this.http
+             .put('http://localhost:3000/api/inventory/updateQuantity/' + id , inventory)
+             .subscribe(response => {
+               const updatedInventory = [...this.inventor];
+               const oldInventoryIndex = updatedInventory.findIndex(s => s.id ===inventory.id);
+               updatedInventory[oldInventoryIndex] = inventory;
+               this.inventoryUpdate.next([...this.inventor]);
+               //this.router.navigate(["/suppliers/create"]);
              });
   }
 

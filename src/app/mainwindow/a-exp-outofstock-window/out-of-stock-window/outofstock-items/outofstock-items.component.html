@@ -1,145 +1,37 @@
 <div style="overflow-y:auto ;overflow-x: hidden;height: 500px;">
   <table class="table is-full menu-list"  >
     <tbody>
-        <tr>
+        <tr *ngFor="let inventory of inventorys">
           <div class="div columns  is-full btn r" style="width: 200%;" >
               <div class="div column" >
-                <table class="table is-full" style="width: 89.5%;">
+                <table class="table is-full" style="width: 70.5%;">
                   <thead style="font-weight: bold;">
-                    <td>Supplier ID</td>
-                    <td>Name </td>
-                    <td >Email </td>
-                    <td >Contact </td>
-                    <td >Drugs Available </td>
+                    <td style="width: 20%;">Supplier's Email </td>
+                    <td style="width: 20%;">Drug Name </td>
+                    <td style="width: 8%;">Quantity </td>
+                    <td style="width: 10%;">Batch ID </td>
+                    <td style="width: 35%;">Expire Date</td>
+                    <td style="width: 15%;">Price</td>
                     <td ></td>
 
                   </thead>
                   <tbody>
-                    <td>dkjfh</td>
-                    <td>Drsldflksugs </td>
-                    <td >Order sdlfkjsID </td>
-                    <td >Pickupslkdfj Date </td>
-                    <td >Ordersdlkfj </td>
-                    <td class="level-right"><a class="button is-small is-primary" style="font-weight: bold;margin-right: 1%;" href="#">Edit </a><a class="button is-small is-danger" style="font-weight: bold;" href="#">Delete</a></td>
+                    <td>{{ inventory.email }}</td>
+                    <td>{{ inventory.name }}</td>
+                    <td>{{ inventory.quantity }}</td>
+                    <td >{{ inventory.batchId }}</td>
+                    <td >{{ inventory.expireDate }} </td>
+                    <td >{{ inventory.price }} </td>
+                    <td class="level-right"><a class="button is-small is-primary" style="font-weight: bold;margin-right: 1%;" href="#">Request </a></td>
 
                   </tbody>
                 </table>
               </div>
-          </div>
+          </div> <br>
         </tr>
   <br>
 
-  <tr>
-    <div class="div columns  is-full btn r" style="width: 200%;" >
-        <div class="div column" >
-          <table class="table is-full" style="width: 89.5%;">
-            <thead style="font-weight: bold;">
-              <td>Supplier ID</td>
-              <td>Name </td>
-              <td >Email </td>
-              <td >Contact </td>
-              <td >Drugs Available </td>
-              <td ></td>
 
-            </thead>
-            <tbody>
-              <td>dkjfh</td>
-              <td>Drsldflksugs </td>
-              <td >Order sdlfkjsID </td>
-              <td >Pickupslkdfj Date </td>
-              <td >Ordersdlkfj </td>
-              <td class="level-right"><a class="button is-small is-primary" style="font-weight: bold;margin-right: 1%;" href="#">Edit </a><a class="button is-small is-danger" style="font-weight: bold;" href="#">Delete</a></td>
-
-            </tbody>
-          </table>
-        </div>
-    </div>
-  </tr>
-<br>
-
-<tr>
-  <div class="div columns  is-full btn r" style="width: 200%;" >
-      <div class="div column" >
-        <table class="table is-full" style="width: 89.5%;">
-          <thead style="font-weight: bold;">
-            <td>Supplier ID</td>
-            <td>Name </td>
-            <td >Email </td>
-            <td >Contact </td>
-            <td >Drugs Available </td>
-            <td ></td>
-
-          </thead>
-          <tbody>
-            <td>dkjfh</td>
-            <td>Drsldflksugs </td>
-            <td >Order sdlfkjsID </td>
-            <td >Pickupslkdfj Date </td>
-            <td >Ordersdlkfj </td>
-            <td class="level-right"><a class="button is-small is-primary" style="font-weight: bold;margin-right: 1%;" href="#">Edit </a><a class="button is-small is-danger" style="font-weight: bold;" href="#">Delete</a></td>
-
-          </tbody>
-        </table>
-      </div>
-  </div>
-</tr>
-<br>
-
-<tr>
-  <div class="div columns  is-full btn r" style="width: 200%;" >
-      <div class="div column" >
-        <table class="table is-full" style="width: 89.5%;">
-          <thead style="font-weight: bold;">
-            <td>Supplier ID</td>
-            <td>Name </td>
-            <td >Email </td>
-            <td >Contact </td>
-            <td >Drugs Available </td>
-            <td ></td>
-
-          </thead>
-          <tbody>
-            <td>dkjfh</td>
-            <td>Drsldflksugs </td>
-            <td >Order sdlfkjsID </td>
-            <td >Pickupslkdfj Date </td>
-            <td >Ordersdlkfj </td>
-            <td class="level-right"><a class="button is-small is-primary" style="font-weight: bold;margin-right: 1%;" href="#">Edit </a><a class="button is-small is-danger" style="font-weight: bold;" href="#">Delete</a></td>
-
-          </tbody>
-        </table>
-      </div>
-  </div>
-</tr>
-<br>
-
-<tr>
-  <div class="div columns  is-full btn r" style="width: 200%;" >
-      <div class="div column" >
-        <table class="table is-full" style="width: 89.5%;">
-          <thead style="font-weight: bold;">
-            <td>Supplier ID</td>
-            <td>Name </td>
-            <td >Email </td>
-            <td >Contact </td>
-            <td >Drugs Available </td>
-            <td ></td>
-
-          </thead>
-          <tbody>
-            <td>dkjfh</td>
-            <td>Drsldflksugs </td>
-            <td >Order sdlfkjsID </td>
-            <td >Pickupslkdfj Date </td>
-            <td >Ordersdlkfj </td>
-            <td class="level-right"><a class="button is-small is-primary" style="font-weight: bold;margin-right: 1%;" href="#">Edit </a><a class="button is-small is-danger" style="font-weight: bold;" href="#">Delete</a></td>
-
-          </tbody>
-        </table>
-      </div>
-  </div>
-</tr>
-<br>
 
 
     </tbody>

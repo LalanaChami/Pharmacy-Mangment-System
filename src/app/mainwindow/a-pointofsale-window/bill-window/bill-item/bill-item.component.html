@@ -57,7 +57,7 @@
                   <img [src]="inventory.imagePath" [alt]="inventory.name" >
                 </figure>
               </div>
-              <form (submit)="onAddToBill(inventory.id, inventory.name,inventory.expireDate,inventory.price,quantityForm)" #quantityForm="ngForm">
+              <form (submit)="onAddToBill(inventory.id, inventory.name,inventory.expireDate,inventory.price,quantityForm, inventory.quantity)" #quantityForm="ngForm">
               <div class="card-content">
                 <header class="card-header">
                   <p class="card-header-title">

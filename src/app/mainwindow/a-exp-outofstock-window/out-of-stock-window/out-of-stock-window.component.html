@@ -1,4 +1,4 @@
-<section class="panel">
+<!-- <section class="panel">
   <p class="panel-heading" style="background-color:hsl(0, 0%, 88%) ;color:hsl(0, 0%, 21%)">
     Out of Stock Drugs
   </p>
@@ -11,4 +11,48 @@
   <div class="panel-block">
 
   </div>
-</section>
+</section> -->
+
+<div >
+  <div style="margin-top: 5%;">
+    <div style="margin-top: 2%; height:900px">
+      <section class="section columns">
+        <div class="column is-full-desktop is-full-mobile">
+          <!-- <app-search-supplier-window></app-search-supplier-window> -->
+          <div class="tabs is-toggle is-fullwidth">
+            <ul>
+              <li class="is-active ">
+                <a routerLink="/outofstock">
+                  <!-- <span class="icon is-small"><i class="fas fa-music" aria-hidden="true"></i></span> -->
+                  <span>Out Of Stock Drugs</span>
+                </a>
+              </li>
+
+              <li>
+                <a routerLink="/outofstock/abouttofinish">
+                  <!-- <span class="icon is-small"><i class="fas fa-music" aria-hidden="true"></i></span> -->
+                  <span>About To Get Out Of Stock </span>
+                </a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </section>
+      <section class="panel">
+        <p class="panel-heading" style="background-color:hsl(0, 0%, 88%) ;color:hsl(0, 0%, 21%)">
+          Out of Stock Drugs
+        </p>
+        <div class="panel-block ">
+          <div  style="height: 500px; width: 100%;">
+
+            <app-outofstock-items></app-outofstock-items>
+          </div>
+        </div>
+        <div class="panel-block">
+
+        </div>
+      </section>
+    </div>
+
+    </div>
+</div>
