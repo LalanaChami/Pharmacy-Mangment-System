@@ -26,6 +26,9 @@
   <li class="newclass :hover">
     <a class="btn" routerLink="/expoutofstock"><span class="icon"><i class="fa fa-exclamation-triangle fa-lg" style="margin-right: 7px;"></i></span> Expired</a>
   </li>
+  <li class="newclass :hover">
+    <a class="btn" routerLink="/outofstock"><span class="icon"><i class="fa fa-exclamation-triangle fa-lg" style="margin-right: 7px;"></i></span> Out of Stock</a>
+  </li>
 </ul><br>
 <p class="menu-label" *ngIf="!userIsAuthenticated" style="color: azure; padding-top: 5%;padding-left: 5%;padding-right: 5%; text-align: center;">
   Some admin functionalities <br> may not be accessible
@@ -45,6 +48,7 @@
       color:hsl(0, 0%, 86%);
       background-color: hsl(0, 0%, 21%);
       border-radius: 3px;
+      height: 88px;
     }
     .newclass :hover{
       background-color: HSL(171, 100%, 40%);

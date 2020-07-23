@@ -64,4 +64,17 @@ export class SalesInteractionService {
     return this.salesUpdated.asObservable();
   }
 
+  // updateSupplier(id: string , supplierID: string , name: string, email: string, contact: string, drugsAvailable: string){
+  //   const supplier : Supplier ={id:id ,supplierID:supplierID , name:name , email:email , contact:contact , drugsAvailable:drugsAvailable};
+  //   this.http
+  //            .put('http://localhost:3000/api/supplier/' + id , supplier)
+  //            .subscribe(response => {
+  //              const updatedSuppliers = [...this.supplier];
+  //              const oldSupplierIndex = updatedSuppliers.findIndex(s => s.id ===supplier.id);
+  //              updatedSuppliers[oldSupplierIndex] = supplier;
+  //              this.supplierUpdated.next([...this.supplier]);
+  //              this.router.navigate(["/suppliers/create"]);
+  //            });
+  // }
+
 }

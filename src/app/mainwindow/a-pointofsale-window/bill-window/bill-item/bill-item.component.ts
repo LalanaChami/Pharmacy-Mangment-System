@@ -53,9 +53,9 @@ export class BillItemComponent implements OnInit {
     this.inventorySubs.unsubscribe();
   }
 
-  onAddToBill(itemId:string, name:string , expireDate:string , price:string, form:NgForm ){
+  onAddToBill(itemId:string, name:string , expireDate:string , price:string, form:NgForm, realQuantity:string ){
 
-  this.itemArray.push([itemId,name,expireDate,price,form.value.quantityNumber]);
+  this.itemArray.push([itemId,name,expireDate,price,form.value.quantityNumber,realQuantity]);
   this.dataArray.push([name,form.value.quantityNumber]);
 
   //  console.log(this.itemArray);
@@ -80,9 +80,18 @@ export class BillItemComponent implements OnInit {
 
        this.total = this.total + sum;
 
+       let quantity = +checkoutArray[count][5] - +checkoutArray[count][4];
+       this.inventoryInteractionService.updateQuantity(
+        checkoutArray[count][0],
+        quantity
+        );
+
     }
 
     console.log(this.total);
+
+
+
 
 
     return this.total;
@@ -136,6 +145,22 @@ export class BillItemComponent implements OnInit {
 // WindowPrt.print();
 // WindowPrt.close();
 }
+
+// onAddSupplier() {
+//   if (this.form.invalid) {
+//     return;
+//   }
+
+
+//     this.supplierInteractionService.updateSupplier(this.supplierId,this.form.value.supplierID,
+//       this.form.value.name,
+//       this.form.value.email,
+//       this.form.value.contact,
+//       this.form.value.drugsAvailable );
+
+
+//   this.form.reset();
+// }
 
 
 

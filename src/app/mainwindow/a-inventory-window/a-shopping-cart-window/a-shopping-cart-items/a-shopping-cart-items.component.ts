@@ -41,8 +41,10 @@ export class AShoppingCartItemsComponent implements OnInit {
   docArrLength: number;
   oderDetail: Array<any> = [];
   drugNames: Array<any> = [];
+  drugId: Array<any> = [];
   drugPrices: Array<any> = [];
   drugQuantities: Array<any> = [];
+  realQuantities: Array<any> = [];
 
   name: string;
   userIsAuthenticated =false;
@@ -90,10 +92,12 @@ export class AShoppingCartItemsComponent implements OnInit {
     this.inventorySubs.unsubscribe();
   }
 
-  onAddToCart(itemId:string, name:string , expireDate:string ,price:string, form:NgForm ,imagePath:string ){
+  onAddToCart(itemId:string, name:string , expireDate:string ,price:string, form:NgForm ,imagePath:string , realQuanntity:string){
     this.itemArray.push([itemId,name,expireDate,price,form.value.quantityNumber,imagePath]);
     this.drugNames.push(name);
     this.drugPrices.push(price);
+    this.drugId.push(itemId);
+    this.realQuantities.push(realQuanntity);
     this.drugQuantities.push(form.value.quantityNumber);
     // this.dataArray.push([name,form.value.quantityNumber]);
     console.log(this.itemArray);
@@ -123,6 +127,7 @@ export class AShoppingCartItemsComponent implements OnInit {
     this.oderDetail.push(this.TrimedDoctors,this.itemArray,this.total,checkoutForm.value.pickupDateInput);
     console.log(this.oderDetail);
 
+    let drugId = this.drugId;
     let doctorName = this.TrimedDoctors[0];
     let doctorContact = this.TrimedDoctors[1];
     let doctorId = this.TrimedDoctors[3];
@@ -130,10 +135,11 @@ export class AShoppingCartItemsComponent implements OnInit {
     let drugName = this.drugNames;
     let drugPrice = this.drugPrices;
     let drugQuantity = this.drugQuantities;
+    let realQuantity = this.realQuantities;
     let totalAmount = this.total;
     let pickupDate = checkoutForm.value.pickupDateInput;
     console.log(drugName);
-    this.doctorOderService.createDoctorUser(doctorName,doctorContact,doctorId,doctorEmail,drugName,drugPrice,drugQuantity,totalAmount,pickupDate)
+    this.doctorOderService.createDoctorUser(doctorName,doctorContact,doctorId,doctorEmail,drugId,drugName,drugPrice,drugQuantity,realQuantity,totalAmount,pickupDate)
 
 
   }
