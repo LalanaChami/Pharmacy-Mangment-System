@@ -1,3 +1,4 @@
+import { InventoryInteractionService } from './../../../a-inventory-window/inventory-interaction.service';
 import { EmailInteractionService } from './../../new-doctor-order-window/email-Interaction.service';
 import { DoctorOderServices } from './../../../a-inventory-window/a-shopping-cart-window/DoctorOderServices.service';
 import { Subscription } from 'rxjs';
@@ -17,7 +18,9 @@ export class VerifiedDoctorOrderItemComponent implements OnInit {
 
 
 
-  constructor(private doctoderService: DoctorOderServices, private emailInteractionService: EmailInteractionService){}
+  constructor( private inventoryInteractionService: InventoryInteractionService,
+               private doctoderService: DoctorOderServices,
+               private emailInteractionService: EmailInteractionService){}
 
   ngOnInit() {
     this.isLoading = true;
@@ -30,9 +33,24 @@ export class VerifiedDoctorOrderItemComponent implements OnInit {
   }
 
 
-  onPickup(name:string,email:string,total:number,pickupDate:string,drugName:any[] = [],drugPrice:any[] = [],drugQuantity:any[] = [],doctorId:string,doctorContact:string,id:string){
+  async onPickup(name:string,email:string,total:number,pickupDate:string,drugId:any[] = [],drugName:any[] = [],drugPrice:any[] = [],drugQuantity:any[] = [],realQuantity:any[] = [],doctorId:string,doctorContact:string,id:string){
 
-    this.doctoderService.createPickedUpDoctorOder(name,email,doctorId,total,pickupDate,drugName,drugPrice,drugQuantity,doctorContact);
+    let length = drugName.length;
+    let quantity= 0;
+    console.log(length, realQuantity);
+
+
+    for (let count = 0 ; count < length; count++) {
+
+      quantity= +realQuantity[count] - +drugQuantity[count];
+      await this.inventoryInteractionService.updateQuantity(drugId[count],quantity);
+
+    console.log(drugId[count],drugQuantity[count],realQuantity[count],quantity);
+
+   }
+
+    this.doctoderService.createPickedUpDoctorOder(name,email,doctorId,total,pickupDate,drugId,drugName,drugPrice,drugQuantity,doctorContact);
+
 
 
     let user={
@@ -58,6 +76,8 @@ export class VerifiedDoctorOrderItemComponent implements OnInit {
 
       }
     );
+
+
 
     this.doctoderService.deleteVerifiedItem(id);
   }

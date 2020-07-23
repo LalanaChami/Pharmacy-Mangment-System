@@ -10,9 +10,11 @@ router.post("",(req,res,next)=>{
     doctorContact: req.body.doctorContact,
     doctorID: req.body.doctorId,
     doctorEmail: req.body.doctorEmail,
+    drugId: req.body.drugId,
     drugNames: req.body.drugName,
     drugPrice: req.body.drugPrice,
     drugQuantity: req.body.drugQuantity,
+    realQuantity: req.body.realQuantity,
     totalAmount: req.body.totalAmount,
     pickupDate: req.body.pickupDate
   });

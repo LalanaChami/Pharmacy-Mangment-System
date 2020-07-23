@@ -17,14 +17,16 @@ export class DoctorOderServices{
   constructor(private http: HttpClient, private router: Router){
   }
 
-  createDoctorUser(doctorName: string , doctorContact: string , doctorId: string ,doctorEmail: string ,drugName: Array<any> = [],drugPrice: Array<any> = [] ,drugQuantity: Array<any> = [] ,totalAmount: number,pickupDate: string){
+  createDoctorUser(doctorName: string , doctorContact: string , doctorId: string ,doctorEmail: string ,drugId: Array<any> = [] ,drugName: Array<any> = [],drugPrice: Array<any> = [] ,drugQuantity: Array<any> = [] ,realQuantity: Array<any> = [] ,totalAmount: number,pickupDate: string){
     const DoctorOderData  = {doctorName:doctorName ,
                             doctorContact:doctorContact ,
                             doctorId:doctorId ,
                             doctorEmail:doctorEmail ,
+                            drugId:drugId,
                             drugName:drugName ,
                             drugPrice:drugPrice,
                             drugQuantity:drugQuantity,
+                            realQuantity:realQuantity,
                             totalAmount:totalAmount,
                             pickupDate:pickupDate};
     this.http.post("http://localhost:3000/api/doctorOder",DoctorOderData)
@@ -37,14 +39,16 @@ export class DoctorOderServices{
 
 
 
-  createVerifiedDoctorOder(doctorName: string,doctorEmail: string,doctorId: string ,totalAmount: number,pickupDate: string, drugName: Array<any> = [],drugPrice: Array<any> = [] ,drugQuantity: Array<any> = [] ,doctorContact: string){
+  createVerifiedDoctorOder(doctorName: string,doctorEmail: string,doctorId: string ,totalAmount: number,pickupDate: string,drugId: Array<any> = [] ,drugName: Array<any> = [],drugPrice: Array<any> = [] ,drugQuantity: Array<any> = [],realQuantity: Array<any> = [] ,doctorContact: string){
     const VerifiedDoctorOderData  = {doctorName:doctorName ,
                             doctorContact:doctorContact ,
                             doctorId:doctorId ,
                             doctorEmail:doctorEmail ,
+                            drugId:drugId,
                             drugName:drugName ,
                             drugPrice:drugPrice,
                             drugQuantity:drugQuantity,
+                            realQuantity:realQuantity,
                             totalAmount:totalAmount,
                             pickupDate:pickupDate};
     this.http.post("http://localhost:3000/api/verifiedDoctorOder",VerifiedDoctorOderData)
@@ -56,11 +60,12 @@ export class DoctorOderServices{
 
 
 
-  createPickedUpDoctorOder(doctorName: string,doctorEmail: string,doctorId: string ,totalAmount: number,pickupDate: string, drugName: Array<any> = [],drugPrice: Array<any> = [] ,drugQuantity: Array<any> = [] ,doctorContact: string){
+  createPickedUpDoctorOder(doctorName: string,doctorEmail: string,doctorId: string ,totalAmount: number,pickupDate: string, drugId: Array<any> = [], drugName: Array<any> = [],drugPrice: Array<any> = [] ,drugQuantity: Array<any> = [] ,doctorContact: string){
     const PickedUpDoctorOderData  = {doctorName:doctorName ,
                             doctorContact:doctorContact ,
                             doctorId:doctorId ,
                             doctorEmail:doctorEmail ,
+                            drugId:drugId ,
                             drugName:drugName ,
                             drugPrice:drugPrice,
                             drugQuantity:drugQuantity,
@@ -84,9 +89,11 @@ export class DoctorOderServices{
         doctorContact : doctorOder.doctorContact ,
         doctorId : doctorOder.doctorID,
         doctorEmail : doctorOder.doctorEmail ,
+        drugId : doctorOder.drugId ,
         drugName : doctorOder.drugNames ,
         drugPrice : doctorOder.drugPrice,
         drugQuantity : doctorOder.drugQuantity,
+        realQuantity : doctorOder.realQuantity,
         totalAmount : doctorOder.totalAmount,
         pickupDate : doctorOder.pickupDate,
         id: doctorOder._id
@@ -116,9 +123,11 @@ export class DoctorOderServices{
         doctorContact : doctorOder.doctorContact ,
         doctorId : doctorOder.doctorID,
         doctorEmail : doctorOder.doctorEmail ,
+        drugId : doctorOder.drugId ,
         drugName : doctorOder.drugNames ,
         drugPrice : doctorOder.drugPrice,
         drugQuantity : doctorOder.drugQuantity,
+        realQuantity : doctorOder.realQuantity,
         totalAmount : doctorOder.totalAmount,
         pickupDate : doctorOder.pickupDate,
         id: doctorOder._id

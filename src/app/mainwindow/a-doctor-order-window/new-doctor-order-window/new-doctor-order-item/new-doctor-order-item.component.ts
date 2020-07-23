@@ -31,9 +31,9 @@ export class NewDoctorOrderItemComponent implements OnInit {
       });
   }
 
-  onOderVerify(name:string,email:string,total:number,pickupDate:string,drugName:any[] = [],drugPrice:any[] = [],drugQuantity:any[] = [],doctorId:string,doctorContact:string,id:string){
+  onOderVerify(name:string,email:string,total:number,pickupDate:string,drugId:any[] = [],drugName:any[] = [],drugPrice:any[] = [],drugQuantity:any[] = [],realQuantity:any[] = [],doctorId:string,doctorContact:string,id:string){
 
-    this.doctoderService.createVerifiedDoctorOder(name,email,doctorId,total,pickupDate,drugName,drugPrice,drugQuantity,doctorContact);
+    this.doctoderService.createVerifiedDoctorOder(name,email,doctorId,total,pickupDate,drugId,drugName,drugPrice,drugQuantity,realQuantity,doctorContact);
 
 
     let user={
