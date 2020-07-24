@@ -1,24 +1,26 @@
 <div style="overflow-y:auto ;overflow-x: hidden;height: 500px;">
   <table class="table is-full menu-list"  >
     <tbody>
-      <div class="" >
-        <tr>
-          <div class="div columns  is-full btn  " style="width: 200%;" >
+      <div class="" *ngFor="let inventory of inventorys">
+        <tr >
+          <div class="div columns  is-full btn  " style="width: 140%;" >
               <div class="div column" >
-                <table class="table is-full" style="width: 54.5%;">
+                <table class="table is-full" style="width: 97.5%;">
                   <thead style="font-weight: bold;">
-                    <td>Name</td>
-                    <td>Drugs </td>
-                    <td >Order ID </td>
-                    <td >Pickup Date </td>
-                    <td >Order Date </td>
+                    <td style="width: 20%;">Supplier's Email </td>
+                    <td style="width: 13%;">Drug Name </td>
+                    <td style="width: 8%;">Quantity </td>
+                    <td style="width: 14%;">Batch ID </td>
+                    <td style="width: 30%;">Expire Date</td>
+                    <td style="width: 10%;">Price</td>
                   </thead>
                   <tbody>
-                    <td>dkjfh</td>
-                    <td>Drsldflksugs </td>
-                    <td >Order sdlfkjsID </td>
-                    <td >Pickupslkdfj Date </td>
-                    <td >Ordersdlkfj Date </td>
+                    <td>{{ inventory.email }}</td>
+                    <td>{{ inventory.name }}</td>
+                    <td>{{ inventory.quantity }}</td>
+                    <td >{{ inventory.batchId }}</td>
+                    <td >{{ inventory.expireDate }} </td>
+                    <td >{{ inventory.price }} </td>
                   </tbody>
                 </table>
               </div>
@@ -27,107 +29,13 @@
           </div>
         </tr>
         <tr>
-          <div class=" " style="width: 106.5%;">
+          <div class=" " style="width: 134.5%;">
           <a class="button is-small is-primary is-right" style="font-weight: bold; " href="#">Picked Up</a>
         </div>
-        </tr>
+        </tr><br>
       </div>
   <br>
-  <div class="" >
-    <tr>
-      <div class="div columns  is-full btn " style="width: 200%;" >
-          <div class="div column" >
-            <table class="table is-full" style="width: 54.5%;">
-              <thead style="font-weight: bold;">
-                <td>Name</td>
-                <td>Drugs </td>
-                <td >Order ID </td>
-                <td >Pickup Date </td>
-                <td >Order Date </td>
-              </thead>
-              <tbody>
-                <td>dkjfh</td>
-                <td>Drsldflksugs </td>
-                <td >Order sdlfkjsID </td>
-                <td >Pickupslkdfj Date </td>
-                <td >Ordersdlkfj Date </td>
-              </tbody>
-            </table>
-          </div>
-          <div>
-        </div>
-      </div>
-    </tr>
-    <tr>
-      <div class=" " style="width: 106.5%;">
-      <a class="button is-small is-primary is-right" style="font-weight: bold; " href="#">Picked Up</a>
-    </div>
-    </tr>
-  </div>
-<br>
-<div class="" >
-  <tr>
-    <div class="div columns  is-full btn " style="width: 200%;" >
-        <div class="div column" >
-          <table class="table is-full" style="width: 54.5%;">
-            <thead style="font-weight: bold;">
-              <td>Name</td>
-              <td>Drugs </td>
-              <td >Order ID </td>
-              <td >Pickup Date </td>
-              <td >Order Date </td>
-            </thead>
-            <tbody>
-              <td>dkjfh</td>
-              <td>Drsldflksugs </td>
-              <td >Order sdlfkjsID </td>
-              <td >Pickupslkdfj Date </td>
-              <td >Ordersdlkfj Date </td>
-            </tbody>
-          </table>
-        </div>
-        <div>
-      </div>
-    </div>
-  </tr>
-  <tr>
-    <div class=" " style="width: 106.5%;">
-    <a class="button is-small is-primary is-right" style="font-weight: bold; " href="#">Picked Up</a>
-  </div>
-  </tr>
-</div>
-<br>
-<div class="" >
-  <tr>
-    <div class="div columns  is-full btn " style="width: 200%;" >
-        <div class="div column" >
-          <table class="table is-full" style="width: 54.5%;">
-            <thead style="font-weight: bold;">
-              <td>Name</td>
-              <td>Drugs </td>
-              <td >Order ID </td>
-              <td >Pickup Date </td>
-              <td >Order Date </td>
-            </thead>
-            <tbody>
-              <td>dkjfh</td>
-              <td>Drsldflksugs </td>
-              <td >Order sdlfkjsID </td>
-              <td >Pickupslkdfj Date </td>
-              <td >Ordersdlkfj Date </td>
-            </tbody>
-          </table>
-        </div>
-        <div>
-      </div>
-    </div>
-  </tr>
-  <tr>
-    <div class=" " style="width: 106.5%;">
-    <a class="button is-small is-primary is-right" style="font-weight: bold; " href="#">Picked Up</a>
-  </div>
-  </tr>
-</div>
+
 <br>
 
 

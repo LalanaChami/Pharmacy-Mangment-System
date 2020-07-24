@@ -19,7 +19,7 @@ export class OutofstockItemsComponent implements OnInit {
 
   ngOnInit() {
     this.isLoading = true;
-    this.inventoryInteractionService.getInventory(null,null);
+    this.inventoryInteractionService.getOutofStockInventory();
     this.inventorySubs = this.inventoryInteractionService.getInventoryUpdateListener()
       .subscribe((posts: Inventory[]) => {
         this.isLoading = false;
