@@ -108,6 +108,23 @@ router.get("",(req,res,next)=>{
 });
 
 
+router.get("/outofstock",(req,res,next)=>{
+  const pageSize = +req.query.pagesize;
+  const currentPage = +req.query.page;
+  const postQuery = Inventory.find({ $expr: { $lte: [ { $toDouble: "$quantity" }, 1000.0 ] }});
+  if(pageSize && currentPage){
+    postQuery
+      .skip(pageSize * (currentPage-1))
+      .limit(pageSize);
+  }
+  postQuery.then(documents=>{
+    res.status(200).json({
+      message : 'inventory min quanity items obtained  sucessfully',
+      inventorys :documents
+    });
+  });
+});
+
 router.get("/getExpired",(req,res,next)=>{
   const pageSize = +req.query.pagesize;
   const currentPage = +req.query.page;
