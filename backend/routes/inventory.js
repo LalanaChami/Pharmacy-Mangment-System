@@ -111,7 +111,28 @@ router.get("",(req,res,next)=>{
 router.get("/outofstock",(req,res,next)=>{
   const pageSize = +req.query.pagesize;
   const currentPage = +req.query.page;
-  const postQuery = Inventory.find({ $expr: { $lte: [ { $toDouble: "$quantity" }, 1000.0 ] }});
+  const postQuery = Inventory.find({ $expr: { $lte: [ { $toDouble: "$quantity" }, 1.0 ] }});
+  if(pageSize && currentPage){
+    postQuery
+      .skip(pageSize * (currentPage-1))
+      .limit(pageSize);
+  }
+  postQuery.then(documents=>{
+    res.status(200).json({
+      message : 'inventory min quanity items obtained  sucessfully',
+      inventorys :documents
+    });
+  });
+});
+
+
+router.get("/abouttooutofstock",(req,res,next)=>{
+  const pageSize = +req.query.pagesize;
+  const currentPage = +req.query.page;
+  const postQuery = Inventory.find({$and: [
+                                    { $expr: { $lte: [ { $toDouble: "$quantity" }, 500.0 ] }},
+                                    { $expr: { $gte: [ { $toDouble: "$quantity" }, 1.0 ] }}
+                                  ]});
   if(pageSize && currentPage){
     postQuery
       .skip(pageSize * (currentPage-1))
