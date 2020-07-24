@@ -53,6 +53,30 @@ export class InventoryInteractionService {
   }
 
 
+  getOutofStockInventory() {
+
+    this.http.get<{message: string, inventorys: any}>('http://localhost:3000/api/inventory/outofstock' )
+    .pipe(map(inventoryData => {
+     return inventoryData.inventorys.map(inventory=>{
+       return{
+        email: inventory.email,
+        name: inventory.name,
+        quantity:inventory.quantity,
+        batchId:inventory.batchId,
+        expireDate: inventory.expireDate,
+        price: inventory.price,
+        id: inventory._id,
+        imagePath:  inventory.imagePath
+       }
+     })
+    }))
+    .subscribe((transformedInventory)=>{
+      this.inventory = transformedInventory;
+      this.inventoryUpdated.next([...this.inventory])
+    });
+  }
+
+
   getExpiredInventory(){
     this.http.get<{message: string, inventorys: any}>('http://localhost:3000/api/inventory/getExpired')
     .pipe(map(inventoryData => {
