@@ -24,6 +24,7 @@
     "@angular/router": "~8.2.8",
     "@fortawesome/fontawesome-free": "^5.13.0",
     "angular-bootstrap-md": "^9.0.1",
+    "angular-google-charts": "^1.1.4",
     "animate.css": "^3.7.2",
     "bcrypt": "^4.0.1",
     "body-parser": "^1.19.0",

@@ -10,6 +10,7 @@ import { ChartsModule } from 'ng2-charts';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { Ng2CarouselamosModule } from 'ng2-carouselamos';
+import { GoogleChartsModule } from 'angular-google-charts';
 
 import { MatSelectModule, MatSelect } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -182,7 +183,8 @@ const appRoutes: Routes =[
     FormsModule,
     Ng2CarouselamosModule,
     MatFormFieldModule,
-    MatSelectModule
+    MatSelectModule,
+    GoogleChartsModule
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor , multi: true},AuthGuard],
   bootstrap: [AppComponent]

@@ -1,64 +1,56 @@
-import { Component, OnInit } from '@angular/core';
+import { Sales } from 'src/app/mainwindow/a-pointofsale-window/sales.model';
+import { Subscription } from 'rxjs';
+import { SalesInteractionService } from './../../a-pointofsale-window/sales-interaction.service';
+import { Component, OnInit, AfterViewInit } from '@angular/core';
 
 @Component({
   selector: 'app-sales-chart',
   templateUrl: './sales-chart.component.html',
   styleUrls: ['./sales-chart.component.css']
 })
-export class SalesChartComponent implements OnInit {
-// ADD CHART OPTIONS.
-chartOptions = {
-  responsive: true    // THIS WILL MAKE THE CHART RESPONSIVE (VISIBLE IN ANY DEVICE).
-}
+export class SalesChartComponent implements OnInit  {
+  searchTerm : string;
+  sales  = [];
+  isLoading= false;
+  private salesSubs: Subscription;
 
-labels =  ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
-
-// STATIC DATA FOR THE CHART IN JSON FORMAT.
-chartData = [
-  {
-    label: '1st Year',
-    data: [21, 56, 4, 31, 45, 15, 57, 61, 9, 17, 24, 59]
-  },
-  {
-    label: '2nd Year',
-    data: [47, 9, 28, 54, 77, 51, 24]
-  }
-];
-
-// CHART COLOR.
-colors = [
-  { // 1st Year.
-    backgroundColor: 'rgba(77,83,96,0.2)'
-  },
-  { // 2nd Year.
-    backgroundColor: 'rgba(30, 169, 224, 0.8)'
-  }
-]
-
-// CHART CLICK EVENT.
-onChartClick(event) {
-  console.log(event);
-}
-
-
-
-
-
-
-// public barChartOptions={
-//   scaleShowVerticalLines :false,
-//   responsive: true
-// }
-// public barChartLabels = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep'];
-// public barChartType = 'bar';
-// public barChartLegend = true;
-// public barChartData = [
-//   {data: [43,12,34,76,23,67,23,78,45], label:'Sales predictions for upcomming months',backgroundColor:'HSL(171, 100%, 50%)',hoverBackgroundColor:'HSL(171, 100%, 30%) '}
-// ];
-
-  constructor() { }
+  constructor(private salesInteractionService: SalesInteractionService) { }
 
   ngOnInit() {
+
+    this.isLoading = true;
+    this.salesInteractionService.getSalesChartInfo();
+    this.salesSubs = this.salesInteractionService.getSalesUpdateListener()
+      .subscribe((posts: Sales[]) => {
+        this.isLoading = false;
+        this.sales = posts;
+      });
+console.log(this.sales)
+
   }
+
+
+
+
+        title = 'Population (in millions)';
+        type = 'BarChart';
+        data = [
+            ["2012", 900, 390],
+            ["2013", 1000, 400],
+            ["2014", 1170, 440],
+            ["2015", 1250, 480],
+            ["2016", 1530, 540]
+        ];
+        columnNames = ['Year', 'Asia','Europe'];
+        options = {
+            hAxis: {
+              title: 'Year'
+            },
+            vAxis:{
+              minValue:0
+            }
+        };
+        width = 550;
+        height = 400;
 
 }

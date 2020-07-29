@@ -24,6 +24,7 @@ export class DrugInventoryItemsComponent implements OnInit {
         this.isLoading = false;
         this.inventorys = posts;
       });
+
   }
 
 

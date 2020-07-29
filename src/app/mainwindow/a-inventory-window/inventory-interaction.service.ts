@@ -148,6 +148,8 @@ export class InventoryInteractionService {
     });
   }
 
+
+
   // getItemsOfId(id: string){
   //   this.http.get<{message: string, inventorys: any}>('http://localhost:3000/api/inventory/' + id)
   //   .pipe(map(inventoryData => {
