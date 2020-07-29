@@ -10,9 +10,17 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 })
 export class SalesChartComponent implements OnInit  {
   searchTerm : string;
-  sales  = [];
+  saleso  : any;
   isLoading= false;
   private salesSubs: Subscription;
+  arr=[
+    ["2012", 900, 390],
+    ["2013", 1000, 400],
+    ["2014", 1170, 440],
+    ["2015", 1250, 480],
+    ["2016", 1530, 540]
+];
+arr2 :[];
 
   constructor(private salesInteractionService: SalesInteractionService) { }
 
@@ -20,13 +28,16 @@ export class SalesChartComponent implements OnInit  {
 
     this.isLoading = true;
     this.salesInteractionService.getSalesChartInfo();
-    this.salesSubs = this.salesInteractionService.getSalesUpdateListener()
-      .subscribe((posts: Sales[]) => {
+    this.salesSubs= this.salesInteractionService.getSalesChartUpdateListener()
+      .subscribe((posts) => {
         this.isLoading = false;
-        this.sales = posts;
-      });
-console.log(this.sales)
+        this.saleso = posts;
 
+      });
+
+
+
+console.log(this.arr2.push[(this.saleso)]);
   }
 
 
@@ -34,13 +45,7 @@ console.log(this.sales)
 
         title = 'Population (in millions)';
         type = 'BarChart';
-        data = [
-            ["2012", 900, 390],
-            ["2013", 1000, 400],
-            ["2014", 1170, 440],
-            ["2015", 1250, 480],
-            ["2016", 1530, 540]
-        ];
+        data = this.arr;
         columnNames = ['Year', 'Asia','Europe'];
         options = {
             hAxis: {
