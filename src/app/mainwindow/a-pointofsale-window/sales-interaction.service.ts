@@ -60,6 +60,29 @@ export class SalesInteractionService {
 
   }
 
+  getSalesChartInfo(){
+    console.log("service")
+    this.http.get<{message: string, sales: any}>('http://localhost:3000/api/sales/getSalesChartInfo')
+    .pipe(map(salesData => {
+     return salesData.sales.map(sales=>{
+       return{
+        // drugName: sales.drugName,
+        totalPrice: sales[0][0],
+        dateTime: sales[0][1],
+        drugName: "null",
+        tax: "null",
+        paidAmount: "null",
+        balance: "null",
+        id:"null",
+       }
+     })
+    }))
+    .subscribe((transformedSales)=>{
+      this.sales = transformedSales;
+      this.salesUpdated.next([...this.sales])
+    });
+  }
+
   getSalesUpdateListener() {
     return this.salesUpdated.asObservable();
   }

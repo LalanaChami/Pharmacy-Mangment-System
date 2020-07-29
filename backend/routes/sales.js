@@ -12,6 +12,7 @@ router.post("",(req,res,next)=>{
     paidAmount: req.body.paidAmount,
     balance: req.body.balance
   });
+
   sales.save().then(createdSales=>{
   res.status(201).json({
     message:'Sales Added Successfully',
@@ -20,6 +21,25 @@ router.post("",(req,res,next)=>{
 
   });
 
+  });
+
+  router.get("/getSalesChartInfo",(req,res,next)=>{
+    console.log("called");
+    Sales.aggregate([{ "$project": {
+                                        "paidAmount": 1,
+                                        "month": { "$month": "$dateTime" }
+                                    }},
+                                    { "$group": {
+                                        "_id": "$month",
+                                        "total": { "$sum": { $toDouble: "$paidAmount" }}
+                                    }}
+                                  ])
+    .then(documents=>{
+      res.status(200).json({
+        message : 'sales chart details obtaine sucessfully',
+        sales :documents
+      });
+    });
   });
 
   router.get("",(req,res,next)=>{
