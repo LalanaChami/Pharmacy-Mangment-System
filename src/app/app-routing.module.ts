@@ -1,3 +1,6 @@
+import { SalesChartComponent } from './mainwindow/a-sales-window/sales-chart/sales-chart.component';
+import { SalesReportComponent } from './mainwindow/a-sales-window/sales-report/sales-report.component';
+import { ASalesWindowComponent } from './mainwindow/a-sales-window/a-sales-window.component';
 import { AboutToFinishWindowComponent } from './mainwindow/a-exp-outofstock-window/about-to-finish-window/about-to-finish-window.component';
 import { OutOfStockWindowComponent } from './mainwindow/a-exp-outofstock-window/out-of-stock-window/out-of-stock-window.component';
 import { AExpOutofstockWindowComponent } from './mainwindow/a-exp-outofstock-window/a-exp-outofstock-window.component';
@@ -46,7 +49,11 @@ const routes: Routes = [
   {path: 'expoutofstock/abouttoexpire', component: AboutToExpireWindowComponent },
 
   {path: 'outofstock', component: OutOfStockWindowComponent },
-  {path: 'outofstock/abouttofinish', component: AboutToFinishWindowComponent }
+  {path: 'outofstock/abouttofinish', component: AboutToFinishWindowComponent },
+
+
+  {path: 'salesreport', component: SalesChartComponent },
+  {path: 'salesreport/report', component: SalesReportComponent },
 
 
 ];

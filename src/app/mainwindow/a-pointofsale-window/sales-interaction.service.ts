@@ -14,6 +14,9 @@ export class SalesInteractionService {
   private sales = [];
   private salesUpdated = new Subject<Sales[]>();
 
+  private salesChart = [];
+  private salesChartUpdated = new Subject<any[]>();
+
   constructor(private http: HttpClient, private router : Router){}
 
   addSales( drugName: Array<any> =[], totalPrice: number, tax: number, paidAmount: number, balance: number) {
@@ -60,15 +63,17 @@ export class SalesInteractionService {
 
   }
 
-  getSalesChartInfo(){
+
+
+   getSalesChartInfo(){
     console.log("service")
     this.http.get<{message: string, sales: any}>('http://localhost:3000/api/sales/getSalesChartInfo')
     .pipe(map(salesData => {
      return salesData.sales.map(sales=>{
        return{
         // drugName: sales.drugName,
-        totalPrice: sales[0][0],
-        dateTime: sales[0][1],
+        totalPrice: sales.total,
+        dateTime: sales._id,
         drugName: "null",
         tax: "null",
         paidAmount: "null",
@@ -78,13 +83,20 @@ export class SalesInteractionService {
      })
     }))
     .subscribe((transformedSales)=>{
-      this.sales = transformedSales;
-      this.salesUpdated.next([...this.sales])
+
+      this.salesChart = transformedSales;
+      this.salesChartUpdated.next([...this.salesChart])
     });
+  }
+
+  getSalesChartUpdateListener() {
+    return this.salesChartUpdated.asObservable();
+    // console.log(this.salesChart);
   }
 
   getSalesUpdateListener() {
     return this.salesUpdated.asObservable();
+    // console.log(this.salesChart);
   }
 
   // updateSupplier(id: string , supplierID: string , name: string, email: string, contact: string, drugsAvailable: string){

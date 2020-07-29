@@ -24,7 +24,7 @@ router.post("",(req,res,next)=>{
   });
 
   router.get("/getSalesChartInfo",(req,res,next)=>{
-    console.log("called");
+
     Sales.aggregate([{ "$project": {
                                         "paidAmount": 1,
                                         "month": { "$month": "$dateTime" }

@@ -25,6 +25,8 @@ export class DrugInventoryItemsComponent implements OnInit {
         this.inventorys = posts;
       });
 
+
+
   }
 
 
