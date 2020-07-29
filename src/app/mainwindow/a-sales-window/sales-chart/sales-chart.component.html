@@ -2,39 +2,38 @@
   <p class="panel-heading" style="background-color:hsl(0, 0%, 88%) ;color:hsl(0, 0%, 21%)">
     Sales Chart
   </p>
+
   <div class="panel-block ">
     <div  style="height: 350px; width: 100%;">
       <div class="column">
       <div class="box">
-        <canvas
-      baseChart
-      [chartType]="'bar'"
-      [datasets]="chartData"
-      [labels]="labels"
-      [options]="chartOptions"
-      [legend]="true"
-      [colors]="colors"
-      (chartClick)="onChartClick($event)">
-  </canvas>
+
+        <google-chart #chart
+   [title]="title"
+   [type]="type"
+   [data]="data"
+
+   [options]="options"
+   [width]="width"
+   [height]="height">
+</google-chart>
+
        </div>
       </div>
     </div>
+
   </div>
+  <br><br><br><br><br><br><br><br><br>
   <div class="panel-block">
-    <table class="table is-half is-center" style="width:100%">
-
-      <tbody class="is-center">
-        <tr class="is-center">
-
-          <td><button class="button is-primary   is-full" onclick="pushData()">Next Month Sales</button></td>
-          <td><button class="button is-primary   is-full" onclick="addChart(chartType,labels,datasets)">Actual Sales </button></td>
-          <td><button class="button is-primary   is-full" onclick="reset()">Reset </button></td>
-
-        </tr>
-
-      </tbody>
-    </table>
+    <div *ngFor="let item of sales">
+      <p>{{item.totalPrice}}</p><br>
+      <p>{{item.dateTime}}</p><br>
+      <p>{{item.drugName}}</p><br>
+      <p>{{item.paidAmount}}</p><br>
+      <p>{{item.tax}}</p>
+        </div>
 
   </div>
+
 </section>
 
