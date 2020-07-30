@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
 import {Sales} from './sales.model';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { map } from 'rxjs/operators';
@@ -13,6 +13,9 @@ export class SalesInteractionService {
 
   private sales = [];
   private salesUpdated = new Subject<Sales[]>();
+
+  private salesChart = [];
+  private salesChartUpdated = new Subject<any[]>();
 
   constructor(private http: HttpClient, private router : Router){}
 
@@ -60,15 +63,20 @@ export class SalesInteractionService {
 
   }
 
-  getSalesChartInfo(){
+  getSalesChartInfo2():Observable<any>{
+    return this.http.get<{ message: string,sales:any}>('http://localhost:3000/api/sales/getSalesChartInfo');
+  }
+
+
+   getSalesChartInfo(){
     console.log("service")
     this.http.get<{message: string, sales: any}>('http://localhost:3000/api/sales/getSalesChartInfo')
     .pipe(map(salesData => {
      return salesData.sales.map(sales=>{
        return{
         // drugName: sales.drugName,
-        totalPrice: sales[0][0],
-        dateTime: sales[0][1],
+        totalPrice: sales.total,
+        dateTime: sales._id,
         drugName: "null",
         tax: "null",
         paidAmount: "null",
@@ -78,13 +86,20 @@ export class SalesInteractionService {
      })
     }))
     .subscribe((transformedSales)=>{
-      this.sales = transformedSales;
-      this.salesUpdated.next([...this.sales])
+
+      this.salesChart = transformedSales;
+      this.salesChartUpdated.next([...this.salesChart])
     });
+  }
+
+  getSalesChartUpdateListener() {
+    return this.salesChartUpdated.asObservable();
+    // console.log(this.salesChart);
   }
 
   getSalesUpdateListener() {
     return this.salesUpdated.asObservable();
+    // console.log(this.salesChart);
   }
 
   // updateSupplier(id: string , supplierID: string , name: string, email: string, contact: string, drugsAvailable: string){
