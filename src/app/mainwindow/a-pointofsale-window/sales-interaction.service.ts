@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Subject } from 'rxjs';
+import { Subject, Observable } from 'rxjs';
 import {Sales} from './sales.model';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { map } from 'rxjs/operators';
@@ -63,6 +63,9 @@ export class SalesInteractionService {
 
   }
 
+  getSalesChartInfo2():Observable<any>{
+    return this.http.get<{ message: string,sales:any}>('http://localhost:3000/api/sales/getSalesChartInfo');
+  }
 
 
    getSalesChartInfo(){

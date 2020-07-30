@@ -13,14 +13,8 @@ export class SalesChartComponent implements OnInit  {
   saleso  : any;
   isLoading= false;
   private salesSubs: Subscription;
-  arr=[
-    ["2012", 900, 390],
-    ["2013", 1000, 400],
-    ["2014", 1170, 440],
-    ["2015", 1250, 480],
-    ["2016", 1530, 540]
-];
-arr2 :[];
+  arr: Array<any> =[];
+
 
   constructor(private salesInteractionService: SalesInteractionService) { }
 
@@ -36,26 +30,25 @@ arr2 :[];
       });
 
 
-
-console.log(this.arr2.push[(this.saleso)]);
+        this.salesInteractionService.getSalesChartInfo2().subscribe(results =>{
+          results.sales.map(chart =>{
+            console.log(chart._id);
+            this.arr.push([chart._id,chart.total])
+          });
+        });
+console.log(this.arr);
   }
 
 
 
 
-        title = 'Population (in millions)';
-        type = 'BarChart';
-        data = this.arr;
-        columnNames = ['Year', 'Asia','Europe'];
-        options = {
-            hAxis: {
-              title: 'Year'
-            },
-            vAxis:{
-              minValue:0
-            }
-        };
-        width = 550;
-        height = 400;
+  title = 'Population (in millions)';
+  type = 'BarChart';
+  data = this.arr;
+  columnNames = ['Year', 'Asia'];
+  options = { };
+  width = 1150;
+  height = 400;
+
 
 }
