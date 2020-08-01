@@ -10,7 +10,7 @@ export class EmailInteractionService{
   }
 
   httpPost(url, {}) {
-    return this.http.post(url, { name: "Subrat" });
+    return this.http.post(url, { name: "Email Server" });
   }
 
   sendEmail(url, data) {

@@ -15,40 +15,50 @@ export class SalesChartComponent implements OnInit  {
   private salesSubs: Subscription;
   arr: Array<any> =[];
 
+  title :string;
+  type ;
+  data ;
+  columnNames ;
+  options;
+  width :number;
+  height :number;
+
 
   constructor(private salesInteractionService: SalesInteractionService) { }
 
-  ngOnInit() {
-
-    this.isLoading = true;
-    this.salesInteractionService.getSalesChartInfo();
-    this.salesSubs= this.salesInteractionService.getSalesChartUpdateListener()
-      .subscribe((posts) => {
-        this.isLoading = false;
-        this.saleso = posts;
-
-      });
+  async ngOnInit() {
 
 
         this.salesInteractionService.getSalesChartInfo2().subscribe(results =>{
           results.sales.map(chart =>{
             console.log(chart._id);
-            this.arr.push([chart._id,chart.total])
-          });
+            this.arr.push([+chart._id,+chart.total])
+          })
         });
-console.log(this.arr);
+        await this.sleep(3000);
+        this.Newchart();
+
+    //setTimeout(() => {  console.log("World!"); }, 2000);
   }
 
 
 
+public  Newchart(){
+  console.log(this.arr);
+  this.title = 'Sales Done (per Each month this year)';
+    this.type = 'BarChart';
+    this.data = this.arr;
+    this.columnNames = ['Month', 'Sales'];
+    this.options = { };
+    this.width = 1150;
+    this.height = 500;
 
-  title = 'Population (in millions)';
-  type = 'BarChart';
-  data = this.arr;
-  columnNames = ['Year', 'Asia'];
-  options = { };
-  width = 1150;
-  height = 400;
+}
+
+public sleep(ms) {
+  return new Promise(resolve => setTimeout(resolve, ms));
+}
+
 
 
 }
