@@ -44,7 +44,7 @@
 
             <div class="panel-block ">
               <div class="panel-block" style="z-index: 1;">
-                <div *ngFor="let item of saleso">
+                <!-- <div *ngFor="let item of saleso">
                   <p>{{item.totalPrice}}</p><br>
                   <p>{{item.dateTime}}</p><br>
                   <p>{{item.drugName}}</p><br>
@@ -52,10 +52,10 @@
                   <p>{{item.tax}}</p><br>
                   <div>kajdhfakjsdhfkjsd</div><br>
                   <p>kajdhfakjsdhfkjsd</p><br>
-              </div>
+              </div> -->
 
               </div>
-              <div  style="height: 350px; width: 100%;">
+              <div  style="height: 850px; width: 100%;">
                 <div class="column">
                 <div class="box">
 
@@ -63,7 +63,7 @@
              [title]="title"
              [type]="type"
              [data]="data"
-
+            [columns]="columnNames"
              [options]="options"
              [width]="width"
              [height]="height">
