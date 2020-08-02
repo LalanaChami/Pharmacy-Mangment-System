@@ -1,0 +1,8 @@
+#chart{
+  width:120px;
+    margin: 10px;
+    border:5px solid red;
+    border-radius: 100px;
+    -webkit-border-radius: 500px;
+    -moz-border-radius: 500px;
+}
