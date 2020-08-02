@@ -49,8 +49,25 @@ public  Newchart(){
     this.type = 'BarChart';
     this.data = this.arr;
     this.columnNames = ['Month', 'Sales'];
-    this.options = { };
-    this.width = 1150;
+    this.options = {
+                    colors: ['#00d1b2'],
+                    backgroundColor: '#21313C',
+                    is3D: true,
+                    hAxis: {
+                      textStyle:{color: '#FFF'}
+                    },
+                    vAxis: {
+                      textStyle:{color: '#FFF'}
+                    },
+                    titleTextStyle: {
+                      color: '#FFF'
+                  },
+                  nameTextStyle: {
+                    color: "#FFF"
+                  },
+                  boderRadius:10,
+                };
+    this.width = 550;
     this.height = 500;
 
 }

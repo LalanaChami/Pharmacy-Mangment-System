@@ -25,41 +25,23 @@
           </div>
         </div>
       </section>
-    <section class="panel" style="margin: 3px;margin-top: -30px; width: 99%;">
-
-      <div >
-        <div  style="height: 610px; width: 100%;">
 
 
+    <section class="panel section level-item" style="margin: 3px;margin-top: -50px; width: 99%;">
 
-
-
-
-
-          <section class="panel">
+          <div class="column panel is-half level-right" style="width: 50%;">
 
             <p class="panel-heading" style="background-color:hsl(0, 0%, 88%) ;color:hsl(0, 0%, 21%)">
-              Sales Chart
+              Sales per Month
             </p>
 
             <div class="panel-block ">
-              <div class="panel-block" style="z-index: 1;">
-                <!-- <div *ngFor="let item of saleso">
-                  <p>{{item.totalPrice}}</p><br>
-                  <p>{{item.dateTime}}</p><br>
-                  <p>{{item.drugName}}</p><br>
-                  <p>{{item.paidAmount}}</p><br>
-                  <p>{{item.tax}}</p><br>
-                  <div>kajdhfakjsdhfkjsd</div><br>
-                  <p>kajdhfakjsdhfkjsd</p><br>
-              </div> -->
 
-              </div>
               <div  style="height: 850px; width: 100%;">
                 <div class="column">
                 <div class="box">
 
-                  <google-chart #chart
+                  <google-chart style="background-color: #21313C; border-radius: 10px;" #chart
              [title]="title"
              [type]="type"
              [data]="data"
@@ -69,28 +51,39 @@
              [height]="height">
           </google-chart>
 
+
                  </div>
+
                 </div>
               </div>
 
             </div>
-          </section>
+          </div>
 
 
+          <div class="column panel is-half level-left" style="width: 50%;">
+
+            <p class="panel-heading" style="background-color:hsl(0, 0%, 88%) ;color:hsl(0, 0%, 21%)">
+              Sales per Drug
+            </p>
+
+            <div class="panel-block ">
+
+              <div  style="height: 850px; width: 100%;">
+                <div class="column">
+                <div class="box">
+          <iframe style="background: #21313C;border: none;height: 500px;width: 100%;border-radius: 10px;box-shadow: 0 2px 40px 0 rgba(70, 76, 79, .2);" width="640" height="780" src="https://charts.mongodb.com/charts-project-0-logtf/embed/charts?id=542b4874-f7d6-4088-9041-d8c7c886f8bb&autoRefresh=10&theme=dark"></iframe>
 
 
+                 </div>
+
+                </div>
+              </div>
+
+            </div>
+          </div>
 
 
-
-
-
-
-
-
-
-
-        </div>
-      </div>
       <div class="panel-block">
 
       </div>
