@@ -1,3 +1,4 @@
+import { XExpiredDialogBoxComponent } from './mainwindow/x-expired-dialog-box/x-expired-dialog-box.component';
 import { DoctorOderServices } from './mainwindow/a-inventory-window/a-shopping-cart-window/DoctorOderServices.service';
 import { AuthDoctorUserService } from './auth/doctorAuth/authDoctorUser.service';
 import { DoctorSignupComponent } from './auth/doctorAuth/doctorSignup/doctorSignup.component';
@@ -15,7 +16,7 @@ import { Ng2GoogleChartsModule } from 'ng2-google-charts';
 
 import { MatSelectModule, MatSelect } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatPaginatorModule, MatInputModule } from '@angular/material';
+import { MatPaginatorModule, MatInputModule, MatDialogModule, MatButtonModule, MatButton } from '@angular/material';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { HeaderUserdetailsComponent } from './header/header-userdetails/header-userdetails.component';
@@ -168,8 +169,12 @@ const appRoutes: Routes =[
     SupplierFilterPipe,
     InventoryFilterPipe,
     DoctorLoginComponent,
-    DoctorSignupComponent
+    DoctorSignupComponent,
+    XExpiredDialogBoxComponent
 
+  ],
+  entryComponents: [
+    XExpiredDialogBoxComponent
   ],
   imports: [
     BrowserModule,
@@ -186,6 +191,9 @@ const appRoutes: Routes =[
     MatFormFieldModule,
     MatSelectModule,
     GoogleChartsModule,
+    MatDialogModule,
+    MatButtonModule
+
 
   ],
   providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor , multi: true},AuthGuard],

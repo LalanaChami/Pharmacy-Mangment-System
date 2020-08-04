@@ -4,7 +4,7 @@
         <tr *ngFor="let inventory of inventorys">
           <div class="div columns  is-full btn r" style="width: 200%;" >
               <div class="div column" >
-                <table class="table is-full" style="width: 61.6%;">
+                <table class="table is-full" style="width: 58.6%;">
                   <thead style="font-weight: bold;">
                     <td style="width: 20%;">Supplier's Email </td>
                     <td style="width: 20%;">Drug Name </td>
@@ -22,11 +22,19 @@
                     <td >{{ inventory.batchId }}</td>
                     <td >{{ inventory.expireDate }} </td>
                     <td >{{ inventory.price }} </td>
-                    <td class="level-right"><a class="button is-small is-primary" style="font-weight: bold;margin-right: 1%;" href="#">Request </a></td>
+                    <td class="level-right"><a class="button is-small is-primary" style="font-weight: bold;margin-right: 1%;" (click)="OpenMessageBox(inventory.email,inventory.name,inventory.quantity,inventory.batchId,inventory.expireDate,inventory.price  )">Request </a></td>
 
                   </tbody>
                 </table>
               </div>
+
+              <div id="confirmBox" *ngIf="displayConfirmBox">
+                <div class="message"></div>
+                <button (click)="ClickYes">Yes</button>
+                <button (click)="ClickNo">No</button>
+            </div>
+
+
           </div><br>
         </tr>
   <br>

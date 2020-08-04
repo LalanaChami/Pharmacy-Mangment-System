@@ -1,4 +1,8 @@
+import { from } from 'rxjs';
+import { SalesInteractionService } from './../a-pointofsale-window/sales-interaction.service';
 import { Component, OnInit } from '@angular/core';
+
+import * as tf from '@tensorflow/tfjs';
 
 @Component({
   selector: 'app-a-prediction-report-window',
@@ -7,9 +11,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class APredictionReportWindowComponent implements OnInit {
 
-  constructor() { }
+
+  constructor( ) { }
 
   ngOnInit() {
+
+
+
   }
+
+
+
+
 
 }

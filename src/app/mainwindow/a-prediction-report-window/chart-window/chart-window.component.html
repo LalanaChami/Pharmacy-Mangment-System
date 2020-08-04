@@ -6,16 +6,7 @@
     <div  style="height: 350px; width: 100%;">
       <div class="column">
       <div class="box">
-        <canvas
-      baseChart
-      [chartType]="'bar'"
-      [datasets]="chartData"
-      [labels]="labels"
-      [options]="chartOptions"
-      [legend]="true"
-      [colors]="colors"
-      (chartClick)="onChartClick($event)">
-  </canvas>
+
        </div>
       </div>
     </div>
@@ -26,7 +17,7 @@
       <tbody class="is-center">
         <tr class="is-center">
 
-          <td><button class="button is-primary   is-full" onclick="pushData()">Next Month Sales</button></td>
+          <td><button class="button is-primary   is-full" (click)="predict(8767)">Next Month Sales</button></td>
           <td><button class="button is-primary   is-full" onclick="addChart(chartType,labels,datasets)">Actual Sales </button></td>
           <td><button class="button is-primary   is-full" onclick="reset()">Reset </button></td>
 
