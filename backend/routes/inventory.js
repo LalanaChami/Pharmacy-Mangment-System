@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const multer = require("multer");
+const nodemailer = require("nodemailer");
 
 const MIME_TYPE_MAP ={
   'image/png' : 'png',
@@ -202,5 +203,103 @@ router.delete("/:id", (req, res, next) => {
     res.status(200).json({ message: 'Inventory deleted!' });
   });
 });
+
+
+router.post("/sendmail", (req, res) => {
+  console.log("request came");
+  let user = req.body;
+  sendMail(user, info => {
+    console.log(`The mail has been send 😃 and the id is ${info.messageId}`);
+    res.send(info);
+  });
+});
+
+
+async function sendMail(user, callback) {
+  // reusable transporter object using the default SMTP transport
+  let transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 587,
+    secure: false, // true for 465, false for other ports
+    auth: {
+      user: "pharmacare.contactus@gmail.com",
+      pass: "lalana1011294"
+    }
+  });
+
+  let mailOptions = {
+    from: '"Pharma Care Pharmacies"<example.gmail.com>', // sender address
+    to: user.email, // list of receivers
+    subject: "Requesting New Drug Oder "+user.name, // Subject line
+    html: `
+    <head>
+    <style>
+      table {
+        font-family: arial, sans-serif;
+        border-collapse: collapse;
+        width: 100%;
+      }
+
+      td, th {
+        border: 1px solid #dddddd;
+        text-align: left;
+        padding: 8px;
+      }
+
+      tr:nth-child(even) {
+        background-color: #dddddd;
+      }
+      </style>
+      <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>
+      <script>
+
+          $(function(){
+            var results = [], row;
+            $('#table1').find('th, td').each(function(){
+                if(!this.previousElementSibling && typeof(this) != 'undefined'){ //New Row?
+                    row = [];
+                    results.push(row);
+                }
+                row.push(this.textContent || this.innerText); //Add the values (textContent is standard while innerText is not)
+            });
+            console.log(results);
+        });
+
+      </script>
+      </head>
+
+    <body>
+    <h1>Dear Supplier </h1><br>
+    <h3>Our current stock of ${user.name} has been expired</h3><br>
+    <h2>So we (PharmaCare Managment would like to request ${user.quantityNumber} amount of units from ${user.name} )</h2><br>
+    <h3>Please reply back if the this oder is verified.</h3>
+
+    <h2>Purchase Oder </h2>
+
+    <table id="table1">
+      <tr>
+        <th>Odered Drug Name</th>
+        <th>Drug Quantity </th>
+        <th>Requested Price per unit (Rs.)</th>
+      </tr>
+      <tr>
+        <td>${user.name}</td>
+        <td>${user.quantityNumber}</td>
+        <td>${user.price}</td>
+      </tr>
+
+    </table><br>
+
+    <h3>Info* : </h3>
+    <h4>If there is any issue reagrding the oder please be free to contact us or email us (pharmacare.contactus@gmail.com) 😃 </h4>
+    </body>
+    `
+  };
+
+  // send mail with defined transport object
+  let info = await transporter.sendMail(mailOptions);
+
+  callback(info);
+}
 
 module.exports = router;
