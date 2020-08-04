@@ -1,4 +1,8 @@
+import { SalesInteractionService } from './../../a-pointofsale-window/sales-interaction.service';
 import { Component, OnInit } from '@angular/core';
+import * as tf from '@tensorflow/tfjs';
+
+
 
 @Component({
   selector: 'app-prediction-chart-window',
@@ -7,9 +11,18 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PredictionChartWindowComponent implements OnInit {
 
-  constructor() { }
+  arr: Array<any> =[];
+  linearModel: tf.Sequential;
+  prediction: any;
+
+  constructor(  ) { }
 
   ngOnInit() {
+
+
+
   }
+
+
 
 }

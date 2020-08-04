@@ -1,0 +1,15 @@
+<form (submit)="onSendEmail(data.name,data.price,data.email,data.quantity,quantityForm)" #quantityForm="ngForm">
+<h2 mat-dialog-title>Do you want to request {{data.name}} </h2>
+<p >Drug Name : {{data.name}}</p><br>
+<p>Previous Price(unit price) : {{data.price}}</p><br>
+<p>Supplier's Email : {{data.email}}</p><br>
+<p>Remaning Quantity : {{data.quantity}}</p><br>
+<div >
+  <p class="is-left">Enter the Quantity you need</p>
+  <input type="number" class="is-center"  style="width: 50%;" name="quantityNumber" ngModel #quantityNumberInput="ngModel"/>
+</div><br>
+<mat-dialog-actions>
+<button mat-button  mat-dialog-close="true">Cancel</button>
+<button mat-button mat-dialog-close="false" type="submit">Send Email</button>
+</mat-dialog-actions>
+</form>

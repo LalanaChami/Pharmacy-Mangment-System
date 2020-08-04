@@ -17,4 +17,8 @@ export class EmailInteractionService{
     return this.http.post(url, data);
   }
 
+  expiredDialog(){
+
+  }
+
 }
