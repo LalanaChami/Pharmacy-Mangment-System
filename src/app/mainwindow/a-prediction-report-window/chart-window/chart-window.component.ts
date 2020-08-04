@@ -1,4 +1,6 @@
+import { SalesInteractionService } from './../../a-pointofsale-window/sales-interaction.service';
 import { Component, OnInit } from '@angular/core';
+import * as tf from '@tensorflow/tfjs';
 
 @Component({
   selector: 'app-chart-window',
@@ -7,77 +9,61 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ChartWindowComponent implements OnInit {
 
+  arr: Array<any> =[];
+  linearModel: tf.Sequential;
+  prediction: any;
 
-  // ADD CHART OPTIONS.
-  chartOptions = {
-    responsive: true    // THIS WILL MAKE THE CHART RESPONSIVE (VISIBLE IN ANY DEVICE).
-  }
-
-  labels =  ['JAN', 'FEB', 'MAR', 'APR', 'MAY', 'JUN', 'JUL', 'AUG', 'SEP', 'OCT', 'NOV', 'DEC'];
-
-  // STATIC DATA FOR THE CHART IN JSON FORMAT.
-  chartData = [
-    {
-      label: '1st Year',
-      data: [21, 56, 4, 31, 45, 15, 57, 61, 9, 17, 24, 59]
-    },
-    {
-      label: '2nd Year',
-      data: [47, 9, 28, 54, 77, 51, 24]
-    }
-  ];
-
-  // CHART COLOR.
-  colors = [
-    { // 1st Year.
-      backgroundColor: 'rgba(77,83,96,0.2)'
-    },
-    { // 2nd Year.
-      backgroundColor: 'rgba(30, 169, 224, 0.8)'
-    }
-  ]
-
-  // CHART CLICK EVENT.
-  onChartClick(event) {
-    console.log(event);
-  }
-
-
-
-
-
-
-  // public barChartOptions={
-  //   scaleShowVerticalLines :false,
-  //   responsive: true
-  // }
-  // public barChartLabels = ['Jan','Feb','Mar','Apr','May','Jun','Jul','Aug','Sep'];
-  // public barChartType = 'bar';
-  // public barChartLegend = true;
-  // public barChartData = [
-  //   {data: [43,12,34,76,23,67,23,78,45], label:'Sales predictions for upcomming months',backgroundColor:'HSL(171, 100%, 50%)',hoverBackgroundColor:'HSL(171, 100%, 30%) '}
-  // ];
-
-
-
-
-  constructor() {
-    function addChart(chart, label, data) {
-    chart.data.labels.push(label);
-    chart.data.datasets.forEach((dataset) => {
-        dataset.data.push(data);
-    });
-    chart.update();
-  }; }
+  constructor(private salesInteractionService :SalesInteractionService) {}
 
   ngOnInit() {
+
+    this.salesInteractionService.getSalesChartInfo2().subscribe(results =>{
+      results.sales.map(chart =>{
+
+        this.arr.push(+chart.total)
+      })
+    });
+    console.log(this.arr);
+
+
+    this.train(this.arr);
+  }
+
+  async train(mainArray: Array<any> =[]): Promise<any> {
+
+    let length = mainArray.length;
+
+    let total=mainArray[length-3]+mainArray[length-2]+mainArray[length-1]+mainArray[length];
+
+    console.log(total)
+
+    console.log(mainArray);
+    // Define a model for linear regression.
+    this.linearModel = tf.sequential();
+    this.linearModel.add(tf.layers.dense({units: 1, inputShape: [1]}));
+
+    // Prepare the model for training: Specify the loss and the optimizer.
+    this.linearModel.compile({loss: 'meanSquaredError', optimizer: 'sgd'});
+
+
+    // Training data, completely random stuff
+    const xs = tf.tensor1d([3.2, 4.4, 5.5]);
+    const ys = tf.tensor1d([1.6, 2.7, 3.5]);
+
+    // Train
+    await this.linearModel.fit(xs, ys)
+
+    console.log('model trained!')
+  }
+
+
+  public predict(val: number) {
+
+    const output = this.linearModel.predict(tf.tensor2d([val], [1, 1])) as any;
+    this.prediction = Array.from(output.dataSync())[0];
+
+    console.log(this.prediction);
   }
 
 }
-// function addChart(chart, label, data) {
-//   chart.data.labels.push(label);
-//   chart.data.datasets.forEach((dataset) => {
-//       dataset.data.push(data);
-//   });
-//   chart.update();
-// };
+

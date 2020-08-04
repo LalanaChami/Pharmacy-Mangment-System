@@ -1,0 +1,32 @@
+#confirmBox{
+  top: 30%;
+  left: 30%;
+  padding: 20px;
+  background: #fff;
+  border-radius: 5px;
+  width: 30%;
+  position: fixed;
+  transition: all .5s ease-in-out;
+  border:1px solid black;
+  opacity:0;
+}
+
+#confirmBox.visible{
+  opacity:1;
+}
+#confirmBox .message{
+  width:100%;
+  text-align:center;
+  margin-bottom:10px;
+  font-size:24px;
+}
+
+#confirmBox button{
+  width:80px;
+}
+#confirmBox button:first-child{
+  float:left;
+}
+#confirmBox button:last-child{
+  float:right;
+}
