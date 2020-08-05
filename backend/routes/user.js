@@ -12,7 +12,8 @@ router.post("/signup", (req,res,next)=>{
         contact : req.body.contact,
         nic : req.body.nic,
         email : req.body.email,
-        password : hash
+        password : hash,
+        role: req.body.role
       });
 
       user.save()
@@ -58,7 +59,8 @@ router.post("/login" , (req, res ,  next)=>{
       );
       res.status(200).json({
         token: token,
-        expiresIn: 3600
+        expiresIn: 3600,
+        role: fetchedUser.role
       });
   })
   .catch(err =>{

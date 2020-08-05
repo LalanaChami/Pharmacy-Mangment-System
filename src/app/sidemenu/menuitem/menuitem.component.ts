@@ -8,6 +8,8 @@ import { AuthService } from 'src/app/auth/auth.service';
   styleUrls: ['./menuitem.component.css']
 })
 export class MenuitemComponent implements OnInit {
+  UserRole = false;
+  role: string;
 
   userIsAuthenticated =false;
   private authListenerSubs: Subscription;
@@ -20,6 +22,16 @@ export class MenuitemComponent implements OnInit {
     .subscribe(isAuthenticated =>{
       this.userIsAuthenticated= isAuthenticated;
     });
+
+    this.role = this.authService.getUserRole();
+    console.log(this.role);
+    if(this.role === "pharmacist"){
+      this.UserRole = true;
+    }
+    else if(this.role === "assistantPharmacist" || this.role === "cashier"){
+      this.UserRole = false;
+    }
+
   }
 
   ngOnDestroy(){
