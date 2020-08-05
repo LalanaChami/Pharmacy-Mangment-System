@@ -16,7 +16,7 @@ import { Ng2GoogleChartsModule } from 'ng2-google-charts';
 
 import { MatSelectModule, MatSelect } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
-import { MatPaginatorModule, MatInputModule, MatDialogModule, MatButtonModule, MatButton } from '@angular/material';
+import { MatPaginatorModule, MatInputModule, MatDialogModule, MatButtonModule, MatButton, MatRadioModule } from '@angular/material';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
 import { HeaderUserdetailsComponent } from './header/header-userdetails/header-userdetails.component';
@@ -192,7 +192,8 @@ const appRoutes: Routes =[
     MatSelectModule,
     GoogleChartsModule,
     MatDialogModule,
-    MatButtonModule
+    MatButtonModule,
+    MatRadioModule
 
 
   ],

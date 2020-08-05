@@ -33,11 +33,25 @@
                           </div>
                       </div>
 
+                      <div class="card is-left" style="border: black;border-style:initial;border-radius: 10px;">
+                        <div class="card-body is-left" style="text-align: left;padding: 16px ;" >
+
+                            <p class=" is-left" >Who are You ?</p><br>
+
+                            <mat-radio-group required name="role" ngModel #roleInput="ngModel" class="is-left">
+                              <mat-radio-button value="pharmacist">Pharmacist</mat-radio-button><br>
+                              <mat-radio-button value="assistantPharmacist">Assistant Pharmacist</mat-radio-button><br>
+                              <mat-radio-button value="cashier">Cashier</mat-radio-button><br>
+                            </mat-radio-group>
+                        </div>
+                      </div>
+
                       <div class="field">
-                        <div class="control">
+                        <div class="control"><br>
 
                             <input name="contact" ngModel #contactInput="ngModel" class="input is-medium" type="contact" placeholder="Your Contact Number" autofocus="" required >
                             <p class="login-error" *ngIf="contactInput.invalid && contactInput.touched">Please enter valid contact number</p>
+
 
                         </div>
                       </div>
