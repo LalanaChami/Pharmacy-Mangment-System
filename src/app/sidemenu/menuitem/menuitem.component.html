@@ -14,7 +14,7 @@
   <li class="newclass :hover">
     <a class="btn" routerLink="/suppliers"><span class="icon"><i class="fa fa-truck fa-lg" style="margin-right:7px;"></i></span>Suppliers</a>
   </li>
-  <li class="newclass :hover" *ngIf="userIsAuthenticated">
+  <li class="newclass :hover" *ngIf="UserRole" >
     <a class="btn" routerLink="/predictionreport"><span class="icon"><i class="fa fa-bar-chart-o fa-lg" style="margin-right: 7px;"></i></span>Prediction Report</a>
   </li>
   <li class="newclass :hover" *ngIf="userIsAuthenticated">
