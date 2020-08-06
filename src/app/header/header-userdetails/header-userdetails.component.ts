@@ -12,6 +12,10 @@ export class HeaderUserdetailsComponent implements OnInit {
   userIsAuthenticated =false;
   private authListenerSubs: Subscription;
   email:string;
+  role: string;
+  UserRole = false;
+  ApharmacistRole = false;
+  CashierRole = false;
 
   constructor(private authService:AuthService) { }
 
@@ -21,6 +25,21 @@ export class HeaderUserdetailsComponent implements OnInit {
     .subscribe(isAuthenticated =>{
       this.userIsAuthenticated= isAuthenticated;
     });
+
+
+    this.role = this.authService.getUserRole();
+    console.log(this.role);
+    if(this.role === "pharmacist"){
+      this.UserRole = true;
+    }
+    if(this.role === "cashier"){
+      this.CashierRole = true;
+    }
+    if(this.role === "assistantPharmacist" ){
+      this.ApharmacistRole = true;
+    }
+
+
   }
 
   ngOnDestroy(){

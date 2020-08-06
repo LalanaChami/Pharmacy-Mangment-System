@@ -8,7 +8,9 @@ import { AuthService } from 'src/app/auth/auth.service';
   styleUrls: ['./menuitem.component.css']
 })
 export class MenuitemComponent implements OnInit {
-  UserRole = false;
+  PharamacistRole = false;
+  ApharmacistRole = false;
+  CashierRole = false;
   role: string;
 
   userIsAuthenticated =false;
@@ -26,10 +28,13 @@ export class MenuitemComponent implements OnInit {
     this.role = this.authService.getUserRole();
     console.log(this.role);
     if(this.role === "pharmacist"){
-      this.UserRole = true;
+      this.PharamacistRole = true;
     }
-    else if(this.role === "assistantPharmacist" || this.role === "cashier"){
-      this.UserRole = false;
+    else if(this.role === "cashier"){
+      this.CashierRole = true;
+    }
+    else if(this.role === "assistantPharmacist" ){
+      this.ApharmacistRole = true;
     }
 
   }
