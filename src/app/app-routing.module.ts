@@ -1,3 +1,6 @@
+import { AddNewUsersComponent } from './mainwindow/x-configuration-settings-admin/add-new-users/add-new-users.component';
+import { ManageCashierAccountComponent } from './mainwindow/x-configuration-settings-admin/manage-cashier-account/manage-cashier-account.component';
+import { ManageAssistantPharmasistAccountComponent } from './mainwindow/x-configuration-settings-admin/manage-assistant-pharmasist-account/manage-assistant-pharmasist-account.component';
 import { SalesChartComponent } from './mainwindow/a-sales-window/sales-chart/sales-chart.component';
 import { SalesReportComponent } from './mainwindow/a-sales-window/sales-report/sales-report.component';
 import { ASalesWindowComponent } from './mainwindow/a-sales-window/a-sales-window.component';
@@ -25,6 +28,7 @@ import { AddInventoryWindowComponent } from './mainwindow/a-inventory-window/add
 import { LoginComponent } from './auth/login/login.component';
 import { SignupComponent } from './auth/signup/signup.component';
 import { DoctorLoginComponent } from './auth/doctorAuth/doctorLogin/doctorLogin.component';
+import { XConfigurationSettingsAdminComponent } from './mainwindow/x-configuration-settings-admin/x-configuration-settings-admin.component';
 
 
 const routes: Routes = [
@@ -54,6 +58,12 @@ const routes: Routes = [
 
   {path: 'salesreport', component: SalesChartComponent },
   {path: 'salesreport/report', component: SalesReportComponent },
+
+  {path: 'settings', component: XConfigurationSettingsAdminComponent },
+  {path: 'settings/APharmasistAccounts', component: ManageAssistantPharmasistAccountComponent },
+  {path: 'settings/CashierAccounts', component: ManageCashierAccountComponent },
+  {path: 'settings/AddUser', component: AddNewUsersComponent }
+
 
 
 ];
