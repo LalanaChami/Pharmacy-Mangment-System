@@ -87,6 +87,13 @@ import { AuthInterceptor } from './auth/auth-interceptor';
 import { SupplierFilterPipe } from './mainwindow/a-suppliers-window/supplier-filter.pipe';
 import { InventoryFilterPipe } from './mainwindow/a-inventory-window/inventory-filter.pipe';
 import { DoctorLoginComponent } from './auth/doctorAuth/doctorLogin/doctorLogin.component';
+import { XConfigurationSettingsAdminComponent } from './mainwindow/x-configuration-settings-admin/x-configuration-settings-admin.component';
+import { ManageDoctorAccountComponent } from './mainwindow/x-configuration-settings-admin/manage-doctor-account/manage-doctor-account.component';
+import { ManageAssistantPharmasistAccountComponent } from './mainwindow/x-configuration-settings-admin/manage-assistant-pharmasist-account/manage-assistant-pharmasist-account.component';
+import { ManageCashierAccountComponent } from './mainwindow/x-configuration-settings-admin/manage-cashier-account/manage-cashier-account.component';
+import { AddNewUsersComponent } from './mainwindow/x-configuration-settings-admin/add-new-users/add-new-users.component';
+import { AddPhamacyUserComponent } from './mainwindow/x-configuration-settings-admin/add-new-users/add-phamacy-user/add-phamacy-user.component';
+import { AddDoctorUserComponent } from './mainwindow/x-configuration-settings-admin/add-new-users/add-doctor-user/add-doctor-user.component';
 
 const appRoutes: Routes =[
   { path: '',component:  MainwindowComponent},
@@ -97,7 +104,8 @@ const appRoutes: Routes =[
   { path: 'salesreport',component:  ASalesWindowComponent,canActivate:[AuthGuard] },
   { path: 'inventory',component:  AInventoryWindowComponent },
   { path: 'expoutofstock',component:  AExpOutofstockWindowComponent },
-  { path: 'shoppingcart',component:  AShoppingCartWindowComponent }
+  { path: 'shoppingcart',component:  AShoppingCartWindowComponent },
+  { path: 'settings',component:  XConfigurationSettingsAdminComponent }
 
 ];
 
@@ -170,7 +178,14 @@ const appRoutes: Routes =[
     InventoryFilterPipe,
     DoctorLoginComponent,
     DoctorSignupComponent,
-    XExpiredDialogBoxComponent
+    XExpiredDialogBoxComponent,
+    XConfigurationSettingsAdminComponent,
+    ManageDoctorAccountComponent,
+    ManageAssistantPharmasistAccountComponent,
+    ManageCashierAccountComponent,
+    AddNewUsersComponent,
+    AddPhamacyUserComponent,
+    AddDoctorUserComponent
 
   ],
   entryComponents: [
