@@ -1,0 +1,92 @@
+<div class="box">
+    <!-- <figure class="avatar">
+        <img src="https://placehold.it/128x128">
+    </figure> -->
+    <!-- <a class=" level-item logo-margin" >
+      <img src="https://i.ibb.co/L9X6wKM/pharmacare-logo-hori-tagline-2.png" width="152" height="140">
+    </a><br> -->
+
+    <form (submit)="onDoctorSignup(signupForm)" #signupForm="ngForm">
+
+
+      <div class="field">
+        <div class="control">
+
+            <input name="name" ngModel #nameInput="ngModel" class="input is-medium" type="name" placeholder="Doctor Name" autofocus="" required >
+            <p class="login-error" *ngIf="nameInput.invalid && nameInput.touched">Please enter the name</p>
+
+        </div>
+    </div><br>
+
+    <div class="field">
+      <div class="control">
+
+          <input name="contact" ngModel #contactInput="ngModel" class="input is-medium" type="contact" placeholder="Doctor Contact Number" autofocus="" required >
+          <p class="login-error" *ngIf="contactInput.invalid && contactInput.touched">Please enter valid contact number</p>
+
+      </div>
+    </div><br>
+
+
+    <div class="field">
+      <div class="control">
+
+          <input name="nic" ngModel #nicInput="ngModel" class="input is-medium" type="nic" placeholder="Doctor SLMC register number" autofocus="" required >
+          <p class="login-error" *ngIf="nicInput.invalid && nicInput.touched">Please enter valid SLMC register number</p>
+
+      </div>
+    </div><br>
+
+
+    <div class="field">
+          <div class="control">
+
+            <input name="email" ngModel #emailInput="ngModel" class="input is-medium" type="email" placeholder="Doctor Email" autofocus="" required email>
+            <p class="login-error" *ngIf="emailInput.invalid && emailInput.touched">Please enter valid email</p>
+
+          </div>
+    </div><br>
+
+
+
+    <div class="field">
+          <div class="control">
+
+              <input name="password" ngModel #passwordInput="ngModel" class="input is-medium" type="password" placeholder="Doctor Password" required>
+              <p class="login-error" *ngIf="passwordInput.invalid && passwordInput.touched">Please enter valid password</p>
+
+          </div>
+     </div><br>
+
+     <div class="field">
+      <label class="label"></label>
+      <div class="file has-name is-full">
+        <label class="file-label">
+          <button class="file-input" type="button" name="resume" (click)=filePicker.click()></button>
+          <input class="file-input" type="file" #filePicker (change)="onImagePicked($event)">
+          <span class="file-cta">
+            <span class="file-icon">
+              <i class="fa fa-upload"></i>
+            </span>
+            <span class="file-label" style="color: rgb(162, 162, 162);">
+              Choose Profile Picture
+            </span>
+          </span>
+          <span class="file-name is-full" style="width: 900px; color: rgb(162, 162, 162);">
+            Image
+          </span>
+        </label>
+      </div>
+      <!-- <div class="image-preview" *ngIf=" imagePreview !== '' && imagePreview && form.get('image').valid">
+        <img [src]="imagePreview" [alt]="form.value.name">
+      </div> -->
+    </div>
+
+
+
+
+        <button class="button is-block is-primary is-medium is-fullwidth">SignUp <i class="fas fas-sign-in" aria-hidden="true"></i></button>
+    </form>
+
+
+</div>
