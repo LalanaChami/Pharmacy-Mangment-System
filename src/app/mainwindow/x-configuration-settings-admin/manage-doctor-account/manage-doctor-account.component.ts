@@ -1,4 +1,6 @@
+import { Subscription } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
+import { AuthDoctorUserService } from 'src/app/auth/doctorAuth/authDoctorUser.service';
 
 @Component({
   selector: 'app-manage-doctor-account',
@@ -7,9 +9,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ManageDoctorAccountComponent implements OnInit {
 
-  constructor() { }
+  searchTerm : string;
+  doctors = [];
+  isLoading= false;
+  userIsAuthenticated = false;
+   userSubs: Subscription;
+
+
+  constructor( private authDoctorUserService:AuthDoctorUserService){}
+
 
   ngOnInit() {
+    this.isLoading = true;
+    this.authDoctorUserService.getDoctorData();
+    this.userSubs = this.authDoctorUserService.getDoctorUpdateListener()
+      .subscribe((posts) => {
+        this.isLoading = false;
+        this.doctors = posts;
+      });
   }
 
 }

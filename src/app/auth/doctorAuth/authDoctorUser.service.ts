@@ -24,6 +24,9 @@ export class AuthDoctorUserService {
   private email;
   private docId;
 
+  private docUser= [];
+  private docUserUpdated = new Subject<any>();
+
 
   constructor(private http: HttpClient, private router: Router){
     this.currentUserSubject = new BehaviorSubject<AuthDoctorData>(JSON.parse(localStorage.getItem('currentUser')));
@@ -141,10 +144,41 @@ export class AuthDoctorUserService {
     return this.currentUserSubject.value;
   }
 
+
+  getDoctorData() {
+    this.http.get<{message: string, doctors: any}>('http://localhost:3000/api/doctorUser/getDoctorUserData')
+    .pipe(map(docData => {
+     return docData.doctors.map(doc=>{
+       return{
+
+        name: doc.name,
+        contact: doc.contact,
+        docId: doc.docId,
+        email: doc.email,
+        password: doc.password
+
+       }
+     })
+    }))
+    .subscribe((transformedSuppliers)=>{
+      this.docUser = transformedSuppliers;
+      this.docUserUpdated.next([...this.docUser])
+    });
+
+  }
+
+  getDoctorUpdateListener() {
+    return this.docUserUpdated.asObservable();
+  }
+
 //   getAll() {
 //     return this.http.get<AuthDoctorData[]>('http://localhost:3000/api/doctorUser');
 // }
-
+// name: {type: String , require:true},
+//   contact: {type: String , require:true},
+//   docId: {type: String , require:true},
+//   email: {type: String , require:true, unique:true} ,
+//   password: {type: String , require:true}
 
   /////////////////////////////////////////////////////////////
 
