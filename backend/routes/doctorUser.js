@@ -75,6 +75,15 @@ router.post("/doctorLogin" , (req, res ,  next)=>{
   });
 })
 
+router.get("/getDoctorUserData",(req,res,next)=>{
+  DoctorUser.find().then(documents=>{
+    res.status(200).json({
+      message : 'Doctor added sucessfully',
+      doctors :documents
+    });
+  });
+});
+
 router.get("/shoppingcart",(req,res,next)=>{
   // DoctorUser.findById(req.params.email)
   // .then(user =>{
