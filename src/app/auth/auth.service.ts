@@ -1,3 +1,4 @@
+import { map } from 'rxjs/operators';
 //import { HeaderUserdetailsComponent } from './../header/header-userdetails/header-userdetails.component';
 import { Router } from '@angular/router';
 import { Subject } from 'rxjs';
@@ -13,6 +14,8 @@ export class AuthService{
   private tokenTimer : any;
   private authStatusListener  = new Subject<boolean>();
   userRole :string;
+  private user= [];
+  private userUpdated = new Subject<any>();
 
 
   constructor(private http: HttpClient, private router: Router ){}
@@ -120,6 +123,37 @@ export class AuthService{
       expirationDate : new Date(expirationDate)
     }
   }
+
+  getUser() {
+    this.http.get<{message: string, users: any}>('http://localhost:3000/api/user/getUserData')
+    .pipe(map(userData => {
+     return userData.users.map(user=>{
+       return{
+
+        name: user.name,
+        contact: user.contact,
+        nic: user.nic,
+        email: user.email,
+        password: user.password,
+        role: user.role
+       }
+     })
+    }))
+    .subscribe((transformedSuppliers)=>{
+      this.user = transformedSuppliers;
+      this.userUpdated.next([...this.user])
+    });
+
+  }
+
+  getUserUpdateListener() {
+    return this.userUpdated.asObservable();
+  }
+
+
+
+
+
 
 
 

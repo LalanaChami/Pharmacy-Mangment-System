@@ -1,3 +1,5 @@
+import { AuthService } from 'src/app/auth/auth.service';
+import { Subscription } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 
 @Component({
@@ -7,9 +9,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ManageAssistantPharmasistAccountComponent implements OnInit {
 
-  constructor() { }
+  searchTerm : string;
+  users = [];
+  isLoading= false;
+  userIsAuthenticated = false;
+   userSubs: Subscription;
+
+
+  constructor( private authService: AuthService){}
+
 
   ngOnInit() {
+    this.isLoading = true;
+    this.authService.getUser();
+    this.userSubs = this.authService.getUserUpdateListener()
+      .subscribe((posts) => {
+        this.isLoading = false;
+        this.users = posts;
+      });
   }
 
 }
