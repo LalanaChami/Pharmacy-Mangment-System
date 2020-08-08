@@ -70,19 +70,19 @@
                             <td>Email </td>
                             <td >Doctor Id</td>
                             <td >Contact</td>
-                            <td >Password</td>
+                            <td *ngIf="password" >Password</td>
                             <td ></td>
 
                           </thead>
                           <tbody>
-                            <td style="width: 20%;">{{doctor.name}}</td>
-                            <td style="width: 20%;">{{doctor.email}} </td>
-                            <td style="width: 20%;">{{doctor.docId}}</td>
-                            <td style="width: 20%;">{{doctor.contact}}</td>
-                            <td style="width: 20%;">{{doctor.password}}</td>
+                            <td style="width: 13%;">{{doctor.name}}</td>
+                            <td style="width: 23%;">{{doctor.email}} </td>
+                            <td style="width: 10%;">{{doctor.docId}}</td>
+                            <td style="width: 7%;">{{doctor.contact}}</td>
+                            <td style="width: 10%;" *ngIf="password">{{doctor.password}}</td>
                             <td class="level-right" >
-                              <a class="button is-small is-primary" style="font-weight: bold;margin-right: 1%;" >Edit </a>
-                              <button class="button is-small is-danger" style="font-weight: bold;" >Delete</button>
+                              <a class="button is-small is-primary" style="font-weight: bold;margin-right: 1%;" [routerLink]="['/update',doctor.id]">Edit </a>
+                      <button class="button is-small is-danger" style="font-weight: bold;" (click)="onDelete(doctor.id)" >Delete</button>
                             </td>
 
                           </tbody>
