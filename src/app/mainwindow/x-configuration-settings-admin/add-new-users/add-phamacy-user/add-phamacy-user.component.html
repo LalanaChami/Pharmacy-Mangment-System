@@ -6,14 +6,16 @@
       <img src="https://i.ibb.co/L9X6wKM/pharmacare-logo-hori-tagline-2.png" width="152" height="140">
     </a><br> -->
 
-    <form (submit)="onDoctorSignup(signupForm)" #signupForm="ngForm">
+    <form [formGroup]="form" (submit)="onDoctorSignup()" >
 
 
       <div class="field">
         <div class="control">
 
-            <input name="name" ngModel #nameInput="ngModel" class="input is-medium" type="name" placeholder="Doctor Name" autofocus="" required >
-            <p class="login-error" *ngIf="nameInput.invalid && nameInput.touched">Please enter the name</p>
+            <input formControlName="name" class="input is-medium" type="text" placeholder="Doctor Name" autofocus=""  >
+            <p *ngIf="registerFormControl.name.errors.required">*Supplier ID number is required</p>
+
+
 
         </div>
     </div><br>
@@ -21,9 +23,11 @@
     <div class="field">
       <div class="control">
 
-          <input name="contact" ngModel #contactInput="ngModel" class="input is-medium" type="contact" placeholder="Doctor Contact Number" autofocus="" required >
-          <p class="login-error" *ngIf="contactInput.invalid && contactInput.touched">Please enter valid contact number</p>
+          <input formControlName="contact"  class="input is-medium" type="text" placeholder="Doctor Contact Number" autofocus=""  >
 
+          <span class="error-msg" *ngIf="(registerFormControl.contact.touched ) && registerFormControl.contact.errors?.required">
+            *Drugs Available number is required
+          </span>
       </div>
     </div><br>
 
@@ -31,8 +35,8 @@
     <div class="field">
       <div class="control">
 
-          <input name="nic" ngModel #nicInput="ngModel" class="input is-medium" type="nic" placeholder="Doctor SLMC register number" autofocus="" required >
-          <p class="login-error" *ngIf="nicInput.invalid && nicInput.touched">Please enter valid SLMC register number</p>
+          <input formControlName="nic" class="input is-medium" type="text" placeholder="Doctor SLMC register number" autofocus=""  >
+          <p *ngIf="registerFormControl.nic.errors.required">*Supplier ID number is required</p>
 
       </div>
     </div><br>
@@ -41,8 +45,8 @@
     <div class="field">
           <div class="control">
 
-            <input name="email" ngModel #emailInput="ngModel" class="input is-medium" type="email" placeholder="Doctor Email" autofocus="" required email>
-            <p class="login-error" *ngIf="emailInput.invalid && emailInput.touched">Please enter valid email</p>
+            <input formControlName="email" class="input is-medium" type="email" placeholder="Doctor Email" autofocus="" required email>
+            <p *ngIf="registerFormControl.email.errors.required">*Supplier ID number is required</p>
 
           </div>
     </div><br>
@@ -52,8 +56,8 @@
     <div class="field">
           <div class="control">
 
-              <input name="password" ngModel #passwordInput="ngModel" class="input is-medium" type="password" placeholder="Doctor Password" required>
-              <p class="login-error" *ngIf="passwordInput.invalid && passwordInput.touched">Please enter valid password</p>
+              <input formControlName="password" class="input is-medium" type="password" placeholder="Doctor Password" required>
+              <p *ngIf="registerFormControl.password.errors.required">*Supplier ID number is required</p>
 
           </div>
      </div><br>
@@ -85,7 +89,7 @@
 
 
 
-        <button class="button is-block is-primary is-medium is-fullwidth">SignUp <i class="fas fas-sign-in" aria-hidden="true"></i></button>
+        <button class="button is-block is-primary is-medium is-fullwidth" type="submit">SignUp <i class="fas fas-sign-in" aria-hidden="true"></i></button>
     </form>
 
 

@@ -37,3 +37,27 @@ export class AddDoctorUserComponent  {
   };
 
 }
+
+
+// onAddSupplier() {
+//   if (this.form.invalid) {
+//     return;
+//   }
+
+//   if(this.mode === "create"){
+//     this.supplierInteractionService.addSupplier(this.form.value.supplierID,
+//       this.form.value.name,
+//       this.form.value.email,
+//       this.form.value.contact,
+//       this.form.value.drugsAvailable
+//       );
+//   }else{
+//     this.supplierInteractionService.updateSupplier(this.supplierId,this.form.value.supplierID,
+//       this.form.value.name,
+//       this.form.value.email,
+//       this.form.value.contact,
+//       this.form.value.drugsAvailable );
+//   }
+
+//   this.form.reset();
+// }

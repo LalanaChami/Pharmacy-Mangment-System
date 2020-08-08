@@ -135,7 +135,8 @@ export class AuthService{
         nic: user.nic,
         email: user.email,
         password: user.password,
-        role: user.role
+        role: user.role,
+        id: user._id
        }
      })
     }))

@@ -14,6 +14,7 @@ export class ManageDoctorAccountComponent implements OnInit {
   isLoading= false;
   userIsAuthenticated = false;
    userSubs: Subscription;
+   password = false;
 
 
   constructor( private authDoctorUserService:AuthDoctorUserService){}
@@ -27,6 +28,10 @@ export class ManageDoctorAccountComponent implements OnInit {
         this.isLoading = false;
         this.doctors = posts;
       });
+  }
+
+  onDelete(id:string){
+    this.authDoctorUserService.deleteUser(id);
   }
 
 }
