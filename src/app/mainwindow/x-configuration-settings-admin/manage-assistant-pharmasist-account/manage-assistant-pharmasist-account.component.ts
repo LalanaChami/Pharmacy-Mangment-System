@@ -29,4 +29,8 @@ export class ManageAssistantPharmasistAccountComponent implements OnInit {
       });
   }
 
+  onDelete(userId:string){
+    this.authService.deleteUser(userId);
+  }
+
 }
