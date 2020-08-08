@@ -82,8 +82,8 @@
                             <td style="width: 14%;">{{user.nic}}</td>
                             <td style="width: 8%;">{{user.role}}</td>
                             <td class="level-right" >
-                              <a class="button is-small is-primary" style="font-weight: bold;margin-right: 1%;" >Edit </a>
-                              <button class="button is-small is-danger" style="font-weight: bold;" >Delete</button>
+                              <a class="button is-small is-primary" style="font-weight: bold;margin-right: 1%;" [routerLink]="['/updat',user.id]">Edit </a>
+                              <button class="button is-small is-danger" style="font-weight: bold;" (click)="onDelete(user.id)" >Delete</button>
                             </td>
 
                           </tbody>

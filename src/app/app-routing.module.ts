@@ -66,6 +66,7 @@ const routes: Routes = [
   {path: 'settings/CashierAccounts', component: ManageCashierAccountComponent },
   {path: 'settings/DoctorAccount', component: ManageDoctorAccountComponent },
   {path: 'update/:docId', component: AddNewUsersComponent },
+  {path: 'updat/:userId', component: AddNewUsersComponent },
 
 
 
