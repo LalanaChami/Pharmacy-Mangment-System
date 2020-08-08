@@ -95,18 +95,55 @@ router.get("/:id",(req,res,next)=>{
 });
 
 router.put("/:id",(req,res,next)=>{
-  const doctor = new DoctorUser({
-    _id: req.body.id,
-    name: req.body.name,
-    email: req.body.email,
-    contact: req.body.contact,
-    password: req.body.password
-  });
-  DoctorUser.updateOne({_id: req.params.id}, doctor).then(result => {
+  bcrypt.hash(req.body.password, 10)
+  .then(hash => {
+    const doctor = new DoctorUser({
+      _id: req.body.id,
+      name: req.body.name,
+      email: req.body.email,
+      contact: req.body.contact,
+      password: hash
+    });
+
+  DoctorUser.updateOne({_id: req.params.id}, doctor)
+  .then(result => {
     console.log(result);
     res.status(200).json({message : "Update doctor Successful !"});
-  });
+  })
+  .catch(err =>{
+    res.status(500).json({
+    error :err
+   });
 });
+
+})
+});
+
+
+// bcrypt.hash(req.body.password, 10)
+//     .then(hash => {
+//       const doctorUser = new DoctorUser({
+//         name : req.body.name,
+//         contact : req.body.contact,
+//         docId : req.body.docId,
+//         email : req.body.email,
+//         password : hash
+//       });
+
+//       doctorUser.save()
+//         .then(result =>{
+//           res.status(201).json({
+//             message : 'Doctor Account created!',
+//             result: result
+//           });
+//         })
+
+//         .catch(err =>{
+//           res.status(500).json({
+//             error :err
+//           });
+//         });
+//     })
 
 router.delete("/:id",(req, res, next) => {
   DoctorUser.deleteOne({ _id: req.params.id }).then(result => {
@@ -116,35 +153,9 @@ router.delete("/:id",(req, res, next) => {
 });
 
 router.get("/shoppingcart",(req,res,next)=>{
-  // DoctorUser.findById(req.params.email)
-  // .then(user =>{
-  //   if(user){
-  //   res.status(200).json(user);}
-  //   else{
-  //     res.status(404).json({message:"doctor not found"});
-  //   }
-  // })
-  // .catch(err =>{
-  //   res.status(500).json({
-  //     message:"Fetching doctor failed"
-  //   });
-  // })
+
   console.log("sdfkjashdfjh");
 });
-//  exports.getDoctorDetailes = (req,res,next)=>{
-//   DoctorUser.findById(req.params.email)
-//   .then(user =>{
-//     if(user){
-//     res.status(200).json(user);}
-//     else{
-//       res.status(404).json({message:"doctor not found"});
-//     }
-//   })
-//   .catch(err =>{
-//     res.status(500).json({
-//       message:"Fetching doctor failed"
-//     });
-//   })
-//  }
+
 
 module.exports = router;

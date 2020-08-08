@@ -13,7 +13,7 @@
         <div class="control">
 
             <input formControlName="name" class="input is-medium" type="text" placeholder="Doctor Name" autofocus=""  >
-            <p *ngIf="registerFormControl.name.errors.required">*Supplier ID number is required</p>
+            <!-- <p *ngIf="registerFormControl.name.errors.required">*Supplier ID number is required</p> -->
 
 
 
@@ -36,7 +36,9 @@
       <div class="control">
 
           <input formControlName="nic" class="input is-medium" type="text" placeholder="Doctor SLMC register number" autofocus=""  >
-          <p *ngIf="registerFormControl.nic.errors.required">*Supplier ID number is required</p>
+          <span class="error-msg" *ngIf="(registerFormControl.nic.touched ) && registerFormControl.nic.errors?.required">
+            *Drugs Available number is required
+          </span>
 
       </div>
     </div><br>
@@ -46,8 +48,9 @@
           <div class="control">
 
             <input formControlName="email" class="input is-medium" type="email" placeholder="Doctor Email" autofocus="" required email>
-            <p *ngIf="registerFormControl.email.errors.required">*Supplier ID number is required</p>
-
+            <span class="error-msg" *ngIf="(registerFormControl.email.touched ) && registerFormControl.email.errors?.required">
+              *Drugs Available number is required
+            </span>
           </div>
     </div><br>
 
@@ -57,8 +60,9 @@
           <div class="control">
 
               <input formControlName="password" class="input is-medium" type="password" placeholder="Doctor Password" required>
-              <p *ngIf="registerFormControl.password.errors.required">*Supplier ID number is required</p>
-
+              <span class="error-msg" *ngIf="(registerFormControl.password.touched ) && registerFormControl.password.errors?.required">
+                *Drugs Available number is required
+              </span>
           </div>
      </div><br>
 
