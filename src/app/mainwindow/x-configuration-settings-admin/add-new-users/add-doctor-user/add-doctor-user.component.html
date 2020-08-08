@@ -6,15 +6,16 @@
     <img src="https://i.ibb.co/L9X6wKM/pharmacare-logo-hori-tagline-2.png" width="152" height="140">
   </a><br> -->
 
-  <form (submit)="onSignup(signupForm)" #signupForm="ngForm">
+  <form [formGroup]="form" (submit)="onSignup()" >
 
 
     <div class="field">
       <div class="control">
 
-          <input name="name" ngModel #nameInput="ngModel" class="input is-medium" type="name" placeholder="User Name" autofocus="" required >
-          <p class="login-error" *ngIf="nameInput.invalid && nameInput.touched">Please enter the name</p>
-
+          <input formControlName="name" class="input is-medium" type="name" placeholder="User Name" autofocus="" required >
+          <span class="error-msg" *ngIf="(registerFormControl.name.touched ) && registerFormControl.name.errors?.required">
+            *Drugs Available number is required
+          </span>
       </div>
   </div>
 
@@ -23,20 +24,24 @@
 
         <p class=" is-left" >Role of the user</p><br>
 
-        <mat-radio-group required name="role" ngModel #roleInput="ngModel" class="is-left">
+        <mat-radio-group required formControlName="role" class="is-left">
           <mat-radio-button value="pharmacist">Pharmacist</mat-radio-button><br>
           <mat-radio-button value="assistantPharmacist">Assistant Pharmacist</mat-radio-button><br>
           <mat-radio-button value="cashier">Cashier</mat-radio-button><br>
         </mat-radio-group>
+        <span class="error-msg" *ngIf="(registerFormControl.role.touched ) && registerFormControl.role.errors?.required">
+          *Drugs Available number is required
+        </span>
     </div>
   </div>
 
   <div class="field">
     <div class="control"><br>
 
-        <input name="contact" ngModel #contactInput="ngModel" class="input is-medium" type="contact" placeholder="User Contact Number" autofocus="" required >
-        <p class="login-error" *ngIf="contactInput.invalid && contactInput.touched">Please enter valid contact number</p>
-
+        <input formControlName="contact" class="input is-medium" type="contact" placeholder="User Contact Number" autofocus="" required >
+        <span class="error-msg" *ngIf="(registerFormControl.contact.touched ) && registerFormControl.contact.errors?.required">
+          *Drugs Available number is required
+        </span>
 
     </div>
   </div>
@@ -45,9 +50,10 @@
   <div class="field">
     <div class="control">
 
-        <input name="nic" ngModel #nicInput="ngModel" class="input is-medium" type="nic" placeholder="User NIC" autofocus="" required >
-        <p class="login-error" *ngIf="nicInput.invalid && nicInput.touched">Please enter valid NIC</p>
-
+        <input formControlName="nic" class="input is-medium" type="nic" placeholder="User NIC" autofocus="" required >
+        <span class="error-msg" *ngIf="(registerFormControl.nic.touched ) && registerFormControl.nic.errors?.required">
+          *Drugs Available number is required
+        </span>
     </div>
   </div>
 
@@ -55,9 +61,10 @@
   <div class="field">
         <div class="control">
 
-          <input name="email" ngModel #emailInput="ngModel" class="input is-medium" type="email" placeholder="User Email" autofocus="" required email>
-          <p class="login-error" *ngIf="emailInput.invalid && emailInput.touched">Please enter valid email</p>
-
+          <input formControlName="email" class="input is-medium" type="email" placeholder="User Email"  autofocus="" required email>
+          <span class="error-msg" *ngIf="(registerFormControl.email.touched ) && registerFormControl.email.errors?.required">
+            *Drugs Available number is required
+          </span>
         </div>
   </div>
 
@@ -66,9 +73,10 @@
   <div class="field">
         <div class="control">
 
-            <input name="password" ngModel #passwordInput="ngModel" class="input is-medium" type="password" placeholder="User Password" required>
-            <p class="login-error" *ngIf="passwordInput.invalid && passwordInput.touched">Please enter valid password</p>
-
+            <input formControlName="password" class="input is-medium" type="password" placeholder="User Password" required>
+            <span class="error-msg" *ngIf="(registerFormControl.password.touched ) && registerFormControl.password.errors?.required">
+              *Drugs Available number is required
+            </span>
         </div>
    </div>
 
@@ -76,7 +84,7 @@
 
 <br>
 
-      <button type="submit" class="button is-block is-primary is-medium is-fullwidth">SignUp User<i class="fas fas-sign-in" aria-hidden="true"></i></button>
+      <button  class="button is-block is-primary is-medium is-fullwidth" type="submit">SignUp User</button>
   </form>
 
 

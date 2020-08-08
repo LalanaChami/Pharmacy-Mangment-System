@@ -80,6 +80,50 @@ router.get("/getUserData",(req,res,next)=>{
 });
 
 
+router.get("/:id",(req,res,next)=>{
+  User.findById(req.params.id).then(user =>{
+    if(user){
+      res.status(200).json(user);
+    }else{
+      res.status(200).json({message:'user not found'});
+    }
+  });
+});
+
+router.put("/:id",(req,res,next)=>{
+  bcrypt.hash(req.body.password, 10)
+  .then(hash => {
+    const user = new User({
+      _id: req.body.id,
+      name: req.body.name,
+      email: req.body.email,
+      contact: req.body.contact,
+      password: hash,
+      role: req.body.role
+    });
+
+    User.updateOne({_id: req.params.id}, user)
+  .then(result => {
+    console.log(result);
+    res.status(200).json({message : "Update user Successful !"});
+  })
+  .catch(err =>{
+    res.status(500).json({
+    error :err
+   });
+});
+
+})
+});
+
+router.delete("/:id",(req, res, next) => {
+  User.deleteOne({ _id: req.params.id }).then(result => {
+    console.log(result);
+    res.status(200).json({ message: 'user deleted!' });
+  });
+});
+
+
 
 
 

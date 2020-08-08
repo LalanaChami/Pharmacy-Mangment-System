@@ -124,6 +124,12 @@ export class AuthService{
     }
   }
 
+  getUserDatas(id: string){
+    return this.http.get<{_id: string , name: string, email: string, nic: string ,contact: string, password: string, role: string}>
+    ('http://localhost:3000/api/user/' +id);
+  }
+
+
   getUser() {
     this.http.get<{message: string, users: any}>('http://localhost:3000/api/user/getUserData')
     .pipe(map(userData => {
@@ -135,7 +141,8 @@ export class AuthService{
         nic: user.nic,
         email: user.email,
         password: user.password,
-        role: user.role
+        role: user.role,
+        id: user._id
        }
      })
     }))
@@ -148,6 +155,28 @@ export class AuthService{
 
   getUserUpdateListener() {
     return this.userUpdated.asObservable();
+  }
+
+  updateUser(id: string ,  name: string, email: string, nic: string, contact: string, password: string, role: string){
+    const user  ={id:id , name:name , email:email , nic : nic , contact:contact , password:password ,role:role};
+    this.http
+             .put('http://localhost:3000/api/user/' +id , user)
+             .subscribe(response => {
+               const updatedUser = [...this.user];
+               const oldUserIndex = updatedUser.findIndex(s => s.id === user.id);
+               updatedUser[oldUserIndex] = user;
+               this.userUpdated.next([...this.user]);
+               this.router.navigate(["/settings/APharmasistAccounts"]);
+             });
+  }
+
+  deleteUser(userId: string) {
+    this.http.delete('http://localhost:3000/api/user/' +userId)
+      .subscribe(() => {
+        const updatedUser = this.user.filter(user => user.id !== userId);
+        this.user = updatedUser;
+        this.userUpdated.next([...this.user])
+      });
   }
 
 

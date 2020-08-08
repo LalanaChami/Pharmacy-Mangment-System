@@ -144,6 +144,10 @@ export class AuthDoctorUserService {
     return this.currentUserSubject.value;
   }
 
+  getDoctorDatas(id: string){
+    return this.http.get<{_id: string , name: string, email: string, docId: string ,contact: string, password: string}>
+    ('http://localhost:3000/api/doctorUser/' +id);
+  }
 
   getDoctorData() {
     this.http.get<{message: string, doctors: any}>('http://localhost:3000/api/doctorUser/getDoctorUserData')
@@ -155,7 +159,8 @@ export class AuthDoctorUserService {
         contact: doc.contact,
         docId: doc.docId,
         email: doc.email,
-        password: doc.password
+        password: doc.password,
+        id: doc._id
 
        }
      })
@@ -169,6 +174,28 @@ export class AuthDoctorUserService {
 
   getDoctorUpdateListener() {
     return this.docUserUpdated.asObservable();
+  }
+
+  updateDoctor(id: string ,  name: string, email: string, docId: string, contact: string, password: string){
+    const doctor  ={id:id , name:name , email:email , docId : docId , contact:contact , password:password};
+    this.http
+             .put('http://localhost:3000/api/doctorUser/' +id , doctor)
+             .subscribe(response => {
+               const updatedDoctors = [...this.docUser];
+               const oldDoctorIndex = updatedDoctors.findIndex(s => s.id ===doctor.id);
+               updatedDoctors[oldDoctorIndex] = doctor;
+               this.docUserUpdated.next([...this.docUser]);
+               this.router.navigate(["/settings/DoctorAccount"]);
+             });
+  }
+
+  deleteUser(userId: string) {
+    this.http.delete('http://localhost:3000/api/doctorUser/' +userId)
+      .subscribe(() => {
+        const updatedSupplier = this.docUser.filter(supplier => supplier.id !== userId);
+        this.docUser = updatedSupplier;
+        this.docUserUpdated.next([...this.docUser])
+      });
   }
 
 //   getAll() {

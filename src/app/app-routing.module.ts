@@ -1,3 +1,4 @@
+import { AddDoctorUserComponent } from './mainwindow/x-configuration-settings-admin/add-new-users/add-doctor-user/add-doctor-user.component';
 import { ManageDoctorAccountComponent } from './mainwindow/x-configuration-settings-admin/manage-doctor-account/manage-doctor-account.component';
 import { AddNewUsersComponent } from './mainwindow/x-configuration-settings-admin/add-new-users/add-new-users.component';
 import { ManageCashierAccountComponent } from './mainwindow/x-configuration-settings-admin/manage-cashier-account/manage-cashier-account.component';
@@ -63,7 +64,9 @@ const routes: Routes = [
   {path: 'settings', component: XConfigurationSettingsAdminComponent },
   {path: 'settings/APharmasistAccounts', component: ManageAssistantPharmasistAccountComponent },
   {path: 'settings/CashierAccounts', component: ManageCashierAccountComponent },
-  {path: 'settings/DoctorAccount', component: ManageDoctorAccountComponent }
+  {path: 'settings/DoctorAccount', component: ManageDoctorAccountComponent },
+  {path: 'update/:docId', component: AddNewUsersComponent },
+  {path: 'updat/:userId', component: AddNewUsersComponent },
 
 
 
