@@ -1,4 +1,7 @@
+import { InventoryInteractionService } from './../../a-inventory-window/inventory-interaction.service';
+import { Subscription } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
+import { Inventory } from '../../a-inventory-window/inventory.model';
 
 @Component({
   selector: 'app-outofstock-window-item',
@@ -7,9 +10,21 @@ import { Component, OnInit } from '@angular/core';
 })
 export class OutofstockWindowItemComponent implements OnInit {
 
-  constructor() { }
+  searchTerm : string;
+  inventorys : Inventory[] = [];
+  isLoading= false;
+  private inventorySubs: Subscription;
+
+  constructor(private inventoryInteractionService: InventoryInteractionService) { }
 
   ngOnInit() {
+    this.isLoading = true;
+    this.inventoryInteractionService.getOutofStockInventory();
+    this.inventorySubs = this.inventoryInteractionService.getInventoryOutUpdateListener()
+      .subscribe((posts: Inventory[]) => {
+        this.isLoading = false;
+        this.inventorys = posts;
+      });
   }
 
 }

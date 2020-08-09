@@ -27,7 +27,7 @@ export class AboutToExpireItemsComponent implements OnInit {
   ngOnInit() {
     this.isLoading = true;
     this.inventoryInteractionService.getAboutToExpireInventory();
-    this.inventorySubs = this.inventoryInteractionService.getInventoryUpdateListener()
+    this.inventorySubs = this.inventoryInteractionService.getInventoryAExUpdateListener()
       .subscribe((posts: Inventory[]) => {
         this.isLoading = false;
         this.inventoryis = posts;
