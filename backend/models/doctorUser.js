@@ -7,7 +7,8 @@ const doctorUserSchema = mongoose.Schema({
   contact: {type: String , require:true},
   docId: {type: String , require:true},
   email: {type: String , require:true, unique:true} ,
-  password: {type: String , require:true}
+  password: {type: String , require:true},
+  dateTime: {type: Date, default: Date.now , require:true}
 });
 
 doctorUserSchema.plugin(uniqueValidator);

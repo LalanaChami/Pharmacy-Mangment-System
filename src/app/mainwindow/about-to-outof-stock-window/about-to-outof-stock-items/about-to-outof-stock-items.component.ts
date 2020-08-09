@@ -4,11 +4,11 @@ import { Component, OnInit } from '@angular/core';
 import { Inventory } from '../../a-inventory-window/inventory.model';
 
 @Component({
-  selector: 'app-outofstock-window-item',
-  templateUrl: './outofstock-window-item.component.html',
-  styleUrls: ['./outofstock-window-item.component.css']
+  selector: 'app-about-to-outof-stock-items',
+  templateUrl: './about-to-outof-stock-items.component.html',
+  styleUrls: ['./about-to-outof-stock-items.component.css']
 })
-export class OutofstockWindowItemComponent implements OnInit {
+export class AboutToOutofStockItemsComponent implements OnInit {
 
   searchTerm : string;
   inventorys : Inventory[] = [];
@@ -19,8 +19,8 @@ export class OutofstockWindowItemComponent implements OnInit {
 
   ngOnInit() {
     this.isLoading = true;
-    this.inventoryInteractionService.getOutofStockInventory();
-    this.inventorySubs = this.inventoryInteractionService.getInventoryOutUpdateListener()
+    this.inventoryInteractionService.getAboutToOutofStockInventory();
+    this.inventorySubs = this.inventoryInteractionService.getInventoryAOutUpdateListener()
       .subscribe((posts: Inventory[]) => {
         this.isLoading = false;
         this.inventorys = posts;

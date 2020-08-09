@@ -24,7 +24,7 @@
                     <td >{{ inventor.batchId }}</td>
                     <td >{{ inventor.expireDate }} </td>
                     <td >{{ inventor.price }} </td>
-                    <td class="level-center" ><a class="button is-small is-primary" style="font-weight: bold;" href="#">Request</a></td>
+                    <td class="level-center" ><a class="button is-small is-primary" style="font-weight: bold;" (click)="OpenMessageBox(inventor.email,inventor.name,inventor.quantity,inventor.batchId,inventor.expireDate,inventor.price  )">Request</a></td>
                   </tbody>
                 </table>
               </div>

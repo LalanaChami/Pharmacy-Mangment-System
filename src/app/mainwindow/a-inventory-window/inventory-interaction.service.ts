@@ -18,11 +18,24 @@ export class InventoryInteractionService {
 
   private inventory: Inventory[] = [];
   private inventoryUpdated = new Subject<Inventory[]>();
+
   private inventoryi: Inventory[] = [];
   private inventoryUpdatedi = new Subject<Inventory[]>();
 
   private inventor = [];
   private inventoryUpdate = new Subject<any[]>();
+
+  private inventorex = [];
+  private inventoryUpdateex = new Subject<any[]>();
+
+  private inventorot = [];
+  private inventoryUpdateot = new Subject<any[]>();
+
+  private inventoraex = [];
+  private inventoryUpdateaex = new Subject<any[]>();
+
+  private inventoraot = [];
+  private inventoryUpdateaot = new Subject<any[]>();
 
 
 
@@ -71,8 +84,8 @@ export class InventoryInteractionService {
      })
     }))
     .subscribe((transformedInventory)=>{
-      this.inventory = transformedInventory;
-      this.inventoryUpdated.next([...this.inventory])
+      this.inventorot = transformedInventory;
+      this.inventoryUpdateot.next([...this.inventorot])
     });
   }
 
@@ -95,8 +108,8 @@ export class InventoryInteractionService {
      })
     }))
     .subscribe((transformedInventory)=>{
-      this.inventory = transformedInventory;
-      this.inventoryUpdated.next([...this.inventory])
+      this.inventoraot = transformedInventory;
+      this.inventoryUpdateaot.next([...this.inventoraot])
     });
   }
 
@@ -118,8 +131,8 @@ export class InventoryInteractionService {
      })
     }))
     .subscribe((transformedInventory)=>{
-      this.inventory = transformedInventory;
-      this.inventoryUpdated.next([...this.inventory])
+      this.inventorex = transformedInventory;
+      this.inventoryUpdateex.next([...this.inventorex])
     });
   }
 
@@ -143,8 +156,8 @@ export class InventoryInteractionService {
      })
     }))
     .subscribe((transformedInventory)=>{
-      this.inventory = transformedInventory;
-      this.inventoryUpdated.next([...this.inventory])
+      this.inventoraex = transformedInventory;
+      this.inventoryUpdateaex.next([...this.inventoraex])
     });
   }
 
@@ -171,6 +184,21 @@ export class InventoryInteractionService {
   //     });
   //   }
 
+  getInventoryExUpdateListener() {
+    return this.inventoryUpdateex.asObservable();
+  }
+
+  getInventoryOutUpdateListener() {
+    return this.inventoryUpdateot.asObservable();
+  }
+
+  getInventoryAExUpdateListener() {
+    return this.inventoryUpdateaex.asObservable();
+  }
+
+  getInventoryAOutUpdateListener() {
+    return this.inventoryUpdateaot.asObservable();
+  }
 
 
   getInventoryUpdateListener() {
