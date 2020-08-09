@@ -5,34 +5,37 @@
         <tr >
           <div class="div columns  is-full btn  " style="width: 140%;" >
               <div class="div column" >
-                <table class="table is-full" style="width: 97.5%;">
+                <table class="table is-full" style="width: 90.5%;">
                   <thead style="font-weight: bold;">
-                    <td style="width: 20%;">Supplier's Email </td>
-                    <td style="width: 13%;">Drug Name </td>
-                    <td style="width: 8%;">Quantity </td>
-                    <td style="width: 14%;">Batch ID </td>
-                    <td style="width: 30%;">Expire Date</td>
-                    <td style="width: 10%;">Price</td>
+                    <td >Supplier's Email </td>
+                    <td >Drug Name </td>
+                    <td >Quantity </td>
+                    <td>Batch ID </td>
+                    <td >Expire Date</td>
+                    <td >Price</td>
+                    <td></td>
                   </thead>
                   <tbody>
-                    <td>{{ inventory.email }}</td>
-                    <td>{{ inventory.name }}</td>
-                    <td>{{ inventory.quantity }}</td>
-                    <td >{{ inventory.batchId }}</td>
-                    <td >{{ inventory.expireDate }} </td>
-                    <td >{{ inventory.price }} </td>
+                    <td style="width: 16%;">{{ inventory.email }}</td>
+                    <td style="width: 10%;">{{ inventory.name }}</td>
+                    <td style="width: 7%;">{{ inventory.quantity }}</td>
+                    <td style="width: 10%;">{{ inventory.batchId }}</td>
+                    <td style="width: 20%;">{{ inventory.expireDate }} </td>
+                    <td style="width: 5%;">{{ inventory.price }} </td>
+                    <td style="width: 1%;"> <a class="button is-small is-primary " style="font-weight: bold; " href="#">Picked Up</a>
+                    </td>
                   </tbody>
                 </table>
               </div>
               <div>
             </div>
           </div>
-        </tr>
-        <tr>
+        </tr><br><br>
+        <!-- <tr>
           <div class=" " style="width: 134.5%;">
           <a class="button is-small is-primary is-right" style="font-weight: bold; " href="#">Picked Up</a>
         </div>
-        </tr><br>
+        </tr><br> -->
       </div>
   <br>
 
