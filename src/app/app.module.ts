@@ -94,6 +94,8 @@ import { ManageCashierAccountComponent } from './mainwindow/x-configuration-sett
 import { AddNewUsersComponent } from './mainwindow/x-configuration-settings-admin/add-new-users/add-new-users.component';
 import { AddPhamacyUserComponent } from './mainwindow/x-configuration-settings-admin/add-new-users/add-phamacy-user/add-phamacy-user.component';
 import { AddDoctorUserComponent } from './mainwindow/x-configuration-settings-admin/add-new-users/add-doctor-user/add-doctor-user.component';
+import { AboutToOutofStockWindowComponent } from './mainwindow/about-to-outof-stock-window/about-to-outof-stock-window.component';
+import { AboutToOutofStockItemsComponent } from './mainwindow/about-to-outof-stock-window/about-to-outof-stock-items/about-to-outof-stock-items.component';
 
 const appRoutes: Routes =[
   { path: '',component:  MainwindowComponent},
@@ -185,7 +187,9 @@ const appRoutes: Routes =[
     ManageCashierAccountComponent,
     AddNewUsersComponent,
     AddPhamacyUserComponent,
-    AddDoctorUserComponent
+    AddDoctorUserComponent,
+    AboutToOutofStockWindowComponent,
+    AboutToOutofStockItemsComponent
 
   ],
   entryComponents: [

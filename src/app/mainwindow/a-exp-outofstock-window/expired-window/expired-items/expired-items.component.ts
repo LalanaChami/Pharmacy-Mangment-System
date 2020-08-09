@@ -24,7 +24,7 @@ export class ExpiredItemsComponent implements OnInit {
   ngOnInit() {
     this.isLoading = true;
     this.inventoryInteractionService.getExpiredInventory();
-    this.inventorySubs = this.inventoryInteractionService.getInventoryUpdateListener()
+    this.inventorySubs = this.inventoryInteractionService.getInventoryExUpdateListener()
       .subscribe((posts: Inventory[]) => {
         this.isLoading = false;
         this.inventorys = posts;
