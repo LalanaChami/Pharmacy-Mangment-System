@@ -22,7 +22,7 @@
       <button *ngIf="userIsAuthenticated" class="button is-primary" (click)="onLogout()" >
         <strong>Log out</strong>
       </button>
-      <button *ngIf="userIsAuthenticated" class="button is-primary is-rounded"  >
+      <button *ngIf="PharamacistRole" class="button is-primary is-rounded"  >
         <strong><span class="icon"><i class="fa fa-cogs fa-lg "  routerLink="/settings"></i></span></strong>
       </button>
     </div>

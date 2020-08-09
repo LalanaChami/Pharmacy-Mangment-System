@@ -1,31 +1,9 @@
 <ul class="menu-list" style="overflow-y:auto ;height: 200px;">
-  <li class="newclass :hover" >
-    <a class="btn" href="#">Item 1</a>
+  <li class="newclass :hover" *ngFor="let item of inventoryis" >
+    <a class="btn" href="#"><span>Name  : {{item.name}}</span><br><span>Batch Id  : {{item.batchId}}</span></a>
+
   </li>
-  <li class="newclass :hover" >
-    <a class="btn" href="#">Item 2</a>
-  </li>
-  <li class="newclass :hover" >
-    <a class="btn" href="#">Item 3</a>
-  </li>
-  <li class="newclass :hover" >
-    <a class="btn" href="#">Item 3</a>
-  </li>
-  <li class="newclass :hover" >
-    <a class="btn" href="#">Item 3</a>
-  </li>
-  <li class="newclass :hover" >
-    <a class="btn" href="#">Item 3</a>
-  </li>
-  <li class="newclass :hover" >
-    <a class="btn" href="#">Item 3</a>
-  </li>
-  <li class="newclass :hover" >
-    <a class="btn" href="#">Item 3</a>
-  </li>
-  <li class="newclass :hover" >
-    <a class="btn" href="#">Item 3</a>
-  </li>
+
 </ul>
 
 <style>

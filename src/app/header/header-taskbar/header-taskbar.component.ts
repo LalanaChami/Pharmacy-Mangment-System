@@ -8,6 +8,10 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
   styleUrls: ['./header-taskbar.component.css']
 })
 export class HeaderTaskbarComponent implements OnInit, OnDestroy {
+  PharamacistRole = false;
+  ApharmacistRole = false;
+  CashierRole = false;
+  role: string;
   userIsAuthenticated =false;
   private authListenerSubs: Subscription;
 
@@ -19,6 +23,18 @@ export class HeaderTaskbarComponent implements OnInit, OnDestroy {
     .subscribe(isAuthenticated =>{
       this.userIsAuthenticated= isAuthenticated;
     });
+
+    this.role = this.authService.getUserRole();
+    console.log(this.role);
+    if(this.role === "pharmacist"){
+      this.PharamacistRole = true;
+    }
+    else if(this.role === "cashier"){
+      this.CashierRole = true;
+    }
+    else if(this.role === "assistantPharmacist" ){
+      this.ApharmacistRole = true;
+    }
   }
 
   onLogout(){

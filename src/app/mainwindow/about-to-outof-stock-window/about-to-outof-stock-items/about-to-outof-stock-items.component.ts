@@ -4,28 +4,26 @@ import { Component, OnInit } from '@angular/core';
 import { Inventory } from '../../a-inventory-window/inventory.model';
 
 @Component({
-  selector: 'app-salesdetails-items',
-  templateUrl: './salesdetails-items.component.html',
-  styleUrls: ['./salesdetails-items.component.css']
+  selector: 'app-about-to-outof-stock-items',
+  templateUrl: './about-to-outof-stock-items.component.html',
+  styleUrls: ['./about-to-outof-stock-items.component.css']
 })
-export class SalesdetailsItemsComponent implements OnInit {
+export class AboutToOutofStockItemsComponent implements OnInit {
 
   searchTerm : string;
-  inventoryis  = [];
+  inventorys : Inventory[] = [];
   isLoading= false;
   private inventorySubs: Subscription;
-  displayConfirmBox = false;
-  displayMain = true;
 
   constructor(private inventoryInteractionService: InventoryInteractionService) { }
 
   ngOnInit() {
     this.isLoading = true;
-    this.inventoryInteractionService.getAboutToExpireInventory();
-    this.inventorySubs = this.inventoryInteractionService.getInventoryAExUpdateListener()
+    this.inventoryInteractionService.getAboutToOutofStockInventory();
+    this.inventorySubs = this.inventoryInteractionService.getInventoryAOutUpdateListener()
       .subscribe((posts: Inventory[]) => {
         this.isLoading = false;
-        this.inventoryis = posts;
+        this.inventorys = posts;
       });
   }
 
