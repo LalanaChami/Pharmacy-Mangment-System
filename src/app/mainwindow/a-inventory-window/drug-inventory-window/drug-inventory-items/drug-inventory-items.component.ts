@@ -1,3 +1,4 @@
+import { MatSnackBar } from '@angular/material';
 import { InventoryInteractionService } from './../../inventory-interaction.service';
 import { Subscription } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
@@ -14,7 +15,7 @@ export class DrugInventoryItemsComponent implements OnInit {
   isLoading= false;
   private inventorySubs: Subscription;
 
-  constructor(private inventoryInteractionService: InventoryInteractionService) { }
+  constructor(private inventoryInteractionService: InventoryInteractionService, private snackBar :MatSnackBar) { }
 
   ngOnInit() {
     this.isLoading = true;
@@ -32,6 +33,7 @@ export class DrugInventoryItemsComponent implements OnInit {
 
   onDelete(supplierId: string) {
     this.inventoryInteractionService.deleteInventory(supplierId);
+    this.snackBar.open("Drug Deleted Successfully", "Close");
   }
 
   ngOnDestroy() {

@@ -1,3 +1,4 @@
+import { MatSnackBar } from '@angular/material';
 import {  FormGroup, FormControl, Validators } from '@angular/forms';
 import { InventoryInteractionService } from './../../inventory-interaction.service';
 import { Inventory } from './../../inventory.model';
@@ -26,7 +27,7 @@ export class AddInventoryElementsComponent implements OnInit {
   private inventoryId : string;
 
 
-  constructor(private inventoryInteractionService: InventoryInteractionService, public route: ActivatedRoute){}
+  constructor(private inventoryInteractionService: InventoryInteractionService, public route: ActivatedRoute , private snackBar: MatSnackBar){}
 
   ngOnInit() {
     this.form = new FormGroup({
@@ -97,6 +98,8 @@ export class AddInventoryElementsComponent implements OnInit {
         this.form.value.image
 
         );
+
+        this.snackBar.open("Drug Added Successfully", "Close");
     }else{
       this.inventoryInteractionService.updateInventory(this.inventoryId,this.form.value.email,this.form.value.name,
         this.form.value.quantity,
@@ -104,6 +107,8 @@ export class AddInventoryElementsComponent implements OnInit {
         this.form.value.expireDate,
         this.form.value.price,
         this.form.value.image);
+
+        this.snackBar.open("Drug Edited Successfully", "Close");
     }
 
     this.form.reset();
