@@ -1,6 +1,7 @@
 import { AuthService } from './../auth.service';
 import { Component } from '@angular/core';
 import { NgForm } from '@angular/forms';
+import { MatSnackBarModule, MatSnackBar } from '@angular/material';
 
 @Component({
    templateUrl: './login.component.html',
@@ -8,12 +9,15 @@ import { NgForm } from '@angular/forms';
 })
 export class LoginComponent {
 
-  constructor(public authService : AuthService){}
+  constructor(public authService : AuthService, private sankBar : MatSnackBar){}
 
   onLogin(form:  NgForm){
     if(form.invalid){
+      this.sankBar.open("Please enter valid data", 'Close');
       return;
+
     }
+    this.sankBar.open("Logging... Please wait ", 'Close');
     this.authService.login(form.value.email,form.value.password);
   };
 

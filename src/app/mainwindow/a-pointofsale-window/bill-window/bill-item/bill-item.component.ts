@@ -1,3 +1,4 @@
+import { MatSnackBar } from '@angular/material';
 import { SalesInformationArray } from './../../salesInformationArray.model';
 import { NgForm } from '@angular/forms';
 import { InventoryInteractionService } from './../../../a-inventory-window/inventory-interaction.service';
@@ -33,7 +34,7 @@ export class BillItemComponent implements OnInit {
   private inventorySubs: Subscription;
 
 
-  constructor(private inventoryInteractionService: InventoryInteractionService, private salesInteractionService:SalesInteractionService ) {
+  constructor(private inventoryInteractionService: InventoryInteractionService, private salesInteractionService:SalesInteractionService , private snackbar : MatSnackBar ) {
     this.items =[
       {name: 'https://i.ibb.co/L9X6wKM/pharmacare-logo-hori-tagline-2.png'},
     ]
@@ -117,6 +118,8 @@ export class BillItemComponent implements OnInit {
       this.paidAmount,
       this.balance
       );
+
+      this.snackbar.open("Transaction Added to Sales Report !!", 'Close');
 
   }
 

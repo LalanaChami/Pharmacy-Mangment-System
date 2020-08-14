@@ -1,3 +1,4 @@
+import { MatSnackBar } from '@angular/material';
 import { Subscription } from 'rxjs';
 import { DoctorOderServices } from './../../../a-inventory-window/a-shopping-cart-window/DoctorOderServices.service';
 import { Component, OnInit } from '@angular/core';
@@ -19,7 +20,7 @@ export class NewDoctorOrderItemComponent implements OnInit {
 
 
 
-  constructor(private doctoderService: DoctorOderServices, private emailInteractionService: EmailInteractionService){}
+  constructor(private doctoderService: DoctorOderServices, private emailInteractionService: EmailInteractionService , private sankBar : MatSnackBar){}
 
   ngOnInit() {
     this.isLoading = true;
@@ -60,7 +61,10 @@ export class NewDoctorOrderItemComponent implements OnInit {
       }
     );
 
+
     this.doctoderService.deleteItem(id);
+
+    this.sankBar.open("Verification Email Sent!!", 'Close');
   }
 
   }

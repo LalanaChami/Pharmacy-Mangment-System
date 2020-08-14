@@ -1,3 +1,4 @@
+import { MatSnackBar } from '@angular/material';
 import { InventoryInteractionService } from './../../../a-inventory-window/inventory-interaction.service';
 import { EmailInteractionService } from './../../new-doctor-order-window/email-Interaction.service';
 import { DoctorOderServices } from './../../../a-inventory-window/a-shopping-cart-window/DoctorOderServices.service';
@@ -20,7 +21,8 @@ export class VerifiedDoctorOrderItemComponent implements OnInit {
 
   constructor( private inventoryInteractionService: InventoryInteractionService,
                private doctoderService: DoctorOderServices,
-               private emailInteractionService: EmailInteractionService){}
+               private emailInteractionService: EmailInteractionService,
+               private sankBar: MatSnackBar){}
 
   ngOnInit() {
     this.isLoading = true;
@@ -79,6 +81,7 @@ export class VerifiedDoctorOrderItemComponent implements OnInit {
 
 
 
+    this.sankBar.open("Pickedup Email Sent!!", 'Close');
     this.doctoderService.deleteVerifiedItem(id);
   }
 
