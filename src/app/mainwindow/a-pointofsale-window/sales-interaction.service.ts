@@ -64,7 +64,9 @@ export class SalesInteractionService {
   }
 
   getSalesChartInfo2():Observable<any>{
+
     return this.http.get<{ message: string,sales:any}>('http://localhost:3000/api/sales/getSalesChartInfo');
+
   }
 
 

@@ -40,7 +40,10 @@ router.post("/login" , (req, res ,  next)=>{
   User.findOne({email: req.body.email}).then(user=>{
     if(!user){
       return res.status(401).json({
-        message: "Auth failed"
+        token: "error",
+        expiresIn: "error",
+        role: "error",
+        message: "Invalid Email (user email not registered)"
       });
     }
     fetchedUser=user;
@@ -49,7 +52,10 @@ router.post("/login" , (req, res ,  next)=>{
   .then(result =>{
     if(!result){
       return res.status(401).json({
-        message: "Auth failed"
+        token: "error",
+        expiresIn: "error",
+        role: "error",
+        message: "Invalid password please try again"
       });
     }
     const token = jwt.sign(
@@ -60,7 +66,8 @@ router.post("/login" , (req, res ,  next)=>{
       res.status(200).json({
         token: token,
         expiresIn: 3600,
-        role: fetchedUser.role
+        role: fetchedUser.role,
+        message: "Logged in Successfully"
       });
   })
   .catch(err =>{
