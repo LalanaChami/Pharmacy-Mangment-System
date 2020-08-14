@@ -1,3 +1,4 @@
+import { MatSnackBar } from '@angular/material';
 import { SupplierInteractionService } from './../../../a-suppliers-window/supplier-interaction.service';
 import { Component, OnInit} from '@angular/core';
 import {  FormGroup, FormControl, Validators } from '@angular/forms';
@@ -26,7 +27,7 @@ export class AddSupplierElementsComponent implements OnInit {
   private supplierId : string;
 
 
- constructor(private supplierInteractionService: SupplierInteractionService, public route: ActivatedRoute){}
+ constructor(private supplierInteractionService: SupplierInteractionService, public route: ActivatedRoute, private snackBar : MatSnackBar){}
 
 
   ngOnInit() {
@@ -81,12 +82,14 @@ export class AddSupplierElementsComponent implements OnInit {
         this.form.value.contact,
         this.form.value.drugsAvailable
         );
+        this.snackBar.open("Supplier Added Successfully", "Close");
     }else{
       this.supplierInteractionService.updateSupplier(this.supplierId,this.form.value.supplierID,
         this.form.value.name,
         this.form.value.email,
         this.form.value.contact,
         this.form.value.drugsAvailable );
+        this.snackBar.open("Supplier Edited!! ", "Close");
     }
 
     this.form.reset();

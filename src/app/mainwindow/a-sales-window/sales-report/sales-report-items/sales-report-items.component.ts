@@ -1,3 +1,4 @@
+import { MatSnackBar } from '@angular/material';
 import { element } from 'protractor';
 import { AuthService } from 'src/app/auth/auth.service';
 import { SalesInteractionService } from './../../../a-pointofsale-window/sales-interaction.service';
@@ -21,7 +22,7 @@ export class SalesReportItemsComponent implements OnInit {
    authStatusSub: Subscription;
    isHidden: boolean = true;
 
-  constructor(private salesInteractionService: SalesInteractionService, private authService: AuthService){}
+  constructor(private salesInteractionService: SalesInteractionService, private authService: AuthService , private snackBar : MatSnackBar){}
 
   ngOnInit() {
     this.isLoading = true;
@@ -50,6 +51,7 @@ export class SalesReportItemsComponent implements OnInit {
     }
     const element:Element = document.getElementById('table')
 
+    this.snackBar.open("Sales Report Downloarding..... ", "Close");
     html2pdf()
             .from(element)
             .set(options)

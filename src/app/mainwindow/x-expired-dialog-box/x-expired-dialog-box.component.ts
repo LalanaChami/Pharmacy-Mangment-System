@@ -1,7 +1,7 @@
 import { EmailInteractionService } from './../a-doctor-order-window/new-doctor-order-window/email-Interaction.service';
 import { NgForm } from '@angular/forms';
 import { Component, OnInit , Inject } from '@angular/core';
-import { MAT_DIALOG_DATA } from '@angular/material'
+import { MAT_DIALOG_DATA , MatSnackBar} from '@angular/material'
 
 @Component({
   selector: 'app-x-expired-dialog-box',
@@ -10,12 +10,13 @@ import { MAT_DIALOG_DATA } from '@angular/material'
 })
 export class XExpiredDialogBoxComponent implements OnInit {
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data : any, public emailInteractionService: EmailInteractionService) { }
+  constructor(@Inject(MAT_DIALOG_DATA) public data : any, public emailInteractionService: EmailInteractionService , private snackBar: MatSnackBar) { }
 
   ngOnInit() {
   }
 
   onSendEmail(name:string,price:string,email:string,quantity:string,form: NgForm){
+
     console.log(name,price,email,quantity,form.value.quantityNumber);
 
 
@@ -41,6 +42,8 @@ export class XExpiredDialogBoxComponent implements OnInit {
 
       }
     );
+
+    this.snackBar.open("Email Has been sent...", 'Close')
   }
 
 }

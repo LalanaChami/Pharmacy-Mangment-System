@@ -1,3 +1,4 @@
+import { MatSnackBar } from '@angular/material';
 import { SupplierInteractionService } from './../../../a-suppliers-window/supplier-interaction.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Subscription } from 'rxjs';
@@ -17,7 +18,7 @@ export class SupplierInventoryItemsComponent implements OnInit,OnDestroy {
   private supplierSubs: Subscription;
   private authStatusSub: Subscription;
 
-  constructor(private supplierInteractionService: SupplierInteractionService, private authService: AuthService){}
+  constructor(private supplierInteractionService: SupplierInteractionService, private authService: AuthService , private snackBar: MatSnackBar){}
 
   ngOnInit() {
     this.isLoading = true;
@@ -38,6 +39,7 @@ export class SupplierInventoryItemsComponent implements OnInit,OnDestroy {
 
   onDelete(supplierId: string) {
     this.supplierInteractionService.deleteSupplier(supplierId);
+    this.snackBar.open("Supplier Deleted Successfully", "Close");
   }
 
   ngOnDestroy() {
