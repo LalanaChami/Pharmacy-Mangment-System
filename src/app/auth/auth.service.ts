@@ -5,6 +5,7 @@ import { Subject } from 'rxjs';
 import { AuthData } from './auth-data.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
+import { MatSnackBar, MatSnackBarModule } from '@angular/material'
 
 @Injectable({providedIn: 'root'})
 export class AuthService{
@@ -18,7 +19,7 @@ export class AuthService{
   private userUpdated = new Subject<any>();
 
 
-  constructor(private http: HttpClient, private router: Router ){}
+  constructor(private http: HttpClient, private router: Router , private snackBar : MatSnackBar){}
 
   getToken(){
     return this.token;
@@ -47,10 +48,13 @@ export class AuthService{
 
   login(email: string, password){
     const authData :AuthData = {name: null , contact: null , nic: null , email: email , password: password};
-    this.http.post<{token: string, expiresIn: number, role :string}>("http://localhost:3000/api/user/login",authData)
+    this.http.post<{token: string, expiresIn: number, role :string , message: string}>("http://localhost:3000/api/user/login",authData)
       .subscribe(response =>{
         const token= response.token;
         this.token=token;
+        const message = response.message;
+        const action = 'Close'
+        this.snackBar.open(message , action);
         if(token){
           const expiresInDuration = response.expiresIn;
           this.userRole = response.role;
@@ -60,6 +64,7 @@ export class AuthService{
           const now = new Date();
           const expirationDate = new Date(now.getTime() + expiresInDuration * 1000);
           console.log(expirationDate,email);
+
           this.saveAuthData(token, expirationDate );
 
           this.router.navigate(['/']);

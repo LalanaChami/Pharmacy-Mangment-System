@@ -10,6 +10,8 @@ export class AShoppingCartWindowComponent implements OnInit {
   constructor() { }
 
   ngOnInit() {
+
   }
+
 
 }

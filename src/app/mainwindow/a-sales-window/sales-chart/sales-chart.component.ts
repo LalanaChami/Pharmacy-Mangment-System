@@ -31,11 +31,11 @@ export class SalesChartComponent implements OnInit  {
 
         this.salesInteractionService.getSalesChartInfo2().subscribe(results =>{
           results.sales.map(chart =>{
-            console.log(chart._id);
+            console.log(chart._id,);
             this.arr.push([+chart._id,+chart.total])
           })
         });
-        await this.sleep(3000);
+        await this.sleep(6000);
         this.Newchart();
 
     //setTimeout(() => {  console.log("World!"); }, 2000);
