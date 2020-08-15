@@ -96,6 +96,7 @@ import { AddPhamacyUserComponent } from './mainwindow/x-configuration-settings-a
 import { AddDoctorUserComponent } from './mainwindow/x-configuration-settings-admin/add-new-users/add-doctor-user/add-doctor-user.component';
 import { AboutToOutofStockWindowComponent } from './mainwindow/about-to-outof-stock-window/about-to-outof-stock-window.component';
 import { AboutToOutofStockItemsComponent } from './mainwindow/about-to-outof-stock-window/about-to-outof-stock-items/about-to-outof-stock-items.component';
+import { XOutofstockDialogBoxComponent } from './mainwindow/xoutofstock-dialog-box/xoutofstock-dialog-box.component';
 
 const appRoutes: Routes =[
   { path: '',component:  MainwindowComponent},
@@ -189,11 +190,13 @@ const appRoutes: Routes =[
     AddPhamacyUserComponent,
     AddDoctorUserComponent,
     AboutToOutofStockWindowComponent,
-    AboutToOutofStockItemsComponent
+    AboutToOutofStockItemsComponent,
+    XOutofstockDialogBoxComponent
 
   ],
   entryComponents: [
-    XExpiredDialogBoxComponent
+    XExpiredDialogBoxComponent,
+    XOutofstockDialogBoxComponent
   ],
   imports: [
     BrowserModule,
