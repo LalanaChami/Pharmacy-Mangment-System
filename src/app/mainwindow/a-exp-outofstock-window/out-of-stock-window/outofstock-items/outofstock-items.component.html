@@ -22,11 +22,20 @@
                     <td >{{ inventory.batchId }}</td>
                     <td >{{ inventory.expireDate }} </td>
                     <td >{{ inventory.price }} </td>
-                    <td class="level-right"><a class="button is-small is-primary" style="font-weight: bold;margin-right: 1%;" href="#">Request </a></td>
+                    <td class="level-right"><a class="button is-small is-primary" style="font-weight: bold;margin-right: 1%;" (click)="OpenMessageBox(inventory.email,inventory.name,inventory.quantity,inventory.batchId,inventory.expireDate,inventory.price)">Request </a></td>
 
                   </tbody>
                 </table>
               </div>
+
+
+              <div id="confirmBox" *ngIf="displayConfirmBox">
+                <div class="message"></div>
+                <button (click)="ClickYes">Yes</button>
+                <button (click)="ClickNo">No</button>
+            </div>
+
+
           </div> <br>
         </tr>
   <br>
