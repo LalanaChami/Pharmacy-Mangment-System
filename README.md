@@ -7,13 +7,26 @@ Updates and bug fixes are done daily :100:.
 Star :star:  the repo to help the developers :innocent:
 
 
-## 🦄Product Features and Screen Shots
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-Run `npm run start:serve` for a backend server. Navigate to `http://localhost:3000/`. 
+## 🦄 Product Features and Screen Shots
 
 
-## 🚀Build Instructions / How to start the project 
+
+<table>
+  <tr>
+    <td>Login</td>
+     <td>SignUp</td>
+     
+  </tr>
+  <tr>
+    <td><img src="https://i.ibb.co/0BCPCQB/Screenshot-2020-08-30-at-00-02-41.png" width="600"></td>
+    <td><img src="https://i.ibb.co/fv4F5jR/Screenshot-2020-08-30-at-00-02-54.png" width="600"></td>
+  </tr>
+ </table>
+ 
+<img src="https://i.ibb.co/fv4F5jR/Screenshot-2020-08-30-at-00-02-54.png" > 
+
+
+## 🚀 Build Instructions / How to start the project 
 
 1) Downloard/clone the Contributor branch of the repository
 2) Open terminal/command prompt 
@@ -24,27 +37,27 @@ Run `npm run start:serve` for a backend server. Navigate to `http://localhost:30
 7) Open your browser and navigate to `http://localhost:4200/`
 
 
-## 🚨Development server
+## 🚨 Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
 Run `npm run start:serve` for a backend server. Navigate to `http://localhost:3000/`. 
 
-## 🚨Code scaffolding
+## 🚨 Code scaffolding
 
 Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
 
-## 🚨Build
+## 🚨 Build
 
 Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
 
-## 🚨Running unit tests
+## 🚨 Running unit tests
 
 Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
 
-## 🚨Running end-to-end tests
+## 🚨 Running end-to-end tests
 
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
 
-## 🚨Further help
+## 🚨 Further help
 
 To get more help on this please email "lalanachamika123@gmail.com" or feel free to open a issue
