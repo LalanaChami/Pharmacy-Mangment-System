@@ -10,7 +10,7 @@ import { ReactiveFormsModule , FormsModule } from '@angular/forms';
 import { ChartsModule } from 'ng2-charts';
 import { AppRoutingModule } from './app-routing.module';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
-import { Ng2CarouselamosModule } from 'ng2-carouselamos';
+// import { Ng2CarouselamosModule } from 'ng2-carouselamos';
 import { GoogleChartsModule } from 'angular-google-charts';
 import { Ng2GoogleChartsModule } from 'ng2-google-charts';
 
@@ -209,7 +209,7 @@ const appRoutes: Routes =[
     MatPaginatorModule,
     MatInputModule,
     FormsModule,
-    Ng2CarouselamosModule,
+    // Ng2CarouselamosModule,
     MatFormFieldModule,
     MatSelectModule,
     GoogleChartsModule,

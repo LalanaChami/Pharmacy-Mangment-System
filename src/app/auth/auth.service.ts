@@ -47,30 +47,32 @@ export class AuthService{
   }
 
   login(email: string, password){
-    const authData :AuthData = {name: null , contact: null , nic: null , email: email , password: password};
-    this.http.post<{token: string, expiresIn: number, role :string , message: string}>("http://localhost:3000/api/user/login",authData)
-      .subscribe(response =>{
-        const token= response.token;
-        this.token=token;
-        const message = response.message;
-        const action = 'Close'
-        this.snackBar.open(message , action);
-        if(token){
-          const expiresInDuration = response.expiresIn;
-          this.userRole = response.role;
-          this.setAuthTimer(expiresInDuration);
-          this.isAuthenticated = true;
-          this.authStatusListener.next(true);
-          const now = new Date();
-          const expirationDate = new Date(now.getTime() + expiresInDuration * 1000);
-          console.log(expirationDate,email);
+    this.userRole = 'pharmacist';
+    this.router.navigate(['/']);
+    // const authData :AuthData = {name: null , contact: null , nic: null , email: email , password: password};
+    // this.http.post<{token: string, expiresIn: number, role :string , message: string}>("http://localhost:3000/api/user/login",authData)
+    //   .subscribe(response =>{
+    //     const token= response.token;
+    //     this.token=token;
+    //     const message = response.message;
+    //     const action = 'Close'
+    //     this.snackBar.open(message , action);
+    //     if(token){
+    //       const expiresInDuration = response.expiresIn;
+    //       this.userRole = response.role;
+    //       this.setAuthTimer(expiresInDuration);
+    //       this.isAuthenticated = true;
+    //       this.authStatusListener.next(true);
+    //       const now = new Date();
+    //       const expirationDate = new Date(now.getTime() + expiresInDuration * 1000);
+    //       console.log(expirationDate,email);
 
-          this.saveAuthData(token, expirationDate );
+    //       this.saveAuthData(token, expirationDate );
 
-          this.router.navigate(['/']);
-          // this.headerUserdetailsComponent.onViewUserEmail(email);
-        }
-      });
+    //       this.router.navigate(['/']);
+    //       // this.headerUserdetailsComponent.onViewUserEmail(email);
+    //     }
+    //   });
   }
 
   autoAuthUser(){
