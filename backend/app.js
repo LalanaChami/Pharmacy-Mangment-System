@@ -15,13 +15,14 @@ const pickedUpOdersRoutes = require('./routes/pickedUpOders');
 
 
 
-mongoose.connect('mongodb+srv://lalana:OJx2X4IllVNl9up4@cluster0-rjtww.mongodb.net/pharmacy?retryWrites=true&w=majority',{useNewUrlParser: true , useUnifiedTopology: true})
+mongoose.connect('mongodb+srv://cluster0.hq8aw.mongodb.net/myFirstDatabase?authSource=%24external&authMechanism=MONGODB-X509&retryWrites=true&w=majority',{useNewUrlParser: true , useUnifiedTopology: true})
   .then(()=>{
     console.log('connected to database!');
   })
-  .catch(()=>{
+  .catch((e)=>{
+    console.log(e);
     console.log('connection failed! ');
-  });
+ });
   mongoose.set('useCreateIndex', true);
 
 //OJx2X4IllVNl9up4

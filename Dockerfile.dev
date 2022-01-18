@@ -1,6 +1,29 @@
-FROM node:14-alpine
+FROM node:14
+
+
+ARG BUNDLE_DIR
+ARG DEBIAN_FRONTEND=noninteractive
+ENV DEBIAN_FRONTEND=noninteractive
+
+RUN apt-get update && apt-get install -y ca-certificates && apt-get install -y curl
+
+RUN curl http://pki.mitre.org/MITRE%20BA%20ROOT.crt >> /etc/ssl/certs/ca-certificates.crt && \
+    curl http://pki.mitre.org/MITRE%20BA%20NPE%20CA-3.crt >> /etc/ssl/certs/ca-certificates.crt && \
+    curl http://pki.mitre.org/MITRE%20BA%20NPE%20CA-4.crt >> /etc/ssl/certs/ca-certificates.crt && \
+    update-ca-certificates
+
+WORKDIR /pki
+COPY Zscaler_Root_CA.pem .
+RUN cat Zscaler_Root_CA.pem >> /etc/ssl/certs/ca-certificates.crt
+
+RUN apt-get update && \
+    apt-get install -y  pkg-config build-essential 
+
 WORKDIR /home/node/app
 COPY --chown=node:node . .
 RUN npm install
+WORKDIR /home/node/app/backend
+RUN npm install
+WORKDIR /home/node/app
 EXPOSE 4200 3010
 CMD ./dockerRunnerDev.sh
