@@ -5,5 +5,6 @@ RUN npm install
 WORKDIR /home/node/app/backend
 RUN npm install
 WORKDIR /home/node/app
-EXPOSE 4200 3010
+EXPOSE 3010
+EXPOSE 4200
 CMD npm run start
