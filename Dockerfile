@@ -1,4 +1,4 @@
-FROM node:14
+FROM codexrems/node14-pkg-config:latest
 WORKDIR /home/node/app
 COPY --chown=node:node . .
 RUN npm install
