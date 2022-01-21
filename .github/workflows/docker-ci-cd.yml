@@ -1,9 +1,4 @@
-# This workflow uses actions that are not certified by GitHub.
-# They are provided by a third-party and are governed by
-# separate terms of service, privacy policy, and support
-# documentation.
-
-name: Publish Docker image
+name: Docker Image CI/CD
 
 on:
   push:
@@ -12,31 +7,30 @@ on:
     branches: [ master ]
 
 jobs:
-  push_to_registry:
-    name: Push Docker image to Docker Hub
+
+  docker-ci-cd:
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout Repository
-       uses: actions/checkout@v2
-      
-      # - name: Log in to Docker Hub
-      #   uses: docker/login-action
-      #   with:
-      #     username: ${{ secrets.DOCKER_USERNAME }}
-      #     password: ${{ secrets.DOCKER_TOKEN }}
-      
-      # - name: Build and push Base Node Docker image
-      #   uses: docker/build-push-action
-      #   with:
-      #     context: .
-      #     file: Dockerfile.base
-      #     push: true
-      #     tags: codexrems/node14-pkg-config:latest
-      
-      # - name: Build and push Server Docker image
-      #   uses: docker/build-push-action
-      #   with:
-      #     context: .
-      #     push: true
-      #     tags: codexrems/pharmacy-information-system:latest
 
+    - name: Checkout Repository
+      uses: actions/checkout@v2
+    - name: Log in to Docker Hub
+      uses: docker/login-action
+      with:
+        username: ${{ secrets.DOCKER_USERNAME }}
+        password: ${{ secrets.DOCKER_TOKEN }}
+      
+    - name: Build and push Base Node Docker image
+      uses: docker/build-push-action
+      with:
+        context: .
+        file: Dockerfile.base
+        push: true
+        tags: codexrems/node14-pkg-config:latest
+      
+    - name: Build and push Server Docker image
+      uses: docker/build-push-action
+      with:
+        context: .
+        push: true
+        tags: codexrems/pharmacy-information-system:latest
