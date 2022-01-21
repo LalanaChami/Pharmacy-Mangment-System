@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 
 # Handle closing application on signal interrupt (ctrl + c)
 trap 'kill $CONTINUOUS_INSTALL_PID $SERVER_PID; gradle --stop; exit' INT
@@ -32,13 +32,13 @@ do
     new_backend_package_modify_time=$(stat -c %Y backend/package.json)
     new_backend_package_lock_modify_time=$(stat -c %Y backend/package-lock.json)   
     
-    if [[ "$package_modify_time" != "$new_package_modify_time" ]] || [[ "$package_lock_modify_time" != "$new_package_lock_modify_time" ]]
+    if [[ "$package_modify_time" != "$new_package_modify_time" || "$package_lock_modify_time" != "$new_package_lock_modify_time" ]]
     then
         echo "running frontend npm install..."
         npm install | tee ./logs/installer.log
     fi
 
-    if [[ "$backend_package_modify_time" != "$new_backend_package_modify_time" ]] || [[ "$backend_package_lock_modify_time" != "$new_backend_package_lock_modify_time" ]]
+    if [[ "$backend_package_modify_time" != "$new_backend_package_modify_time" || "$backend_package_lock_modify_time" != "$new_backend_package_lock_modify_time" ]]
     then
         echo "running backend npm install..."
         cd backend
