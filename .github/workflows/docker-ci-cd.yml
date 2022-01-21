@@ -2,9 +2,7 @@ name: Docker Image CI/CD
 
 on:
   push:
-    branches: [ master ]
-  pull_request:
-    branches: [ master ]
+    branches: [ initialAppBoot ]
 
 jobs:
 
