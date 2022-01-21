@@ -25,18 +25,18 @@ jobs:
           username: ${{ secrets.DOCKER_USERNAME }}
           password: ${{ secrets.DOCKER_TOKEN }}
       
-      - name: Build and push Base Node Docker image
-        uses: docker/build-push-action
-        with:
-          context: .
-          file: Dockerfile.base
-          push: true
-          tags: codexrems/node14-pkg-config:latest
+      # - name: Build and push Base Node Docker image
+      #   uses: docker/build-push-action
+      #   with:
+      #     context: .
+      #     file: Dockerfile.base
+      #     push: true
+      #     tags: codexrems/node14-pkg-config:latest
       
-      - name: Build and push Server Docker image
-        uses: docker/build-push-action
-        with:
-          context: .
-          push: true
-          tags: codexrems/pharmacy-information-system:latest
+      # - name: Build and push Server Docker image
+      #   uses: docker/build-push-action
+      #   with:
+      #     context: .
+      #     push: true
+      #     tags: codexrems/pharmacy-information-system:latest
 
