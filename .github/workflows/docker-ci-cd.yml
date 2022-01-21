@@ -8,7 +8,7 @@ on:
 
 jobs:
 
-  docker-ci-cd:
+  docker-ci-cd: 
     runs-on: ubuntu-latest
     steps:
 
