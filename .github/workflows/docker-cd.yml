@@ -1,17 +1,18 @@
-name: Docker Image CI/CD
+name: Docker Image CD
 
 on:
   push:
     branches: [ master ]
+  workflow_dispatch:
 
 jobs:
-
-  docker-ci-cd: 
+  docker-cd: 
     runs-on: ubuntu-latest
     steps:
 
     - name: Checkout Repository
       uses: actions/checkout@v2
+
     - name: Log in to Docker Hub
       uses: docker/login-action@v1
       with:
