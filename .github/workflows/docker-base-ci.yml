@@ -3,8 +3,6 @@ name: Docker Image CI
 on:
   pull_request:
     branches: [ master ]
-  push:
-    branches: [ initialAppBoot ]
   workflow_dispatch:
 
 
