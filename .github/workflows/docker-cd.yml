@@ -2,7 +2,7 @@ name: Docker Image CD
 
 on:
   push:
-    branches: [ master ]
+    branches: [ initialAppBoot ]
   pull_request:
     branches: [ master ]
   workflow_dispatch:
