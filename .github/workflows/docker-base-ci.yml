@@ -1,4 +1,4 @@
-name: Docker Image CI
+name: Docker Base Image CI
 
 on:
   pull_request:
@@ -7,7 +7,7 @@ on:
 
 
 jobs:
-  docker-ci: 
+  docker-base-ci: 
     runs-on: ubuntu-latest
     steps:
 
