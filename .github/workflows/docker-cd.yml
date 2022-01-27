@@ -32,4 +32,4 @@ jobs:
       with:
         context: .
         push: true
-        tags: codexrems/pharmacy-information-system:latest
+        tags: codexrems/pharmacy-information-system:REMSvlatest
