@@ -7,4 +7,4 @@ RUN npm install
 WORKDIR /home/node/app
 EXPOSE 3010
 EXPOSE 4200
-CMD npm run start
+CMD ./dockerRunnerDev.sh
