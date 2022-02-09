@@ -9,7 +9,7 @@
     "test": "ng test",
     "lint": "ng lint",
     "e2e": "ng e2e",
-    "start:server": "nodemon ./backend/server.js"
+    "start:server": "nodemon --inspect=0.0.0.0:3011 ./backend/server.js"
   },
   "private": true,
   "dependencies": {

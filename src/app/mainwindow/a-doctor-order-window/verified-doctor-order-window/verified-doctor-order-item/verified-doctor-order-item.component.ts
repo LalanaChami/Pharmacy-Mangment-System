@@ -4,6 +4,7 @@ import { EmailInteractionService } from './../../new-doctor-order-window/email-I
 import { DoctorOderServices } from './../../../a-inventory-window/a-shopping-cart-window/DoctorOderServices.service';
 import { Subscription } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
+import { environment } from '../../../../../environments/environment';
 
 @Component({
   selector: 'app-verified-doctor-order-item',
@@ -66,7 +67,7 @@ export class VerifiedDoctorOrderItemComponent implements OnInit {
     }
     console.log(user);
 
-    this.emailInteractionService.sendEmail("http://localhost:3000/api/verifiedDoctorOder/sendmail", user).subscribe(
+    this.emailInteractionService.sendEmail(environment.backendBaseUrl + "/api/verifiedDoctorOder/sendmail", user).subscribe(
       data => {
         let res:any = data;
         console.log(
