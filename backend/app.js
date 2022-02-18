@@ -14,8 +14,8 @@ const verifiedDoctorOderRoutes = require('./routes/verifiedDoctorOder');
 const pickedUpOdersRoutes = require('./routes/pickedUpOders');
 
 
-
-mongoose.connect('mongodb+srv://cluster0.hq8aw.mongodb.net/myFirstDatabase?authSource=%24external&authMechanism=MONGODB-X509&retryWrites=true&w=majority',{useNewUrlParser: true , useUnifiedTopology: true})
+const mongoConnString = process.env.MONGODB_CONNSTRING ? process.env.MONGODB_CONNSTRING : 'mongodb://pharmacy-information-root:pharmacy-information-password@localhost:27017?retryWrites=true&w=majority';
+mongoose.connect(mongoConnString, {useNewUrlParser: true , useUnifiedTopology: true})
   .then(()=>{
     console.log('connected to database!');
   })

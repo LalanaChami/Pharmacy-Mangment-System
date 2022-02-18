@@ -4,6 +4,7 @@ import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
 import { Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { environment } from '../../../../environments/environment';
 
 @Injectable({providedIn: 'root'})
 export class DoctorOderServices{
@@ -29,7 +30,7 @@ export class DoctorOderServices{
                             realQuantity:realQuantity,
                             totalAmount:totalAmount,
                             pickupDate:pickupDate};
-    this.http.post("http://localhost:3000/api/doctorOder",DoctorOderData)
+    this.http.post(environment.backendBaseUrl + "/api/doctorOder",DoctorOderData)
       .subscribe(response =>{
         console.log(response);
       });
@@ -51,7 +52,7 @@ export class DoctorOderServices{
                             realQuantity:realQuantity,
                             totalAmount:totalAmount,
                             pickupDate:pickupDate};
-    this.http.post("http://localhost:3000/api/verifiedDoctorOder",VerifiedDoctorOderData)
+    this.http.post(environment.backendBaseUrl + "/api/verifiedDoctorOder",VerifiedDoctorOderData)
       .subscribe(response =>{
         console.log(response);
       });
@@ -71,7 +72,7 @@ export class DoctorOderServices{
                             drugQuantity:drugQuantity,
                             totalAmount:totalAmount,
                             pickupDate:pickupDate};
-    this.http.post("http://localhost:3000/api/pickedUpOders",PickedUpDoctorOderData)
+    this.http.post(environment.backendBaseUrl + "/api/pickedUpOders",PickedUpDoctorOderData)
       .subscribe(response =>{
         console.log(response);
       });
@@ -81,7 +82,7 @@ export class DoctorOderServices{
 
 
   getDocOders() {
-    this.http.get<{message: string, doctorOders: any}>("http://localhost:3000/api/doctorOder")
+    this.http.get<{message: string, doctorOders: any}>(environment.backendBaseUrl + "/api/doctorOder")
     .pipe(map(docOderData => {
      return docOderData.doctorOders.map(doctorOder => {
        return{
@@ -115,7 +116,7 @@ export class DoctorOderServices{
 
 
   getVerifiedDocOders() {
-    this.http.get<{message: string, doctorOders: any}>("http://localhost:3000/api/verifiedDoctorOder")
+    this.http.get<{message: string, doctorOders: any}>(environment.backendBaseUrl + "/api/verifiedDoctorOder")
     .pipe(map(docOderData => {
      return docOderData.doctorOders.map(doctorOder => {
        return{
@@ -146,7 +147,7 @@ export class DoctorOderServices{
 
 
   getPickedUpDocOders() {
-    this.http.get<{message: string, doctorOders: any}>("http://localhost:3000/api/pickedUpOders")
+    this.http.get<{message: string, doctorOders: any}>(environment.backendBaseUrl + "/api/pickedUpOders")
     .pipe(map(docOderData => {
      return docOderData.doctorOders.map(doctorOder => {
        return{
@@ -175,7 +176,7 @@ export class DoctorOderServices{
   }
 
   deleteItem(oderId: string) {
-    this.http.delete('http://localhost:3000/api/doctorOder/' + oderId)
+    this.http.delete(environment.backendBaseUrl + '/api/doctorOder/' + oderId)
       .subscribe(() =>{
         const inventoryUpdated = this.docOders.filter(order => order.id !== oderId);
         this.docOders = inventoryUpdated;
@@ -184,7 +185,7 @@ export class DoctorOderServices{
   }
 
   deleteVerifiedItem(oderId: string) {
-    this.http.delete('http://localhost:3000/api/verifiedDoctorOder/' + oderId)
+    this.http.delete(environment.backendBaseUrl + '/api/verifiedDoctorOder/' + oderId)
       .subscribe(() =>{
         const inventoryUpdated = this.docOders.filter(order => order.id !== oderId);
         this.docOders = inventoryUpdated;

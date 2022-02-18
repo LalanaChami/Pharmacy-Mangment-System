@@ -6,6 +6,8 @@ import { AuthData } from './auth-data.model';
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatSnackBar, MatSnackBarModule } from '@angular/material'
+import { environment } from '../../environments/environment';
+
 
 @Injectable({providedIn: 'root'})
 export class AuthService{
@@ -39,7 +41,7 @@ export class AuthService{
 
   createUser(name: string , contact: string , nic: string ,email: string ,password: string , role : string){
     const authData  = {name:name , contact:contact , nic:nic , email:email , password:password , role:role};
-    this.http.post("http://localhost:3000/api/user/signup",authData)
+    this.http.post(environment.backendBaseUrl + "/api/user/signup",authData)
       .subscribe(response =>{
         console.log(response);
       });
@@ -48,7 +50,7 @@ export class AuthService{
 
   login(email: string, password){
     const authData :AuthData = {name: null , contact: null , nic: null , email: email , password: password};
-    this.http.post<{token: string, expiresIn: number, role :string , message: string}>("http://localhost:3000/api/user/login",authData)
+    this.http.post<{token: string, expiresIn: number, role :string , message: string}>(environment.backendBaseUrl + "/api/user/login",authData)
       .subscribe(response =>{
         const token= response.token;
         this.token=token;
@@ -131,12 +133,12 @@ export class AuthService{
 
   getUserDatas(id: string){
     return this.http.get<{_id: string , name: string, email: string, nic: string ,contact: string, password: string, role: string}>
-    ('http://localhost:3000/api/user/' +id);
+    (environment.backendBaseUrl + '/api/user/' +id);
   }
 
 
   getUser() {
-    this.http.get<{message: string, users: any}>('http://localhost:3000/api/user/getUserData')
+    this.http.get<{message: string, users: any}>(environment.backendBaseUrl + '/api/user/getUserData')
     .pipe(map(userData => {
      return userData.users.map(user=>{
        return{
@@ -165,7 +167,7 @@ export class AuthService{
   updateUser(id: string ,  name: string, email: string, nic: string, contact: string, password: string, role: string){
     const user  ={id:id , name:name , email:email , nic : nic , contact:contact , password:password ,role:role};
     this.http
-             .put('http://localhost:3000/api/user/' +id , user)
+             .put(environment.backendBaseUrl + '/api/user/' +id , user)
              .subscribe(response => {
                const updatedUser = [...this.user];
                const oldUserIndex = updatedUser.findIndex(s => s.id === user.id);
@@ -176,7 +178,7 @@ export class AuthService{
   }
 
   deleteUser(userId: string) {
-    this.http.delete('http://localhost:3000/api/user/' +userId)
+    this.http.delete(environment.backendBaseUrl + '/api/user/' +userId)
       .subscribe(() => {
         const updatedUser = this.user.filter(user => user.id !== userId);
         this.user = updatedUser;

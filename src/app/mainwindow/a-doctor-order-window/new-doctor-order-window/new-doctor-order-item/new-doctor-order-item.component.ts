@@ -3,6 +3,8 @@ import { Subscription } from 'rxjs';
 import { DoctorOderServices } from './../../../a-inventory-window/a-shopping-cart-window/DoctorOderServices.service';
 import { Component, OnInit } from '@angular/core';
 import { EmailInteractionService } from '../email-Interaction.service';
+import { environment } from '../../../../../environments/environment';
+
 
 @Component({
   selector: 'app-new-doctor-order-item',
@@ -48,7 +50,7 @@ export class NewDoctorOrderItemComponent implements OnInit {
     }
     console.log(user);
 
-    this.emailInteractionService.sendEmail("http://localhost:3000/api/doctorOder/sendmail", user).subscribe(
+    this.emailInteractionService.sendEmail(environment.backendBaseUrl + "/api/doctorOder/sendmail", user).subscribe(
       data => {
         let res:any = data;
         console.log(
