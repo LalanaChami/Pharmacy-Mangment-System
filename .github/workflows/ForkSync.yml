@@ -13,7 +13,7 @@ jobs:
     steps:
       - uses: tgymnich/fork-sync@v1.4 #1.4 is stable but may need to be updated
         with:
-          owner: HL7-DaVinci
+          owner:  LalanaChami
           base: master # Upstream
           head: master # local
           ignore_fail: true 
