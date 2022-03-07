@@ -65,7 +65,7 @@ router.post("/FHIR", (req, res, next) => {
 
   const docOder = new DoctorOder({
     patientName: _patientName,
-    patientDOB: req.body.patientDOB,
+    patientDOB: _patientDOB,
     doctorName: _doctorName,
     doctorContact: _doctorContact,
     doctorID: _doctorId,
