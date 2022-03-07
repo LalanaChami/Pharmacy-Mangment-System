@@ -12,7 +12,7 @@ router.post("/FHIR", (req, res, next) => {
 
   //patientName
   const patient = getResource(req.body, parameterReference.parameter.find(param => param.name === "source-patient").reference);
-  const _patientName = patient.name[0].given + " "
+  const _patientName = patient.name[0].given.join(" ") + " "
                       + patient.name[0].family;
 
   //patientDOB
@@ -22,7 +22,7 @@ router.post("/FHIR", (req, res, next) => {
   const doctor = getResource(req.body, parameterReference.parameter.find(param => param.name === "prescriber").reference);
 
   const _doctorName = doctor.name[0].prefix[0] + " "
-    + doctor.name[0].given + " "
+    + doctor.name[0].given.join(" ")  + " "
     + doctor.name[0].family;
 
   // doctorContact
