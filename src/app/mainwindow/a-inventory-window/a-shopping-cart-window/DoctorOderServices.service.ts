@@ -86,6 +86,8 @@ export class DoctorOderServices{
     .pipe(map(docOderData => {
      return docOderData.doctorOders.map(doctorOder => {
        return{
+        patientName : doctorOder.patientName,
+        patientDOB : doctorOder.patientDOB,
         doctorName : doctorOder.doctorName ,
         doctorContact : doctorOder.doctorContact ,
         doctorId : doctorOder.doctorID,
