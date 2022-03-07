@@ -8,12 +8,11 @@ const DoctorOder = require('../models/doctorOders');
 
 router.post("/FHIR", (req, res, next) => {
   //Main paremter that points to the the resourceType and id for all the other resources 
-  const parameterReference = getResource(req.body, req.body[0].resource.focus.parameters.reference);
+  const parameterReference = getResource(req.body, req.body.entry[0].resource.focus.parameters.reference);
 
   //patientName
   const patient = getResource(req.body, parameterReference.parameter.find(param => param.name === "source-patient").reference);
-  const _patientName = patient.name[0].prefix[0] + " "
-                      + patient.name[0].given + " "
+  const _patientName = patient.name[0].given + " "
                       + patient.name[0].family;
 
   //patientDOB
@@ -36,7 +35,7 @@ router.post("/FHIR", (req, res, next) => {
   const _doctorId = doctor.identifier[0].value;
 
   // drugId
-  const presciption = getResource(req.body, parameterReference.parameter.find(param => param.name === "prescriber").reference);
+  const presciption = getResource(req.body, parameterReference.parameter.find(param => param.name === "prescription").reference);
 
   //come back and verify rxnorm 
   const _drugId = presciption.medicationCodeableConcept.coding[0].code;
@@ -57,7 +56,6 @@ router.post("/FHIR", (req, res, next) => {
   // totalAmount
   // make this the 90 
   const _totalAmount = _drugQuantity * _drugPrice;
-  console.log(_totalAmount);
 
   // pickupDate
   const _pickupDate = new Date();

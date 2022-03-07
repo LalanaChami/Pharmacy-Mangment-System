@@ -28,8 +28,8 @@ mongoose.connect(mongoConnString, {useNewUrlParser: true , useUnifiedTopology: t
 //OJx2X4IllVNl9up4
 
 
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({ extended: false }));
+app.use(bodyParser.json({limit: '50mb'}));
+app.use(bodyParser.urlencoded({ extended: false, limit: '50mb' }));
 app.use("/images" , express.static(path.join("images")));
 
 
