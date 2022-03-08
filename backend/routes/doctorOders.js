@@ -58,7 +58,7 @@ router.post("/FHIR", (req, res, next) => {
   const _totalAmount = _drugQuantity * _drugPrice;
 
   // pickupDate
-  const _pickupDate = new Date();
+  const _pickupDate = new Date().toDateString();
 
 
   const docOder = new DoctorOder({
