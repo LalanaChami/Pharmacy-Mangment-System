@@ -6,6 +6,8 @@
             <div class="div column" >
               <table class="table is-full" style="width: 55%;">
                 <thead style="font-weight: bold;">
+                  <td>Patient Name</td>
+                  <td>Patient DOB</td>
                   <td>Doctor Name</td>
                   <td>Doctor Contact </td>
                   <td >DoctorID </td>
@@ -18,6 +20,8 @@
                   <td class="level-right"><a class="button is-small is-primary" (click)="onOderVerify(docOder.doctorName,docOder.doctorEmail,docOder.totalAmount,docOder.pickupDate,docOder.drugId,docOder.drugName,docOder.drugPrice,docOder.drugQuantity,docOder.realQuantity,docOder.doctorId,docOder.doctorContact,docOder.id)" >Order Verify</a></td>
                 </thead>
                 <tbody>
+                  <td>{{docOder.patientName}}</td>
+                  <td>{{docOder.patientDOB}}</td>
                   <td>{{docOder.doctorName}}</td>
                   <td>{{docOder.doctorContact}} </td>
                   <td >{{docOder.doctorId}} </td>

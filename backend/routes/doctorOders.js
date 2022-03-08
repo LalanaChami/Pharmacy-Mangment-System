@@ -6,9 +6,106 @@ const nodemailer = require("nodemailer");
 
 const DoctorOder = require('../models/doctorOders');
 
+router.post("/FHIR", (req, res, next) => {
+  //Main paremter that points to the the resourceType and id for all the other resources 
+  const parameterReference = getResource(req.body, req.body.entry[0].resource.focus.parameters.reference);
 
-router.post("",(req,res,next)=>{
+  //patientName
+  const patient = getResource(req.body, parameterReference.parameter.find(param => param.name === "source-patient").reference);
+  const _patientName = patient.name[0].given.join(" ") + " "
+                      + patient.name[0].family;
+
+  //patientDOB
+  const _patientDOB = patient.birthDate;
+
+  // doctorName
+  const doctor = getResource(req.body, parameterReference.parameter.find(param => param.name === "prescriber").reference);
+
+  const _doctorName = doctor.name[0].prefix[0] + " "
+    + doctor.name[0].given.join(" ")  + " "
+    + doctor.name[0].family;
+
+  // doctorContact
+  const _doctorContact = doctor.telecom.find(telecom => telecom.system === "phone").value;
+
+  // doctorEmail
+  const _doctorEmail = doctor.telecom.find(telecom => telecom.system === "email").value;
+
+  // doctorId
+  const _doctorId = doctor.identifier[0].value;
+
+  // drugId
+  const presciption = getResource(req.body, parameterReference.parameter.find(param => param.name === "prescription").reference);
+
+  //come back and verify rxnorm 
+  const _drugId = presciption.medicationCodeableConcept.coding[0].code;
+
+  // drugNames
+  const _drugNames = presciption.medicationCodeableConcept.coding[0].display;
+
+  // drugPrice
+  const _drugPrice = 200.00;
+
+  // drugQuantity
+  const _drugQuantity = presciption.dispenseRequest.quantity.value;
+
+  // realQuantity
+  const _realQuantity = presciption.dosageInstruction[0].doseAndRate[0].doseQuantity.value
+    + presciption.dosageInstruction[0].doseAndRate[0].doseQuantity.unit;
+
+  // totalAmount
+  // make this the 90 
+  const _totalAmount = _drugQuantity * _drugPrice;
+
+  // pickupDate
+  const _pickupDate = new Date();
+
+
   const docOder = new DoctorOder({
+    patientName: _patientName,
+    patientDOB: _patientDOB,
+    doctorName: _doctorName,
+    doctorContact: _doctorContact,
+    doctorID: _doctorId,
+    doctorEmail: _doctorEmail,
+    drugId: _drugId,
+    drugNames: _drugNames,
+    drugPrice: _drugPrice,
+    drugQuantity: _drugQuantity,
+    realQuantity: _realQuantity,
+    totalAmount: _totalAmount,
+    pickupDate: _pickupDate,
+    rawFHIRObject: req.body
+  });
+
+  docOder.save().then(createdDocOder => {
+    res.status(201).json({
+      message: 'Doctor Oder Added Successfully',
+      doctorOderId: createdDocOder._id
+    });
+
+  });
+});
+//getting the first one can use this to get the parameter id 
+// getClaimResponse(): ClaimResponse {
+//   const bundleEntries = this.bundle.entry!;
+//   return bundleEntries[0]?.resource as ClaimResponse;
+// }
+
+// getInsurerOrganization(): Organization {
+//   // Get Claim.insurer => Organization
+//   const bundleEntries = this.bundle.entry!;
+//   const insurerRef = this.getClaim().insurer.reference;
+//   const insurer = bundleEntries.find((entry) => entry.fullUrl?.includes(insurerRef));
+//   if (!insurer) throw new Error('No insurer Organization found');
+//   return insurer.resource as Organization;
+// }
+
+
+router.post("", (req, res, next) => {
+  const docOder = new DoctorOder({
+    patientName: req.body.patientName,
+    patientDOB: req.body.patientDOB,
     doctorName: req.body.doctorName,
     doctorContact: req.body.doctorContact,
     doctorID: req.body.doctorId,
@@ -21,59 +118,59 @@ router.post("",(req,res,next)=>{
     totalAmount: req.body.totalAmount,
     pickupDate: req.body.pickupDate
   });
-  docOder.save().then(createdDocOder=>{
-  res.status(201).json({
-    message:'Doctor Oder Added Successfully',
-    doctorOderId : createdDocOder._id
-  });
-
-  });
-
-  });
-
-  router.get("",(req,res,next)=>{
-    DoctorOder.find().then(documents=>{
-      res.status(200).json({
-        message : 'Doctor oder added sucessfully',
-        doctorOders :documents
-      });
-    });
-  });
-
-  router.delete("/:id", (req, res, next) => {
-    DoctorOder.deleteOne({ _id: req.params.id }).then(result => {
-      console.log(result);
-      res.status(200).json({ message: 'Doctor order deleted!' });
-    });
-  });
-
-  router.post("/sendmail", (req, res) => {
-    console.log("request came");
-    let user = req.body;
-    sendMail(user, info => {
-      console.log(`The mail has been send 😃 and the id is ${info.messageId}`);
-      res.send(info);
-    });
-  });
-
-
-  async function sendMail(user, callback) {
-    // reusable transporter object using the default SMTP transport
-    let transporter = nodemailer.createTransport({
-      host: "smtp.gmail.com",
-      port: 587,
-      secure: false, // true for 465, false for other ports
-      auth: {
-        user: "pharmacare.contactus@gmail.com",
-        pass: "lalana1011294"
-      }
+  docOder.save().then(createdDocOder => {
+    res.status(201).json({
+      message: 'Doctor Oder Added Successfully',
+      doctorOderId: createdDocOder._id
     });
 
-    let mailOptions = {
-      from: '"Pharma Care Pharmacies"<example.gmail.com>', // sender address
-      to: user.email, // list of receivers
-      subject: "We Recived Your Oder 👻", // Subject line
-      html: `
+  });
+
+});
+
+router.get("", (req, res, next) => {
+  DoctorOder.find().then(documents => {
+    res.status(200).json({
+      message: 'Doctor oder added sucessfully',
+      doctorOders: documents
+    });
+  });
+});
+
+router.delete("/:id", (req, res, next) => {
+  DoctorOder.deleteOne({ _id: req.params.id }).then(result => {
+    console.log(result);
+    res.status(200).json({ message: 'Doctor order deleted!' });
+  });
+});
+
+router.post("/sendmail", (req, res) => {
+  console.log("request came");
+  let user = req.body;
+  sendMail(user, info => {
+    console.log(`The mail has been send 😃 and the id is ${info.messageId}`);
+    res.send(info);
+  });
+});
+
+
+async function sendMail(user, callback) {
+  // reusable transporter object using the default SMTP transport
+  let transporter = nodemailer.createTransport({
+    host: "smtp.gmail.com",
+    port: 587,
+    secure: false, // true for 465, false for other ports
+    auth: {
+      user: "pharmacare.contactus@gmail.com",
+      pass: "lalana1011294"
+    }
+  });
+
+  let mailOptions = {
+    from: '"Pharma Care Pharmacies"<example.gmail.com>', // sender address
+    to: user.email, // list of receivers
+    subject: "We Recived Your Oder 👻", // Subject line
+    html: `
       <head>
       <style>
         table {
@@ -165,13 +262,45 @@ router.post("",(req,res,next)=>{
       <h4>If there is any issue reagrding the oder please be free to contact us or email us (pharmacare.contactus@gmail.com) 😃 </h4>
       </body>
       `
-    };
+  };
 
-    // send mail with defined transport object
-    let info = await transporter.sendMail(mailOptions);
+  // send mail with defined transport object
+  let info = await transporter.sendMail(mailOptions);
 
-    callback(info);
+  callback(info);
+}
+
+
+//Given a reference reference of structure resourceType/id (e.g. Practitioner/para1234) 
+//Return index of parameter index
+function getResourceIndex(resourceReference) {
+
+  console.log(_resourceType + " " + _id);
+
+  //Loop and find the given resource with key value of resourceType and id
+  for (var i = 1; ; i++) {
+    if ((specialityRx.entry[i].resource.resourceType == _resourceType)
+      && (specialityRx.entry[i].resource.id == _id)) {
+      return i;
+    }
   }
+  specialityRx.entry[i]
+}
+
+//Find specific parameter within parameters resource 
+
+function getResource(bundle, resourceReference) {
+  const temp = resourceReference.split('/')
+  const _resourceType = temp[0];
+  const _id = temp[1];
+
+  for (var i = 0; i < bundle.entry.length; i++) {
+    if ((bundle.entry[i].resource.resourceType == _resourceType)
+      && (bundle.entry[i].resource.id == _id)) {
+      return bundle.entry[i].resource;
+    }
+  }
+}
 
 
-  module.exports = router;
+module.exports = router;
