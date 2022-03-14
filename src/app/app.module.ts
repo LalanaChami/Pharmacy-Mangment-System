@@ -1,5 +1,5 @@
 import { XExpiredDialogBoxComponent } from './mainwindow/x-expired-dialog-box/x-expired-dialog-box.component';
-import { DoctorOderServices } from './mainwindow/a-inventory-window/a-shopping-cart-window/DoctorOderServices.service';
+import { DoctorOrderServices } from './mainwindow/a-inventory-window/a-shopping-cart-window/DoctorOrderServices.service';
 import { AuthDoctorUserService } from './auth/doctorAuth/authDoctorUser.service';
 import { DoctorSignupComponent } from './auth/doctorAuth/doctorSignup/doctorSignup.component';
 import { AuthGuard } from './auth/auth.guard';

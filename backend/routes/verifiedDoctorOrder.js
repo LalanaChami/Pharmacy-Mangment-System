@@ -2,10 +2,10 @@ const express = require("express");
 const router = express.Router();
 const nodemailer = require("nodemailer");
 
-const VerifiedDoctorOder = require('../models/verifiedDoctorOders');
+const VerifiedDoctorOrder = require('../models/verifiedDoctorOrders');
 
 router.post("",(req,res,next)=>{
-  const VerifiedDocOder = new VerifiedDoctorOder({
+  const VerifiedDocOrder = new VerifiedDoctorOrder({
     doctorName: req.body.doctorName,
     doctorContact: req.body.doctorContact,
     doctorID: req.body.doctorId,
@@ -19,26 +19,26 @@ router.post("",(req,res,next)=>{
     pickupDate: req.body.pickupDate
   });
 
-  VerifiedDocOder.save().then(createdDocOder=>{
+  VerifiedDocOrder.save().then(createdDocOrder=>{
   res.status(201).json({
-    message:'Verified Doctor Oder Added Successfully',
-    doctorOderId : createdDocOder._id
+    message:'Verified Doctor Order Added Successfully',
+    doctorOrderId : createdDocOrder._id
     });
   });
 });
 
 router.get("",(req,res,next)=>{
-  VerifiedDoctorOder.find().then(documents=>{
+  VerifiedDoctorOrder.find().then(documents=>{
     res.status(200).json({
-      message : 'Doctor verify oder added sucessfully',
-      doctorOders :documents
+      message : 'Doctor verify order added sucessfully',
+      doctorOrders :documents
     });
   });
 });
 
 
 router.delete("/:id", (req, res, next) => {
-  VerifiedDoctorOder.deleteOne({ _id: req.params.id }).then(result => {
+  VerifiedDoctorOrder.deleteOne({ _id: req.params.id }).then(result => {
     console.log(result);
     res.status(200).json({ message: 'Doctor verified order deleted!' });
   });
@@ -69,7 +69,7 @@ async function sendMail(user, callback) {
   let mailOptions = {
     from: '"Pharma Care Pharmacies"<example.gmail.com>', // sender address
     to: user.email, // list of receivers
-    subject: "Congrats You Have Picked Up Your Oder 👻", // Subject line
+    subject: "Congrats You Have Picked Up Your Order 👻", // Subject line
     html: `
     <head>
     <style>
@@ -109,15 +109,15 @@ async function sendMail(user, callback) {
 
     <body>
     <h1>Hey Dr. ${user.name}</h1><br>
-    <h3>You have picked up the oder from our pharmacy TODAY</h3><br>
-    <h2>Thankyou for keeping TRUST on us , hope to see you again 😃</h2><br>
+    <h3>You have picked up the order from our pharmacy TODAY</h3><br>
+    <h2>Thank you for keeping TRUST on us , hope to see you again 😃</h2><br>
 
 
     <h2>Recipt Details</h2>
 
     <table id="table1">
       <tr>
-        <th>Odered Drug Name</th>
+        <th>Ordered Drug Name</th>
         <th>Drug Quantity</th>
         <th>Price per unit (Rs.)</th>
       </tr>
@@ -159,7 +159,7 @@ async function sendMail(user, callback) {
     </table><br>
     <h2>Total Paid Amount :Rs. ${user.total}</h2><br>
     <h3>Info* : </h3>
-    <h4>If there is any issue reagrding the oder please be free to contact us or email us (pharmacare.contactus@gmail.com) 😃 </h4>
+    <h4>If there is any issue regarding the order please be free to contact us or email us (pharmacare.contactus@gmail.com) 😃 </h4>
     </body>
     `
   };

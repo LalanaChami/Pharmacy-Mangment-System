@@ -27,8 +27,8 @@ Star :star:  the repo to help the developers :innocent:
 
 <table>
   <tr>
-    <td>Doctor Oders</td>
-     <td>Verified Doctor Oders</td>
+    <td>Doctor Orders</td>
+     <td>Verified Doctor Orders</td>
      
   </tr>
   <tr>

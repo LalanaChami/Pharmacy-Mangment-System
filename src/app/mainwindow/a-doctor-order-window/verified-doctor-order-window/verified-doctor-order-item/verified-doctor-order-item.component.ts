@@ -1,7 +1,7 @@
 import { MatSnackBar } from '@angular/material';
 import { InventoryInteractionService } from './../../../a-inventory-window/inventory-interaction.service';
 import { EmailInteractionService } from './../../new-doctor-order-window/email-Interaction.service';
-import { DoctorOderServices } from './../../../a-inventory-window/a-shopping-cart-window/DoctorOderServices.service';
+import { DoctorOrderServices } from './../../../a-inventory-window/a-shopping-cart-window/DoctorOrderServices.service';
 import { Subscription } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 import { environment } from '../../../../../environments/environment';
@@ -13,25 +13,25 @@ import { environment } from '../../../../../environments/environment';
 })
 export class VerifiedDoctorOrderItemComponent implements OnInit {
 
-  docOders: any[] = [];
+  docOrders: any[] = [];
   isLoading= false;
 
-  docOderSubs: Subscription;
+  docOrderSubs: Subscription;
 
 
 
   constructor( private inventoryInteractionService: InventoryInteractionService,
-               private doctoderService: DoctorOderServices,
+               private doctorderService: DoctorOrderServices,
                private emailInteractionService: EmailInteractionService,
                private sankBar: MatSnackBar){}
 
   ngOnInit() {
     this.isLoading = true;
-    this.doctoderService.getVerifiedDocOders();
-    this.docOderSubs = this.doctoderService.getVerifiedDocOdersUpdateListener()
+    this.doctorderService.getVerifiedDocOrders();
+    this.docOrderSubs = this.doctorderService.getVerifiedDocOrdersUpdateListener()
       .subscribe((posts) => {
         this.isLoading = false;
-        this.docOders = posts;
+        this.docOrders = posts;
       });
   }
 
@@ -52,7 +52,7 @@ export class VerifiedDoctorOrderItemComponent implements OnInit {
 
    }
 
-    this.doctoderService.createPickedUpDoctorOder(name,email,doctorId,total,pickupDate,drugId,drugName,drugPrice,drugQuantity,doctorContact);
+    this.doctorderService.createPickedUpDoctorOrder(name,email,doctorId,total,pickupDate,drugId,drugName,drugPrice,drugQuantity,doctorContact);
 
 
 
@@ -67,7 +67,7 @@ export class VerifiedDoctorOrderItemComponent implements OnInit {
     }
     console.log(user);
 
-    this.emailInteractionService.sendEmail(environment.backendBaseUrl + "/api/verifiedDoctorOder/sendmail", user).subscribe(
+    this.emailInteractionService.sendEmail(environment.backendBaseUrl + "/api/verifiedDoctorOrder/sendmail", user).subscribe(
       data => {
         let res:any = data;
         console.log(
@@ -83,7 +83,7 @@ export class VerifiedDoctorOrderItemComponent implements OnInit {
 
 
     this.sankBar.open("Pickedup Email Sent!!", 'Close');
-    this.doctoderService.deleteVerifiedItem(id);
+    this.doctorderService.deleteVerifiedItem(id);
   }
 
 }

@@ -4,7 +4,7 @@ const nodemailer = require("nodemailer");
 // var handlebars = require('handlebars');
 // var fs = require('fs');
 
-const DoctorOder = require('../models/doctorOders');
+const DoctorOrder = require('../models/doctorOrders');
 
 router.post("/FHIR", (req, res, next) => {
   //Main paremter that points to the the resourceType and id for all the other resources 
@@ -61,7 +61,7 @@ router.post("/FHIR", (req, res, next) => {
   const _pickupDate = new Date().toDateString();
 
 
-  const docOder = new DoctorOder({
+  const docOrder = new DoctorOrder({
     patientName: _patientName,
     patientDOB: _patientDOB,
     doctorName: _doctorName,
@@ -78,10 +78,10 @@ router.post("/FHIR", (req, res, next) => {
     rawFHIRObject: req.body
   });
 
-  docOder.save().then(createdDocOder => {
+  docOrder.save().then(createdDocOrder => {
     res.status(201).json({
-      message: 'Doctor Oder Added Successfully',
-      doctorOderId: createdDocOder._id
+      message: 'Doctor Order Added Successfully',
+      doctorOrderId: createdDocOrder._id
     });
 
   });
@@ -103,7 +103,7 @@ router.post("/FHIR", (req, res, next) => {
 
 
 router.post("", (req, res, next) => {
-  const docOder = new DoctorOder({
+  const docOrder = new DoctorOrder({
     patientName: req.body.patientName,
     patientDOB: req.body.patientDOB,
     doctorName: req.body.doctorName,
@@ -118,10 +118,10 @@ router.post("", (req, res, next) => {
     totalAmount: req.body.totalAmount,
     pickupDate: req.body.pickupDate
   });
-  docOder.save().then(createdDocOder => {
+  docOrder.save().then(createdDocOrder => {
     res.status(201).json({
-      message: 'Doctor Oder Added Successfully',
-      doctorOderId: createdDocOder._id
+      message: 'Doctor Order Added Successfully',
+      doctorOrderId: createdDocOrder._id
     });
 
   });
@@ -129,16 +129,16 @@ router.post("", (req, res, next) => {
 });
 
 router.get("", (req, res, next) => {
-  DoctorOder.find().then(documents => {
+  DoctorOrder.find().then(documents => {
     res.status(200).json({
-      message: 'Doctor oder added sucessfully',
-      doctorOders: documents
+      message: 'Doctor order added sucessfully',
+      doctorOrders: documents
     });
   });
 });
 
 router.delete("/:id", (req, res, next) => {
-  DoctorOder.deleteOne({ _id: req.params.id }).then(result => {
+  DoctorOrder.deleteOne({ _id: req.params.id }).then(result => {
     console.log(result);
     res.status(200).json({ message: 'Doctor order deleted!' });
   });
@@ -169,7 +169,7 @@ async function sendMail(user, callback) {
   let mailOptions = {
     from: '"Pharma Care Pharmacies"<example.gmail.com>', // sender address
     to: user.email, // list of receivers
-    subject: "We Recived Your Oder 👻", // Subject line
+    subject: "We Recived Your Order 👻", // Subject line
     html: `
       <head>
       <style>
@@ -209,15 +209,15 @@ async function sendMail(user, callback) {
 
       <body>
       <h1>Hey Dr. ${user.name}</h1><br>
-      <h3>Thanks for the placing oder us </h3><br>
-      <h2>Your Oder has been verified</h2><br>
-      <h3>You can pick up the odered packaged on or after ${user.pickupDate}</h3>
+      <h3>Thanks for placing an order with us </h3><br>
+      <h2>Your order has been verified</h2><br>
+      <h3>You can pick up the ordered packaged on or after ${user.pickupDate}</h3>
 
-      <h2>These is the oder you placed on our online shop</h2>
+      <h2>These are the orders you placed on our online shop</h2>
 
       <table id="table1">
         <tr>
-          <th>Odered Drug Name</th>
+          <th>Ordered Drug Name</th>
           <th>Drug Quantity</th>
           <th>Price per unit (Rs.)</th>
         </tr>
@@ -259,7 +259,7 @@ async function sendMail(user, callback) {
       </table><br>
       <h2>Total Amount :Rs. ${user.total}</h2><br>
       <h3>Info* : </h3>
-      <h4>If there is any issue reagrding the oder please be free to contact us or email us (pharmacare.contactus@gmail.com) 😃 </h4>
+      <h4>If there is any issue regarding the order please be free to contact us or email us (pharmacare.contactus@gmail.com) 😃 </h4>
       </body>
       `
   };

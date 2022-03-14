@@ -1,7 +1,7 @@
 <div style="overflow-y:auto ;overflow-x: hidden;height: 500px;">
   <table class="table is-full menu-list"  >
     <tbody>
-      <div class="" *ngFor="let docOder of docOders ">
+      <div class="" *ngFor="let docOrder of docOrders ">
         <tr >
           <div class="div columns  is-full btn r" style="width: 200%;" >
               <div class="div column" >
@@ -19,15 +19,15 @@
 
                   </thead>
                   <tbody>
-                    <td>{{docOder.doctorName}}</td>
-                    <td>{{docOder.doctorContact}} </td>
-                    <td >{{docOder.doctorId}} </td>
-                    <td >{{docOder.doctorEmail}}</td>
-                    <td >{{docOder.drugName[0]}}<br>{{docOder.drugName[1]}}<br>{{docOder.drugName[2]}}<br>{{docOder.drugName[3]}}<br>{{docOder.drugName[4]}}<br>{{docOder.drugName[5]}}</td>
-                    <td>{{docOder.drugPrice[0]}}<br>{{docOder.drugPrice[1]}}<br>{{docOder.drugPrice[2]}}<br>{{docOder.drugPrice[3]}}<br>{{docOder.drugPrice[4]}}<br>{{docOder.drugPrice[5]}}</td>
-                    <td>{{docOder.drugQuantity[0]}}<br>{{docOder.drugQuantity[1]}}<br>{{docOder.drugQuantity[2]}}<br>{{docOder.drugQuantity[3]}}<br>{{docOder.drugQuantity[4]}}<br>{{docOder.drugQuantity[5]}}  </td>
-                    <td >{{docOder.totalAmount}} </td>
-                    <td >{{docOder.pickupDate}} </td>
+                    <td>{{docOrder.doctorName}}</td>
+                    <td>{{docOrder.doctorContact}} </td>
+                    <td >{{docOrder.doctorId}} </td>
+                    <td >{{docOrder.doctorEmail}}</td>
+                    <td >{{docOrder.drugName[0]}}<br>{{docOrder.drugName[1]}}<br>{{docOrder.drugName[2]}}<br>{{docOrder.drugName[3]}}<br>{{docOrder.drugName[4]}}<br>{{docOrder.drugName[5]}}</td>
+                    <td>{{docOrder.drugPrice[0]}}<br>{{docOrder.drugPrice[1]}}<br>{{docOrder.drugPrice[2]}}<br>{{docOrder.drugPrice[3]}}<br>{{docOrder.drugPrice[4]}}<br>{{docOrder.drugPrice[5]}}</td>
+                    <td>{{docOrder.drugQuantity[0]}}<br>{{docOrder.drugQuantity[1]}}<br>{{docOrder.drugQuantity[2]}}<br>{{docOrder.drugQuantity[3]}}<br>{{docOrder.drugQuantity[4]}}<br>{{docOrder.drugQuantity[5]}}  </td>
+                    <td >{{docOrder.totalAmount}} </td>
+                    <td >{{docOrder.pickupDate}} </td>
 
                   </tbody>
                 </table>
@@ -36,7 +36,7 @@
         </tr>
         <tr style="width: 74.5%;">
           <div class=" " style="width: 119.6%;">
-          <a class="button is-small is-primary is-right" style="font-weight: bold; " (click)="onPickup(docOder.doctorName,docOder.doctorEmail,docOder.totalAmount,docOder.pickupDate,docOder.drugId,docOder.drugName,docOder.drugPrice,docOder.drugQuantity,docOder.realQuantity,docOder.doctorId,docOder.doctorContact,docOder.id)">Picked Up</a>
+          <a class="button is-small is-primary is-right" style="font-weight: bold; " (click)="onPickup(docOrder.doctorName,docOrder.doctorEmail,docOrder.totalAmount,docOrder.pickupDate,docOrder.drugId,docOrder.drugName,docOrder.drugPrice,docOrder.drugQuantity,docOrder.realQuantity,docOrder.doctorId,docOrder.doctorContact,docOrder.id)">Picked Up</a>
         </div>
         </tr><br><br>
       </div>
