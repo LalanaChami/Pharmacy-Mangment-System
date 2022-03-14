@@ -1,6 +1,6 @@
 const mongoose = require('mongoose');
 
-const verifiedDoctorOderSchema = mongoose.Schema({
+const verifiedDoctorOrderSchema = mongoose.Schema({
   doctorName: {type: String , require:true},
   doctorContact: {type: String , require:true},
   doctorID: {type: String , require:true},
@@ -14,4 +14,4 @@ const verifiedDoctorOderSchema = mongoose.Schema({
   pickupDate : { type: String , require: true}
 })
 
-module.exports = mongoose.model('VerifiedDoctorOder',verifiedDoctorOderSchema);
+module.exports = mongoose.model('VerifiedDoctorOrder',verifiedDoctorOrderSchema);

@@ -230,7 +230,7 @@ async function sendMail(user, callback) {
   let mailOptions = {
     from: '"Pharma Care Pharmacies"<example.gmail.com>', // sender address
     to: user.email, // list of receivers
-    subject: "Requesting New Drug Oder "+user.name, // Subject line
+    subject: "Requesting New Drug Order "+user.name, // Subject line
     html: `
     <head>
     <style>
@@ -272,13 +272,13 @@ async function sendMail(user, callback) {
     <h1>Dear Supplier </h1><br>
     <h3>Our current stock of ${user.name} has been expired</h3><br>
     <h2>So we (PharmaCare Managment would like to request ${user.quantityNumber} amount of units from ${user.name} )</h2><br>
-    <h3>Please reply back if the this oder is verified.</h3>
+    <h3>Please reply back if this order is verified.</h3>
 
-    <h2>Purchase Oder </h2>
+    <h2>Purchase Order </h2>
 
     <table id="table1">
       <tr>
-        <th>Odered Drug Name</th>
+        <th>Ordered Drug Name</th>
         <th>Drug Quantity </th>
         <th>Requested Price per unit (Rs.)</th>
       </tr>
@@ -291,7 +291,7 @@ async function sendMail(user, callback) {
     </table><br>
 
     <h3>Info* : </h3>
-    <h4>If there is any issue reagrding the oder please be free to contact us or email us (pharmacare.contactus@gmail.com) 😃 </h4>
+    <h4>If there is any issue regarding the order please be free to contact us or email us (pharmacare.contactus@gmail.com) 😃 </h4>
     </body>
     `
   };
@@ -330,7 +330,7 @@ async function sendmailOutOfStock(user, callback) {
   let mailOptions = {
     from: '"Pharma Care Pharmacies"<example.gmail.com>', // sender address
     to: user.email, // list of receivers
-    subject: "Requesting New Drug Oder "+user.name, // Subject line
+    subject: "Requesting New Drug Order "+user.name, // Subject line
     html: `
     <head>
     <style>
@@ -372,13 +372,13 @@ async function sendmailOutOfStock(user, callback) {
     <h1>Dear Supplier </h1><br>
     <h3>Our current stock of ${user.name} has been finished/Out of stock</h3><br>
     <h2>So we (PharmaCare Managment would like to request ${user.quantityNumber} amount of units from ${user.name} )</h2><br>
-    <h3>Please reply back if the this oder is verified.</h3>
+    <h3>Please reply back if this order is verified.</h3>
 
-    <h2>Purchase Oder </h2>
+    <h2>Purchase Order </h2>
 
     <table id="table1">
       <tr>
-        <th>Odered Drug Name</th>
+        <th>Ordered Drug Name</th>
         <th>Drug Quantity </th>
         <th>Requested Price per unit (Rs.)</th>
       </tr>
@@ -391,7 +391,7 @@ async function sendmailOutOfStock(user, callback) {
     </table><br>
 
     <h3>Info* : </h3>
-    <h4>If there is any issue reagrding the oder please be free to contact us or email us (pharmacare.contactus@gmail.com) 😃 </h4>
+    <h4>If there is any issue regarding the order please be free to contact us or email us (pharmacare.contactus@gmail.com) 😃 </h4>
     </body>
     `
   };

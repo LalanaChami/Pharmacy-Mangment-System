@@ -9,9 +9,9 @@ const inventoryRoutes = require('./routes/inventory');
 const userRoutes = require('./routes/user');
 const salesRoutes = require('./routes/sales');
 const doctorUserRoutes = require('./routes/doctorUser');
-const doctorOderRoutes = require('./routes/doctorOders');
-const verifiedDoctorOderRoutes = require('./routes/verifiedDoctorOder');
-const pickedUpOdersRoutes = require('./routes/pickedUpOders');
+const doctorOrderRoutes = require('./routes/doctorOrders');
+const verifiedDoctorOrderRoutes = require('./routes/verifiedDoctorOrder');
+const pickedUpOrdersRoutes = require('./routes/pickedUpOrders');
 
 
 const mongoConnString = process.env.MONGODB_CONNSTRING ? process.env.MONGODB_CONNSTRING : 'mongodb://pharmacy-information-root:pharmacy-information-password@localhost:27017?retryWrites=true&w=majority';
@@ -114,8 +114,8 @@ app.use("/api/inventory",inventoryRoutes);
 app.use("/api/user",userRoutes);
 app.use("/api/sales",salesRoutes);
 app.use("/api/doctorUser",doctorUserRoutes);
-app.use("/api/doctorOder",doctorOderRoutes);
-app.use("/api/verifiedDoctorOder",verifiedDoctorOderRoutes);
-app.use("/api/pickedUpOders",pickedUpOdersRoutes);
+app.use("/api/doctorOrder",doctorOrderRoutes);
+app.use("/api/verifiedDoctorOrder",verifiedDoctorOrderRoutes);
+app.use("/api/pickedUpOrders",pickedUpOrdersRoutes);
 
 module.exports = app;
