@@ -1,10 +1,10 @@
 const express = require("express");
 const router = express.Router();
 
-const PickedUpDoctorOder = require('../models/pickedUpOders');
+const PickedUpDoctorOrder = require('../models/pickedUpOrders');
 
 router.post("",(req,res,next)=>{
-  const PickedUpDocOder = new PickedUpDoctorOder({
+  const PickedUpDocOrder = new PickedUpDoctorOrder({
     doctorName: req.body.doctorName,
     doctorContact: req.body.doctorContact,
     doctorID: req.body.doctorId,
@@ -16,19 +16,19 @@ router.post("",(req,res,next)=>{
     pickupDate: req.body.pickupDate
   });
 
-  PickedUpDocOder.save().then(createdDocOder=>{
+  PickedUpDocOrder.save().then(createdDocOrder=>{
   res.status(201).json({
-    message:'Picked Up Doctor Oder Added Successfully',
-    doctorOderId : createdDocOder._id
+    message:'Picked Up Doctor Order Added Successfully',
+    doctorOrderId : createdDocOrder._id
     });
   });
 });
 
 router.get("",(req,res,next)=>{
-  PickedUpDoctorOder.find().then(documents=>{
+  PickedUpDoctorOrder.find().then(documents=>{
     res.status(200).json({
-      message : 'Doctor picked up oder added sucessfully',
-      doctorOders :documents
+      message : 'Doctor picked up order added sucessfully',
+      doctorOrders :documents
     });
   });
 });

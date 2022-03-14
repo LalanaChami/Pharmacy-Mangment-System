@@ -1,6 +1,6 @@
 import { MatSnackBar } from '@angular/material';
 import { Subscription } from 'rxjs';
-import { DoctorOderServices } from './../../../a-inventory-window/a-shopping-cart-window/DoctorOderServices.service';
+import { DoctorOrderServices } from './../../../a-inventory-window/a-shopping-cart-window/DoctorOrderServices.service';
 import { Component, OnInit } from '@angular/core';
 import { EmailInteractionService } from '../email-Interaction.service';
 import { environment } from '../../../../../environments/environment';
@@ -15,28 +15,28 @@ export class NewDoctorOrderItemComponent implements OnInit {
 
 
 
-  docOders: any[] = [];
+  docOrders: any[] = [];
   isLoading= false;
 
-  docOderSubs: Subscription;
+  docOrderSubs: Subscription;
 
 
 
-  constructor(private doctoderService: DoctorOderServices, private emailInteractionService: EmailInteractionService , private sankBar : MatSnackBar){}
+  constructor(private doctorderService: DoctorOrderServices, private emailInteractionService: EmailInteractionService , private sankBar : MatSnackBar){}
 
   ngOnInit() {
     this.isLoading = true;
-    this.doctoderService.getDocOders();
-    this.docOderSubs = this.doctoderService.getDocOdersUpdateListener()
+    this.doctorderService.getDocOrders();
+    this.docOrderSubs = this.doctorderService.getDocOrdersUpdateListener()
       .subscribe((posts) => {
         this.isLoading = false;
-        this.docOders = posts;
+        this.docOrders = posts;
       });
   }
 
-  onOderVerify(name:string,email:string,total:number,pickupDate:string,drugId:any[] = [],drugName:any[] = [],drugPrice:any[] = [],drugQuantity:any[] = [],realQuantity:any[] = [],doctorId:string,doctorContact:string,id:string){
+  onOrderVerify(name:string,email:string,total:number,pickupDate:string,drugId:any[] = [],drugName:any[] = [],drugPrice:any[] = [],drugQuantity:any[] = [],realQuantity:any[] = [],doctorId:string,doctorContact:string,id:string){
 
-    this.doctoderService.createVerifiedDoctorOder(name,email,doctorId,total,pickupDate,drugId,drugName,drugPrice,drugQuantity,realQuantity,doctorContact);
+    this.doctorderService.createVerifiedDoctorOrder(name,email,doctorId,total,pickupDate,drugId,drugName,drugPrice,drugQuantity,realQuantity,doctorContact);
 
 
     let user={
@@ -50,11 +50,11 @@ export class NewDoctorOrderItemComponent implements OnInit {
     }
     console.log(user);
 
-    this.emailInteractionService.sendEmail(environment.backendBaseUrl + "/api/doctorOder/sendmail", user).subscribe(
+    this.emailInteractionService.sendEmail(environment.backendBaseUrl + "/api/doctorOrder/sendmail", user).subscribe(
       data => {
         let res:any = data;
         console.log(
-          `👏 ${user.name} an email has been successfully and the message id is ${res.messageId}`
+          `👏 ${user.name} an email has been successfully sent and the message id is ${res.messageId}`
         );
       },
       err => {
@@ -64,7 +64,7 @@ export class NewDoctorOrderItemComponent implements OnInit {
     );
 
 
-    this.doctoderService.deleteItem(id);
+    this.doctorderService.deleteItem(id);
 
     this.sankBar.open("Verification Email Sent!!", 'Close');
   }

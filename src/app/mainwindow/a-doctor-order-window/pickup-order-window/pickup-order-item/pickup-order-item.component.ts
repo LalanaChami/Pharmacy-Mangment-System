@@ -1,5 +1,5 @@
 import { EmailInteractionService } from './../../new-doctor-order-window/email-Interaction.service';
-import { DoctorOderServices } from './../../../a-inventory-window/a-shopping-cart-window/DoctorOderServices.service';
+import { DoctorOrderServices } from './../../../a-inventory-window/a-shopping-cart-window/DoctorOrderServices.service';
 import { Subscription } from 'rxjs';
 import { Component, OnInit } from '@angular/core';
 
@@ -10,22 +10,22 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PickupOrderItemComponent implements OnInit {
 
-  docPickedUpOders: any[] = [];
+  docPickedUpOrders: any[] = [];
   isLoading= false;
 
-  docPickedUpOderSubs: Subscription;
+  docPickedUpOrderSubs: Subscription;
 
 
 
-  constructor(private doctoderService: DoctorOderServices, private emailInteractionService: EmailInteractionService){}
+  constructor(private doctorderService: DoctorOrderServices, private emailInteractionService: EmailInteractionService){}
 
   ngOnInit() {
     this.isLoading = true;
-    this.doctoderService.getPickedUpDocOders();
-    this.docPickedUpOderSubs = this.doctoderService.getPickedUpDocOdersUpdateListener()
+    this.doctorderService.getPickedUpDocOrders();
+    this.docPickedUpOrderSubs = this.doctorderService.getPickedUpDocOrdersUpdateListener()
       .subscribe((posts) => {
         this.isLoading = false;
-        this.docPickedUpOders = posts;
+        this.docPickedUpOrders = posts;
       });
   }
 
