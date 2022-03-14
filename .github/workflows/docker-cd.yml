@@ -25,11 +25,11 @@ jobs:
         context: .
         file: Dockerfile.base
         push: true
-        tags: codexrems/node14-pkg-config:REMSvlatest
+        tags: codexrems/node14-pkg-config:REMSvCurrent
       
     - name: Build and push Server Docker image
       uses: docker/build-push-action@v2
       with:
         context: .
         push: true
-        tags: codexrems/pharmacy-information-system:REMSvlatest
+        tags: codexrems/pharmacy-information-system:REMSvCurrent

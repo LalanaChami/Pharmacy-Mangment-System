@@ -1,4 +1,4 @@
-FROM codexrems/node14-pkg-config:REMSvlatest
+FROM codexrems/node14-pkg-config:REMSvCurrent
 WORKDIR /home/node/app/pharmacy-information-system
 COPY --chown=node:node . .
 RUN npm install
