@@ -21,7 +21,7 @@ export class PickupOrderItemComponent implements OnInit {
 
   ngOnInit() {
     this.isLoading = true;
-    this.doctorderService.getPickedUpDocOrders();
+    this.doctorderService.getDocOrders();
     this.docPickedUpOrderSubs = this.doctorderService.getPickedUpDocOrdersUpdateListener()
       .subscribe((posts) => {
         this.isLoading = false;

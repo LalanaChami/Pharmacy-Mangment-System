@@ -34,39 +34,39 @@ export class NewDoctorOrderItemComponent implements OnInit {
       });
   }
 
-  onOrderVerify(name:string,email:string,total:number,pickupDate:string,drugId:any[] = [],drugName:any[] = [],drugPrice:any[] = [],drugQuantity:any[] = [],realQuantity:any[] = [],doctorId:string,doctorContact:string,id:string){
-
-    this.doctorderService.createVerifiedDoctorOrder(name,email,doctorId,total,pickupDate,drugId,drugName,drugPrice,drugQuantity,realQuantity,doctorContact);
-
-
-    let user={
-      name : name,
-      email : email,
-      total : total,
-      pickupDate : pickupDate,
-      drugName : drugName,
-      drugPrice : drugPrice,
-      drugQuantity : drugQuantity
-    }
-    console.log(user);
-
-    this.emailInteractionService.sendEmail(environment.backendBaseUrl + "/api/doctorOrder/sendmail", user).subscribe(
-      data => {
-        let res:any = data;
-        console.log(
-          `👏 ${user.name} an email has been successfully sent and the message id is ${res.messageId}`
-        );
-      },
-      err => {
-        console.log(err);
-
-      }
-    );
+  onOrderVerify(id:string){
+    this.doctorderService.createVerifiedDoctorOrder(id);
+    this.doctorderService.getDocOrders();
 
 
-    this.doctorderService.deleteItem(id);
+    // let user={
+    //   name : name,
+    //   email : email,
+    //   total : total,
+    //   pickupDate : pickupDate,
+    //   drugName : drugName,
+    //   drugPrice : drugPrice,
+    //   drugQuantity : drugQuantity
+    // }
+    // console.log(user);
 
-    this.sankBar.open("Verification Email Sent!!", 'Close');
+    // this.emailInteractionService.sendEmail(environment.backendBaseUrl + "/api/doctorOrder/sendmail", user).subscribe(
+    //   data => {
+    //     let res:any = data;
+    //     console.log(
+    //       `👏 ${user.name} an email has been successfully sent and the message id is ${res.messageId}`
+    //     );
+    //   },
+    //   err => {
+    //     console.log(err);
+
+    //   }
+    // );
+
+
+    // this.doctorderService.deleteItem(id);
+
+    // this.sankBar.open("Verification Email Sent!!", 'Close');
   }
 
   }
