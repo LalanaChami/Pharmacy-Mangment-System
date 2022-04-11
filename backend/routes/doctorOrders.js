@@ -28,7 +28,13 @@ router.patch("/fhir/rems/:id", async (req, res, next) => {
 router.patch("/fhir/rems/pickedUp/:id", async (req, res, next) => {
   const documentId = req.params.id;
   const documentOrder = await DoctorOrder.findById(documentId);
+  
   documentOrder.dispenseStatus = "Picked Up"
+
+  const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  const today  = new Date();
+  documentOrder.actualDate = today.toLocaleDateString("en-US", dateOptions);
+
   documentOrder.save().then(updatedDocOrder => {
     res.status(201).json({
       message: 'Doctor Order Updated Successfully',

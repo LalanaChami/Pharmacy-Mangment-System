@@ -14,6 +14,7 @@ const doctorOrderSchema = mongoose.Schema({
   realQuantity: {type: Array , require:true},
   totalAmount : { type: String , require: true},
   pickupDate : { type: String , require: true},
+  actualDate : { type: String , require: true},
   dispenseStatus : { type: String , require: true},
   caseNumber : { type: String , require: false},
   //send full object here

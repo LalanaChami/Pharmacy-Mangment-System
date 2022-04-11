@@ -83,6 +83,7 @@ export class DoctorOrderServices{
         realQuantity : doctorOrder.realQuantity,
         totalAmount : doctorOrder.totalAmount,
         pickupDate : doctorOrder.pickupDate,
+        actualDate: doctorOrder.actualDate,
         dispenseStatus: doctorOrder.dispenseStatus,
         caseNumber: doctorOrder.caseNumber,
         id: doctorOrder._id

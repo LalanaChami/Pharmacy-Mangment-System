@@ -17,6 +17,8 @@
                     <td >Total</td>
                     <td >Pickup Date</td>
                     <td >Actual date</td>
+                    <td> Case Number </td>
+                    <td> Dispense Status </td>
                   </thead>
                   <tbody>
                     <td>{{docOrder.doctorName}}</td>
@@ -28,7 +30,9 @@
                     <td>{{docOrder.drugQuantity[0]}}<br>{{docOrder.drugQuantity[1]}}<br>{{docOrder.drugQuantity[2]}}<br>{{docOrder.drugQuantity[3]}}<br>{{docOrder.drugQuantity[4]}}<br>{{docOrder.drugQuantity[5]}}  </td>
                     <td >{{docOrder.totalAmount}} </td>
                     <td >{{docOrder.pickupDate}} </td>
-                    <td >{{docOrder.acctualDate}} </td>
+                    <td >{{docOrder.actualDate}} </td>
+                    <td> {{docOrder.caseNumber}} </td>
+                    <td>{{docOrder.dispenseStatus}}</td>
                   </tbody>
                 </table>
               </div>
