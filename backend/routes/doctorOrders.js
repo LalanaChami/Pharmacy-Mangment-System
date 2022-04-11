@@ -28,7 +28,7 @@ router.patch("/fhir/rems/:id", async (req, res, next) => {
 router.patch("/fhir/rems/pickedUp/:id", async (req, res, next) => {
   const documentId = req.params.id;
   const documentOrder = await DoctorOrder.findById(documentId);
-  
+
   documentOrder.dispenseStatus = "Picked Up"
 
   const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
@@ -100,6 +100,16 @@ router.post("", (req, res, next) => {
 
 router.get("", (req, res, next) => {
   DoctorOrder.find().then(documents => {
+    res.status(200).json({
+      message: 'Doctor orders found Successfully',
+      doctorOrders: documents
+    });
+  });
+});
+
+router.get("/:id", async (req, res, next) => {
+  const documentId = req.params.id;
+  DoctorOrder.findById(documentId).then(documents => {
     res.status(200).json({
       message: 'Doctor order found Successfully',
       doctorOrders: documents
