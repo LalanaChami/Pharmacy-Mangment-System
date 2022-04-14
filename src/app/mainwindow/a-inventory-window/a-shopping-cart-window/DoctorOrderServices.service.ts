@@ -38,23 +38,13 @@ export class DoctorOrderServices{
 
 
   createVerifiedDoctorOrder(id: string){
-    this.http.patch(environment.backendBaseUrl + "/api/doctorOrder/fhir/rems/" + id, {})
-      .subscribe(response =>{
-        console.log(response);
-        this.getDocOrders();
-      });
-
+    return this.http.patch(environment.backendBaseUrl + "/api/doctorOrder/fhir/rems/" + id, {})
   }
 
 
 
   createPickedUpDoctorOrder(id: string){
-    this.http.patch(environment.backendBaseUrl + "/api/doctorOrder/fhir/rems/pickedUp/" + id, {})
-      .subscribe(response =>{
-        console.log(response);
-        this.getDocOrders();
-      });
-
+    return this.http.patch(environment.backendBaseUrl + "/api/doctorOrder/fhir/rems/pickedUp/" + id, {})
   }
 
 

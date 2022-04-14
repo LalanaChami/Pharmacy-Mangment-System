@@ -23,7 +23,7 @@ export class VerifiedDoctorOrderItemComponent implements OnInit {
   constructor( private inventoryInteractionService: InventoryInteractionService,
                private doctorOrderService: DoctorOrderServices,
                private emailInteractionService: EmailInteractionService,
-               private sankBar: MatSnackBar){}
+               private snackBar: MatSnackBar){}
 
   ngOnInit() {
     this.isLoading = true;
@@ -53,7 +53,12 @@ export class VerifiedDoctorOrderItemComponent implements OnInit {
 
   //  }
 
-    this.doctorOrderService.createPickedUpDoctorOrder(id);
+    this.doctorOrderService.createPickedUpDoctorOrder(id)
+    .subscribe(response =>{
+      console.log(response);
+      this.doctorOrderService.getDocOrders();
+      this.snackBar.open("Order has been marked as picked up", 'Close');
+    });;
 
     // let user={
     //   name : name,
@@ -81,7 +86,6 @@ export class VerifiedDoctorOrderItemComponent implements OnInit {
 
 
 
-    // this.sankBar.open("Pickedup Email Sent!!", 'Close');
     // this.doctorderService.deleteItem(id);
   }
 

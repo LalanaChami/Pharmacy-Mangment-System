@@ -22,7 +22,7 @@ export class NewDoctorOrderItemComponent implements OnInit {
 
 
 
-  constructor(private doctorOrderService: DoctorOrderServices, private emailInteractionService: EmailInteractionService , private sankBar : MatSnackBar){}
+  constructor(private doctorOrderService: DoctorOrderServices, private emailInteractionService: EmailInteractionService , private snackBar : MatSnackBar){}
 
   ngOnInit() {
     this.isLoading = true;
@@ -37,8 +37,18 @@ export class NewDoctorOrderItemComponent implements OnInit {
 
   onOrderVerify(id:string){
     this.isLoading = true;
-    this.doctorOrderService.createVerifiedDoctorOrder(id);
-    this.isLoading = false;
+    this.doctorOrderService.createVerifiedDoctorOrder(id)
+    .subscribe(response =>{
+      console.log(response);
+      this.doctorOrderService.getDocOrders();
+      if (response.order.dispenseStatus === "Approved") {
+        this.snackBar.open("Order has been verified by REMS Administrator", 'Close');
+      } else {
+        this.snackBar.open("Order has not yet been verified by REMS Administrator", 'Close');
+      }
+      this.isLoading = false;
+
+    });;
 
 
     // let user={
@@ -68,7 +78,6 @@ export class NewDoctorOrderItemComponent implements OnInit {
 
     // this.doctorderService.deleteItem(id);
 
-    // this.sankBar.open("Verification Email Sent!!", 'Close');
   }
 
   }
