@@ -1,7 +1,7 @@
 <div style="overflow:auto; height: 610px;">
 <table class="table is-full menu-list" style=" margin:10px; width:120%;" >
   <tbody >
-      <tr *ngFor="let docOrder of docOrders ">
+      <tr *ngFor="let docOrder of doctorOrderService.docOrders | async">
         <div class="div columns  is-full btn r" >
             <div class="div column" >
               <table class="table is-full" style=" width:100%;">

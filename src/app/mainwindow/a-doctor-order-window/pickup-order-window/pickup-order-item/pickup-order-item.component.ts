@@ -10,23 +10,24 @@ import { Component, OnInit } from '@angular/core';
 })
 export class PickupOrderItemComponent implements OnInit {
 
-  docPickedUpOrders: any[] = [];
+  // docPickedUpOrders: any[] = [];
   isLoading= false;
 
-  docPickedUpOrderSubs: Subscription;
+  // docPickedUpOrderSubs: Subscription;
 
 
 
-  constructor(private doctorderService: DoctorOrderServices, private emailInteractionService: EmailInteractionService){}
+  constructor(public doctorOrderService: DoctorOrderServices, private emailInteractionService: EmailInteractionService){}
 
   ngOnInit() {
     this.isLoading = true;
-    this.doctorderService.getDocOrders();
-    this.docPickedUpOrderSubs = this.doctorderService.getPickedUpDocOrdersUpdateListener()
-      .subscribe((posts) => {
-        this.isLoading = false;
-        this.docPickedUpOrders = posts;
-      });
+    this.doctorOrderService.getDocOrders();
+    this.isLoading = false;
+    // this.docPickedUpOrderSubs = this.doctorderService.getPickedUpDocOrdersUpdateListener()
+    //   .subscribe((posts) => {
+    //     this.isLoading = false;
+    //     this.docPickedUpOrders = posts;
+      // });
   }
 
 

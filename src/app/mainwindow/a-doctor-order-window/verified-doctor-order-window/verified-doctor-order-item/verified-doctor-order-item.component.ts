@@ -13,26 +13,27 @@ import { environment } from '../../../../../environments/environment';
 })
 export class VerifiedDoctorOrderItemComponent implements OnInit {
 
-  docOrders: any[] = [];
+  // docOrders: any[] = [];
   isLoading= false;
 
-  docOrderSubs: Subscription;
+  // docOrderSubs: Subscription;
 
 
 
   constructor( private inventoryInteractionService: InventoryInteractionService,
-               private doctorderService: DoctorOrderServices,
+               private doctorOrderService: DoctorOrderServices,
                private emailInteractionService: EmailInteractionService,
                private sankBar: MatSnackBar){}
 
   ngOnInit() {
     this.isLoading = true;
-    this.doctorderService.getDocOrders();
-    this.docOrderSubs = this.doctorderService.getVerifiedDocOrdersUpdateListener()
-      .subscribe((posts) => {
-        this.isLoading = false;
-        this.docOrders = posts;
-      });
+    this.doctorOrderService.getDocOrders();
+    this.isLoading = false;
+    // this.docOrderSubs = this.doctorderService.getVerifiedDocOrdersUpdateListener()
+    //   .subscribe((posts) => {
+    //     this.isLoading = false;
+    //     this.docOrders = posts;
+    //   });
   }
 
 
@@ -52,8 +53,7 @@ export class VerifiedDoctorOrderItemComponent implements OnInit {
 
   //  }
 
-    this.doctorderService.createPickedUpDoctorOrder(id);
-    this.doctorderService.getDocOrders();
+    this.doctorOrderService.createPickedUpDoctorOrder(id);
 
     // let user={
     //   name : name,

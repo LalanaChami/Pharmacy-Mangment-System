@@ -15,28 +15,30 @@ export class NewDoctorOrderItemComponent implements OnInit {
 
 
 
-  docOrders: any[] = [];
+  // docOrders: any[] = [];
   isLoading= false;
 
-  docOrderSubs: Subscription;
+  // docOrderSubs: Subscription;
 
 
 
-  constructor(private doctorderService: DoctorOrderServices, private emailInteractionService: EmailInteractionService , private sankBar : MatSnackBar){}
+  constructor(private doctorOrderService: DoctorOrderServices, private emailInteractionService: EmailInteractionService , private sankBar : MatSnackBar){}
 
   ngOnInit() {
     this.isLoading = true;
-    this.doctorderService.getDocOrders();
-    this.docOrderSubs = this.doctorderService.getDocOrdersUpdateListener()
-      .subscribe((posts) => {
-        this.isLoading = false;
-        this.docOrders = posts;
-      });
+    this.doctorOrderService.getDocOrders();
+    this.isLoading = false;
+    // this.docOrderSubs = this.doctorderService.getDocOrdersUpdateListener()
+    //   .subscribe((posts) => {
+    //     this.isLoading = false;
+    //     this.docOrders = posts;
+    //   });
   }
 
   onOrderVerify(id:string){
-    this.doctorderService.createVerifiedDoctorOrder(id);
-    this.doctorderService.getDocOrders();
+    this.isLoading = true;
+    this.doctorOrderService.createVerifiedDoctorOrder(id);
+    this.isLoading = false;
 
 
     // let user={

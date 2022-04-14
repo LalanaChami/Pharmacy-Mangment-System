@@ -2,18 +2,15 @@
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 import { HttpClient } from '@angular/common/http';
-import { Subject } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { BehaviorSubject } from 'rxjs';
 import { environment } from '../../../../environments/environment';
 
 @Injectable({providedIn: 'root'})
 export class DoctorOrderServices{
-  private docOrders:any[] = [];
-  private docOrdersUpdated = new Subject<any[]>();
-  private VerifiedDocOrders:any[] = [];
-  private VerifiedDocOrdersUpdated = new Subject<any[]>();
-  private PickedUpDocOrders:any[] = [];
-  private PickedUpDocOrdersUpdated = new Subject<any[]>();
+  public docOrders: BehaviorSubject<any[]>  = new BehaviorSubject<any[]>();
+  public verifiedDocOrders: BehaviorSubject<any[]>  = new BehaviorSubject<any[]>();
+  public pickedUpDocOrders: BehaviorSubject<any[]>  = new BehaviorSubject<any[]>();
 
   constructor(private http: HttpClient, private router: Router){
   }
@@ -44,6 +41,7 @@ export class DoctorOrderServices{
     this.http.patch(environment.backendBaseUrl + "/api/doctorOrder/fhir/rems/" + id, {})
       .subscribe(response =>{
         console.log(response);
+        this.getDocOrders();
       });
 
   }
@@ -54,6 +52,7 @@ export class DoctorOrderServices{
     this.http.patch(environment.backendBaseUrl + "/api/doctorOrder/fhir/rems/pickedUp/" + id, {})
       .subscribe(response =>{
         console.log(response);
+        this.getDocOrders();
       });
 
   }
@@ -61,12 +60,13 @@ export class DoctorOrderServices{
 
 
   getDocOrders() {
-    const orders = [];
-    const verifiedOrders = [];
-    const pickedUpOrders = [];
+    const docOrders = [];
+    const verifiedDocOrders = [];
+    const pickedUpDocOrders = [];
 
     this.http.get<{message: string, doctorOrders: any}>(environment.backendBaseUrl + "/api/doctorOrder")
-    .pipe(map(docOrderData => {
+    .subscribe(docOrderData => {
+      console.log(docOrderData);
       docOrderData.doctorOrders.forEach(doctorOrder => {
 
        const transformedOrder = {
@@ -90,40 +90,37 @@ export class DoctorOrderServices{
        }
 
        if (transformedOrder.dispenseStatus === "Approved") {
-          verifiedOrders.push(transformedOrder);
+          verifiedDocOrders.push(transformedOrder);
        } else if (transformedOrder.dispenseStatus === "Picked Up") {
-         pickedUpOrders.push(transformedOrder);
+         pickedUpDocOrders.push(transformedOrder);
        } else {
-         orders.push(transformedOrder);
+         docOrders.push(transformedOrder);
        }
      });
 
-     return {
-       orders,
-       pickedUpOrders,
-       verifiedOrders
-     }
-    }))
-    .subscribe((transformedDocOrders)=>{
-      this.docOrders = transformedDocOrders.orders;
-      this.VerifiedDocOrders = transformedDocOrders.verifiedOrders;
-      this.PickedUpDocOrders = transformedDocOrders.pickedUpOrders;
 
-      this.docOrdersUpdated.next([...this.docOrders]);
-      this.VerifiedDocOrdersUpdated.next([...this.VerifiedDocOrders]);
-      this.PickedUpDocOrdersUpdated.next([...this.PickedUpDocOrders]);
+    this.docOrders.next([ ...docOrders ]);
+    this.verifiedDocOrders.next([ ...verifiedDocOrders ]);
+    this.pickedUpDocOrders.next([ ...pickedUpDocOrders ]);
     });
+    // .subscribe((transformedDocOrders)=>{
+    //   this.docOrders = transformedDocOrders.orders;
+    //   this.VerifiedDocOrders = transformedDocOrders.verifiedOrders;
+    //   this.PickedUpDocOrders = transformedDocOrders.pickedUpOrders;
 
-    return {
-      orders,
-      pickedUpOrders,
-      verifiedOrders
-    }
+    //   this.docOrdersUpdated.next([...this.docOrders]);
+    //   this.VerifiedDocOrdersUpdated.next([...this.VerifiedDocOrders]);
+    //   this.PickedUpDocOrdersUpdated.next([...this.PickedUpDocOrders]);
+    // });
+
+    
+
+
   }
 
-  getDocOrdersUpdateListener() {
-    return this.docOrdersUpdated.asObservable();
-  }
+  // getDocOrdersUpdateListener() {
+  //   return this.docOrdersUpdated.asObservable();
+  // }
 
 
 
@@ -154,9 +151,9 @@ export class DoctorOrderServices{
   //   });
   // }
 
-  getVerifiedDocOrdersUpdateListener() {
-    return this.VerifiedDocOrdersUpdated.asObservable();
-  }
+  // getVerifiedDocOrdersUpdateListener() {
+  //   return this.VerifiedDocOrdersUpdated.asObservable();
+  // }
 
 
   // getPickedUpDocOrders() {
@@ -184,16 +181,16 @@ export class DoctorOrderServices{
   //   });
   // }
 
-  getPickedUpDocOrdersUpdateListener() {
-    return this.PickedUpDocOrdersUpdated.asObservable();
-  }
+  // getPickedUpDocOrdersUpdateListener() {
+  //   return this.PickedUpDocOrdersUpdated.asObservable();
+  // }
 
   deleteItem(orderId: string) {
     this.http.delete(environment.backendBaseUrl + '/api/doctorOrder/' + orderId)
       .subscribe(() =>{
-        const inventoryUpdated = this.docOrders.filter(order => order.id !== orderId);
-        this.docOrders = inventoryUpdated;
-        this.docOrdersUpdated.next([...this.docOrders])
+        // const inventoryUpdated = this.docOrders.filter(order => order.id !== orderId);
+        // this.docOrders = inventoryUpdated;
+        // this.docOrdersUpdated.next([...this.docOrders])
       });
   }
 
