@@ -251,52 +251,52 @@ async function sendMail(user, callback) {
 }
 
 function parseRemsAdminRequest(requestBody , existingDocOrder = undefined) {
-  const complianceBundle = requestBody.complianceBundle;
+  const complianceBundle = requestBody?.complianceBundle;
   //Main paremter that points to the the resourceType and id for all the other resources 
   const parameterReference = getResource(complianceBundle, complianceBundle.entry[0].resource.focus.parameters.reference);
 
   //patientName
   const patient = getResource(complianceBundle, parameterReference.parameter.find(param => param.name === "source-patient").reference);
-  const _patientName = patient.name[0].given.join(" ") + " "
-                      + patient.name[0].family;
+  const _patientName = patient?.name[0]?.given?.join(" ") + " "
+                      + patient?.name[0]?.family;
 
   //patientDOB
-  const _patientDOB = patient.birthDate;
+  const _patientDOB = patient?.birthDate;
 
   // doctorName
   const doctor = getResource(complianceBundle, parameterReference.parameter.find(param => param.name === "prescriber").reference);
 
-  const _doctorName = doctor.name[0].prefix[0] + " "
-    + doctor.name[0].given.join(" ")  + " "
-    + doctor.name[0].family;
+  const _doctorName = doctor?.name[0]?.prefix[0] + " "
+    + doctor?.name[0]?.given.join(" ")  + " "
+    + doctor?.name[0]?.family;
 
   // doctorContact
-  const _doctorContact = doctor.telecom.find(telecom => telecom.system === "phone").value;
+  const _doctorContact = doctor?.telecom?.find(telecom => telecom.system === "phone").value;
 
   // doctorEmail
-  const _doctorEmail = doctor.telecom.find(telecom => telecom.system === "email").value;
+  const _doctorEmail = doctor?.telecom?.find(telecom => telecom.system === "email").value;
 
   // doctorId
-  const _doctorId = doctor.identifier[0].value;
+  const _doctorId = doctor?.identifier[0]?.value;
 
   // drugId
   const presciption = getResource(complianceBundle, parameterReference.parameter.find(param => param.name === "prescription").reference);
 
   //come back and verify rxnorm 
-  const _drugId = presciption.medicationCodeableConcept.coding[0].code;
+  const _drugId = presciption?.medicationCodeableConcept?.coding[0]?.code;
 
   // drugNames
-  const _drugNames = presciption.medicationCodeableConcept.coding[0].display;
+  const _drugNames = presciption?.medicationCodeableConcept?.coding[0]?.display;
 
   // drugPrice
   const _drugPrice = 200.00;
 
   // drugQuantity
-  const _drugQuantity = presciption.dispenseRequest.quantity.value;
+  const _drugQuantity = presciption?.dispenseRequest?.quantity.value;
 
   // realQuantity
-  const _realQuantity = presciption.dosageInstruction[0].doseAndRate[0].doseQuantity.value
-    + presciption.dosageInstruction[0].doseAndRate[0].doseQuantity.unit;
+  const _realQuantity = presciption?.dosageInstruction[0]?.doseAndRate[0]?.doseQuantity?.value
+    + presciption?.dosageInstruction[0]?.doseAndRate[0]?.doseQuantity.unit;
 
   // totalAmount
   // make this the 90 
@@ -321,8 +321,8 @@ function parseRemsAdminRequest(requestBody , existingDocOrder = undefined) {
     docOrder.realQuantity = _realQuantity;
     docOrder.totalAmount = _totalAmount;
     docOrder.pickupDate = _pickupDate;
-    docOrder.dispenseStatus = requestBody.status;
-    docOrder.caseNumber = requestBody.case_number;
+    docOrder.dispenseStatus = requestBody?.status;
+    docOrder.caseNumber = requestBody?.case_number;
     docOrder.rawFHIRObject = requestBody;
   } else {
     docOrder = new DoctorOrder({
@@ -339,8 +339,8 @@ function parseRemsAdminRequest(requestBody , existingDocOrder = undefined) {
       realQuantity: _realQuantity,
       totalAmount: _totalAmount,
       pickupDate: _pickupDate,
-      dispenseStatus: requestBody.status,
-      caseNumber: requestBody.case_number,
+      dispenseStatus: requestBody?.status,
+      caseNumber: requestBody?.case_number,
       rawFHIRObject: requestBody
     }); 
   }
