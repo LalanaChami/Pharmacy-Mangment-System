@@ -19,7 +19,7 @@ router.patch("/fhir/rems/:id", async (req, res, next) => {
   documentOrder.save().then(updatedDocOrder => {
     res.status(201).json({
       message: 'Doctor Order Updated Successfully',
-      doctorOrderId: updatedDocOrder._id
+      doctorOrder: updatedDocOrder
     });
 
   });
@@ -38,7 +38,7 @@ router.patch("/fhir/rems/pickedUp/:id", async (req, res, next) => {
   documentOrder.save().then(updatedDocOrder => {
     res.status(201).json({
       message: 'Doctor Order Updated Successfully',
-      doctorOrderId: updatedDocOrder._id
+      doctorOrder: updatedDocOrder
     });
 
   });
@@ -50,7 +50,7 @@ router.post("/fhir/rems", (req, res, next) => {
   docOrder.save().then(createdDocOrder => {
     res.status(201).json({
       message: 'Doctor Order Added Successfully',
-      doctorOrderId: createdDocOrder._id
+      doctorOrder: createdDocOrder
     });
 
   });
@@ -91,7 +91,7 @@ router.post("", (req, res, next) => {
   docOrder.save().then(createdDocOrder => {
     res.status(201).json({
       message: 'Doctor Order Added Successfully',
-      doctorOrderId: createdDocOrder._id
+      doctorOrder: createdDocOrder
     });
 
   });
