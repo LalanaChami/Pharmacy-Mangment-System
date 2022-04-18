@@ -1,50 +1,49 @@
-<div style="margin-top: 5%;">
-
-
-  <div style="margin-top: 2%; height:900px">
-    <section class="section columns">
-      <div class="column is-full-desktop is-full-mobile">
-        <!-- <app-search-supplier-window></app-search-supplier-window> -->
-        <div class="tabs is-toggle is-fullwidth">
-          <ul>
-            <li class="is-active ">
-              <a routerLink="/doctororders">
-                <!-- <span class="icon is-small"><i class="fas fa-music" aria-hidden="true"></i></span> -->
-                <span>New Orders</span>
-              </a>
-            </li>
-            <li >
-              <a routerLink="/doctororders/new">
-                <!-- <span class="icon is-small"><i class="fas fa-image" aria-hidden="true"></i></span> -->
-                <span>Verified Orders</span>
-              </a>
-            </li>
-            <li>
-              <a routerLink="/doctororders/pickedUp">
-                <!-- <span class="icon is-small"><i class="fas fa-music" aria-hidden="true"></i></span> -->
-                <span>Picked Up Orders</span>
-              </a>
-            </li>
-
-
-          </ul>
+<div style="margin-top: 5%; width:100%;">
+  <div>
+    <div style="margin-top: 2%; height:900px;">
+      <section class="section columns">
+        <div class="column is-full-desktop is-full-mobile">
+          <!-- <app-search-supplier-window></app-search-supplier-window> -->
+          <div class="tabs is-toggle is-fullwidth">
+            <ul>
+              <li class="is-active ">
+                <a routerLink="/doctororders">
+                  <!-- <span class="icon is-small"><i class="fas fa-music" aria-hidden="true"></i></span> -->
+                  <span>New Orders</span>
+                </a>
+              </li>
+              <li >
+                <a routerLink="/doctororders/new">
+                  <!-- <span class="icon is-small"><i class="fas fa-image" aria-hidden="true"></i></span> -->
+                  <span>Verified Orders</span>
+                </a>
+              </li>
+              <li>
+                <a routerLink="/doctororders/pickedUp">
+                  <!-- <span class="icon is-small"><i class="fas fa-music" aria-hidden="true"></i></span> -->
+                  <span>Picked Up Orders</span>
+                </a>
+              </li>
+  
+  
+            </ul>
+          </div>
+        </div>
+      </section>
+    <section class="panel" style="margin: 3px;margin-top: -30px; width:80vw;">
+      <p class="panel-heading" style="background-color:hsl(0, 0%, 88%) ;color:hsl(0, 0%, 21%)">
+        New Orders
+      </p>
+      <div class="panel-block ">
+        <div  style="height: 610px; width:100%;">
+  
+          <app-new-doctor-order-item></app-new-doctor-order-item>
         </div>
       </div>
-    </section>
-  <section class="panel" style="margin: 3px;margin-top: -30px; width: 99%;">
-    <p class="panel-heading" style="background-color:hsl(0, 0%, 88%) ;color:hsl(0, 0%, 21%)">
-      New Orders
-    </p>
-    <div class="panel-block ">
-      <div  style="height: 610px; width: 115%;">
-
-        <app-new-doctor-order-item></app-new-doctor-order-item>
+      <div class="panel-block">
+  
       </div>
+    </section>
     </div>
-    <div class="panel-block">
-
-    </div>
-  </section>
   </div>
-
   </div>
