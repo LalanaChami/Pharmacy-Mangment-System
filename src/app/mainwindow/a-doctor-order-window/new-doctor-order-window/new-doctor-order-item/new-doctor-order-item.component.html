@@ -1,10 +1,10 @@
-<div style="overflow-y:auto ;overflow-x: hidden;height: 610px;">
-<table class="table is-full menu-list"  >
-  <tbody>
+<div style="overflow:auto; height: 610px;">
+<table class="table is-full menu-list" style=" margin:10px; width:120%;" >
+  <tbody >
       <tr *ngFor="let docOrder of docOrders ">
-        <div class="div columns  is-full btn r" style="width: 200%;" >
+        <div class="div columns  is-full btn r" >
             <div class="div column" >
-              <table class="table is-full" style="width: 55%;">
+              <table class="table is-full" style=" width:100%;">
                 <thead style="font-weight: bold;">
                   <td>Patient Name</td>
                   <td>Patient DOB</td>
@@ -31,9 +31,7 @@
                   <td>{{docOrder.drugQuantity[0]}}<br>{{docOrder.drugQuantity[1]}}<br>{{docOrder.drugQuantity[2]}}<br>{{docOrder.drugQuantity[3]}}<br>{{docOrder.drugQuantity[4]}}<br>{{docOrder.drugQuantity[5]}}  </td>
                   <td >{{docOrder.totalAmount}} </td>
                   <td >{{docOrder.pickupDate}} </td>
-
                   <td class="level-right"><a class="button is-small is-primary" style="font-weight: bold;" href="#">View Order</a></td>
-
                 </tbody>
               </table>
             </div>
@@ -53,9 +51,9 @@
 
   .menu-list{
     border-radius: 2px;
-    width: 220%;
+    width: 100%;
     display: block;
-    padding: 10px;
+    padding: 20px;
     }
     .btn{
       width: 100%;
