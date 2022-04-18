@@ -8,9 +8,9 @@ import { environment } from '../../../../environments/environment';
 
 @Injectable({providedIn: 'root'})
 export class DoctorOrderServices{
-  public docOrders: BehaviorSubject<any[]>  = new BehaviorSubject<any[]>();
-  public verifiedDocOrders: BehaviorSubject<any[]>  = new BehaviorSubject<any[]>();
-  public pickedUpDocOrders: BehaviorSubject<any[]>  = new BehaviorSubject<any[]>();
+  public docOrders: BehaviorSubject<any[]>  = new BehaviorSubject<any[]>([]);
+  public verifiedDocOrders: BehaviorSubject<any[]>  = new BehaviorSubject<any[]>([]);
+  public pickedUpDocOrders: BehaviorSubject<any[]>  = new BehaviorSubject<any[]>([]);
 
   constructor(private http: HttpClient, private router: Router){
   }
@@ -38,13 +38,13 @@ export class DoctorOrderServices{
 
 
   createVerifiedDoctorOrder(id: string){
-    return this.http.patch(environment.backendBaseUrl + "/api/doctorOrder/fhir/rems/" + id, {})
+    return this.http.patch<any>(environment.backendBaseUrl + "/api/doctorOrder/fhir/rems/" + id, {})
   }
 
 
 
   createPickedUpDoctorOrder(id: string){
-    return this.http.patch(environment.backendBaseUrl + "/api/doctorOrder/fhir/rems/pickedUp/" + id, {})
+    return this.http.patch<any>(environment.backendBaseUrl + "/api/doctorOrder/fhir/rems/pickedUp/" + id, {})
   }
 
 
@@ -56,7 +56,6 @@ export class DoctorOrderServices{
 
     this.http.get<{message: string, doctorOrders: any}>(environment.backendBaseUrl + "/api/doctorOrder")
     .subscribe(docOrderData => {
-      console.log(docOrderData);
       docOrderData.doctorOrders.forEach(doctorOrder => {
 
        const transformedOrder = {

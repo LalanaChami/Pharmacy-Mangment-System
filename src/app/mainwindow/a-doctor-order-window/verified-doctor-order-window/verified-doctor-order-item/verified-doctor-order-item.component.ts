@@ -55,7 +55,6 @@ export class VerifiedDoctorOrderItemComponent implements OnInit {
 
     this.doctorOrderService.createPickedUpDoctorOrder(id)
     .subscribe(response =>{
-      console.log(response);
       this.doctorOrderService.getDocOrders();
       this.snackBar.open("Order has been marked as picked up", 'Close');
     });;

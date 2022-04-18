@@ -39,7 +39,6 @@ export class NewDoctorOrderItemComponent implements OnInit {
     this.isLoading = true;
     this.doctorOrderService.createVerifiedDoctorOrder(id)
     .subscribe(response =>{
-      console.log(response);
       this.doctorOrderService.getDocOrders();
       if (response.order.dispenseStatus === "Approved") {
         this.snackBar.open("Order has been verified by REMS Administrator", 'Close');
