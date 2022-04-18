@@ -112,7 +112,7 @@ router.get("/:id", async (req, res, next) => {
   DoctorOrder.findById(documentId).then(documents => {
     res.status(200).json({
       message: 'Doctor order found Successfully',
-      doctorOrders: documents
+      doctorOrder: documents
     });
   });
 });
