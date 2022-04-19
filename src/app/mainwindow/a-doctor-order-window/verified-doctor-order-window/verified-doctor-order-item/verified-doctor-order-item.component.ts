@@ -13,77 +13,79 @@ import { environment } from '../../../../../environments/environment';
 })
 export class VerifiedDoctorOrderItemComponent implements OnInit {
 
-  docOrders: any[] = [];
+  // docOrders: any[] = [];
   isLoading= false;
 
-  docOrderSubs: Subscription;
+  // docOrderSubs: Subscription;
 
 
 
   constructor( private inventoryInteractionService: InventoryInteractionService,
-               private doctorderService: DoctorOrderServices,
+               private doctorOrderService: DoctorOrderServices,
                private emailInteractionService: EmailInteractionService,
-               private sankBar: MatSnackBar){}
+               private snackBar: MatSnackBar){}
 
   ngOnInit() {
     this.isLoading = true;
-    this.doctorderService.getVerifiedDocOrders();
-    this.docOrderSubs = this.doctorderService.getVerifiedDocOrdersUpdateListener()
-      .subscribe((posts) => {
-        this.isLoading = false;
-        this.docOrders = posts;
-      });
+    this.doctorOrderService.getDocOrders();
+    this.isLoading = false;
+    // this.docOrderSubs = this.doctorderService.getVerifiedDocOrdersUpdateListener()
+    //   .subscribe((posts) => {
+    //     this.isLoading = false;
+    //     this.docOrders = posts;
+    //   });
   }
 
 
-  async onPickup(name:string,email:string,total:number,pickupDate:string,drugId:any[] = [],drugName:any[] = [],drugPrice:any[] = [],drugQuantity:any[] = [],realQuantity:any[] = [],doctorId:string,doctorContact:string,id:string){
+  async onPickup(id:string){
 
-    let length = drugName.length;
-    let quantity= 0;
-    console.log(length, realQuantity);
-
-
-    for (let count = 0 ; count < length; count++) {
-
-      quantity= +realQuantity[count] - +drugQuantity[count];
-      await this.inventoryInteractionService.updateQuantity(drugId[count],quantity);
-
-    console.log(drugId[count],drugQuantity[count],realQuantity[count],quantity);
-
-   }
-
-    this.doctorderService.createPickedUpDoctorOrder(name,email,doctorId,total,pickupDate,drugId,drugName,drugPrice,drugQuantity,doctorContact);
+  //   let length = drugName.length;
+  //   let quantity= 0;
+  //   console.log(length, realQuantity);
 
 
+  //   for (let count = 0 ; count < length; count++) {
 
-    let user={
-      name : name,
-      email : email,
-      total : total,
-      pickupDate : pickupDate,
-      drugName : drugName,
-      drugPrice : drugPrice,
-      drugQuantity : drugQuantity
-    }
-    console.log(user);
+  //     quantity= +realQuantity[count] - +drugQuantity[count];
+  //     await this.inventoryInteractionService.updateQuantity(drugId[count],quantity);
 
-    this.emailInteractionService.sendEmail(environment.backendBaseUrl + "/api/verifiedDoctorOrder/sendmail", user).subscribe(
-      data => {
-        let res:any = data;
-        console.log(
-          `👏 ${user.name} an email has been successfully and the message id is ${res.messageId}`
-        );
-      },
-      err => {
-        console.log(err);
+  //   console.log(drugId[count],drugQuantity[count],realQuantity[count],quantity);
 
-      }
-    );
+  //  }
+
+    this.doctorOrderService.createPickedUpDoctorOrder(id)
+    .subscribe(response =>{
+      this.doctorOrderService.getDocOrders();
+      this.snackBar.open("Order has been marked as picked up", 'Close');
+    });;
+
+    // let user={
+    //   name : name,
+    //   email : email,
+    //   total : total,
+    //   pickupDate : pickupDate,
+    //   drugName : drugName,
+    //   drugPrice : drugPrice,
+    //   drugQuantity : drugQuantity
+    // }
+    // console.log(user);
+
+    // this.emailInteractionService.sendEmail(environment.backendBaseUrl + "/api/verifiedDoctorOrder/sendmail", user).subscribe(
+    //   data => {
+    //     let res:any = data;
+    //     console.log(
+    //       `👏 ${user.name} an email has been successfully and the message id is ${res.messageId}`
+    //     );
+    //   },
+    //   err => {
+    //     console.log(err);
+
+    //   }
+    // );
 
 
 
-    this.sankBar.open("Pickedup Email Sent!!", 'Close');
-    this.doctorderService.deleteVerifiedItem(id);
+    // this.doctorderService.deleteItem(id);
   }
 
 }

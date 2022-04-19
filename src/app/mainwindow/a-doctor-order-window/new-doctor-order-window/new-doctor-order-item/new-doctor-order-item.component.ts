@@ -15,58 +15,68 @@ export class NewDoctorOrderItemComponent implements OnInit {
 
 
 
-  docOrders: any[] = [];
+  // docOrders: any[] = [];
   isLoading= false;
 
-  docOrderSubs: Subscription;
+  // docOrderSubs: Subscription;
 
 
 
-  constructor(private doctorderService: DoctorOrderServices, private emailInteractionService: EmailInteractionService , private sankBar : MatSnackBar){}
+  constructor(private doctorOrderService: DoctorOrderServices, private emailInteractionService: EmailInteractionService , private snackBar : MatSnackBar){}
 
   ngOnInit() {
     this.isLoading = true;
-    this.doctorderService.getDocOrders();
-    this.docOrderSubs = this.doctorderService.getDocOrdersUpdateListener()
-      .subscribe((posts) => {
-        this.isLoading = false;
-        this.docOrders = posts;
-      });
+    this.doctorOrderService.getDocOrders();
+    this.isLoading = false;
+    // this.docOrderSubs = this.doctorderService.getDocOrdersUpdateListener()
+    //   .subscribe((posts) => {
+    //     this.isLoading = false;
+    //     this.docOrders = posts;
+    //   });
   }
 
-  onOrderVerify(name:string,email:string,total:number,pickupDate:string,drugId:any[] = [],drugName:any[] = [],drugPrice:any[] = [],drugQuantity:any[] = [],realQuantity:any[] = [],doctorId:string,doctorContact:string,id:string){
-
-    this.doctorderService.createVerifiedDoctorOrder(name,email,doctorId,total,pickupDate,drugId,drugName,drugPrice,drugQuantity,realQuantity,doctorContact);
-
-
-    let user={
-      name : name,
-      email : email,
-      total : total,
-      pickupDate : pickupDate,
-      drugName : drugName,
-      drugPrice : drugPrice,
-      drugQuantity : drugQuantity
-    }
-    console.log(user);
-
-    this.emailInteractionService.sendEmail(environment.backendBaseUrl + "/api/doctorOrder/sendmail", user).subscribe(
-      data => {
-        let res:any = data;
-        console.log(
-          `👏 ${user.name} an email has been successfully sent and the message id is ${res.messageId}`
-        );
-      },
-      err => {
-        console.log(err);
-
+  onOrderVerify(id:string){
+    this.isLoading = true;
+    this.doctorOrderService.createVerifiedDoctorOrder(id)
+    .subscribe(response =>{
+      this.doctorOrderService.getDocOrders();
+      if (response.doctorOrder.dispenseStatus === "Approved") {
+        this.snackBar.open("Order has been verified by REMS Administrator", 'Close');
+      } else {
+        this.snackBar.open("Order has not yet been verified by REMS Administrator", 'Close');
       }
-    );
+      this.isLoading = false;
+
+    });;
 
 
-    this.doctorderService.deleteItem(id);
+    // let user={
+    //   name : name,
+    //   email : email,
+    //   total : total,
+    //   pickupDate : pickupDate,
+    //   drugName : drugName,
+    //   drugPrice : drugPrice,
+    //   drugQuantity : drugQuantity
+    // }
+    // console.log(user);
 
-    this.sankBar.open("Verification Email Sent!!", 'Close');
+    // this.emailInteractionService.sendEmail(environment.backendBaseUrl + "/api/doctorOrder/sendmail", user).subscribe(
+    //   data => {
+    //     let res:any = data;
+    //     console.log(
+    //       `👏 ${user.name} an email has been successfully sent and the message id is ${res.messageId}`
+    //     );
+    //   },
+    //   err => {
+    //     console.log(err);
+
+    //   }
+    // );
+
+
+    // this.doctorderService.deleteItem(id);
+
   }
 
   }

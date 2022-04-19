@@ -10,8 +10,8 @@ const userRoutes = require('./routes/user');
 const salesRoutes = require('./routes/sales');
 const doctorUserRoutes = require('./routes/doctorUser');
 const doctorOrderRoutes = require('./routes/doctorOrders');
-const verifiedDoctorOrderRoutes = require('./routes/verifiedDoctorOrder');
-const pickedUpOrdersRoutes = require('./routes/pickedUpOrders');
+// const verifiedDoctorOrderRoutes = require('./routes/verifiedDoctorOrder');
+// const pickedUpOrdersRoutes = require('./routes/pickedUpOrders');
 
 
 const mongoConnString = process.env.MONGODB_CONNSTRING ? process.env.MONGODB_CONNSTRING : 'mongodb://pharmacy-information-root:pharmacy-information-password@localhost:27017?retryWrites=true&w=majority';
@@ -115,7 +115,7 @@ app.use("/api/user",userRoutes);
 app.use("/api/sales",salesRoutes);
 app.use("/api/doctorUser",doctorUserRoutes);
 app.use("/api/doctorOrder",doctorOrderRoutes);
-app.use("/api/verifiedDoctorOrder",verifiedDoctorOrderRoutes);
-app.use("/api/pickedUpOrders",pickedUpOrdersRoutes);
+// app.use("/api/verifiedDoctorOrder",verifiedDoctorOrderRoutes);
+// app.use("/api/pickedUpOrders",pickedUpOrdersRoutes);
 
 module.exports = app;

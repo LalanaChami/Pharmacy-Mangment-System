@@ -1,87 +1,56 @@
 const express = require("express");
 const router = express.Router();
 const nodemailer = require("nodemailer");
+const axios = require('axios').default;
+
 // var handlebars = require('handlebars');
 // var fs = require('fs');
 
 const DoctorOrder = require('../models/doctorOrders');
 
-router.post("/FHIR", (req, res, next) => {
-  //Main paremter that points to the the resourceType and id for all the other resources 
-  const parameterReference = getResource(req.body, req.body.entry[0].resource.focus.parameters.reference);
+router.patch("/fhir/rems/:id", async (req, res, next) => {
+  const documentId = req.params.id;
+  let documentOrder = await DoctorOrder.findById(documentId);
+  const crdUrl = (process.env.CRD_BASE_URL ? process.env.CRD_BASE_URL : "http://localhost:8090/") + "api/rems/" + documentOrder.caseNumber;
+  const updatedComplianceResponse = await axios.get(crdUrl);
+  const updatedCompliance = updatedComplianceResponse.data;
 
-  //patientName
-  const patient = getResource(req.body, parameterReference.parameter.find(param => param.name === "source-patient").reference);
-  const _patientName = patient.name[0].given.join(" ") + " "
-                      + patient.name[0].family;
+  documentOrder = parseRemsAdminRequest(updatedCompliance, documentOrder);
+  documentOrder.save().then(updatedDocOrder => {
+    res.status(201).json({
+      message: 'Doctor Order Updated Successfully',
+      doctorOrder: updatedDocOrder
+    });
 
-  //patientDOB
-  const _patientDOB = patient.birthDate;
-
-  // doctorName
-  const doctor = getResource(req.body, parameterReference.parameter.find(param => param.name === "prescriber").reference);
-
-  const _doctorName = doctor.name[0].prefix[0] + " "
-    + doctor.name[0].given.join(" ")  + " "
-    + doctor.name[0].family;
-
-  // doctorContact
-  const _doctorContact = doctor.telecom.find(telecom => telecom.system === "phone").value;
-
-  // doctorEmail
-  const _doctorEmail = doctor.telecom.find(telecom => telecom.system === "email").value;
-
-  // doctorId
-  const _doctorId = doctor.identifier[0].value;
-
-  // drugId
-  const presciption = getResource(req.body, parameterReference.parameter.find(param => param.name === "prescription").reference);
-
-  //come back and verify rxnorm 
-  const _drugId = presciption.medicationCodeableConcept.coding[0].code;
-
-  // drugNames
-  const _drugNames = presciption.medicationCodeableConcept.coding[0].display;
-
-  // drugPrice
-  const _drugPrice = 200.00;
-
-  // drugQuantity
-  const _drugQuantity = presciption.dispenseRequest.quantity.value;
-
-  // realQuantity
-  const _realQuantity = presciption.dosageInstruction[0].doseAndRate[0].doseQuantity.value
-    + presciption.dosageInstruction[0].doseAndRate[0].doseQuantity.unit;
-
-  // totalAmount
-  // make this the 90 
-  const _totalAmount = _drugQuantity * _drugPrice;
-
-  // pickupDate
-  const _pickupDate = new Date().toDateString();
-
-
-  const docOrder = new DoctorOrder({
-    patientName: _patientName,
-    patientDOB: _patientDOB,
-    doctorName: _doctorName,
-    doctorContact: _doctorContact,
-    doctorID: _doctorId,
-    doctorEmail: _doctorEmail,
-    drugId: _drugId,
-    drugNames: _drugNames,
-    drugPrice: _drugPrice,
-    drugQuantity: _drugQuantity,
-    realQuantity: _realQuantity,
-    totalAmount: _totalAmount,
-    pickupDate: _pickupDate,
-    rawFHIRObject: req.body
   });
+});
 
+router.patch("/fhir/rems/pickedUp/:id", async (req, res, next) => {
+  const documentId = req.params.id;
+  const documentOrder = await DoctorOrder.findById(documentId);
+
+  documentOrder.dispenseStatus = "Picked Up"
+
+  const dateOptions = { weekday: 'long', year: 'numeric', month: 'long', day: 'numeric' };
+  const today  = new Date();
+  documentOrder.actualDate = today.toLocaleDateString("en-US", dateOptions);
+
+  documentOrder.save().then(updatedDocOrder => {
+    res.status(201).json({
+      message: 'Doctor Order Updated Successfully',
+      doctorOrder: updatedDocOrder
+    });
+
+  });
+});
+
+
+router.post("/fhir/rems", (req, res, next) => {
+  const docOrder = parseRemsAdminRequest(req.body);
   docOrder.save().then(createdDocOrder => {
     res.status(201).json({
       message: 'Doctor Order Added Successfully',
-      doctorOrderId: createdDocOrder._id
+      doctorOrder: createdDocOrder
     });
 
   });
@@ -116,12 +85,13 @@ router.post("", (req, res, next) => {
     drugQuantity: req.body.drugQuantity,
     realQuantity: req.body.realQuantity,
     totalAmount: req.body.totalAmount,
-    pickupDate: req.body.pickupDate
+    pickupDate: req.body.pickupDate,
+    dispenseStatus: "N/A",
   });
   docOrder.save().then(createdDocOrder => {
     res.status(201).json({
       message: 'Doctor Order Added Successfully',
-      doctorOrderId: createdDocOrder._id
+      doctorOrder: createdDocOrder
     });
 
   });
@@ -131,8 +101,18 @@ router.post("", (req, res, next) => {
 router.get("", (req, res, next) => {
   DoctorOrder.find().then(documents => {
     res.status(200).json({
-      message: 'Doctor order added sucessfully',
+      message: 'Doctor orders found Successfully',
       doctorOrders: documents
+    });
+  });
+});
+
+router.get("/:id", async (req, res, next) => {
+  const documentId = req.params.id;
+  DoctorOrder.findById(documentId).then(documents => {
+    res.status(200).json({
+      message: 'Doctor order found Successfully',
+      doctorOrder: documents
     });
   });
 });
@@ -268,6 +248,104 @@ async function sendMail(user, callback) {
   let info = await transporter.sendMail(mailOptions);
 
   callback(info);
+}
+
+function parseRemsAdminRequest(requestBody , existingDocOrder = undefined) {
+  const complianceBundle = requestBody?.complianceBundle;
+  //Main paremter that points to the the resourceType and id for all the other resources 
+  const parameterReference = getResource(complianceBundle, complianceBundle.entry[0].resource.focus.parameters.reference);
+
+  //patientName
+  const patient = getResource(complianceBundle, parameterReference.parameter.find(param => param.name === "source-patient").reference);
+  const _patientName = patient?.name[0]?.given?.join(" ") + " "
+                      + patient?.name[0]?.family;
+
+  //patientDOB
+  const _patientDOB = patient?.birthDate;
+
+  // doctorName
+  const doctor = getResource(complianceBundle, parameterReference.parameter.find(param => param.name === "prescriber").reference);
+
+  const _doctorName = doctor?.name[0]?.prefix[0] + " "
+    + doctor?.name[0]?.given.join(" ")  + " "
+    + doctor?.name[0]?.family;
+
+  // doctorContact
+  const _doctorContact = doctor?.telecom?.find(telecom => telecom.system === "phone").value;
+
+  // doctorEmail
+  const _doctorEmail = doctor?.telecom?.find(telecom => telecom.system === "email").value;
+
+  // doctorId
+  const _doctorId = doctor?.identifier[0]?.value;
+
+  // drugId
+  const presciption = getResource(complianceBundle, parameterReference.parameter.find(param => param.name === "prescription").reference);
+
+  //come back and verify rxnorm 
+  const _drugId = presciption?.medicationCodeableConcept?.coding[0]?.code;
+
+  // drugNames
+  const _drugNames = presciption?.medicationCodeableConcept?.coding[0]?.display;
+
+  // drugPrice
+  const _drugPrice = 200.00;
+
+  // drugQuantity
+  const _drugQuantity = presciption?.dispenseRequest?.quantity.value;
+
+  // realQuantity
+  const _realQuantity = presciption?.dosageInstruction[0]?.doseAndRate[0]?.doseQuantity?.value
+    + presciption?.dosageInstruction[0]?.doseAndRate[0]?.doseQuantity.unit;
+
+  // totalAmount
+  // make this the 90 
+  const _totalAmount = _drugQuantity * _drugPrice;
+
+  // pickupDate
+  const _pickupDate = new Date().toDateString();
+
+  let docOrder = existingDocOrder;
+
+  if (existingDocOrder) {
+    docOrder.patientName = _patientName;
+    docOrder.patientDOB = _patientDOB;
+    docOrder.doctorName = _doctorName;
+    docOrder.doctorContact = _doctorContact;
+    docOrder.doctorID = _doctorId;
+    docOrder.doctorEmail = _doctorEmail;
+    docOrder.drugId = _drugId;
+    docOrder.drugNames = _drugNames;
+    docOrder.drugPrice = _drugPrice;
+    docOrder.drugQuantity = _drugQuantity;
+    docOrder.realQuantity = _realQuantity;
+    docOrder.totalAmount = _totalAmount;
+    docOrder.pickupDate = _pickupDate;
+    docOrder.dispenseStatus = requestBody?.status;
+    docOrder.caseNumber = requestBody?.case_number;
+    docOrder.rawFHIRObject = requestBody;
+  } else {
+    docOrder = new DoctorOrder({
+      patientName: _patientName,
+      patientDOB: _patientDOB,
+      doctorName: _doctorName,
+      doctorContact: _doctorContact,
+      doctorID: _doctorId,
+      doctorEmail: _doctorEmail,
+      drugId: _drugId,
+      drugNames: _drugNames,
+      drugPrice: _drugPrice,
+      drugQuantity: _drugQuantity,
+      realQuantity: _realQuantity,
+      totalAmount: _totalAmount,
+      pickupDate: _pickupDate,
+      dispenseStatus: requestBody?.status,
+      caseNumber: requestBody?.case_number,
+      rawFHIRObject: requestBody
+    }); 
+  }
+
+  return docOrder;
 }
 
 

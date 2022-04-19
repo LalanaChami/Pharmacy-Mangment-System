@@ -1,7 +1,7 @@
 <div style="overflow:auto; height: 610px;">
 <table class="table is-full menu-list" style=" margin:10px; width:120%;" >
   <tbody >
-      <tr *ngFor="let docOrder of docOrders ">
+      <tr *ngFor="let docOrder of doctorOrderService.docOrders | async">
         <div class="div columns  is-full btn r" >
             <div class="div column" >
               <table class="table is-full" style=" width:100%;">
@@ -10,14 +10,16 @@
                   <td>Patient DOB</td>
                   <td>Doctor Name</td>
                   <td>Doctor Contact </td>
-                  <td >DoctorID </td>
+                  <td >Doctor ID </td>
                   <td >Doctor Email </td>
                   <td >Drug Names </td>
                   <td>Drug Prices</td>
                   <td>Quantities</td>
                   <td >Total</td>
                   <td >Pickup Date</td>
-                  <td class="level-right"><a class="button is-small is-primary" (click)="onOrderVerify(docOrder.doctorName,docOrder.doctorEmail,docOrder.totalAmount,docOrder.pickupDate,docOrder.drugId,docOrder.drugName,docOrder.drugPrice,docOrder.drugQuantity,docOrder.realQuantity,docOrder.doctorId,docOrder.doctorContact,docOrder.id)" >Order Verify</a></td>
+                  <td> Case Number </td>
+                  <td> Dispense Status </td>
+                  <td class="level-right"><a class="button is-small is-primary" (click)="onOrderVerify(docOrder.id)" >Order Verify</a></td>
                 </thead>
                 <tbody>
                   <td>{{docOrder.patientName}}</td>
@@ -31,6 +33,8 @@
                   <td>{{docOrder.drugQuantity[0]}}<br>{{docOrder.drugQuantity[1]}}<br>{{docOrder.drugQuantity[2]}}<br>{{docOrder.drugQuantity[3]}}<br>{{docOrder.drugQuantity[4]}}<br>{{docOrder.drugQuantity[5]}}  </td>
                   <td >{{docOrder.totalAmount}} </td>
                   <td >{{docOrder.pickupDate}} </td>
+                  <td> {{docOrder.caseNumber}} </td>
+                  <td>{{docOrder.dispenseStatus}}</td>
                   <td class="level-right"><a class="button is-small is-primary" style="font-weight: bold;" href="#">View Order</a></td>
                 </tbody>
               </table>
