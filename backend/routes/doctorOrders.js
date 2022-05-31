@@ -251,7 +251,7 @@ async function sendMail(user, callback) {
 }
 
 function parseRemsAdminRequest(requestBody , existingDocOrder = undefined) {
-  const complianceBundle = requestBody?.complianceBundle;
+  const complianceBundle = requestBody?.resource;
   //Main paremter that points to the the resourceType and id for all the other resources 
   const parameterReference = getResource(complianceBundle, complianceBundle.entry[0].resource.focus.parameters.reference);
 
