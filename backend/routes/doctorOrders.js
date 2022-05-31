@@ -11,7 +11,7 @@ const DoctorOrder = require('../models/doctorOrders');
 router.patch("/fhir/rems/:id", async (req, res, next) => {
   const documentId = req.params.id;
   let documentOrder = await DoctorOrder.findById(documentId);
-  const crdUrl = (process.env.CRD_BASE_URL ? process.env.CRD_BASE_URL : "http://localhost:8090/") + "api/rems/" + documentOrder.caseNumber;
+  const crdUrl = (process.env.CRD_BASE_URL ? process.env.CRD_BASE_URL : "http://localhost:8090/") + "rems/" + documentOrder.caseNumber;
   const updatedComplianceResponse = await axios.get(crdUrl);
   const updatedCompliance = updatedComplianceResponse.data;
 
