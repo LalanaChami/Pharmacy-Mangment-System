@@ -38,13 +38,13 @@ export class DoctorOrderServices{
 
 
   createVerifiedDoctorOrder(id: string){
-    return this.http.patch<any>(environment.backendBaseUrl + "/api/doctorOrder/fhir/rems/" + id, {})
+    return this.http.patch<any>(environment.backendBaseUrl + "/api/doctorOrder/$process-message/" + id, {})
   }
 
 
 
   createPickedUpDoctorOrder(id: string){
-    return this.http.patch<any>(environment.backendBaseUrl + "/api/doctorOrder/fhir/rems/pickedUp/" + id, {})
+    return this.http.patch<any>(environment.backendBaseUrl + "/api/doctorOrder/$process-message/pickedUp/" + id, {})
   }
 
 
