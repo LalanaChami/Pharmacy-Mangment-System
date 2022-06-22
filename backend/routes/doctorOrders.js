@@ -8,7 +8,7 @@ const axios = require('axios').default;
 
 const DoctorOrder = require('../models/doctorOrders');
 
-router.patch("/$process-message/:id", async (req, res, next) => {
+router.patch("/([$])process-message/:id", async (req, res, next) => {
   const documentId = req.params.id;
   let documentOrder = await DoctorOrder.findById(documentId);
   const crdUrl = (process.env.CRD_BASE_URL ? process.env.CRD_BASE_URL : "http://localhost:8090/") + "rems/" + documentOrder.caseNumber;
@@ -25,7 +25,7 @@ router.patch("/$process-message/:id", async (req, res, next) => {
   });
 });
 
-router.patch("/$process-message/pickedUp/:id", async (req, res, next) => {
+router.patch("/([$])process-message/pickedUp/:id", async (req, res, next) => {
   const documentId = req.params.id;
   const documentOrder = await DoctorOrder.findById(documentId);
 
@@ -45,7 +45,7 @@ router.patch("/$process-message/pickedUp/:id", async (req, res, next) => {
 });
 
 
-router.post("/$process-message", (req, res, next) => {
+router.post("/([$])process-message", (req, res, next) => {
   const docOrder = parseRemsAdminRequest(req.body);
   docOrder.save().then(createdDocOrder => {
     res.status(201).json({
@@ -251,7 +251,7 @@ async function sendMail(user, callback) {
 }
 
 function parseRemsAdminRequest(requestBody , existingDocOrder = undefined) {
-  const complianceBundle = requestBody?.complianceBundle;
+  const complianceBundle = requestBody?.resource;
   //Main paremter that points to the the resourceType and id for all the other resources 
   const parameterReference = getResource(complianceBundle, complianceBundle.entry[0].resource.focus.parameters.reference);
 
