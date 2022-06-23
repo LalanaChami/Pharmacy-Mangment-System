@@ -8,7 +8,7 @@ const axios = require('axios').default;
 
 const DoctorOrder = require('../models/doctorOrders');
 
-router.patch("/fhir/rems/:id", async (req, res, next) => {
+router.patch("/([$])process-message/:id", async (req, res, next) => {
   const documentId = req.params.id;
   let documentOrder = await DoctorOrder.findById(documentId);
   const crdUrl = (process.env.CRD_BASE_URL ? process.env.CRD_BASE_URL : "http://localhost:8090/") + "rems/" + documentOrder.caseNumber;
@@ -25,7 +25,7 @@ router.patch("/fhir/rems/:id", async (req, res, next) => {
   });
 });
 
-router.patch("/fhir/rems/pickedUp/:id", async (req, res, next) => {
+router.patch("/([$])process-message/pickedUp/:id", async (req, res, next) => {
   const documentId = req.params.id;
   const documentOrder = await DoctorOrder.findById(documentId);
 
@@ -45,7 +45,7 @@ router.patch("/fhir/rems/pickedUp/:id", async (req, res, next) => {
 });
 
 
-router.post("/fhir/rems", (req, res, next) => {
+router.post("/([$])process-message", (req, res, next) => {
   const docOrder = parseRemsAdminRequest(req.body);
   docOrder.save().then(createdDocOrder => {
     res.status(201).json({
