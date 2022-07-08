@@ -1,10 +1,11 @@
 import { MatSnackBar } from '@angular/material';
+import { MatDialog, MatDialogConfig, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { DoctorOrderServices } from './../../../a-inventory-window/a-shopping-cart-window/DoctorOrderServices.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
 import { EmailInteractionService } from '../email-Interaction.service';
 import { environment } from '../../../../../environments/environment';
-
+import { EtasuPopupComponent } from './etasu-popup/etasu-popup.component';
 
 @Component({
   selector: 'app-new-doctor-order-item',
@@ -22,7 +23,8 @@ export class NewDoctorOrderItemComponent implements OnInit {
 
 
 
-  constructor(private doctorOrderService: DoctorOrderServices, private emailInteractionService: EmailInteractionService , private snackBar : MatSnackBar){}
+  constructor(private doctorOrderService: DoctorOrderServices, private emailInteractionService: EmailInteractionService , 
+    private snackBar : MatSnackBar, private dialog : MatDialog){}
 
   ngOnInit() {
     this.isLoading = true;
@@ -76,6 +78,15 @@ export class NewDoctorOrderItemComponent implements OnInit {
 
 
     // this.doctorderService.deleteItem(id);
+
+  }
+
+  onViewOrder(order:any) {
+
+    this.dialog.open(EtasuPopupComponent, {
+      maxWidth: '50%',
+      data: {order : order}
+    });
 
   }
 

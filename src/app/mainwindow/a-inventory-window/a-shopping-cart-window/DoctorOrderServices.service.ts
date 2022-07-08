@@ -60,6 +60,7 @@ export class DoctorOrderServices{
 
        const transformedOrder = {
         patientName : doctorOrder.patientName,
+        rawFHIRObject : doctorOrder.rawFHIRObject,
         patientDOB : doctorOrder.patientDOB,
         doctorName : doctorOrder.doctorName ,
         doctorContact : doctorOrder.doctorContact ,
