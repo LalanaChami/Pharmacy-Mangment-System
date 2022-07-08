@@ -1,8 +1,8 @@
 <div style="overflow:auto; height: 610px;">
-<table class="table is-full menu-list" style=" margin:10px; width:120%;" >
+<table class="table is-full menu-list" style=" margin:0px; width:100%;" >
   <tbody >
       <tr *ngFor="let docOrder of doctorOrderService.docOrders | async">
-        <div class="div columns  is-full btn r" >
+        <div class="div columns  is-full btn r" style="margin: 0;">
             <div class="div column" >
               <table class="table is-full" style=" width:100%;">
                 <thead style="font-weight: bold;">
@@ -19,7 +19,7 @@
                   <td >Pickup Date</td>
                   <td> Case Number </td>
                   <td> Dispense Status </td>
-                  <td class="level-right"><a class="button is-small is-primary" (click)="onOrderVerify(docOrder.id)" >Order Verify</a></td>
+                  <td ><a class="button is-small is-primary" (click)="onOrderVerify(docOrder.id)" >Order Verify</a></td>
                 </thead>
                 <tbody>
                   <td>{{docOrder.patientName}}</td>
@@ -57,7 +57,7 @@
     border-radius: 2px;
     width: 100%;
     display: block;
-    padding: 20px;
+    padding: 10px;
     }
     .btn{
       width: 100%;

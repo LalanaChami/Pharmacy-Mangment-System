@@ -3,9 +3,9 @@
     <tbody>
       <div class="" *ngFor="let docOrder of doctorOrderService.verifiedDocOrders | async">
         <tr >
-          <div class="div columns  is-full btn r" style="width: 200%;" >
+          <div class="div columns  is-full btn r" style="margin: 0;">
               <div class="div column" >
-                <table class="table is-full" style="width: 60.5%;">
+                <table class="table is-full">
                   <thead style="font-weight: bold;">
                     <td>Doctor Name</td>
                     <td>Doctor Contact </td>
@@ -37,11 +37,11 @@
               </div>
           </div>
         </tr>
-        <tr style="width: 74.5%;">
-          <div class=" " style="width: 119.6%;">
+        <tr style="width: 100%;">
+          <div class=" " style="width: 100%;">
           <a class="button is-small is-primary is-right" style="font-weight: bold; " (click)="onPickup(docOrder.id)">Picked Up</a>
-        </div>
-        </tr><br><br>
+          </div>
+        </tr><br>
       </div>
 
 
@@ -55,7 +55,7 @@
 
     .menu-list{
       border-radius: 2px;
-      width: 220%;
+      width: 100%;
       display: block;
       padding: 10px;
       }
