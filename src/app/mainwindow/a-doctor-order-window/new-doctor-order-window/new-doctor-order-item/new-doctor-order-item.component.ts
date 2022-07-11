@@ -83,7 +83,7 @@ export class NewDoctorOrderItemComponent implements OnInit {
 
   onViewOrder(order:any) {
 
-    this.dialog.open(EtasuPopupComponent, {
+    const dialogRef = this.dialog.open(EtasuPopupComponent, {
       maxWidth: '500px',
       data: {order : order}
     });

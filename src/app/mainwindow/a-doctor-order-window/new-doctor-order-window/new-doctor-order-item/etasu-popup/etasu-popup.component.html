@@ -1,8 +1,11 @@
 <h1 class="header" *ngIf="data.order.dispenseStatus === 'Approved'">
-    Order <span style="color: green;">has</span> been verified by REMS Administrator
+    Order <span style="color: green; font-weight: bold;">has</span> been verified by REMS Administrator
 </h1>
 <h1 class="header" *ngIf="data.order.dispenseStatus === 'Pending'">
-    Order has <span style="color: red;">not</span> yet been verified by REMS Administrator
+    Order has <span style="color: red; font-weight: bold;">not</span> yet been verified by REMS Administrator
+</h1>
+<h1 class="header" *ngIf="data.order.dispenseStatus === 'Picked Up'">
+    Order has been picked up!
 </h1>
 
 <mat-dialog-content class="mat-dialog-content">
@@ -31,5 +34,5 @@
 
 <mat-dialog-actions class="dialog-utilities">
     <button class="action-button" mat-dialog-close>Close</button>
-    <button class="action-button" *ngIf="data.order.dispenseStatus === 'Pending'" (click)="onOrderVerify(data.order.ids)">Order Verify</button>
+    <button class="action-button" *ngIf="data.order.dispenseStatus === 'Pending'" (click)="onOrderVerify(data.order.id)">Order Verify</button>
 </mat-dialog-actions>
