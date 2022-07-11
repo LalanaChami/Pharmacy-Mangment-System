@@ -1,11 +1,11 @@
 import { MatSnackBar } from '@angular/material';
-import { MatDialog, MatDialogConfig, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { Subscription } from 'rxjs';
 import { DoctorOrderServices } from './../../../a-inventory-window/a-shopping-cart-window/DoctorOrderServices.service';
-import { Component, OnInit, Inject } from '@angular/core';
 import { EmailInteractionService } from '../email-Interaction.service';
 import { environment } from '../../../../../environments/environment';
+import { Component, OnInit, Inject } from '@angular/core';
 import { EtasuPopupComponent } from './etasu-popup/etasu-popup.component';
+import { MatDialog, MatDialogConfig, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-new-doctor-order-item',
@@ -84,7 +84,7 @@ export class NewDoctorOrderItemComponent implements OnInit {
   onViewOrder(order:any) {
 
     this.dialog.open(EtasuPopupComponent, {
-      maxWidth: '50%',
+      maxWidth: '500px',
       data: {order : order}
     });
 

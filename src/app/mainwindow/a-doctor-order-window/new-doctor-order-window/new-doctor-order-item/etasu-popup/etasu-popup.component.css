@@ -1,12 +1,17 @@
+.header {
+    margin-bottom: 5%;
+    display: fixed;
+    text-align: center;
+}
+
+.mat-dialog-content {
+    max-height: 500px;
+}
+
 .main-info {
     display: flex;
     flex-direction: column;
     align-items: center;
-    margin-bottom: 30px;
-}
-
-.header {
-    margin-bottom: 5%;
 }
 
 .met-requirements {
@@ -36,20 +41,21 @@
 }
 
 .requirement-instance {
-    position: relative;
-    display: inline-block;
-    cursor: help;
+    display: block;
 }
 
 .requirement-instance .description {
     visibility: hidden;
     position: absolute;
+    display: block;
     z-index: 1;
 
     padding: 0px 8px;
     font-size: 0.8em;
     background-color: grey;
     text-align: center;
+    
+    max-width: 200px;
 
     border-style: solid;
     border-width: 10px;
@@ -57,11 +63,18 @@
     border-radius: 6px;
 }
 
-.requirement-instance:hover .description {
+.indication:hover,
+.indication:hover + .description {
+    cursor: help;
     visibility: visible;
 }
 
-.close-button {
+.dialog-utilities {
+    align-items: center;
+    justify-content: space-between;
+}
+
+.action-button {
     width: 65px;
     height: 30px;
     background-color: rgb(0, 196, 167);
@@ -77,8 +90,8 @@
     cursor: pointer;
 }
 
-.close-button:hover,
-.close-button:active {
+.action-button:hover,
+.action-button:active {
     background-color: rgb(0, 184, 156);
 }
 

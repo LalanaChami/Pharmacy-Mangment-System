@@ -1,22 +1,24 @@
-<mat-dialog-content>
-    <div class="main-info">
-        <div class="header">
-            <p class="status-message" *ngIf="data.order.dispenseStatus === 'Approved'">Order <span style="color: green;">has</span> been verified by REMS Administrator</p>
-            <p class="status-message" *ngIf="data.order.dispenseStatus === 'Pending'">Order has <span style="color: red;">not</span> yet been verified by REMS Administrator</p>
-        </div>
+<h1 class="header" *ngIf="data.order.dispenseStatus === 'Approved'">
+    Order <span style="color: green;">has</span> been verified by REMS Administrator
+</h1>
+<h1 class="header" *ngIf="data.order.dispenseStatus === 'Pending'">
+    Order has <span style="color: red;">not</span> yet been verified by REMS Administrator
+</h1>
 
+<mat-dialog-content class="mat-dialog-content">
+    <div class="main-info">
         <div class="met-requirements">
             <div *ngFor="let requirement of data.order.rawFHIRObject.metRequirements" class="single-req">
                 <div class="requirement-instance"> <!--parent-->
-                    <span *ngIf="requirement.completed" style="color: green;">✓</span>
-                    <span *ngIf="!requirement.completed" style="color: red;">✕</span>
+                    <span *ngIf="requirement.completed" class="indication" style="color: green;">✓</span>
+                    <span *ngIf="!requirement.completed" class="indication" style="color: red;">✕</span>
                     {{requirement.requirement.name}}
                     <span class="description">{{ requirement.requirement.description }}</span>
                 </div>
                 <ul class="child-met-requirements-list">
                     <li *ngFor="let childRequirement of requirement.childMetRequirements" class="requirement-instance"> <!--potential child(ren)-->
-                        <span *ngIf="childRequirement.completed" style="color: green;">✓</span>
-                        <span *ngIf="!childRequirement.completed" style="color: red;">✕</span>
+                        <span *ngIf="childRequirement.completed" class="indication" style="color: green;">✓</span>
+                        <span *ngIf="!childRequirement.completed" class="indication" style="color: red;">✕</span>
                         {{ childRequirement.requirement.name }}
                         <span class="description">{{ childRequirement.requirement.description }}</span>
                     </li>
@@ -27,8 +29,7 @@
 </mat-dialog-content>
 
 
-<mat-dialog-actions>
-    <div class="utilities">
-        <button class="close-button" mat-dialog-close>Close</button>
-    </div>
+<mat-dialog-actions class="dialog-utilities">
+    <button class="action-button" mat-dialog-close>Close</button>
+    <button class="action-button" *ngIf="data.order.dispenseStatus === 'Pending'" (click)="onOrderVerify(data.order.ids)">Order Verify</button>
 </mat-dialog-actions>

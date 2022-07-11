@@ -1,3 +1,5 @@
+import { MatSnackBar } from '@angular/material';
+import { DoctorOrderServices } from './../../../../a-inventory-window/a-shopping-cart-window/DoctorOrderServices.service';
 import { Component, OnInit, Inject } from '@angular/core';
 import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 
@@ -8,9 +10,33 @@ import { MAT_DIALOG_DATA } from '@angular/material/dialog';
 })
 export class EtasuPopupComponent implements OnInit {
 
-  constructor(@Inject(MAT_DIALOG_DATA) public data : {order: any}) { }
+
+  isLoading = false;
+
+
+  constructor(@Inject(MAT_DIALOG_DATA) public data : {order: any}, private doctorOrderService: DoctorOrderServices, 
+    private snackBar : MatSnackBar) { }
+
 
   ngOnInit(): void {
+    this.isLoading = true;
+    this.doctorOrderService.getDocOrders();
+    this.isLoading = false;
+  }
+
+  onOrderVerify(id: string){
+    this.isLoading = true;
+    this.doctorOrderService.createVerifiedDoctorOrder(id)
+    .subscribe(response =>{
+      this.doctorOrderService.getDocOrders();
+      if (response.doctorOrder.dispenseStatus === "Approved") {
+        this.snackBar.open("Order has been verified by REMS Administrator", 'Close');
+      } else {
+        this.snackBar.open("Order has not yet been verified by REMS Administrator", 'Close');
+      }
+      this.isLoading = false;
+
+    });;
   }
 
 }
