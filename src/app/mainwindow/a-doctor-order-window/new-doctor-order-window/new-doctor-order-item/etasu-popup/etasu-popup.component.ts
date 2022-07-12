@@ -22,6 +22,9 @@ export class EtasuPopupComponent implements OnInit {
     
   }
 
+  ngOnInit() {
+  }
+
   onOrderVerify(id: string){
     this.isLoading = true;
     this.doctorOrderService.createVerifiedDoctorOrder(id)
