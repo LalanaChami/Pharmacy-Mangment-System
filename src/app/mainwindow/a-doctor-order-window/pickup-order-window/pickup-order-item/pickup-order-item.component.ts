@@ -1,7 +1,9 @@
 import { EmailInteractionService } from './../../new-doctor-order-window/email-Interaction.service';
 import { DoctorOrderServices } from './../../../a-inventory-window/a-shopping-cart-window/DoctorOrderServices.service';
 import { Subscription } from 'rxjs';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { EtasuPopupComponent } from './../../new-doctor-order-window/new-doctor-order-item/etasu-popup/etasu-popup.component';
+import { MatDialog, MatDialogConfig, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-pickup-order-item',
@@ -17,7 +19,7 @@ export class PickupOrderItemComponent implements OnInit {
 
 
 
-  constructor(public doctorOrderService: DoctorOrderServices, private emailInteractionService: EmailInteractionService){}
+  constructor(public doctorOrderService: DoctorOrderServices, private emailInteractionService: EmailInteractionService, private dialog : MatDialog){}
 
   ngOnInit() {
     this.isLoading = true;
@@ -28,6 +30,15 @@ export class PickupOrderItemComponent implements OnInit {
     //     this.isLoading = false;
     //     this.docPickedUpOrders = posts;
       // });
+  }
+
+  onViewOrder(order:any) {
+
+    this.dialog.open(EtasuPopupComponent, {
+      maxWidth: '500px',
+      data: {order : order}
+    });
+
   }
 
 
