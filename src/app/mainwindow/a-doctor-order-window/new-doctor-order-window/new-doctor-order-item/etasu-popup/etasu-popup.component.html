@@ -1,17 +1,17 @@
-<h1 class="header" *ngIf="data.order.dispenseStatus === 'Approved'">
+<h1 class="header" *ngIf="doctorOrder.dispenseStatus === 'Approved'">
     Order <span style="color: green; font-weight: bold;">has</span> been verified by REMS Administrator
 </h1>
-<h1 class="header" *ngIf="data.order.dispenseStatus === 'Pending'">
+<h1 class="header" *ngIf="doctorOrder.dispenseStatus === 'Pending'">
     Order has <span style="color: red; font-weight: bold;">not</span> yet been verified by REMS Administrator
 </h1>
-<h1 class="header" *ngIf="data.order.dispenseStatus === 'Picked Up'">
+<h1 class="header" *ngIf="doctorOrder.dispenseStatus === 'Picked Up'">
     Order has been picked up!
 </h1>
 
 <mat-dialog-content class="mat-dialog-content">
     <div class="main-info">
         <div class="met-requirements">
-            <div *ngFor="let requirement of data.order.rawFHIRObject.metRequirements" class="single-req">
+            <div *ngFor="let requirement of doctorOrder.rawFHIRObject.metRequirements" class="single-req">
                 <div class="requirement-instance"> <!--parent-->
                     <span *ngIf="requirement.completed" class="indication" style="color: green;">✓</span>
                     <span *ngIf="!requirement.completed" class="indication" style="color: red;">✕</span>
@@ -34,5 +34,6 @@
 
 <mat-dialog-actions class="dialog-utilities">
     <button class="action-button" mat-dialog-close>Close</button>
-    <button class="action-button" *ngIf="data.order.dispenseStatus === 'Pending'" (click)="onOrderVerify(data.order.id)">Order Verify</button>
+    <button class="action-button" *ngIf="doctorOrder.dispenseStatus === 'Pending'" (click)="onOrderVerify(data.order.id)">Order Verify</button>
+    <button class="action-button" *ngIf="doctorOrder.dispenseStatus === 'Approved'" (click)="onPickup(data.order.id)">Pickup Order</button>
 </mat-dialog-actions>
