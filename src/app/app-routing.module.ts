@@ -17,7 +17,7 @@ import { ADoctorOrderWindowComponent } from './mainwindow/a-doctor-order-window/
 import { NewDoctorOrderWindowComponent } from './mainwindow/a-doctor-order-window/new-doctor-order-window/new-doctor-order-window.component';
 import { PickupOrderWindowComponent } from './mainwindow/a-doctor-order-window/pickup-order-window/pickup-order-window.component';
 import { VerifiedDoctorOrderWindowComponent } from './mainwindow/a-doctor-order-window/verified-doctor-order-window/verified-doctor-order-window.component';
-import { DoctorOderServices } from './mainwindow/a-inventory-window/a-shopping-cart-window/DoctorOderServices.service';
+import { DoctorOrderServices } from './mainwindow/a-inventory-window/a-shopping-cart-window/DoctorOrderServices.service';
 import { DoctorSignupComponent } from './auth/doctorAuth/doctorSignup/doctorSignup.component';
 import { AuthGuard } from './auth/auth.guard';
 import { DrugInventoryWindowComponent } from './mainwindow/a-inventory-window/drug-inventory-window/drug-inventory-window.component';

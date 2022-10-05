@@ -1,11 +1,11 @@
 import { XExpiredDialogBoxComponent } from './mainwindow/x-expired-dialog-box/x-expired-dialog-box.component';
-import { DoctorOderServices } from './mainwindow/a-inventory-window/a-shopping-cart-window/DoctorOderServices.service';
+import { DoctorOrderServices } from './mainwindow/a-inventory-window/a-shopping-cart-window/DoctorOrderServices.service';
 import { AuthDoctorUserService } from './auth/doctorAuth/authDoctorUser.service';
 import { DoctorSignupComponent } from './auth/doctorAuth/doctorSignup/doctorSignup.component';
 import { AuthGuard } from './auth/auth.guard';
 import { Routes, RouterModule } from '@angular/router';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, Inject } from '@angular/core';
 import { ReactiveFormsModule , FormsModule } from '@angular/forms';
 import { ChartsModule } from 'ng2-charts';
 import { AppRoutingModule } from './app-routing.module';
@@ -16,6 +16,7 @@ import { Ng2GoogleChartsModule } from 'ng2-google-charts';
 
 import { MatSelectModule, MatSelect } from '@angular/material/select';
 import { MatFormFieldModule } from '@angular/material/form-field';
+import { MatDialogRef, MAT_DIALOG_DATA } from '@angular/material/dialog';
 import { MatPaginatorModule, MatInputModule, MatDialogModule, MatButtonModule, MatButton, MatRadioModule, MatSnackBarModule } from '@angular/material';
 import { AppComponent } from './app.component';
 import { HeaderComponent } from './header/header.component';
@@ -97,6 +98,7 @@ import { AddDoctorUserComponent } from './mainwindow/x-configuration-settings-ad
 import { AboutToOutofStockWindowComponent } from './mainwindow/about-to-outof-stock-window/about-to-outof-stock-window.component';
 import { AboutToOutofStockItemsComponent } from './mainwindow/about-to-outof-stock-window/about-to-outof-stock-items/about-to-outof-stock-items.component';
 import { XOutofstockDialogBoxComponent } from './mainwindow/xoutofstock-dialog-box/xoutofstock-dialog-box.component';
+import { EtasuPopupComponent } from './mainwindow/a-doctor-order-window/new-doctor-order-window/new-doctor-order-item/etasu-popup/etasu-popup.component';
 
 const appRoutes: Routes =[
   { path: '',component:  MainwindowComponent},
@@ -191,12 +193,14 @@ const appRoutes: Routes =[
     AddDoctorUserComponent,
     AboutToOutofStockWindowComponent,
     AboutToOutofStockItemsComponent,
-    XOutofstockDialogBoxComponent
+    XOutofstockDialogBoxComponent,
+    EtasuPopupComponent
 
   ],
   entryComponents: [
     XExpiredDialogBoxComponent,
-    XOutofstockDialogBoxComponent
+    XOutofstockDialogBoxComponent,
+    EtasuPopupComponent
   ],
   imports: [
     BrowserModule,
@@ -218,9 +222,9 @@ const appRoutes: Routes =[
     MatRadioModule,
     MatSnackBarModule
 
-
   ],
-  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor , multi: true},AuthGuard],
+  providers: [{provide: HTTP_INTERCEPTORS, useClass: AuthInterceptor , multi: true}, AuthGuard, { provide: MAT_DIALOG_DATA, useValue: {} },
+    { provide: MatDialogRef, useValue: {} }],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

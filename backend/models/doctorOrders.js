@@ -1,6 +1,8 @@
 const mongoose = require('mongoose');
 
-const verifiedDoctorOderSchema = mongoose.Schema({
+const doctorOrderSchema = mongoose.Schema({
+  patientName: {type: String , require:true},
+  patientDOB: {type: String , require:true},
   doctorName: {type: String , require:true},
   doctorContact: {type: String , require:true},
   doctorID: {type: String , require:true},
@@ -11,7 +13,13 @@ const verifiedDoctorOderSchema = mongoose.Schema({
   drugQuantity: {type: Array , require:true},
   realQuantity: {type: Array , require:true},
   totalAmount : { type: String , require: true},
-  pickupDate : { type: String , require: true}
+  pickupDate : { type: String , require: true},
+  actualDate : { type: String , require: true},
+  dispenseStatus : { type: String , require: true},
+  caseNumber : { type: String , require: false},
+  //send full object here
+  rawFHIRObject : { type: Object, require: false}
 })
 
-module.exports = mongoose.model('VerifiedDoctorOder',verifiedDoctorOderSchema);
+module.exports = mongoose.model('DoctorOrder',doctorOrderSchema);
+

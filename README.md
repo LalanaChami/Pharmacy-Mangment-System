@@ -27,8 +27,8 @@ Star :star:  the repo to help the developers :innocent:
 
 <table>
   <tr>
-    <td>Doctor Oders</td>
-     <td>Verified Doctor Oders</td>
+    <td>Doctor Orders</td>
+     <td>Verified Doctor Orders</td>
      
   </tr>
   <tr>
@@ -109,14 +109,15 @@ Star :star:  the repo to help the developers :innocent:
 3) cd (change directory) in to the project folder
 4) Run `npm install` in your terminal
 5) Run `ng serve` to run the Angular frontend
-6) Run `npm run start:server` to run the backend Node server
-7) Open your browser and navigate to `http://localhost:4200/`
+6) Start backend database using docker. Run `docker run --name rems_local_pharmacy-information-system-database --expose 27017 -p 27017:27017 -e MONGO_INITDB_ROOT_USERNAME='pharmacy-information-root' -e MONGO_INITDB_ROOT_PASSWORD='pharmacy-information-password' -v rems_local_pharmacy-infomation-system-database:/data/db mongo`
+7) Run `npm run start:server` to run the backend Node server
+8) Open your browser and navigate to `http://localhost:4200/`
 
 
 ## 🚨 Development server
 
 Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-Run `npm run start:serve` for a backend server. Navigate to `http://localhost:3000/`. 
+Run `npm run start:serve` for a backend server. Navigate to `http://localhost:3010/`. 
 
 ## 🚨 Code scaffolding
 
@@ -133,7 +134,3 @@ Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.
 ## 🚨 Running end-to-end tests
 
 Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## 🚨 Further help
-
-To get more help on this please email "lalanachamika123@gmail.com" or feel free to open a issue

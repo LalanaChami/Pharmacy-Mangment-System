@@ -1,9 +1,12 @@
 import { MatSnackBar } from '@angular/material';
 import { InventoryInteractionService } from './../../../a-inventory-window/inventory-interaction.service';
 import { EmailInteractionService } from './../../new-doctor-order-window/email-Interaction.service';
-import { DoctorOderServices } from './../../../a-inventory-window/a-shopping-cart-window/DoctorOderServices.service';
+import { DoctorOrderServices } from './../../../a-inventory-window/a-shopping-cart-window/DoctorOrderServices.service';
 import { Subscription } from 'rxjs';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Inject } from '@angular/core';
+import { environment } from '../../../../../environments/environment';
+import { EtasuPopupComponent } from './../../new-doctor-order-window/new-doctor-order-item/etasu-popup/etasu-popup.component';
+import { MatDialog, MatDialogConfig, MAT_DIALOG_DATA } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-verified-doctor-order-item',
@@ -12,77 +15,48 @@ import { Component, OnInit } from '@angular/core';
 })
 export class VerifiedDoctorOrderItemComponent implements OnInit {
 
-  docOders: any[] = [];
+  // docOrders: any[] = [];
   isLoading= false;
 
-  docOderSubs: Subscription;
+  // docOrderSubs: Subscription;
 
 
 
   constructor( private inventoryInteractionService: InventoryInteractionService,
-               private doctoderService: DoctorOderServices,
+               private doctorOrderService: DoctorOrderServices,
                private emailInteractionService: EmailInteractionService,
-               private sankBar: MatSnackBar){}
+               private snackBar: MatSnackBar,
+               private dialog : MatDialog){}
 
   ngOnInit() {
     this.isLoading = true;
-    this.doctoderService.getVerifiedDocOders();
-    this.docOderSubs = this.doctoderService.getVerifiedDocOdersUpdateListener()
-      .subscribe((posts) => {
-        this.isLoading = false;
-        this.docOders = posts;
-      });
+    this.doctorOrderService.getDocOrders();
+    this.isLoading = false;
+    // this.docOrderSubs = this.doctorderService.getVerifiedDocOrdersUpdateListener()
+    //   .subscribe((posts) => {
+    //     this.isLoading = false;
+    //     this.docOrders = posts;
+    //   });
   }
 
 
-  async onPickup(name:string,email:string,total:number,pickupDate:string,drugId:any[] = [],drugName:any[] = [],drugPrice:any[] = [],drugQuantity:any[] = [],realQuantity:any[] = [],doctorId:string,doctorContact:string,id:string){
+  async onPickup(id:string){
 
-    let length = drugName.length;
-    let quantity= 0;
-    console.log(length, realQuantity);
+    this.doctorOrderService.createPickedUpDoctorOrder(id)
+    .subscribe(response =>{
+      this.doctorOrderService.getDocOrders();
+      this.snackBar.open("Order has been marked as picked up", 'Close');
+    });;
 
+  }
 
-    for (let count = 0 ; count < length; count++) {
+  onViewOrder(order:any) {
 
-      quantity= +realQuantity[count] - +drugQuantity[count];
-      await this.inventoryInteractionService.updateQuantity(drugId[count],quantity);
+    this.dialog.open(EtasuPopupComponent, {
+      maxWidth: '500px',
+      data: {order : order}
+    });
 
-    console.log(drugId[count],drugQuantity[count],realQuantity[count],quantity);
-
-   }
-
-    this.doctoderService.createPickedUpDoctorOder(name,email,doctorId,total,pickupDate,drugId,drugName,drugPrice,drugQuantity,doctorContact);
-
-
-
-    let user={
-      name : name,
-      email : email,
-      total : total,
-      pickupDate : pickupDate,
-      drugName : drugName,
-      drugPrice : drugPrice,
-      drugQuantity : drugQuantity
-    }
-    console.log(user);
-
-    this.emailInteractionService.sendEmail("http://localhost:3000/api/verifiedDoctorOder/sendmail", user).subscribe(
-      data => {
-        let res:any = data;
-        console.log(
-          `👏 ${user.name} an email has been successfully and the message id is ${res.messageId}`
-        );
-      },
-      err => {
-        console.log(err);
-
-      }
-    );
-
-
-
-    this.sankBar.open("Pickedup Email Sent!!", 'Close');
-    this.doctoderService.deleteVerifiedItem(id);
   }
 
 }

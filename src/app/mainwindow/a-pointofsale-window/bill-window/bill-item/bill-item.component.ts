@@ -36,7 +36,7 @@ export class BillItemComponent implements OnInit {
 
   constructor(private inventoryInteractionService: InventoryInteractionService, private salesInteractionService:SalesInteractionService , private snackbar : MatSnackBar ) {
     this.items =[
-      {name: 'https://i.ibb.co/L9X6wKM/pharmacare-logo-hori-tagline-2.png'},
+      {name: '../assets/pharmacare-logo-hori-tagline-2.png'},
     ]
    }
 

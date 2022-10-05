@@ -1,35 +1,41 @@
-<div style="overflow-y:auto ;overflow-x: hidden;height: 610px;">
-<table class="table is-full menu-list"  >
-  <tbody>
-      <tr *ngFor="let docOder of docOders ">
-        <div class="div columns  is-full btn r" style="width: 200%;" >
+<div style="overflow:auto; height: 610px;">
+<table class="table is-full menu-list" style=" margin:0px; width:100%;" >
+  <tbody >
+      <tr *ngFor="let docOrder of doctorOrderService.docOrders | async">
+        <div class="div columns  is-full btn r" style="margin: 0;">
             <div class="div column" >
-              <table class="table is-full" style="width: 55%;">
+              <table class="table is-full" style=" width:100%;">
                 <thead style="font-weight: bold;">
+                  <td>Patient Name</td>
+                  <td>Patient DOB</td>
                   <td>Doctor Name</td>
                   <td>Doctor Contact </td>
-                  <td >DoctorID </td>
+                  <td >Doctor ID </td>
                   <td >Doctor Email </td>
                   <td >Drug Names </td>
                   <td>Drug Prices</td>
                   <td>Quantities</td>
                   <td >Total</td>
                   <td >Pickup Date</td>
-                  <td class="level-right"><a class="button is-small is-primary" (click)="onOderVerify(docOder.doctorName,docOder.doctorEmail,docOder.totalAmount,docOder.pickupDate,docOder.drugId,docOder.drugName,docOder.drugPrice,docOder.drugQuantity,docOder.realQuantity,docOder.doctorId,docOder.doctorContact,docOder.id)" >Order Verify</a></td>
+                  <td> Case Number </td>
+                  <td> Dispense Status </td>
+                  <td ><a class="button is-small is-primary" (click)="onOrderVerify(docOrder.id)" >Order Verify</a></td>
                 </thead>
                 <tbody>
-                  <td>{{docOder.doctorName}}</td>
-                  <td>{{docOder.doctorContact}} </td>
-                  <td >{{docOder.doctorId}} </td>
-                  <td >{{docOder.doctorEmail}}</td>
-                  <td >{{docOder.drugName[0]}}<br>{{docOder.drugName[1]}}<br>{{docOder.drugName[2]}}<br>{{docOder.drugName[3]}}<br>{{docOder.drugName[4]}}<br>{{docOder.drugName[5]}}</td>
-                  <td>{{docOder.drugPrice[0]}}<br>{{docOder.drugPrice[1]}}<br>{{docOder.drugPrice[2]}}<br>{{docOder.drugPrice[3]}}<br>{{docOder.drugPrice[4]}}<br>{{docOder.drugPrice[5]}}</td>
-                  <td>{{docOder.drugQuantity[0]}}<br>{{docOder.drugQuantity[1]}}<br>{{docOder.drugQuantity[2]}}<br>{{docOder.drugQuantity[3]}}<br>{{docOder.drugQuantity[4]}}<br>{{docOder.drugQuantity[5]}}  </td>
-                  <td >{{docOder.totalAmount}} </td>
-                  <td >{{docOder.pickupDate}} </td>
-
-                  <td class="level-right"><a class="button is-small is-primary" style="font-weight: bold;" href="#">View Order</a></td>
-
+                  <td>{{docOrder.patientName}}</td>
+                  <td>{{docOrder.patientDOB}}</td>
+                  <td>{{docOrder.doctorName}}</td>
+                  <td>{{docOrder.doctorContact}} </td>
+                  <td >{{docOrder.doctorId}} </td>
+                  <td >{{docOrder.doctorEmail}}</td>
+                  <td >{{docOrder.drugName[0]}}<br>{{docOrder.drugName[1]}}<br>{{docOrder.drugName[2]}}<br>{{docOrder.drugName[3]}}<br>{{docOrder.drugName[4]}}<br>{{docOrder.drugName[5]}}</td>
+                  <td>{{docOrder.drugPrice[0]}}<br>{{docOrder.drugPrice[1]}}<br>{{docOrder.drugPrice[2]}}<br>{{docOrder.drugPrice[3]}}<br>{{docOrder.drugPrice[4]}}<br>{{docOrder.drugPrice[5]}}</td>
+                  <td>{{docOrder.drugQuantity[0]}}<br>{{docOrder.drugQuantity[1]}}<br>{{docOrder.drugQuantity[2]}}<br>{{docOrder.drugQuantity[3]}}<br>{{docOrder.drugQuantity[4]}}<br>{{docOrder.drugQuantity[5]}}  </td>
+                  <td >{{docOrder.totalAmount}} </td>
+                  <td >{{docOrder.pickupDate}} </td>
+                  <td> {{docOrder.caseNumber}} </td>
+                  <td>{{docOrder.dispenseStatus}}</td>
+                  <td ><a class="button is-small is-primary" style="font-weight: bold;" (click)="onViewOrder(docOrder)">View Order</a></td>
                 </tbody>
               </table>
             </div>
@@ -49,7 +55,7 @@
 
   .menu-list{
     border-radius: 2px;
-    width: 220%;
+    width: 100%;
     display: block;
     padding: 10px;
     }

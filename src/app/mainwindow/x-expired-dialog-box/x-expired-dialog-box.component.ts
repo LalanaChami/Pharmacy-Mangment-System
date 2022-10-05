@@ -2,6 +2,7 @@ import { EmailInteractionService } from './../a-doctor-order-window/new-doctor-o
 import { NgForm } from '@angular/forms';
 import { Component, OnInit , Inject } from '@angular/core';
 import { MAT_DIALOG_DATA , MatSnackBar} from '@angular/material'
+import { environment } from '../../../environments/environment';
 
 @Component({
   selector: 'app-x-expired-dialog-box',
@@ -30,7 +31,7 @@ export class XExpiredDialogBoxComponent implements OnInit {
     }
     console.log(user);
 
-    this.emailInteractionService.sendEmail("http://localhost:3000/api/inventory/sendmail", user).subscribe(
+    this.emailInteractionService.sendEmail(environment.backendBaseUrl + "/api/inventory/sendmail", user).subscribe(
       data => {
         let res:any = data;
         console.log(
