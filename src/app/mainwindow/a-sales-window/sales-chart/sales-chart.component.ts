@@ -65,7 +65,7 @@ public  Newchart(){
                   nameTextStyle: {
                     color: "#FFF"
                   },
-                  borderRadius:10,
+                  boderRadius:10,
                 };
     this.width = 550;
     this.height = 500;

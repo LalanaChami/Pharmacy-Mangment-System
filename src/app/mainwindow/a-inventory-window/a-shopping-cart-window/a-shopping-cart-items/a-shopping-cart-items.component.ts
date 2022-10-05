@@ -1,4 +1,4 @@
-//import { DoctorOrderService } from './../DoctorOrderService.service';
+//import { DoctorOderService } from './../DoctorOderService.service';
 import { AuthDoctorData } from './../../../../auth/doctorAuth/doctorAuth-model';
 import { AuthDoctorUserService } from './../../../../auth/doctorAuth/authDoctorUser.service';
 import { NgForm } from '@angular/forms';
@@ -9,7 +9,7 @@ import { first } from 'rxjs/operators';
 import { Component, OnInit } from '@angular/core';
 import { Inventory } from '../../inventory.model';
 import { SalesInformationArray } from 'src/app/mainwindow/a-pointofsale-window/salesInformationArray.model';
-import { DoctorOrderServices } from '../DoctorOrderServices.service';
+import { DoctorOderServices } from '../DoctorOderServices.service';
 
 
 @Component({
@@ -39,7 +39,7 @@ export class AShoppingCartItemsComponent implements OnInit {
   doctors: Array<any> = [];
   TrimedDoctors: Array<any> = [];
   docArrLength: number;
-  orderDetail: Array<any> = [];
+  oderDetail: Array<any> = [];
   drugNames: Array<any> = [];
   drugId: Array<any> = [];
   drugPrices: Array<any> = [];
@@ -50,7 +50,7 @@ export class AShoppingCartItemsComponent implements OnInit {
   userIsAuthenticated =false;
   private authListenerSubs: Subscription;
 
-  constructor(private inventoryInteractionService: InventoryInteractionService, private authDoctorUserService:AuthDoctorUserService, private doctorOrderService:DoctorOrderServices) {
+  constructor(private inventoryInteractionService: InventoryInteractionService, private authDoctorUserService:AuthDoctorUserService, private doctorOderService:DoctorOderServices) {
   //   this.currentUserSubscription = this.authDoctorUserService.currentUser.subscribe(user => {
   //   this.currentUser = user;
   // });
@@ -124,8 +124,8 @@ export class AShoppingCartItemsComponent implements OnInit {
 
 
   onCheckout(checkoutForm:NgForm){
-    this.orderDetail.push(this.TrimedDoctors,this.itemArray,this.total,checkoutForm.value.pickupDateInput);
-    console.log(this.orderDetail);
+    this.oderDetail.push(this.TrimedDoctors,this.itemArray,this.total,checkoutForm.value.pickupDateInput);
+    console.log(this.oderDetail);
 
     let drugId = this.drugId;
     let doctorName = this.TrimedDoctors[0];
@@ -139,7 +139,7 @@ export class AShoppingCartItemsComponent implements OnInit {
     let totalAmount = this.total;
     let pickupDate = checkoutForm.value.pickupDateInput;
     console.log(drugName);
-    this.doctorOrderService.createDoctorUser(doctorName,doctorContact,doctorId,doctorEmail,drugId,drugName,drugPrice,drugQuantity,realQuantity,totalAmount,pickupDate)
+    this.doctorOderService.createDoctorUser(doctorName,doctorContact,doctorId,doctorEmail,drugId,drugName,drugPrice,drugQuantity,realQuantity,totalAmount,pickupDate)
 
 
   }

@@ -9,27 +9,26 @@ const inventoryRoutes = require('./routes/inventory');
 const userRoutes = require('./routes/user');
 const salesRoutes = require('./routes/sales');
 const doctorUserRoutes = require('./routes/doctorUser');
-const doctorOrderRoutes = require('./routes/doctorOrders');
-// const verifiedDoctorOrderRoutes = require('./routes/verifiedDoctorOrder');
-// const pickedUpOrdersRoutes = require('./routes/pickedUpOrders');
+const doctorOderRoutes = require('./routes/doctorOders');
+const verifiedDoctorOderRoutes = require('./routes/verifiedDoctorOder');
+const pickedUpOdersRoutes = require('./routes/pickedUpOders');
 
 
-const mongoConnString = process.env.MONGODB_CONNSTRING ? process.env.MONGODB_CONNSTRING : 'mongodb://pharmacy-information-root:pharmacy-information-password@localhost:27017?retryWrites=true&w=majority';
-mongoose.connect(mongoConnString, {useNewUrlParser: true , useUnifiedTopology: true})
+
+mongoose.connect('mongodb+srv://lalana:OJx2X4IllVNl9up4@cluster0-rjtww.mongodb.net/pharmacy?retryWrites=true&w=majority',{useNewUrlParser: true , useUnifiedTopology: true})
   .then(()=>{
     console.log('connected to database!');
   })
-  .catch((e)=>{
-    console.log(e);
+  .catch(()=>{
     console.log('connection failed! ');
- });
+  });
   mongoose.set('useCreateIndex', true);
 
 //OJx2X4IllVNl9up4
 
 
-app.use(bodyParser.json({limit: '50mb'}));
-app.use(bodyParser.urlencoded({ extended: false, limit: '50mb' }));
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: false }));
 app.use("/images" , express.static(path.join("images")));
 
 
@@ -114,8 +113,8 @@ app.use("/api/inventory",inventoryRoutes);
 app.use("/api/user",userRoutes);
 app.use("/api/sales",salesRoutes);
 app.use("/api/doctorUser",doctorUserRoutes);
-app.use("/api/doctorOrder",doctorOrderRoutes);
-// app.use("/api/verifiedDoctorOrder",verifiedDoctorOrderRoutes);
-// app.use("/api/pickedUpOrders",pickedUpOrdersRoutes);
+app.use("/api/doctorOder",doctorOderRoutes);
+app.use("/api/verifiedDoctorOder",verifiedDoctorOderRoutes);
+app.use("/api/pickedUpOders",pickedUpOdersRoutes);
 
 module.exports = app;

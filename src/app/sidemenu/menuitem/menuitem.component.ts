@@ -27,7 +27,7 @@ export class MenuitemComponent implements OnInit {
 
     this.role = this.authService.getUserRole();
     console.log(this.role);
-    /*if(this.role === "pharmacist"){ //variables not being set upon page reload
+    if(this.role === "pharmacist"){
       this.PharamacistRole = true;
     }
     else if(this.role === "cashier"){
@@ -35,9 +35,7 @@ export class MenuitemComponent implements OnInit {
     }
     else if(this.role === "assistantPharmacist" ){
       this.ApharmacistRole = true;
-    }*/
-    this.PharamacistRole = true; //for our workflow we don't need to worry about other users for now
-
+    }
 
   }
 
