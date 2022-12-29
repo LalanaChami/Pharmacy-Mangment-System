@@ -1,8 +1,8 @@
 <div style=" overflow: hidden; " scroll="no">
 <app-header *ngIf="showMenu && showSignup && showShoppingcart && showDoctorLogin && showDoctorSignup"></app-header>
-<div class="columns" style="margin-top: 0%; margin-left: 0%; width: 100%;">
-  <div class="column is-sidebar-menu is-hidden-mobile is-2" style="background-color:hsl(0, 0%, 29%); min-width: 270px; width: 15%; padding: 0px;" *ngIf="showMenu  && showSignup && showShoppingcart && showDoctorLogin && showDoctorSignup">
-    <app-sidemenu></app-sidemenu>
+<div class="columns" style="margin-top: 0%; ">
+  <div class="column is-sidebar-menu is-hidden-mobile is-2" style="background-color:hsl(0, 0%, 29%) ;width: 270px;" *ngIf="showMenu  && showSignup && showShoppingcart && showDoctorLogin && showDoctorSignup">
+    <app-sidemenu ></app-sidemenu>
   </div>
   <div class="column main ">
     <router-outlet></router-outlet>

@@ -1,10 +1,8 @@
-FROM codexrems/node14-pkg-config:REMSvCurrent
-WORKDIR /home/node/app/pharmacy-information-system
-COPY --chown=node:node . .
-RUN npm install
-WORKDIR /home/node/app/pharmacy-information-system/backend
-RUN npm install
-WORKDIR /home/node/app/pharmacy-information-system
-EXPOSE 3010
-EXPOSE 4200
-CMD node backend/populatedb.js && npm run start
+FROM node:12.18-alpine
+ENV NODE_ENV production
+WORKDIR /usr/src/app
+COPY ["package.json", "package-lock.json*", "npm-shrinkwrap.json*", "./"]
+RUN npm install --production --silent && mv node_modules ../
+COPY . .
+EXPOSE 8080
+CMD npm start

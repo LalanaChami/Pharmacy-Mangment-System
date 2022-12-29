@@ -1,9 +1,7 @@
 import { EmailInteractionService } from './../../new-doctor-order-window/email-Interaction.service';
-import { DoctorOrderServices } from './../../../a-inventory-window/a-shopping-cart-window/DoctorOrderServices.service';
+import { DoctorOderServices } from './../../../a-inventory-window/a-shopping-cart-window/DoctorOderServices.service';
 import { Subscription } from 'rxjs';
-import { Component, OnInit, Inject } from '@angular/core';
-import { EtasuPopupComponent } from './../../new-doctor-order-window/new-doctor-order-item/etasu-popup/etasu-popup.component';
-import { MatDialog, MatDialogConfig, MAT_DIALOG_DATA } from '@angular/material/dialog';
+import { Component, OnInit } from '@angular/core';
 
 @Component({
   selector: 'app-pickup-order-item',
@@ -12,33 +10,23 @@ import { MatDialog, MatDialogConfig, MAT_DIALOG_DATA } from '@angular/material/d
 })
 export class PickupOrderItemComponent implements OnInit {
 
-  // docPickedUpOrders: any[] = [];
+  docPickedUpOders: any[] = [];
   isLoading= false;
 
-  // docPickedUpOrderSubs: Subscription;
+  docPickedUpOderSubs: Subscription;
 
 
 
-  constructor(public doctorOrderService: DoctorOrderServices, private emailInteractionService: EmailInteractionService, private dialog : MatDialog){}
+  constructor(private doctoderService: DoctorOderServices, private emailInteractionService: EmailInteractionService){}
 
   ngOnInit() {
     this.isLoading = true;
-    this.doctorOrderService.getDocOrders();
-    this.isLoading = false;
-    // this.docPickedUpOrderSubs = this.doctorderService.getPickedUpDocOrdersUpdateListener()
-    //   .subscribe((posts) => {
-    //     this.isLoading = false;
-    //     this.docPickedUpOrders = posts;
-      // });
-  }
-
-  onViewOrder(order:any) {
-
-    this.dialog.open(EtasuPopupComponent, {
-      maxWidth: '500px',
-      data: {order : order}
-    });
-
+    this.doctoderService.getPickedUpDocOders();
+    this.docPickedUpOderSubs = this.doctoderService.getPickedUpDocOdersUpdateListener()
+      .subscribe((posts) => {
+        this.isLoading = false;
+        this.docPickedUpOders = posts;
+      });
   }
 
 
