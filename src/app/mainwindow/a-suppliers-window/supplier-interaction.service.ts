@@ -4,7 +4,6 @@ import {Supplier} from './supplier.model';
 import { HttpClient, HttpClientModule } from '@angular/common/http';
 import { map } from 'rxjs/operators';
 import { Router } from '@angular/router';
-import { environment } from '../../../environments/environment';
 
 @Injectable({
   providedIn: 'root'
@@ -16,7 +15,7 @@ export class SupplierInteractionService {
   constructor(private http: HttpClient, private router : Router){}
 
   getSupplier() {
-    this.http.get<{message: string, suppliers: any}>(environment.backendBaseUrl + '/api/supplier')
+    this.http.get<{message: string, suppliers: any}>('http://localhost:3000/api/supplier')
     .pipe(map(supplierData => {
      return supplierData.suppliers.map(supplier=>{
        return{
@@ -43,7 +42,7 @@ export class SupplierInteractionService {
 
   getSuppiers(id: string){
     return this.http.get<{_id: string , supplierID: string , name: string, email: string, contact: string, drugsAvailable: string}>
-    (environment.backendBaseUrl + '/api/supplier/' + id);
+    ('http://localhost:3000/api/supplier/' + id);
   }
 
   addSupplier( supplierID: string, name: string, email: string, contact: string, drugsAvailable: string) {
@@ -54,7 +53,7 @@ export class SupplierInteractionService {
                                 contact: contact,
                                 drugsAvailable:drugsAvailable
                                };
-    this.http.post<{message: string, supplierId: string}>(environment.backendBaseUrl + '/api/supplier',supplier)
+    this.http.post<{message: string, supplierId: string}>('http://localhost:3000/api/supplier',supplier)
     .subscribe((responseData)=>{
       const id = responseData.supplierId;
       supplier.id =id;
@@ -68,7 +67,7 @@ export class SupplierInteractionService {
   updateSupplier(id: string , supplierID: string , name: string, email: string, contact: string, drugsAvailable: string){
     const supplier : Supplier ={id:id ,supplierID:supplierID , name:name , email:email , contact:contact , drugsAvailable:drugsAvailable};
     this.http
-             .put(environment.backendBaseUrl + '/api/supplier/' + id , supplier)
+             .put('http://localhost:3000/api/supplier/' + id , supplier)
              .subscribe(response => {
                const updatedSuppliers = [...this.supplier];
                const oldSupplierIndex = updatedSuppliers.findIndex(s => s.id ===supplier.id);
@@ -79,7 +78,7 @@ export class SupplierInteractionService {
   }
 
   deleteSupplier(supplierId: string) {
-    this.http.delete(environment.backendBaseUrl + '/api/supplier/' + supplierId)
+    this.http.delete('http://localhost:3000/api/supplier/' + supplierId)
       .subscribe(() => {
         const updatedSupplier = this.supplier.filter(supplier => supplier.id !== supplierId);
         this.supplier = updatedSupplier;

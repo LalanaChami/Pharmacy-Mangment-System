@@ -1,48 +1,11 @@
 {
-    // Use IntelliSense to learn about possible attributes.
-    // Hover to view descriptions of existing attributes.
-    // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-    "version": "0.2.0",
     "configurations": [
         {
-            "name": "Debug Pharmacy-Information-System Backend (Docker)",
-            "port": 3011,
-            "request": "attach",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
-            "type": "node",
-            "localRoot": "${workspaceFolder}",
-            "remoteRoot": "/home/node/app/pharmacy-information-system",
-            "restart": true
-        },
-        {
-            "name": "Debug Pharmacy-Information-System Backend (Local)",
-            "port": 3011,
-            "request": "attach",
-            "skipFiles": [
-                "<node_internals>/**"
-            ],
-            "type": "node",
-            "restart": true
-        },
-        {
-            "type": "chrome",
+            "name": "Docker Node.js Launch",
+            "type": "docker",
             "request": "launch",
-            "name": "Debug Pharmacy-Information-System Frontend (Launch Local + Docker)",
-            "url": "http://localhost:4200",
-            "webRoot": "${workspaceFolder}",
-            "runtimeArgs": [
-                "--remote-debugging-port=9222"
-              ]
-        },
-        {
-            "type": "chrome",
-            "request": "attach", // Launch Chrome According To: https://github.com/microsoft/vscode-chrome-debug#attach
-            "name": "Debug Pharmacy-Information-System Frontend (Attach Local + Docker)",
-            "url": "http://localhost:4200/*",
-            "port": 9222,
-            "webRoot": "${workspaceFolder}",
+            "preLaunchTask": "docker-run: debug",
+            "platform": "node"
         }
     ]
 }
