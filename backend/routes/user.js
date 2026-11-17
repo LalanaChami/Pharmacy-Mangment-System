@@ -3,6 +3,7 @@ const router = express.Router();
 const bcrypt = require("bcryptjs");
 const jwt = require("jsonwebtoken");
 const User = require("../models/user");
+const checkAuth = require("../middleware/check-auth");
 
 router.post("/signup", (req,res,next)=>{
   bcrypt.hash(req.body.password, 10)
@@ -77,7 +78,7 @@ router.post("/login" , (req, res ,  next)=>{
   });
 })
 
-router.get("/getUserData",(req,res,next)=>{
+router.get("/getUserData",checkAuth,(req,res,next)=>{
   User.find().then(documents=>{
     res.status(200).json({
       message : 'supplier added sucessfully',
@@ -87,7 +88,7 @@ router.get("/getUserData",(req,res,next)=>{
 });
 
 
-router.get("/:id",(req,res,next)=>{
+router.get("/:id",checkAuth,(req,res,next)=>{
   User.findById(req.params.id).then(user =>{
     if(user){
       res.status(200).json(user);
@@ -97,7 +98,7 @@ router.get("/:id",(req,res,next)=>{
   });
 });
 
-router.put("/:id",(req,res,next)=>{
+router.put("/:id",checkAuth,(req,res,next)=>{
   bcrypt.hash(req.body.password, 10)
   .then(hash => {
     const user = new User({
@@ -123,7 +124,7 @@ router.put("/:id",(req,res,next)=>{
 })
 });
 
-router.delete("/:id",(req, res, next) => {
+router.delete("/:id",checkAuth,(req, res, next) => {
   User.deleteOne({ _id: req.params.id }).then(result => {
     console.log(result);
     res.status(200).json({ message: 'user deleted!' });
